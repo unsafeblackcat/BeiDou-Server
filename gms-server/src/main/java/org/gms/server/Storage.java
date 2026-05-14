@@ -81,19 +81,45 @@ public class Storage {
     }
 
     public static Storage loadOrCreateFromDB(int id, int world) {
+
+        /**
+         * id: 账户id
+         * world: 世界id
+         * **/
+
+
+        /**
+         *  查询 以 accid 和 world 查询 storages 表
+         * **/
         Storage ret;
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("SELECT storageid, slots, meso FROM storages WHERE accountid = ? AND world = ?")) {
             ps.setInt(1, id);
             ps.setInt(2, world);
 
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    ret = new Storage(rs.getInt("storageid"), (byte) rs.getInt("slots"), rs.getInt("meso"));
-                    for (Pair<Item, InventoryType> item : ItemFactory.STORAGE.loadItems(ret.id, false)) {
+            try (ResultSet rs = ps.executeQuery())
+            {
+                if (rs.next())
+                {
+                    ret = new Storage(
+                            rs.getInt("storageid")
+                            , (byte) rs.getInt("slots")
+                            , rs.getInt("meso"));
+
+                    for (Pair<Item, InventoryType> item
+                            /**
+                             * ret.id == storageid  当前世界下的 仓库id
+                             * **/
+                            : ItemFactory.STORAGE.loadItems(ret.id, false))
+                    {
+                        /**
+                         *  查询到的所有仓库信息存储在 items 中
+                         * **/
                         ret.items.add(item.getLeft());
                     }
-                } else {
+                }
+                else
+                {
                     ret = create(id, world);
                 }
             }

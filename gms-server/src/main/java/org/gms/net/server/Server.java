@@ -1322,9 +1322,25 @@ public class Server {
         List<Character> chars = new LinkedList<>();
         int curWorld = 0;
         try {
+            /**
+             *  通过账户ID，true表示账户ID，login表示当前处于登录状态
+             *
+             *  通过账户ID，以登录状态，查询当前账户下的所有角色信息 cid
+             *  和角色信息身上穿戴的装备内容。
+             *
+             *  accEquips
+             *      item    为身上穿戴的装备属性
+             *      Integer 为当前装配匹配的角色 cid
+             * **/
             List<Pair<Item, Integer>> accEquips = ItemFactory.loadEquippedItems(accId, true, true);
             Map<Integer, List<Item>> accPlayerEquips = new HashMap<>();
 
+            /**
+             *  重新组装下信息。
+             *  以 角色 cid 为key的组件
+             *  将所有角色穿戴的装备装入 List<Item> 中
+             *  最终存储在 wchars 中，并且返回出去
+             * **/
             for (Pair<Item, Integer> ae : accEquips) {
                 List<Item> playerEquips = accPlayerEquips.get(ae.getRight());
                 if (playerEquips == null) {
@@ -1336,6 +1352,11 @@ public class Server {
             }
 
 
+            /**
+             * 查询数据库表 characters 以 accountid 搜索
+             * 当前所有账户id accId 下所有的角色信息
+             * 并且初始化当前账户下所有角色信息存储在  chars 中
+             * **/
             try (Connection con = DatabaseConnection.getConnection();
                  PreparedStatement ps = con.prepareStatement("SELECT * FROM characters WHERE accountid = ? ORDER BY world, id")) {
                 ps.setInt(1, accId);
@@ -1356,6 +1377,9 @@ public class Server {
                         }
 
                         Integer cid = rs.getInt("id");
+                        //当前角色 cid  并且创建角色对象，
+                        // accPlayerEquips 负责将当前 cid 身上穿戴的装备信息传递给 chars 对象。
+                        // 最终存储到 chars 中
                         chars.add(Character.loadCharacterEntryFromDB(rs, accPlayerEquips.get(cid)));
                     }
                 }
@@ -1366,6 +1390,7 @@ public class Server {
             sqle.printStackTrace();
         }
 
+        // 返回当前 accid 所有角色数量和角色对象
         return new Pair<>(characterCount, wchars);
     }
 
@@ -1431,11 +1456,19 @@ public class Server {
 
     private int loadAccountCharactersView(Integer accId, int gmLevel, int fromWorldid) {    // returns the maximum gmLevel found
         List<World> wlist = this.getWorlds();
+
+        /**
+         *  accCharacters
+         *      Short 当前 accid 下所有角色总数量
+         *      llchar 每个 cid 对应的角色对象 Character
+         * **/
         Pair<Short, List<List<Character>>> accCharacters = loadAccountCharactersViewFromDb(accId, wlist.size());
 
         lgnWLock.lock();
         try {
             List<List<Character>> accChars = accCharacters.getRight();
+
+            // 转移到 accountCharacterCount 中。
             accountCharacterCount.put(accId, accCharacters.getLeft());
 
             Set<Integer> chars = accountChars.get(accId);
@@ -1443,9 +1476,14 @@ public class Server {
                 chars = new HashSet<>(5);
             }
 
-            for (int wid = fromWorldid; wid < wlist.size(); wid++) {
+            for (int wid = fromWorldid; wid < wlist.size(); wid++)
+            {
                 World w = wlist.get(wid);
                 List<Character> wchars = accChars.get(wid);
+                /**
+                 *  在 accChars 中取出当前世界下，所有角色信息。
+                 *  并且存储到 word.accountChars 中
+                 * **/
                 w.loadAccountCharactersView(accId, wchars);
 
                 for (Character chr : wchars) {
@@ -1455,10 +1493,13 @@ public class Server {
                     }
 
                     chars.add(cid);
+
+                    // 把 cid 和 wordid 绑定
                     worldChars.put(cid, wid);
                 }
             }
 
+            // 只存储 accid 下的所有 cid
             accountChars.put(accId, chars);
         } finally {
             lgnWLock.unlock();
@@ -1485,9 +1526,13 @@ public class Server {
         }
 
         List<World> worldList = this.getWorlds();
-        for (Integer worldid : accWorlds) {
-            if (worldid < worldList.size()) {
+        for (Integer worldid : accWorlds)
+        {
+            if (worldid < worldList.size())
+            {
                 World wserv = worldList.get(worldid);
+
+                // 加载当前账户id下当前世界的所有仓库信息
                 wserv.loadAccountStorage(accountId);
             }
         }

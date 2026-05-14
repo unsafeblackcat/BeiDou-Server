@@ -163,28 +163,40 @@ public enum ItemFactory {
     private List<Pair<Item, InventoryType>> loadItemsCommon(int id, boolean login) throws SQLException {
         List<Pair<Item, InventoryType>> items = new ArrayList<>();
 
-        try (Connection con = DatabaseConnection.getConnection()) {
+
+        try (Connection con = DatabaseConnection.getConnection())
+        {
             StringBuilder query = new StringBuilder();
-            query.append("SELECT * FROM `inventoryitems` LEFT JOIN `inventoryequipment` USING(`inventoryitemid`) WHERE `type` = ? AND `");
+            query.append(
+                    "SELECT * FROM `inventoryitems` LEFT JOIN `inventoryequipment` USING(`inventoryitemid`) WHERE `type` = ? AND `");
+
             query.append(account ? "accountid" : "characterid").append("` = ?");
 
-            if (login) {
+            if (login)
+            {
                 query.append(" AND `inventorytype` = ").append(InventoryType.EQUIPPED.getType());
             }
 
-            try (PreparedStatement ps = con.prepareStatement(query.toString())) {
+            try (PreparedStatement ps = con.prepareStatement(query.toString()))
+            {
                 ps.setInt(1, value);
                 ps.setInt(2, id);
 
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
+                try (ResultSet rs = ps.executeQuery())
+                {
+                    while (rs.next())
+                    {
                         InventoryType mit = InventoryType.getByType(rs.getByte("inventorytype"));
 
-                        if (mit.equals(InventoryType.EQUIP) || mit.equals(InventoryType.EQUIPPED)) {
+                        if (mit.equals(InventoryType.EQUIP) || mit.equals(InventoryType.EQUIPPED))
+                        {
                             items.add(new Pair<>(loadEquipFromResultSet(rs), mit));
-                        } else {
+                        }
+                        else
+                        {
                             int petid = rs.getInt("petid");
-                            if (rs.wasNull()) {
+                            if (rs.wasNull())
+                            {
                                 petid = -1;
                             }
 

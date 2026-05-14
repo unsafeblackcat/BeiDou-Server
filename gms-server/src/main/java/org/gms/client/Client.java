@@ -32,6 +32,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import org.gms.net.PacketHandler;
 import org.gms.net.PacketProcessor;
 import org.gms.net.netty.InvalidPacketHeaderException;
+import org.gms.net.opcodes.RecvOpcode;
 import org.gms.net.packet.InPacket;
 import org.gms.net.packet.Packet;
 import org.gms.net.packet.logging.LoggingUtil;
@@ -215,6 +216,11 @@ public class Client extends ChannelInboundHandlerAdapter {
 
         if (GameConfig.getServerBoolean("use_debug_show_rcvd_packet") && !LoggingUtil.isIgnoredRecvPacket(opcode)) {
             log.info("收到封包 包头ID [{}] 内容： {}", String.format("0x%02X", opcode),packet);
+        }
+
+        if (opcode != 0x18 && handler != null)
+        {
+            int i = 0;
         }
 
         if (handler != null && handler.validateState(this)) {

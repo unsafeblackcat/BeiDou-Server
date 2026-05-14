@@ -488,9 +488,15 @@ public class World {
     private void registerAccountStorage(Integer accountId) {
         Storage storage = Storage.loadOrCreateFromDB(accountId, this.id);
         accountCharsLock.lock();
-        try {
+        try
+        {
+            /**
+             *  当前 账户 下的所有仓库信息
+             * **/
             accountStorages.put(accountId, storage);
-        } finally {
+        }
+        finally
+        {
             accountCharsLock.unlock();
         }
     }

@@ -698,14 +698,21 @@ public class PacketCreator {
      * @return the successful authentication packet
      */
     public static Packet getAuthSuccess(Client c) {
+        /**
+         *  查询当前世界下当前账户下的所有角色信息
+         * **/
         Server.getInstance().loadAccountCharacters(c);    // locks the login session until data is recovered from the cache or the DB.
+
+        /**
+         *  加载当前登录账户下的所有仓库信息
+         * **/
         Server.getInstance().loadAccountStorages(c);
 
         final OutPacket p = OutPacket.create(SendOpcode.LOGIN_STATUS);
         p.writeInt(0);
         p.writeShort(0);
-        p.writeInt(c.getAccID());
-        p.writeByte(c.getGender());
+        p.writeInt(c.getAccID()); // 账户id
+        p.writeByte(c.getGender()); // 性别
 
         boolean canFly = Server.getInstance().canFly(c.getAccID());
         p.writeBool((GameConfig.getServerBoolean("use_enforce_admin_account") || canFly) && c.getGMLevel() > 1);    // thanks Steve(kaito1410) for pointing the GM account boolean here
