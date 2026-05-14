@@ -35,31 +35,59 @@ import java.util.Objects;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public final class ViewAllCharHandler extends AbstractPacketHandler {
+public final class ViewAllCharHandler extends AbstractPacketHandler
+{
     private static final int CHARACTER_LIMIT = 60; // Client will crash if sending 61 or more characters
 
     @Override
-    public final void handlePacket(InPacket p, Client c) {
-        try {
-            if (!c.canRequestCharlist()) {   // client breaks if the charlist request pops too soon
+    public final void handlePacket(InPacket p, Client c)
+    {
+        try
+        {
+            if (!c.canRequestCharlist())
+            {   // client breaks if the charlist request pops too soon
                 c.sendPacket(PacketCreator.showAllCharacter(0, 0));
                 return;
             }
 
-            SortedMap<Integer, List<Character>> worldChrs = Server.getInstance().loadAccountCharlist(c.getAccID(), c.getVisibleWorlds());
+            /**
+             *  通过 accid 和 client.visibleWorlds
+             *  从 server.worlds.accountChars 中，通过 accid 返回所有世界角色信息。
+             *  worldChrs
+             *      integer: 世界id
+             *      listchar: accid在世界id中所有角色信息
+             * **/
+            SortedMap<Integer, List<Character>> worldChrs = Server.getInstance().loadAccountCharlist(
+                    c.getAccID()
+                    , c.getVisibleWorlds());
+
+            /**
+             *  最多只返回 CHARACTER_LIMIT 60个角色信息
+             * **/
             worldChrs = limitTotalChrs(worldChrs, CHARACTER_LIMIT);
 
             padChrsIfNeeded(worldChrs);
 
             int totalWorlds = worldChrs.size();
             int totalChrs = countTotalChrs(worldChrs);
+
+            /**
+             *  totalWorlds 世界数量
+             *  totalChrs 当前世界 accid 所有角色数量
+             *  发送数据包
+             * **/
             c.sendPacket(PacketCreator.showAllCharacter(totalWorlds, totalChrs));
 
             final boolean usePic = GameConfig.getServerBoolean("enable_pic") && !c.canBypassPic();
             worldChrs.forEach((worldId, chrs) ->
+                    /**
+                     *  每个世界id和角色数量发送数据包，是否启动 pic 安全码
+                     * **/
                     c.sendPacket(PacketCreator.showAllCharacterInfo(worldId, chrs, usePic))
             );
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
@@ -109,7 +137,8 @@ public final class ViewAllCharHandler extends AbstractPacketHandler {
      * @return if we need to pad the last row to include the characters that would otherwise not appear
      */
     private static void padChrsIfNeeded(SortedMap<Integer, List<Character>> worldChrs) {
-        while (shouldPadLastRow(countTotalChrs(worldChrs))) {
+        while (shouldPadLastRow(countTotalChrs(worldChrs)))
+        {
             final List<Character> lastWorldChrs = getLastWorldChrs(worldChrs);
             final Character lastChrForPadding = getLastItem(lastWorldChrs);
             lastWorldChrs.add(lastChrForPadding);

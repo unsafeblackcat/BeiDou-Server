@@ -1283,9 +1283,13 @@ public class Server {
     }
     */
 
-    public SortedMap<Integer, List<Character>> loadAccountCharlist(int accountId, int visibleWorlds) {
+    public SortedMap<Integer, List<Character>> loadAccountCharlist(
+            int accountId
+            , int visibleWorlds)
+    {
         List<World> worlds = this.getWorlds();
-        if (worlds.size() > visibleWorlds) {
+        if (worlds.size() > visibleWorlds)
+        {
             worlds = worlds.subList(0, visibleWorlds);
         }
 
@@ -1294,18 +1298,25 @@ public class Server {
 
         lgnRLock.lock();
         try {
-            for (World world : worlds) {
+            for (World world : worlds)
+            {
                 List<Character> chrs = world.getAccountCharactersView(accountId);
-                if (chrs == null) {
-                    if (!accountChars.containsKey(accountId)) {
+                if (chrs == null)
+                {
+                    if (!accountChars.containsKey(accountId))
+                    {
                         accountCharacterCount.put(accountId, (short) 0);
                         accountChars.put(accountId, new HashSet<>());    // not advisable at all to write on the map on a read-protected environment
                     }                                                           // yet it's known there's no problem since no other point in the source does
-                } else if (!chrs.isEmpty()) {                                  // this action.
+                }
+                else if (!chrs.isEmpty())
+                {                                  // this action.
                     worldChrs.put(world.getId(), chrs);
                 }
             }
-        } finally {
+        }
+        finally
+        {
             lgnRLock.unlock();
         }
 
