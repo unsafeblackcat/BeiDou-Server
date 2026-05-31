@@ -52,6 +52,7 @@ public final class ViewAllCharSelectedHandler extends AbstractPacketHandler {
 
     @Override
     public final void handlePacket(InPacket p, Client c) {
+        // 登录角色 cid
         int charId = p.readInt();
         p.readInt(); // please don't let the client choose which world they should login
 
@@ -67,34 +68,46 @@ public final class ViewAllCharSelectedHandler extends AbstractPacketHandler {
             return;
         }
 
+        // 更新当前客户端的 mac
         c.updateMacs(macs);
+
+        //更新当客户端的 hwid
         c.updateHwid(hwid);
 
+        // 以mac 和 hwid 做封号检查 直接封机器
         if (c.hasBannedMac() || c.hasBannedHWID()) {
             SessionCoordinator.getInstance().closeSession(c, true);
             return;
         }
 
+        // 禁止多开。通过后台 deterred_multi_client 空咋
         AntiMulticlientResult res = SessionCoordinator.getInstance().attemptGameSession(c, c.getAccID(), hwid);
         if (res != AntiMulticlientResult.SUCCESS) {
             c.sendPacket(PacketCreator.getAfterLoginError(parseAntiMulticlientError(res)));
             return;
         }
 
+        /**
+         *  检查是否在 Server.accountChars 变量中。
+         *  如果不在，则表明可能通过其他方案绕过在 LOGIN_PASSWORD 的登录拦截
+         * **/
         Server server = Server.getInstance();
         if (!server.haveCharacterEntry(c.getAccID(), charId)) {
             SessionCoordinator.getInstance().closeSession(c, true);
             return;
         }
 
+        // 更新 clinet 角色所在世界
         c.setWorld(server.getCharacterWorld(charId));
 
+        // 检查世界频道在线人数是否满足 channel_capacity 配置
         World wserv = c.getWorldServer();
         if (wserv == null || wserv.isWorldCapacityFull()) {
             c.sendPacket(PacketCreator.getAfterLoginError(10));
             return;
         }
 
+        // 随机让角色进入一个频道
         try {
             int channel = Randomizer.rand(1, wserv.getChannelsSize());
             c.setChannel(channel);
@@ -112,8 +125,12 @@ public final class ViewAllCharSelectedHandler extends AbstractPacketHandler {
         server.unregisterLoginState(c);
         c.setCharacterOnSessionTransitionState(charId);
 
+        // 发送给客户端，服务器IP，频道端口，以及登录角色 cid 告知登录成功。
         try {
-            c.sendPacket(PacketCreator.getServerIP(InetAddress.getByName(socket[0]), Integer.parseInt(socket[1]), charId));
+            c.sendPacket(PacketCreator.getServerIP(
+                    InetAddress.getByName(socket[0])
+                    , Integer.parseInt(socket[1])
+                    , charId));
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
