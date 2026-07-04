@@ -53,6 +53,7 @@ public final class ViewAllCharHandler extends AbstractPacketHandler
             /**
              *  通过 accid 和 client.visibleWorlds
              *  从 server.worlds.accountChars 中，通过 accid 返回所有世界角色信息。
+             *
              *  worldChrs
              *      integer: 世界id
              *      listchar: accid在世界id中所有角色信息
@@ -73,7 +74,7 @@ public final class ViewAllCharHandler extends AbstractPacketHandler
 
             /**
              *  totalWorlds 世界数量
-             *  totalChrs 当前世界 accid 所有角色数量
+             *  totalChrs   accid 所有角色数量
              *  发送数据包
              * **/
             c.sendPacket(PacketCreator.showAllCharacter(totalWorlds, totalChrs));

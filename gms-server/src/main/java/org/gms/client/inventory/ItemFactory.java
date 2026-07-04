@@ -190,6 +190,7 @@ public enum ItemFactory {
 
                         if (mit.equals(InventoryType.EQUIP) || mit.equals(InventoryType.EQUIPPED))
                         {
+                            // 如果是装备或者已装备数据
                             items.add(new Pair<>(loadEquipFromResultSet(rs), mit));
                         }
                         else
@@ -200,7 +201,11 @@ public enum ItemFactory {
                                 petid = -1;
                             }
 
-                            Item item = new Item(rs.getInt("itemid"), (byte) rs.getInt("position"), (short) rs.getInt("quantity"), petid);
+                            Item item = new Item(
+                                    rs.getInt("itemid")
+                                    , (byte) rs.getInt("position")
+                                    , (short) rs.getInt("quantity")
+                                    , petid);
                             item.setOwner(rs.getString("owner"));
                             item.setExpiration(rs.getLong("expiration"));
                             item.setGiftFrom(rs.getString("giftFrom"));

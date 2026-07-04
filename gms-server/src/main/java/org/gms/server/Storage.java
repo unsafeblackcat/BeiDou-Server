@@ -55,11 +55,18 @@ public class Storage {
     private static final Map<Integer, Integer> trunkGetCache = new HashMap<>();
     private static final Map<Integer, Integer> trunkPutCache = new HashMap<>();
 
+    // 仓库ID
     private final int id;
     private int currentNpcid;
+    // 仓库金币数量
     private int meso;
+    // 仓库最大存储物品数量
     private byte slots;
     private final Map<InventoryType, List<Item>> typeItems = new HashMap<>();
+    /**
+     * items
+     * 物品/仓库存储内容列表
+     * **/
     private List<Item> items = new LinkedList<>();
     private final Lock lock = new ReentrantLock(true);
 
@@ -102,9 +109,9 @@ public class Storage {
                 if (rs.next())
                 {
                     ret = new Storage(
-                            rs.getInt("storageid")
-                            , (byte) rs.getInt("slots")
-                            , rs.getInt("meso"));
+                            rs.getInt("storageid") // 仓库ID
+                            , (byte) rs.getInt("slots") //仓库最大存储物品数量
+                            , rs.getInt("meso"));  //仓库金币数量
 
                     for (Pair<Item, InventoryType> item
                             /**

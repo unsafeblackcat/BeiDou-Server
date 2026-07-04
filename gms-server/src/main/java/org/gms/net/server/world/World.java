@@ -164,7 +164,20 @@ public class World {
     private final Lock chnRLock;
     private final Lock chnWLock;
 
+    /**
+     * Integer 账户ID
+     * SortedMap
+     *      Integer 角色ID
+     *      Character 角色类信息
+     *
+     *  add loadAccountCharactersView
+     * **/
     private final Map<Integer, SortedMap<Integer, Character>> accountChars = new HashMap<>();
+    /**
+     * accountStorages
+     * Integer: 账户ID
+     * Storage: 账户下的仓库信息
+     * **/
     private final Map<Integer, Storage> accountStorages = new HashMap<>();
     private final Lock accountCharsLock = new ReentrantLock(true);
 

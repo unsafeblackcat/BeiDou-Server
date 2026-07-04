@@ -344,9 +344,14 @@ public class Client extends ChannelInboundHandlerAdapter {
     }
 
     public List<Character> loadCharacters(int serverId) {
+
+        // 初始化15个
         List<Character> chars = new ArrayList<>(15);
         try {
+            // 查询当前世界ID下所的角色ID和名称
             for (CharNameAndId cni : loadCharactersInternal(serverId)) {
+                // 从数据库中返回 Character 角色信息并且存储在 chars
+                // cni.id 为角色ID
                 chars.add(Character.loadCharFromDB(cni.id, this, false));
             }
         } catch (Exception e) {

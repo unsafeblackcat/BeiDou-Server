@@ -289,38 +289,59 @@ public class PacketCreator {
     private static void addCharEquips(final OutPacket p, Character chr) {
         Inventory equip = chr.getInventory(InventoryType.EQUIPPED);
         Collection<Item> ii = ItemInformationProvider.getInstance().canWearEquipment(chr, equip.list());
+
         Map<Short, Integer> myEquip = new LinkedHashMap<>();
         Map<Short, Integer> maskedEquip = new LinkedHashMap<>();
-        for (Item item : ii) {
+
+        for (Item item : ii)
+        {
             short pos = (short) (item.getPosition() * -1);  //修复其他角色无法看到现金勋章
-            if (pos < 100 && myEquip.get(pos) == null) {
+            if (pos < 100 && myEquip.get(pos) == null)
+            {
                 myEquip.put(pos, item.getItemId());
-            } else if (pos > 100 && pos != 111) { // don't ask. o.o
+            }
+            else if (pos > 100 && pos != 111)
+            {
+                // don't ask. o.o
                 pos -= 100;
-                if (myEquip.get(pos) != null) {
+                if (myEquip.get(pos) != null)
+                {
                     maskedEquip.put(pos, myEquip.get(pos));
                 }
                 myEquip.put(pos, item.getItemId());
-            } else if (myEquip.get(pos) != null) {
+            }
+            else if (myEquip.get(pos) != null)
+            {
                 maskedEquip.put(pos, item.getItemId());
             }
         }
-        for (Entry<Short, Integer> entry : myEquip.entrySet()) {
+
+        for (Entry<Short, Integer> entry : myEquip.entrySet())
+        {
             p.writeByte(entry.getKey());
             p.writeInt(entry.getValue());
         }
+
         p.writeByte(0xFF);
-        for (Entry<Short, Integer> entry : maskedEquip.entrySet()) {
+
+        for (Entry<Short, Integer> entry : maskedEquip.entrySet())
+        {
             p.writeByte(entry.getKey());
             p.writeInt(entry.getValue());
         }
+
         p.writeByte(0xFF);
+
         Item cWeapon = equip.getItem((short) -111);
         p.writeInt(cWeapon != null ? cWeapon.getItemId() : 0);
-        for (int i = 0; i < 3; i++) {
-            if (chr.getPet(i) != null) {
+        for (int i = 0; i < 3; i++)
+        {
+            if (chr.getPet(i) != null)
+            {
                 p.writeInt(chr.getPet(i).getItemId());
-            } else {
+            }
+            else
+            {
                 p.writeInt(0);
             }
         }

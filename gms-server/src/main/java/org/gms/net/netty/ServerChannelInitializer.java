@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
     private static final Logger log = LoggerFactory.getLogger(ServerChannelInitializer.class);
-    private static final int IDLE_TIME_SECONDS = 30;
+    private static final int IDLE_TIME_SECONDS = 600;
     private static final ChannelHandler sendPacketLogger = new OutPacketLogger();
     private static final ChannelHandler receivePacketLogger = new InPacketLogger();
 

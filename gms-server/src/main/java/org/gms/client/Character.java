@@ -6287,6 +6287,10 @@ public class Character extends AbstractCharacterObject {
             ret.jobRankMove = rs.getInt("jobRankMove");
 
             if (equipped != null) {  // players can have no equipped items at all, ofc
+                /**
+                 * 取身上穿戴的装备   Inventory
+                 * 将身上穿戴装备绑定到 inv
+                 * **/
                 Inventory inv = ret.inventory[InventoryType.EQUIPPED.ordinal()];
                 for (Item item : equipped) {
                     inv.addItemFromDB(item);

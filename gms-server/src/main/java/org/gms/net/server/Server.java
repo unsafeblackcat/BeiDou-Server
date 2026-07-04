@@ -111,8 +111,25 @@ public class Server {
     private final List<World> worlds = new ArrayList<>();
     @Getter
     private final Properties subnetInfo = new Properties();
+    /**
+     * accountChars
+     * Integer accid
+     * Set<Integer> 账户下角色chatsid
+     * **/
     private final Map<Integer, Set<Integer>> accountChars = new HashMap<>();
+    /**
+     * accountCharacterCount
+     * Integer accid
+     * Short 账户下角色数量
+     * **/
     private final Map<Integer, Short> accountCharacterCount = new HashMap<>();
+    /**
+     * worldChars
+     * Integer  cid 角色ID
+     * Integer  word_id
+     * 由 loadAccountCharactersView 在登录时
+     * 负责把角色ID和世界ID绑定在一块
+     * **/
     private final Map<Integer, Integer> worldChars = new HashMap<>();
     private final Map<String, Integer> transitioningChars = new HashMap<>();
     private final List<Pair<Integer, String>> worldRecommendedList = new LinkedList<>();
@@ -1303,8 +1320,12 @@ public class Server {
 
         lgnRLock.lock();
         try {
+            /**
+             *  所有世界中取出账户ID accountId 的所有角色信息存储在 chrs 中
+             * **/
             for (World world : worlds)
             {
+                // world 所有世界类中调用 getAccountCharactersView 返回当前世界中的角色信息
                 List<Character> chrs = world.getAccountCharactersView(accountId);
                 if (chrs == null)
                 {
@@ -1374,10 +1395,13 @@ public class Server {
              * 并且初始化当前账户下所有角色信息存储在  chars 中
              * **/
             try (Connection con = DatabaseConnection.getConnection();
-                 PreparedStatement ps = con.prepareStatement("SELECT * FROM characters WHERE accountid = ? ORDER BY world, id")) {
+                 PreparedStatement ps = con.prepareStatement("SELECT * FROM characters WHERE accountid = ? ORDER BY world, id"))
+            {
                 ps.setInt(1, accId);
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
+                try (ResultSet rs = ps.executeQuery())
+                {
+                    while (rs.next())
+                    {
                         characterCount++;
 
                         int cworld = rs.getByte("world");
@@ -1385,7 +1409,8 @@ public class Server {
                             continue;
                         }
 
-                        if (cworld > curWorld) {
+                        if (cworld > curWorld)
+                        {
                             wchars.add(curWorld, chars);
 
                             curWorld = cworld;
@@ -1506,7 +1531,7 @@ public class Server {
                     int cid = chr.getId();
                     if (gmLevel < chr.gmLevel()) {
                         gmLevel = chr.gmLevel();
-                    }
+                     }
 
                     chars.add(cid);
 
