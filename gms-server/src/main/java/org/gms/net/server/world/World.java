@@ -493,7 +493,8 @@ public class World {
     }
 
     public void loadAccountStorage(Integer accountId) {
-        if (getAccountStorage(accountId) == null) {
+        if (getAccountStorage(accountId) == null)
+        {
             registerAccountStorage(accountId);
         }
     }

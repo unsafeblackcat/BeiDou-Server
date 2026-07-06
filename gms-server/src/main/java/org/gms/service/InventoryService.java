@@ -79,36 +79,72 @@ public class InventoryService {
         );
     }
 
-    public List<InventorySearchRtnDTO> getInventoryList(InventorySearchReqDTO data) {
-        RequireUtil.requireNotNull(data.getInventoryType(), I18nUtil.getExceptionMessage("PARAMETER_SHOULD_NOT_EMPTY", "inventoryType"));
-        RequireUtil.requireNotNull(data.getCharacterId(), I18nUtil.getExceptionMessage("PARAMETER_SHOULD_NOT_EMPTY", "characterId"));
+    public List<InventorySearchRtnDTO> getInventoryList(InventorySearchReqDTO data)
+    {
+        RequireUtil.requireNotNull(
+                data.getInventoryType()
+                , I18nUtil.getExceptionMessage("PARAMETER_SHOULD_NOT_EMPTY", "inventoryType"));
+
+        RequireUtil.requireNotNull(
+                data.getCharacterId()
+                , I18nUtil.getExceptionMessage("PARAMETER_SHOULD_NOT_EMPTY", "characterId"));
+
         InventoryType inventoryType = InventoryType.getByType(data.getInventoryType());
+
         RequireUtil.requireNotNull(inventoryType, I18nUtil.getExceptionMessage("UNKNOWN_PARAMETER_VALUE", "inventoryType", data.getInventoryType()));
-        List<Row> results = inventoryitemsMapper.selectListByQueryAs(QueryWrapper.create()
-                .select(INVENTORYITEMS_D_O.ALL_COLUMNS, INVENTORYEQUIPMENT_D_O.ALL_COLUMNS)
-                .from(INVENTORYITEMS_D_O.as("i"))
-                .leftJoin(INVENTORYEQUIPMENT_D_O.as("e")).on(INVENTORYITEMS_D_O.INVENTORYITEMID.eq(INVENTORYEQUIPMENT_D_O.INVENTORYITEMID))
-                // 只查询指定栏目
-                .where(INVENTORYITEMS_D_O.INVENTORYTYPE.eq(data.getInventoryType()))
-                // 只查询背包
-                .and(INVENTORYITEMS_D_O.TYPE.eq(ItemFactory.INVENTORY.getValue()))
-                .and(INVENTORYITEMS_D_O.CHARACTERID.eq(data.getCharacterId())), Row.class);
+
+        /**
+         * 做连表查询，查询 inventoryitems 和 inventoryequipment
+         * 以角色cid, 物品类型 以及 类型 INVENTORY
+         *
+         * select inventoryitems.*, inventoryequipment.*
+         * FROM inventoryitems AS i
+         * LEFT JOIN inventoryequipment AS e
+         *      ON i.inventoryitemid = e.inventoryitemid
+         *  WHERE i.inventorytype = data.getInventoryType()
+         *      AND i.type = ItemFactory.INVENTORY.getValue()
+         *      AND i.characterid = data.getCharacterId()
+         * **/
+        List<Row> results = inventoryitemsMapper.selectListByQueryAs(
+                QueryWrapper.create()
+                        .select(INVENTORYITEMS_D_O.ALL_COLUMNS, INVENTORYEQUIPMENT_D_O.ALL_COLUMNS)
+                        .from(INVENTORYITEMS_D_O.as("i"))
+                        .leftJoin(INVENTORYEQUIPMENT_D_O.as("e"))
+                        .on(INVENTORYITEMS_D_O.INVENTORYITEMID.eq(INVENTORYEQUIPMENT_D_O.INVENTORYITEMID))
+                        // 只查询指定栏目
+                        .where(INVENTORYITEMS_D_O.INVENTORYTYPE.eq(data.getInventoryType()))
+                        // 只查询背包
+                        .and(INVENTORYITEMS_D_O.TYPE.eq(ItemFactory.INVENTORY.getValue()))
+                        .and(INVENTORYITEMS_D_O.CHARACTERID.eq(data.getCharacterId())), Row.class);
+
         List<InventorySearchRtnDTO> rtnDTOList = new ArrayList<>();
         Set<Character> characterSet = new HashSet<>();
-        for (Row obj : results) {
+
+        for (Row obj : results)
+        {
             int characterId = obj.getInt("characterid");
+
+            // 从世界中寻找当前cid角色是否在线
             Character character = getCharacterById(characterId);
             // 过滤在线玩家
-            if (character == null) {
+            if (character == null)
+            {
+                // 玩家不在线, 组装数据库内容添加到 rtnDTOList
                 rtnDTOList.add(buildByDb(obj));
-            } else {
+            }
+            else
+            {
+                // 玩家在线，直接使用在线信息
                 characterSet.add(character);
             }
         }
+
         // 整合在线玩家数据
-        for (Character character : characterSet) {
+        for (Character character : characterSet)
+        {
             rtnDTOList.addAll(buildByOnline(character, inventoryType));
         }
+
         return rtnDTOList;
     }
 
@@ -146,11 +182,14 @@ public class InventoryService {
     }
 
     private Character getCharacterById(int characterId) {
-        for (World world : Server.getInstance().getWorlds()) {
+        for (World world : Server.getInstance().getWorlds())
+        {
             Optional<Character> characterOptional = world.getPlayerStorage().getAllCharacters().stream()
                     .filter(c -> Objects.equals(c.getId(), characterId))
                     .findFirst();
-            if (characterOptional.isPresent()) {
+
+            if (characterOptional.isPresent())
+            {
                 return characterOptional.get();
             }
         }
@@ -158,7 +197,9 @@ public class InventoryService {
     }
 
     private InventorySearchRtnDTO buildByDb(Row obj) {
+
         ItemInformationProvider ii = ItemInformationProvider.getInstance();
+
         InventorySearchRtnDTO rtnDTO = InventorySearchRtnDTO.builder()
                 .id(obj.getLong("inventoryitemid"))
                 .itemType(obj.getInt("type"))
@@ -175,8 +216,10 @@ public class InventoryService {
                 .online(false)
                 .itemName(ii.getName(obj.getInt("itemid")))
                 .build();
+
         Long inventoryEquipmentId = obj.getLong("inventoryequipmentid");
-        if (inventoryEquipmentId != null) {
+        if (inventoryEquipmentId != null)
+        {
             rtnDTO.setEquipment(true);
             rtnDTO.setInventoryEquipment(InventoryEquipRtnDTO.builder()
                     .id(inventoryEquipmentId)
@@ -205,6 +248,7 @@ public class InventoryService {
                     .ringId(obj.getInt("ringid"))
                     .build());
         }
+
         return rtnDTO;
     }
 
@@ -228,7 +272,9 @@ public class InventoryService {
                     .online(true)
                     .itemName(ii.getName(item.getItemId()))
                     .build();
-            if (type.isEquip()) {
+
+            if (type.isEquip())
+            {
                 Equip equip = (Equip) item;
                 rtnDTO.setEquipment(true);
                 rtnDTO.setInventoryEquipment(InventoryEquipRtnDTO.builder()
@@ -258,7 +304,9 @@ public class InventoryService {
                         .ringId(equip.getRingId())
                         .build());
             }
+
             return rtnDTO;
+
         }).toList();
     }
 

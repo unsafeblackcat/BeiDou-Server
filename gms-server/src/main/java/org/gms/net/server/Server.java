@@ -1358,7 +1358,8 @@ public class Server {
 
         List<Character> chars = new LinkedList<>();
         int curWorld = 0;
-        try {
+        try
+        {
             /**
              *  通过账户ID，true表示账户ID，login表示当前处于登录状态
              *
@@ -1378,9 +1379,11 @@ public class Server {
              *  将所有角色穿戴的装备装入 List<Item> 中
              *  最终存储在 wchars 中，并且返回出去
              * **/
-            for (Pair<Item, Integer> ae : accEquips) {
+            for (Pair<Item, Integer> ae : accEquips)
+            {
                 List<Item> playerEquips = accPlayerEquips.get(ae.getRight());
-                if (playerEquips == null) {
+                if (playerEquips == null)
+                {
                     playerEquips = new LinkedList<>();
                     accPlayerEquips.put(ae.getRight(), playerEquips);
                 }
@@ -1395,9 +1398,11 @@ public class Server {
              * 并且初始化当前账户下所有角色信息存储在  chars 中
              * **/
             try (Connection con = DatabaseConnection.getConnection();
-                 PreparedStatement ps = con.prepareStatement("SELECT * FROM characters WHERE accountid = ? ORDER BY world, id"))
+                 PreparedStatement ps = con.prepareStatement(
+                         "SELECT * FROM characters WHERE accountid = ? ORDER BY world, id"))
             {
                 ps.setInt(1, accId);
+
                 try (ResultSet rs = ps.executeQuery())
                 {
                     while (rs.next())
@@ -1427,7 +1432,9 @@ public class Server {
             }
 
             wchars.add(curWorld, chars);
-        } catch (SQLException sqle) {
+        }
+        catch (SQLException sqle)
+        {
             sqle.printStackTrace();
         }
 
@@ -1462,25 +1469,35 @@ public class Server {
 
     public void loadAccountCharacters(Client c) {
         Integer accId = c.getAccID();
-        if (!isFirstAccountLogin(accId)) {
+        if (!isFirstAccountLogin(accId))
+        {
+            // 当账户多次上下线直接从成员变量中取出缓存数据
             Set<Integer> accWorlds = new HashSet<>();
 
             lgnRLock.lock();
-            try {
-                for (Integer chrid : getAccountCharacterEntries(accId)) {
+            try
+            {
+                for (Integer chrid : getAccountCharacterEntries(accId))
+                {
                     accWorlds.add(worldChars.get(chrid));
                 }
-            } finally {
+            }
+            finally
+            {
                 lgnRLock.unlock();
             }
 
             int gmLevel = 0;
-            for (Integer aw : accWorlds) {
+            for (Integer aw : accWorlds)
+            {
                 World wserv = this.getWorld(aw);
 
-                if (wserv != null) {
-                    for (Character chr : wserv.getAllCharactersView()) {
-                        if (gmLevel < chr.gmLevel()) {
+                if (wserv != null)
+                {
+                    for (Character chr : wserv.getAllCharactersView())
+                    {
+                        if (gmLevel < chr.gmLevel())
+                        {
                             gmLevel = chr.gmLevel();
                         }
                     }

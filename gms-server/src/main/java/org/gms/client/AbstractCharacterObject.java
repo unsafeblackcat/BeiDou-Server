@@ -52,7 +52,9 @@ public abstract class AbstractCharacterObject extends AbstractAnimatedMapObject 
     @Setter
     protected int hpMpApUsed;
     @Setter
+    // 没有使用的属性点
     protected int remainingAp;
+    // 每个阶段职业未使用的技能点
     protected int[] remainingSp = new int[10];
     @Getter
     protected transient int clientMaxHp;

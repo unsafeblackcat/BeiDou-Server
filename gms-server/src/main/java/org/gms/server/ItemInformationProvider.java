@@ -1766,18 +1766,23 @@ public class ItemInformationProvider {
 
     public Collection<Item> canWearEquipment(Character chr, Collection<Item> items) {
         Inventory inv = chr.getInventory(InventoryType.EQUIPPED);
-        if (inv.checked()) {
+        if (inv.checked())
+        {
             return items;
         }
+
         Collection<Item> itemz = new LinkedList<>();
-        if (chr.getJob() == Job.SUPERGM || chr.getJob() == Job.GM) {
-            for (Item item : items) {
+        if (chr.getJob() == Job.SUPERGM || chr.getJob() == Job.GM)
+        {
+            for (Item item : items)
+            {
                 Equip equip = (Equip) item;
                 equip.wear(true);
                 itemz.add(item);
             }
             return itemz;
         }
+
         boolean highfivestamp = false;
         /* Removed because players shouldn't even get this, and gm's should just be gm job.
          try {
@@ -1791,9 +1796,16 @@ public class ItemInformationProvider {
          } catch (SQLException ex) {
             ex.printStackTrace();
          }*/
-        int tdex = chr.getDex(), tstr = chr.getStr(), tint = chr.getInt(), tluk = chr.getLuk(), fame = chr.getFame();
-        if (chr.getJob() != Job.SUPERGM || chr.getJob() != Job.GM) {
-            for (Item item : inv.list()) {
+        int tdex = chr.getDex()
+                , tstr = chr.getStr()
+                , tint = chr.getInt()
+                , tluk = chr.getLuk()
+                , fame = chr.getFame();
+
+        if (chr.getJob() != Job.SUPERGM || chr.getJob() != Job.GM)
+        {
+            for (Item item : inv.list())
+            {
                 Equip equip = (Equip) item;
                 tdex += equip.getDex();
                 tstr += equip.getStr();
@@ -1801,41 +1813,56 @@ public class ItemInformationProvider {
                 tint += equip.getInt();
             }
         }
-        for (Item item : items) {
+
+        for (Item item : items)
+        {
             Equip equip = (Equip) item;
             int reqLevel = getEquipLevelReq(equip.getItemId());
-            if (highfivestamp) {
+            if (highfivestamp)
+            {
                 reqLevel -= 5;
-                if (reqLevel < 0) {
+                if (reqLevel < 0)
+                {
                     reqLevel = 0;
                 }
             }
+
             /*
              int reqJob = getEquipStats(equip.getItemId()).get("reqJob");
              if (reqJob != 0) {
              Really hard check, and not really needed in this one
              Gm's should just be GM job, and players cannot change jobs.
              }*/
-            if (reqLevel > chr.getLevel()) {
-                continue;
-            } else if (getEquipStats(equip.getItemId()).get("reqDEX") > tdex) {
-                continue;
-            } else if (getEquipStats(equip.getItemId()).get("reqSTR") > tstr) {
-                continue;
-            } else if (getEquipStats(equip.getItemId()).get("reqLUK") > tluk) {
-                continue;
-            } else if (getEquipStats(equip.getItemId()).get("reqINT") > tint) {
+            if (reqLevel > chr.getLevel())
+            {
                 continue;
             }
+            else if (getEquipStats(equip.getItemId()).get("reqDEX") > tdex) {
+                continue;
+            }
+            else if (getEquipStats(equip.getItemId()).get("reqSTR") > tstr) {
+                continue;
+            }
+            else if (getEquipStats(equip.getItemId()).get("reqLUK") > tluk) {
+                continue;
+            }
+            else if (getEquipStats(equip.getItemId()).get("reqINT") > tint) {
+                continue;
+            }
+
             int reqPOP = getEquipStats(equip.getItemId()).get("reqPOP");
-            if (reqPOP > 0) {
-                if (getEquipStats(equip.getItemId()).get("reqPOP") > fame) {
+            if (reqPOP > 0)
+            {
+                if (getEquipStats(equip.getItemId()).get("reqPOP") > fame)
+                {
                     continue;
                 }
             }
+
             equip.wear(true);
             itemz.add(equip);
         }
+
         inv.checked(true);
         return itemz;
     }

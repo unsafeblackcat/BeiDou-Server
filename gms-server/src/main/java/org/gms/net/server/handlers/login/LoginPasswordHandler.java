@@ -61,62 +61,90 @@ public final class LoginPasswordHandler implements PacketHandler {
         Hwid hwid = new Hwid(HexTool.toCompactHexString(hwidNibbles));
         int loginok = c.login(login, pwd, hwid);
 
-        if (GameConfig.getServerBoolean("automatic_register") && loginok == 5) {
+        if (GameConfig.getServerBoolean("automatic_register") && loginok == 5)
+        {
             try (Connection con = DatabaseConnection.getConnection();
-                 PreparedStatement ps = con.prepareStatement("INSERT INTO accounts (name, password, birthday, tempban) VALUES (?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS)) { //Jayd: Added birthday, tempban
+                 PreparedStatement ps = con.prepareStatement(
+                         "INSERT INTO accounts (name, password, birthday, tempban) VALUES (?, ?, ?, ?);"
+                         , Statement.RETURN_GENERATED_KEYS))
+            {
+                //Jayd: Added birthday, tempban
                 ps.setString(1, login);
                 ps.setString(2, GameConfig.getServerBoolean("bcrypt_migration") ? BCrypt.hashpw(pwd, BCrypt.gensalt(12)) : BCrypt.hashpwSHA512(pwd));
                 ps.setDate(3, Date.valueOf(DefaultDates.getBirthday()));
                 ps.setTimestamp(4, Timestamp.valueOf(DefaultDates.getTempban()));
                 ps.executeUpdate();
 
-                try (ResultSet rs = ps.getGeneratedKeys()) {
+                try (ResultSet rs = ps.getGeneratedKeys())
+                {
                     rs.next();
                     c.setAccID(rs.getInt(1));
                 }
-            } catch (SQLException | NoSuchAlgorithmException e) {
+            }
+            catch (SQLException | NoSuchAlgorithmException e)
+            {
                 c.setAccID(-1);
                 e.printStackTrace();
-            } finally {
+            }
+            finally
+            {
                 loginok = c.login(login, pwd, hwid);
             }
         }
 
-        if (GameConfig.getServerBoolean("bcrypt_migration") && (loginok <= -10)) { // -10 means migration to bcrypt, -23 means TOS wasn't accepted
+        if (GameConfig.getServerBoolean("bcrypt_migration")
+                && (loginok <= -10))
+        { // -10 means migration to bcrypt, -23 means TOS wasn't accepted
             try (Connection con = DatabaseConnection.getConnection();
-                 PreparedStatement ps = con.prepareStatement("UPDATE accounts SET password = ? WHERE name = ?;")) {
+                 PreparedStatement ps = con.prepareStatement(
+                         "UPDATE accounts SET password = ? WHERE name = ?;"))
+            {
                 ps.setString(1, BCrypt.hashpw(pwd, BCrypt.gensalt(12)));
                 ps.setString(2, login);
                 ps.executeUpdate();
-            } catch (SQLException e) {
+            }
+            catch (SQLException e)
+            {
                 e.printStackTrace();
-            } finally {
+            }
+            finally
+            {
                 loginok = (loginok == -10) ? 0 : 23;
             }
         }
 
-        if (c.hasBannedIP() || c.hasBannedMac()) {
+        if (c.hasBannedIP() || c.hasBannedMac())
+        {
             c.sendPacket(PacketCreator.getLoginFailed(3));
             return;
         }
+
         Calendar tempban = c.getTempBanCalendarFromDB();
-        if (tempban != null) {
-            if (tempban.getTimeInMillis() > Calendar.getInstance().getTimeInMillis()) {
+        if (tempban != null)
+        {
+            if (tempban.getTimeInMillis() > Calendar.getInstance().getTimeInMillis())
+            {
                 c.sendPacket(PacketCreator.getTempBan(tempban.getTimeInMillis(), c.getGReason()));
                 return;
             }
         }
-        if (loginok == 3) {
+        if (loginok == 3)
+        {
             c.sendPacket(PacketCreator.getPermBan(c.getGReason()));//crashes but idc :D
             return;
-        } else if (loginok != 0) {
+        } else if (loginok != 0)
+        {
             c.sendPacket(PacketCreator.getLoginFailed(loginok));
             return;
         }
-        if (c.finishLogin() == 0) {
+
+        if (c.finishLogin() == 0)
+        {
             c.checkChar(c.getAccID());
             login(c);
-        } else {
+        }
+        else
+        {
             c.sendPacket(PacketCreator.getLoginFailed(7));
         }
     }

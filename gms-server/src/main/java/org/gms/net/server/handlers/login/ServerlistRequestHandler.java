@@ -42,11 +42,11 @@ public final class ServerlistRequestHandler extends AbstractPacketHandler {
         for (World world : worlds) {
             c.sendPacket(
                     PacketCreator.getServerList(
-                            world.getId()
-                            , GameConstants.WORLD_NAMES[world.getId()]
+                            world.getId()  // 世界ID
+                            , GameConstants.WORLD_NAMES[world.getId()] //世界名称
                             , world.getFlag()
                             , world.getEventMessage()
-                            , world.getChannels()));
+                            , world.getChannels()));  //评到列表
         }
 
         c.sendPacket(PacketCreator.getEndOfServerList());

@@ -48,6 +48,11 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Inventory implements Iterable<Item> {
     private static final Logger log = LoggerFactory.getLogger(Inventory.class);
+    /**
+     * inventory 装备穿戴信息
+     * Short 装备穿戴的位置
+     * Item  装备信息
+     * **/
     protected final Map<Short, Item> inventory;
     protected final InventoryType type;
     protected final Lock lock = new ReentrantLock(true);

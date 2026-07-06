@@ -144,13 +144,18 @@ public enum ItemFactory {
         query.append("` = ?");
         query.append(login ? " AND `inventorytype` = " + InventoryType.EQUIPPED.getType() : "");
 
-        try (Connection con = DatabaseConnection.getConnection()) {
-            try (PreparedStatement ps = con.prepareStatement(query.toString())) {
+        try (Connection con = DatabaseConnection.getConnection())
+        {
+            try (PreparedStatement ps = con.prepareStatement(query.toString()))
+            {
                 ps.setInt(1, id);
 
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
+                try (ResultSet rs = ps.executeQuery())
+                {
+                    while (rs.next())
+                    {
                         Integer cid = rs.getInt("characterid");
+                        // loadEquipFromResultSet 构造装备items
                         items.add(new Pair<>(loadEquipFromResultSet(rs), cid));
                     }
                 }

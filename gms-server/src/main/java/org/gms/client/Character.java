@@ -113,18 +113,22 @@ public class Character extends AbstractCharacterObject {
 
     @Getter
     @Setter
+    // 所在世界id
     private int world;
     @Getter
     @Setter
     private int id;
     @Getter
     @Setter
+    // 账户ID
     private int accountId;
     @Getter
     @Setter
+    // 等级
     private int level;
     @Getter
     @Setter
+    // 角色排名
     private int rank;
     @Getter
     @Setter
@@ -140,20 +144,26 @@ public class Character extends AbstractCharacterObject {
     private int gender;
     @Setter
     @Getter
+    // 发型ID
     private int hair;
     @Setter
     @Getter
+    // 面部ID
     private int face;
     @Setter
     @Getter
+    // 人气
     private int fame;
     @Getter
     @Setter
+    // 任务人气
     private int questFame;
     @Getter
     @Setter
+    // 设置初始出生点
     private int initialSpawnPoint;
     @Setter
+    // 角色所在地图ID
     private int mapId;
     @Getter
     private int currentPage;
@@ -172,6 +182,7 @@ public class Character extends AbstractCharacterObject {
     private int guildRank;
     @Setter
     @Getter
+    // 联盟排名
     private int allianceRank;
     @Setter
     @Getter
@@ -187,8 +198,10 @@ public class Character extends AbstractCharacterObject {
     private FamilyEntry familyEntry;
     @Setter
     @Getter
+    // 家族ID
     private int familyId;
     @Setter
+    // // 书籍封面?
     private int bookCover;
     @Setter
     @Getter
@@ -205,6 +218,7 @@ public class Character extends AbstractCharacterObject {
     private int dojoPoints;
     @Getter
     @Setter
+    // 征服者舞台？
     private int vanquisherStage;
     @Setter
     @Getter
@@ -213,6 +227,7 @@ public class Character extends AbstractCharacterObject {
     private int dojoEnergy;
     @Getter
     @Setter
+    // 征服者击杀数
     private int vanquisherKills;
     private float expRate = 1;
     @Getter
@@ -222,21 +237,27 @@ public class Character extends AbstractCharacterObject {
     private int expCoupon = 1, mesoCoupon = 1, dropCoupon = 1;
     @Getter
     @Setter
+    // 五子棋胜利盘数
     private int omokwins;
     @Getter
     @Setter
+    // 五子棋平局数
     private int omokties;
     @Getter
     @Setter
+    // 五子棋败局数
     private int omoklosses;
     @Getter
     @Setter
+    // 配对卡获胜?
     private int matchcardwins;
     @Getter
     @Setter
+    // 配对卡平局?
     private int matchcardties;
     @Getter
     @Setter
+    // 配对卡失败?
     private int matchcardlosses;
     @Getter
     @Setter
@@ -249,6 +270,7 @@ public class Character extends AbstractCharacterObject {
     private long lastUsedCashItem;
     private long lastExpression = 0;
     @Setter
+    // 监狱时间
     private long jailExpiration = -1;
     private transient int localstr, localdex, localluk, localint_, localmagic, localwatk;
     private transient int equipmaxhp, equipmaxmp, equipstr, equipdex, equipluk, equipint_, equipmagic, equipwatk, localchairhp, localchairmp;
@@ -257,6 +279,7 @@ public class Character extends AbstractCharacterObject {
     private boolean hidden;
     private boolean equipchanged = true, berserk, hasMerchant, hasSandboxItem = false, whiteChat = false;
     @Setter
+    // 可接收队伍搜索邀请
     private boolean canRecvPartySearchInvite = true;
     private boolean usedSafetyCharm = false;
     @Getter
@@ -271,6 +294,7 @@ public class Character extends AbstractCharacterObject {
     private boolean usedStorage = false;
     @Getter
     @Setter
+    // 角色名称
     private String name;
     private String chalktext;
     private String commandtext;
@@ -283,12 +307,14 @@ public class Character extends AbstractCharacterObject {
     private final AtomicBoolean awayFromWorld = new AtomicBoolean(true);  // player is online, but on cash shop or mts
     private final AtomicInteger exp = new AtomicInteger();
     private final AtomicInteger gachaExp = new AtomicInteger();
+    // 背包金币
     private final AtomicInteger meso = new AtomicInteger();
     private final AtomicInteger chair = new AtomicInteger(-1);
     private long totalExpGained = 0;
     private int merchantmeso;
     @Getter
     @Setter
+    // 好友列表
     private BuddyList buddylist;
     private EventInstanceManager eventInstance = null;
     @Setter
@@ -324,6 +350,7 @@ public class Character extends AbstractCharacterObject {
     private Shop shop = null;
     @Getter
     @Setter
+    // 角色肤色
     private SkinColor skinColor = SkinColor.NORMAL;
     @Getter
     @Setter
@@ -333,6 +360,7 @@ public class Character extends AbstractCharacterObject {
     private Trade trade = null;
     @Getter
     @Setter
+    // 怪物图鉴
     private MonsterBook monsterBook;
     @Getter
     @Setter
@@ -423,6 +451,7 @@ public class Character extends AbstractCharacterObject {
     private short combocounter = 0;
     @Getter
     private final List<String> blockedPortals = new ArrayList<>();
+    // 区域信息
     private final Map<Short, String> area_info = new LinkedHashMap<>();
     private AutobanManager autoBan;
     @Getter
@@ -432,8 +461,10 @@ public class Character extends AbstractCharacterObject {
     private boolean allowExpGain = true;
     private byte pendantExp = 0, doorSlot = -1;
     private final List<Integer> trockmaps = new ArrayList<>();
+    // vpi 地图
     private final List<Integer> viptrockmaps = new ArrayList<>();
     @Getter
+    // 用户事件
     private Map<String, Events> events = new LinkedHashMap<>();
     @Setter
     @Getter
@@ -443,14 +474,19 @@ public class Character extends AbstractCharacterObject {
     @Getter
     private Dragon dragon = null;
     @Setter
+    // 戒指
     private Ring marriageRing;
     @Setter
     @Getter
+    // 婚姻物品 ID
     private int marriageItemId = -1;
     @Setter
     @Getter
+    // 合伙人ID 情侣
     private int partnerId = -1;
+    // 暗恋对象戒指
     private final List<Ring> crushRings = new ArrayList<>();
+    // 友谊戒指
     private final List<Ring> friendshipRings = new ArrayList<>();
     @Getter
     @Setter
@@ -474,6 +510,7 @@ public class Character extends AbstractCharacterObject {
     private int banishSp = -1;
     private long banishTime = 0;
     @Setter
+    // 上次获得经验值的时间
     private long lastExpGainTime;
     private boolean pendingNameChange; //only used to change name on logout, not to be relied upon elsewhere
     @Getter
@@ -4530,20 +4567,31 @@ public class Character extends AbstractCharacterObject {
             chrLock.unlock();
         }
 
-        for (Map.Entry<Integer, Set<Integer>> pe : petExcluded.entrySet()) {
+        for (Map.Entry<Integer, Set<Integer>> pe : petExcluded.entrySet())
+        {
             byte petIndex = this.getPetIndex(pe.getKey());
-            if (petIndex < 0) {
+            if (petIndex < 0)
+            {
                 continue;
             }
 
             Set<Integer> exclItems = pe.getValue();
-            if (!exclItems.isEmpty()) {
-                sendPacket(PacketCreator.loadExceptionList(this.getId(), pe.getKey(), petIndex, new ArrayList<>(exclItems)));
+            if (!exclItems.isEmpty())
+            {
+                sendPacket(
+                        PacketCreator.loadExceptionList(
+                                this.getId()
+                                , pe.getKey()
+                                , petIndex
+                                , new ArrayList<>(exclItems)));
 
                 chrLock.lock();
-                try {
+                try
+                {
                     excludedItems.addAll(exclItems);
-                } finally {
+                }
+                finally
+                {
                     chrLock.unlock();
                 }
             }
@@ -6286,17 +6334,21 @@ public class Character extends AbstractCharacterObject {
             ret.jobRank = rs.getInt("jobRank");
             ret.jobRankMove = rs.getInt("jobRankMove");
 
-            if (equipped != null) {  // players can have no equipped items at all, ofc
+            if (equipped != null)
+            {  // players can have no equipped items at all, ofc
                 /**
                  * 取身上穿戴的装备   Inventory
                  * 将身上穿戴装备绑定到 inv
                  * **/
                 Inventory inv = ret.inventory[InventoryType.EQUIPPED.ordinal()];
-                for (Item item : equipped) {
+                for (Item item : equipped)
+                {
                     inv.addItemFromDB(item);
                 }
             }
-        } catch (SQLException sqle) {
+        }
+        catch (SQLException sqle)
+        {
             sqle.printStackTrace();
         }
 
@@ -6372,160 +6424,279 @@ public class Character extends AbstractCharacterObject {
         chr.setLevel(charactersDO.getLevel());
         chr.setFame(charactersDO.getFame());
         chr.setQuestFame(charactersDO.getFquest());
+        // 人物属性
         chr.setStr(charactersDO.getAttrStr());
         chr.setDex(charactersDO.getAttrDex());
         chr.setInt(charactersDO.getAttrInt());
         chr.setLuk(charactersDO.getAttrLuk());
+
         chr.setExp(charactersDO.getExp());
+        // 扭蛋机经验?
         chr.setGachaExp(charactersDO.getGachaexp());
+
         chr.setHp(charactersDO.getHp());
         chr.setMaxHp(charactersDO.getMaxhp());
         chr.setMp(charactersDO.getMp());
         chr.setMaxMp(charactersDO.getMaxmp());
+
         chr.setHpMpApUsed(charactersDO.getHpMpUsed());
+        // 市场商店?
         chr.setHasMerchant(charactersDO.getHasmerchant());
+        // 没有使用的属性点
         chr.setRemainingAp(charactersDO.getAp());
+
         int[] remainingSps = new int[10];
         Arrays.fill(remainingSps, 0);
-        if (!RequireUtil.isEmpty(charactersDO.getSp())) {
+
+        if (!RequireUtil.isEmpty(charactersDO.getSp()))
+        {
+            // 存在未使用的技能点, 切出每个职业未使用的技能点
+
             String[] splits = charactersDO.getSp().split(",");
             int len = Math.min(splits.length, remainingSps.length);
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; i++)
+            {
                 remainingSps[i] = Integer.parseInt(splits[i]);
             }
         }
+
         chr.setRemainingSp(remainingSps);
+
+        // 角色背包金币
         chr.setMeso(charactersDO.getMeso());
+        // 商店??
         chr.setMerchantMeso(charactersDO.getMerchantmesos());
+
         chr.setGMLevel(charactersDO.getGm());
+
         chr.setSkinColor(SkinColor.getById(charactersDO.getSkincolor()));
+
+        //性别
         chr.setGender(charactersDO.getGender());
         chr.setJob(Job.getById(charactersDO.getJob()));
+
+        // 已完成的 Jojo 教程?
         chr.setFinishedDojoTutorial(charactersDO.getFinishedDojoTutorial() == 1);
+
+        // 征服者击杀数?
         chr.setVanquisherKills(charactersDO.getVanquisherKills());
+        // 五子棋胜利盘数
         chr.setOmokwins(charactersDO.getOmokwins());
+        // 五子棋败局数
         chr.setOmoklosses(charactersDO.getOmoklosses());
+        // 五子棋平局数
         chr.setOmokties(charactersDO.getOmokties());
+        // 配对卡获胜?
         chr.setMatchcardwins(charactersDO.getMatchcardwins());
+        // 配对卡失败?
         chr.setMatchcardlosses(charactersDO.getMatchcardlosses());
+        // 配对卡平局?
         chr.setMatchcardties(charactersDO.getMatchcardties());
+        // 发型ID
         chr.setHair(charactersDO.getHair());
+        // 面部ID
         chr.setFace(charactersDO.getFace());
+        // 账户ID
         chr.setAccountId(charactersDO.getAccountid());
+        // 角色所在地图ID
         chr.setMapId(charactersDO.getMap());
+        // 监狱时间
         chr.setJailExpiration(charactersDO.getJailexpire());
+        // 设置初始出生点
         chr.setInitialSpawnPoint(charactersDO.getSpawnpoint());
+        // 所在世界id
         chr.setWorld(charactersDO.getWorld());
+        // 角色排名
         chr.setRank(charactersDO.getRank());
         chr.setRankMove(charactersDO.getRankMove());
+        // 职业排名
         chr.setJobRank(charactersDO.getJobRank());
         chr.setJobRankMove(charactersDO.getJobRankMove());
+
         chr.setGuildId(charactersDO.getGuildid());
         chr.setGuildRank(charactersDO.getGuildrank());
+
+        // 联盟排名
         chr.setAllianceRank(charactersDO.getAllianceRank());
+        // 家族ID
         chr.setFamilyId(charactersDO.getFamilyId());
+        // 书籍封面?
         chr.setBookCover(charactersDO.getMonsterbookcover());
+        // 怪物图鉴
         chr.setMonsterBook(new MonsterBook(charactersDO.getId()));
+        // 征服者舞台？
         chr.setVanquisherStage(charactersDO.getVanquisherStage());
+        //  Ariant Points?
         chr.setAriantPoints(charactersDO.getAriantPoints());
         chr.setDojoPoints(charactersDO.getDojoPoints());
         chr.setDojoStage(charactersDO.getLastDojoStage());
+
         chr.setDataString(charactersDO.getDataString());
         chr.setMGC(new GuildCharacter(chr));
+
+        // 好友列表
         chr.setBuddylist(new BuddyList(charactersDO.getBuddyCapacity()));
+        //上次获得经验值的时间
         chr.setLastExpGainTime(charactersDO.getLastExpGainTime().getTime());
+        // 可接收队伍搜索邀请
         chr.setCanRecvPartySearchInvite(charactersDO.getPartySearch());
+
+        // 装备物品栏
         chr.getInventory(InventoryType.EQUIP).setSlotLimit(charactersDO.getEquipslots());
+        // 消耗物品栏
         chr.getInventory(InventoryType.USE).setSlotLimit(charactersDO.getUseslots());
+        // 装饰物品栏
         chr.getInventory(InventoryType.SETUP).setSlotLimit(charactersDO.getSetupslots());
+        // 其他物品栏
         chr.getInventory(InventoryType.ETC).setSlotLimit(charactersDO.getEtcslots());
         short sandboxCheck = 0x0;
-        for (InventoryType inventoryType : InventoryType.values()) {
-            List<InventorySearchRtnDTO> searchRtnDTOList = inventoryService.getInventoryList(InventorySearchReqDTO.builder()
-                    .characterId(charactersDO.getId())
-                    .inventoryType(inventoryType.getType())
-                    .build());
-            for (InventorySearchRtnDTO searchRtnDTO : searchRtnDTOList) {
+
+        for (InventoryType inventoryType : InventoryType.values())
+        {
+            // 遍历所有背包
+
+            List<InventorySearchRtnDTO> searchRtnDTOList
+                    = inventoryService.getInventoryList(
+                            InventorySearchReqDTO.builder()
+                                    .characterId(charactersDO.getId())  // 查询角色ID下的背包数据
+                                    .inventoryType(inventoryType.getType())  // 设置查询背包类型
+                                    .build());
+
+            for (InventorySearchRtnDTO searchRtnDTO : searchRtnDTOList)
+            {
+                // 遍历背包所有内容
+
                 sandboxCheck |= searchRtnDTO.getFlag();
                 Item item = searchRtnDTO.toItem();
+                // 物品添加到对于背包中
                 chr.getInventory(inventoryType).addItemFromDB(item);
-                if (item.getPetId() > -1) {
+                if (item.getPetId() > -1)
+                {
+                    // 存在宠物ID
                     Pet pet = item.getPet();
-                    if (pet != null && pet.isSummoned()) {
+                    if (pet != null && pet.isSummoned())
+                    {
                         chr.addPet(pet);
                         // 登录时对已召唤宠物统一走同一套过滤配置加载逻辑，避免后续入口行为不一致。
                         chr.loadPetExcludedItems(item.getPetId());
                     }
                     continue;
                 }
-                if (searchRtnDTO.isEquipment() && searchRtnDTO.getInventoryEquipment().getRingId() > -1) {
+
+                if (searchRtnDTO.isEquipment() && searchRtnDTO.getInventoryEquipment().getRingId() > -1)
+                {
+                    // 是装备, 戒指
                     Ring ring = Ring.loadFromDb(searchRtnDTO.getInventoryEquipment().getRingId());
-                    if (ring == null) {
+                    if (ring == null)
+                    {
                         continue;
                     }
-                    if (InventoryType.EQUIPPED.equals(inventoryType)) {
+
+                    if (InventoryType.EQUIPPED.equals(inventoryType))
+                    {
+                        // 类型是已装备的戒指
                         ring.equip();
                     }
                     chr.addPlayerRing(ring);
                 }
             }
         }
+
         chr.commitExcludedItems();
-        if ((sandboxCheck & ItemConstants.SANDBOX) == ItemConstants.SANDBOX) {
+
+        if ((sandboxCheck & ItemConstants.SANDBOX) == ItemConstants.SANDBOX)
+        {
             chr.setHasSandboxItem();
         }
+
+        // 合伙人ID, 情侣
         chr.setPartnerId(charactersDO.getPartnerId());
+
+        // 婚姻物品 ID
         chr.setMarriageItemId(charactersDO.getMarriageItemId());
+
+
         World world = Server.getInstance().getWorld(charactersDO.getWorld());
-        if (charactersDO.getMarriageItemId() > 0 && charactersDO.getPartnerId() <= 0) {
+        if (charactersDO.getMarriageItemId() > 0
+                && charactersDO.getPartnerId() <= 0)
+        {
             chr.setMarriageItemId(-1);
-        } else if (charactersDO.getPartnerId() > 0 && world.getRelationshipId(charactersDO.getId()) <= 0) {
+        }
+        else if (charactersDO.getPartnerId() > 0
+                && world.getRelationshipId(charactersDO.getId()) <= 0)
+        {
+            // 存在情侣ID，但是数据库中找不到对应人。。？
             chr.setMarriageItemId(-1);
             chr.setPartnerId(-1);
         }
+
         NewYearCardRecord.loadPlayerNewYearCards(chr);
 
+        // 查询数据库表 trocklocations, 返回 trocklocations 元素
         List<TrocklocationsDO> trocklocationsDOList = characterService.getTrockLocationByCharacter(charactersDO.getId());
         int vip = 0;
         int reg = 0;
-        for (int i = 0; i < 15; i++) {
-            if (i < trocklocationsDOList.size()) {
+        for (int i = 0; i < 15; i++)
+        {
+            if (i < trocklocationsDOList.size())
+            {
                 TrocklocationsDO trocklocationsDO = trocklocationsDOList.get(i);
-                if (trocklocationsDO.getVip() == 1) {
+                if (trocklocationsDO.getVip() == 1)
+                {
                     vip++;
                     chr.getVipTrockMaps().add(trocklocationsDO.getMapid());
-                } else {
+                }
+                else
+                {
                     reg++;
                     chr.getTrockMaps().add(trocklocationsDO.getMapid());
                 }
                 continue;
             }
-            if (vip < 10) {
+            if (vip < 10)
+            {
                 chr.getVipTrockMaps().add(MapId.NONE);
             }
-            if (reg < 5) {
+
+            if (reg < 5)
+            {
                 chr.getTrockMaps().add(MapId.NONE);
             }
         }
 
         AccountsDO accountsDO = accountService.findById(charactersDO.getAccountid());
         chr.getClient().setAccountName(accountsDO.getName());
-        chr.getClient().setCharacterSlots(Optional.ofNullable(accountsDO.getCharacterslots()).map(Integer::byteValue).orElse((byte) 0));
-        chr.getClient().setLanguage(accountsDO.getLanguage());
 
+        // 设置角色槽
+        chr.getClient().setCharacterSlots(
+                Optional.ofNullable(accountsDO.getCharacterslots()).map(Integer::byteValue).orElse((byte) 0));
+
+        chr.getClient().setLanguage(
+                accountsDO.getLanguage());
+
+        // 查询数据库 area_info
         List<AreaInfoDO> areaInfoDOList = characterService.getAreaInfoByCharacter(charactersDO.getId());
-        areaInfoDOList.forEach(areaInfoDO -> chr.getAreaInfos().put(Optional.ofNullable(areaInfoDO.getArea()).map(Integer::shortValue).orElse((short) 0),
-                areaInfoDO.getInfo()));
 
+        areaInfoDOList.forEach(areaInfoDO -> chr.getAreaInfos().put(
+                Optional.ofNullable(areaInfoDO.getArea())
+                        .map(Integer::shortValue)
+                        .orElse((short) 0)
+                , areaInfoDO.getInfo()));
+
+        // 查询数据库 eventstats 返回事件状态
         List<EventstatsDO> eventstatsDOList = characterService.getEventStatsByCharacter(charactersDO.getId());
-        eventstatsDOList.forEach(eventstatsDO -> chr.getEvents().put(eventstatsDO.getName(), new RescueGaga(Optional.ofNullable(eventstatsDO.getInfo()).orElse(0))));
+
+        eventstatsDOList.forEach(eventstatsDO -> chr.getEvents().put(
+                eventstatsDO.getName()
+                , new RescueGaga(Optional.ofNullable(eventstatsDO.getInfo()).orElse(0))));
 
         chr.setCashShop(new CashShop(charactersDO.getAccountid(), charactersDO.getId(), chr.getJobType()));
+
         chr.setAutoBanManager(new AutobanManager(chr));
 
+        // 通用link技能
         List<CharactersDO> charactersDOList = characterService.getCharacterByAccountId(charactersDO.getAccountid());
-        charactersDOList.stream()
-                .filter(chrDO -> !Objects.equals(chrDO.getId(), charactersDO.getId()))
+        charactersDOList.stream().filter(chrDO -> !Objects.equals(chrDO.getId(), charactersDO.getId()))
                 .max(Comparator.comparing(CharactersDO::getLevel))
                 .ifPresent(chrDO -> {
                     chr.setLinkedName(chrDO.getName());
@@ -6533,20 +6704,34 @@ public class Character extends AbstractCharacterObject {
                 });
 
         int mountId = chr.getJobType() * 10000000 + 1004;
-        if (chr.getInventory(InventoryType.EQUIPPED).getItem((short) -18) != null) {
-            chr.setMapleMount(new Mount(chr, chr.getInventory(InventoryType.EQUIPPED).getItem((short) -18).getItemId(), mountId));
-        } else {
+
+        // EquipSlot  以驯服的宠物
+        if (chr.getInventory(InventoryType.EQUIPPED).getItem((short) -18) != null)
+        {
+            chr.setMapleMount(
+                    new Mount(
+                            chr
+                            , chr.getInventory(InventoryType.EQUIPPED).getItem((short) -18).getItemId()
+                            , mountId));
+        }
+        else
+        {
             chr.setMapleMount(new Mount(chr, 0, mountId));
         }
+
         chr.getMapleMount().setExp(charactersDO.getMountexp());
         chr.getMapleMount().setLevel(charactersDO.getMountlevel());
         chr.getMapleMount().setTiredness(charactersDO.getMounttiredness());
         chr.getMapleMount().setActive(false);
+
+        // 查询 quickslotkeymapped 快捷键按键绑定
         QuickslotkeymappedDO quickSlotKeyMap = accountService.getQuickSlotKeyMap(charactersDO.getAccountid());
-        if (quickSlotKeyMap != null) {
+        if (quickSlotKeyMap != null)
+        {
             chr.setQuickSlotLoaded(NumberTool.LongToBytes(quickSlotKeyMap.getKeymap()));
             chr.setQuickSlotKeyMapped(new QuickslotBinding(chr.getQuickSlotLoaded()));
         }
+
         return chr;
     }
 

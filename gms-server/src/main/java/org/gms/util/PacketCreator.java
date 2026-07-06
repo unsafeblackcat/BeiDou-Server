@@ -177,7 +177,8 @@ public class PacketCreator {
         p.writeInt(chr.getFace()); // face
         p.writeInt(chr.getHair()); // hair
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
+        {
             Pet pet = chr.getPet(i);
             if (pet != null) //Checked GMS.. and your pets stay when going into the cash shop.
             {
@@ -198,11 +199,15 @@ public class PacketCreator {
         p.writeShort(chr.getMp()); // mp (?)
         p.writeShort(chr.getClientMaxMp()); // maxmp
         p.writeShort(chr.getRemainingAp()); // remaining ap
-        if (GameConstants.hasSPTable(chr.getJob())) {
+        if (GameConstants.hasSPTable(chr.getJob()))
+        {
             addRemainingSkillInfo(p, chr);
-        } else {
+        }
+        else
+        {
             p.writeShort(chr.getRemainingSp()); // remaining sp
         }
+
         p.writeInt(chr.getExp()); // current exp
         p.writeShort(chr.getFame()); // fame
         p.writeInt(chr.getGachaExp()); //Gacha Exp
@@ -356,13 +361,17 @@ public class PacketCreator {
     private static void addCharEntry(OutPacket p, Character chr, boolean viewall) {
         addCharStats(p, chr);
         addCharLook(p, chr, false);
-        if (!viewall) {
+        if (!viewall)
+        {
             p.writeByte(0);
         }
-        if (chr.isGM() || chr.isGmJob()) {  // thanks Daddy Egg (Ubaware), resinate for noticing GM jobs crashing on non-GM players account
+
+        if (chr.isGM() || chr.isGmJob())
+        {  // thanks Daddy Egg (Ubaware), resinate for noticing GM jobs crashing on non-GM players account
             p.writeByte(0);
             return;
         }
+
         p.writeByte(1); // world rank enabled (next 4 ints are not sent if disabled) Short??
         p.writeInt(chr.getRank()); // world rank
         p.writeInt(chr.getRankMove()); // move (negative is downwards)
@@ -921,8 +930,11 @@ public class PacketCreator {
     public static Packet getCharList(Client c, int serverId, int status) {
         final OutPacket p = OutPacket.create(SendOpcode.CHARLIST);
         p.writeByte(status);
+
+        // 加载详细的玩家数据返回给客户端
         List<Character> chars = c.loadCharacters(serverId);
         p.writeByte((byte) chars.size());
+
         for (Character chr : chars) {
             addCharEntry(p, chr, false);
         }

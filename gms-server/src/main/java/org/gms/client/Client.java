@@ -117,17 +117,20 @@ public class Client extends ChannelInboundHandlerAdapter {
 
     private io.netty.channel.Channel ioChannel;
     private Character player;
+    // 当前进入世界的频道ID
     private int channel = 1;
     private int accId = -4;
     private boolean loggedIn = false;
     private boolean serverTransition = false;
     private Calendar birthday = null;
     private String accountName = null;
+    // 当前进入的世界ID
     private int world;
     private volatile long lastPong;
     private int gmlevel;
     private Set<String> macs = new HashSet<>();
     private Map<String, ScriptEngine> engines = new HashMap<>();
+    // 角色槽数量, 默认3个
     private byte characterSlots = 3;
     private byte loginattempt = 0;
     private String pin = "";
@@ -368,7 +371,8 @@ public class Client extends ChannelInboundHandlerAdapter {
         return chars;
     }
 
-    private List<CharNameAndId> loadCharactersInternal(int worldId) {
+    private List<CharNameAndId> loadCharactersInternal(int worldId)
+    {
         List<CharNameAndId> chars = new ArrayList<>(15);
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("SELECT id, name FROM characters WHERE accountid = ? AND world = ?")) {
@@ -987,8 +991,10 @@ public class Client extends ChannelInboundHandlerAdapter {
         }
     }
 
-    public final void forceDisconnect() {
-        if (canDisconnect()) {
+    public final void forceDisconnect()
+    {
+        if (canDisconnect())
+        {
             disconnectInternal(true, false);
         }
     }
@@ -1266,13 +1272,17 @@ public class Client extends ChannelInboundHandlerAdapter {
     }
 
     public void checkChar(int accid) {  /// issue with multiple chars from same account login found by shavit, resinate
-        if (!GameConfig.getServerBoolean("use_character_account_check")) {
+        if (!GameConfig.getServerBoolean("use_character_account_check"))
+        {
             return;
         }
 
-        for (World w : Server.getInstance().getWorlds()) {
-            for (Character chr : w.getPlayerStorage().getAllCharacters()) {
-                if (accid == chr.getAccountId()) {
+        for (World w : Server.getInstance().getWorlds())
+        {
+            for (Character chr : w.getPlayerStorage().getAllCharacters())
+            {
+                if (accid == chr.getAccountId())
+                {
                     log.warn("玩家 {} 已从世界 {} 中删除。可能存在重复尝试。", chr.getName(), GameConstants.WORLD_NAMES[w.getId()]);
                     chr.getClient().forceDisconnect();
                     w.getPlayerStorage().removePlayer(chr.getId());

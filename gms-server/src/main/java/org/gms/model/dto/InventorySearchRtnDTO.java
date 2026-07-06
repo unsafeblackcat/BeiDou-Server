@@ -110,7 +110,9 @@ public class InventorySearchRtnDTO {
             equip.setItemExp(Optional.ofNullable(getInventoryEquipment().getItemExp()).orElse(0));
             equip.setRingId(Optional.ofNullable(getInventoryEquipment().getRingId()).orElse(0));
             item = equip;
-        } else {
+        }
+        else
+        {
             item = new Item(getItemId(), getPosition(), getQuantity(), getPetId());
         }
         item.setOwner(getOwner());
