@@ -298,15 +298,23 @@ public class PacketCreator {
         Map<Short, Integer> myEquip = new LinkedHashMap<>();
         Map<Short, Integer> maskedEquip = new LinkedHashMap<>();
 
+
+        /**
+         *  穿戴装备序号 EquipSlot.java
+         * **/
+
         for (Item item : ii)
         {
             short pos = (short) (item.getPosition() * -1);  //修复其他角色无法看到现金勋章
             if (pos < 100 && myEquip.get(pos) == null)
             {
+                // 普通装备
                 myEquip.put(pos, item.getItemId());
             }
             else if (pos > 100 && pos != 111)
             {
+                // 非武器类现金道具覆盖普通装备显示
+
                 // don't ask. o.o
                 pos -= 100;
                 if (myEquip.get(pos) != null)
@@ -337,8 +345,10 @@ public class PacketCreator {
 
         p.writeByte(0xFF);
 
+        // 现金武器特殊处理
         Item cWeapon = equip.getItem((short) -111);
         p.writeInt(cWeapon != null ? cWeapon.getItemId() : 0);
+
         for (int i = 0; i < 3; i++)
         {
             if (chr.getPet(i) != null)
@@ -935,6 +945,7 @@ public class PacketCreator {
         List<Character> chars = c.loadCharacters(serverId);
         p.writeByte((byte) chars.size());
 
+        // 玩家详细信息组成数据包
         for (Character chr : chars) {
             addCharEntry(p, chr, false);
         }

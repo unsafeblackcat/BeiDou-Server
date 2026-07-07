@@ -294,24 +294,33 @@ public class ItemInformationProvider {
         Data ret = null;
         String idStr = "0" + itemId;
         DataDirectoryEntry root = itemData.getRoot();
-        for (DataDirectoryEntry topDir : root.getSubdirectories()) {
-            for (DataFileEntry iFile : topDir.getFiles()) {
-                if (iFile.getName().equals(idStr.substring(0, 4) + ".img")) {
+        for (DataDirectoryEntry topDir : root.getSubdirectories())
+        {
+            for (DataFileEntry iFile : topDir.getFiles())
+            {
+                if (iFile.getName().equals(idStr.substring(0, 4) + ".img"))
+                {
                     ret = itemData.getData(topDir.getName() + "/" + iFile.getName());
-                    if (ret == null) {
+                    if (ret == null)
+                    {
                         return null;
                     }
                     ret = ret.getChildByPath(idStr);
                     return ret;
-                } else if (iFile.getName().equals(idStr.substring(1) + ".img")) {
+                }
+                else if (iFile.getName().equals(idStr.substring(1) + ".img"))
+                {
                     return itemData.getData(topDir.getName() + "/" + iFile.getName());
                 }
             }
         }
         root = equipData.getRoot();
-        for (DataDirectoryEntry topDir : root.getSubdirectories()) {
-            for (DataFileEntry iFile : topDir.getFiles()) {
-                if (iFile.getName().equals(idStr + ".img")) {
+        for (DataDirectoryEntry topDir : root.getSubdirectories())
+        {
+            for (DataFileEntry iFile : topDir.getFiles())
+            {
+                if (iFile.getName().equals(idStr + ".img"))
+                {
                     return equipData.getData(topDir.getName() + "/" + iFile.getName());
                 }
             }
@@ -1796,6 +1805,7 @@ public class ItemInformationProvider {
          } catch (SQLException ex) {
             ex.printStackTrace();
          }*/
+        // 玩家角色裸属性
         int tdex = chr.getDex()
                 , tstr = chr.getStr()
                 , tint = chr.getInt()
@@ -1804,6 +1814,7 @@ public class ItemInformationProvider {
 
         if (chr.getJob() != Job.SUPERGM || chr.getJob() != Job.GM)
         {
+            // 玩家裸属性添加装备属性
             for (Item item : inv.list())
             {
                 Equip equip = (Equip) item;
@@ -1816,6 +1827,16 @@ public class ItemInformationProvider {
 
         for (Item item : items)
         {
+            /**
+             *  循环检查的目的是
+             *
+             *  当前角色身上基础属性+装备穿戴属性
+             *
+             *  在佩戴的装备中，是否出现角色属性不满足当前所穿戴装备的最低属性
+             *
+             *  如果角色属性达不到装备佩戴最低属性，直接由服务端“卸下”不把当前装备信息返回给客户端
+             * **/
+
             Equip equip = (Equip) item;
             int reqLevel = getEquipLevelReq(equip.getItemId());
             if (highfivestamp)
