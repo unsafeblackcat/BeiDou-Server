@@ -40,10 +40,12 @@ public final class DeleteCharHandler extends AbstractPacketHandler {
     private static final Logger log = LoggerFactory.getLogger(DeleteCharHandler.class);
 
     @Override
-    public void handlePacket(InPacket p, Client c) {
+    public void handlePacket(InPacket p, Client c)
+    {
         String pic = p.readString();
         int cid = p.readInt();
-        if (c.checkPic(pic)) {
+        if (c.checkPic(pic))
+        {
             //check for family, guild leader, pending marriage, world transfer
             try (Connection con = DatabaseConnection.getConnection();
                  PreparedStatement ps = con.prepareStatement("SELECT `world`, `guildid`, `guildrank`, `familyId` FROM characters WHERE id = ?");
@@ -89,7 +91,9 @@ public final class DeleteCharHandler extends AbstractPacketHandler {
             } else {
                 c.sendPacket(PacketCreator.deleteCharResponse(cid, 0x09));
             }
-        } else {
+        }
+        else
+        {
             c.sendPacket(PacketCreator.deleteCharResponse(cid, 0x14));
         }
     }
