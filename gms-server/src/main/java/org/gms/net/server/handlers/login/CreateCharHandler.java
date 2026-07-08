@@ -39,18 +39,18 @@ public final class CreateCharHandler extends AbstractPacketHandler {
     @Override
     public void handlePacket(InPacket p, Client c) {
         String name = p.readString();
-        int job = p.readInt();
-        int face = p.readInt();
+        int job = p.readInt();      //职业
+        int face = p.readInt();     //脸部
 
-        int hair = p.readInt();
-        int hairColor = p.readInt();
-        int skinColor = p.readInt();
+        int hair = p.readInt();         //发型
+        int hairColor = p.readInt();    //发型颜色
+        int skinColor = p.readInt();    //皮肤颜色
 
-        int top = p.readInt();
-        int bottom = p.readInt();
-        int shoes = p.readInt();
-        int weapon = p.readInt();
-        int gender = p.readByte();
+        int top = p.readInt();      //衣服
+        int bottom = p.readInt();   //裤子
+        int shoes = p.readInt();    //鞋子
+        int weapon = p.readInt();   //武器
+        int gender = p.readByte();  //性别
 
         if (!ItemConstants.isNewCharDefaultFace(job, gender, face)) {
             log.warn("非法创建角色，使用了非默认参数 职业 {} 性别 {} 脸型 {}", job, gender, face);
@@ -101,25 +101,62 @@ public final class CreateCharHandler extends AbstractPacketHandler {
         switch (job) {
             case 0: // Knights of Cygnus #骑士团
                 //先判断是否禁止创建该职业，再进行角色创建
-                status = !GameConfig.getServerBoolean("enable_knights_of_cygnus") ? -3 : NoblesseCreator.createCharacter(c, name, face, hair + hairColor, skinColor, top, bottom, shoes, weapon, gender);
+                status = !GameConfig.getServerBoolean("enable_knights_of_cygnus") ? -3
+                        : NoblesseCreator.createCharacter(
+                                c
+                                , name
+                                , face
+                                , hair + hairColor
+                                , skinColor
+                                , top
+                                , bottom
+                                , shoes
+                                , weapon
+                                , gender);
                 break;
             case 1: // Adventurer #冒险家
-                status = !GameConfig.getServerBoolean("enable_adventurers") ? -3 : BeginnerCreator.createCharacter(c, name, face, hair + hairColor, skinColor, top, bottom, shoes, weapon, gender);
+                status = !GameConfig.getServerBoolean("enable_adventurers") ? -3
+                        : BeginnerCreator.createCharacter(
+                                c
+                                , name
+                                , face
+                                , hair + hairColor
+                                , skinColor
+                                , top
+                                , bottom
+                                , shoes
+                                , weapon
+                                , gender);
                 break;
             case 2: // Aran #战神
-                status = !GameConfig.getServerBoolean("enable_the_lord_of_war") ? -3 : LegendCreator.createCharacter(c, name, face, hair + hairColor, skinColor, top, bottom, shoes, weapon, gender);
+                status = !GameConfig.getServerBoolean("enable_the_lord_of_war") ? -3
+                        : LegendCreator.createCharacter(
+                                c
+                                , name
+                                , face
+                                , hair + hairColor
+                                , skinColor
+                                , top
+                                , bottom
+                                , shoes
+                                , weapon
+                                , gender);
                 break;
             default:
                 c.sendPacket(PacketCreator.deleteCharResponse(0, 9));
                 return;
         }
 
-        if(status == -3) {
+        if(status == -3)
+        {
             String jobname = I18nUtil.getMessage("CreateCharHandler.handlePacket.job." + job );
             String message = I18nUtil.getMessage("CreateCharHandler.handlePacket.serverNotice.disableJob", jobname);
+
             c.sendPacket(PacketCreator.serverNotice(1,message));    //由于未找到不弹窗结束客户端请求等待，所以先发出未知错误的提示，再发送弹窗提示，这样不会被未知错误窗口挡住
             c.sendPacket(PacketCreator.getLoginFailed(1));       //断开客户端请求，避免客户端假死
-        } else if(status != 0) {
+        }
+        else if(status != 0)
+        {
             c.sendPacket(PacketCreator.deleteCharResponse(0, 9));       //发送未知错误的弹窗提示
         }
     }

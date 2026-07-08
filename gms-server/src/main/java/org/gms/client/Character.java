@@ -141,6 +141,7 @@ public class Character extends AbstractCharacterObject {
     private int jobRankMove;
     @Setter
     @Getter
+    // 性别
     private int gender;
     @Setter
     @Getter

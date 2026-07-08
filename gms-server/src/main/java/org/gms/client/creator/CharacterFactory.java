@@ -39,12 +39,22 @@ import org.gms.util.PacketCreator;
 public abstract class CharacterFactory {
     private static final Logger log = LoggerFactory.getLogger(CharacterFactory.class);
 
-    protected synchronized static int createNewCharacter(Client c, String name, int face, int hair, int skin, int gender, CharacterFactoryRecipe recipe) {
-        if (GameConfig.getServerBoolean("collective_chr_slot") ? c.getAvailableCharacterSlots() <= 0 : c.getAvailableCharacterWorldSlots() <= 0) {
+    protected synchronized static int createNewCharacter(
+            Client c
+            , String name
+            , int face
+            , int hair
+            , int skin
+            , int gender
+            , CharacterFactoryRecipe recipe) {
+        if (GameConfig.getServerBoolean("collective_chr_slot")
+                ? c.getAvailableCharacterSlots() <= 0 : c.getAvailableCharacterWorldSlots() <= 0)
+        {
             return -3;
         }
 
-        if (!Character.canCreateChar(name)) {
+        if (!Character.canCreateChar(name))
+        {
             return -1;
         }
 
@@ -60,12 +70,17 @@ public abstract class CharacterFactory {
         newCharacter.setJob(recipe.getJob());
         newCharacter.setMapId(recipe.getMap());
 
+        // 负责构造新的装备，并且绑定到新角色身上
         Inventory equipped = newCharacter.getInventory(InventoryType.EQUIPPED);
         ItemInformationProvider ii = ItemInformationProvider.getInstance();
 
-        int top = recipe.getTop(), bottom = recipe.getBottom(), shoes = recipe.getShoes(), weapon = recipe.getWeapon();
+        int top = recipe.getTop()
+                , bottom = recipe.getBottom()
+                , shoes = recipe.getShoes()
+                , weapon = recipe.getWeapon();
 
-        if (top > 0) {
+        if (top > 0)
+        {
             Item eq_top = ii.getEquipById(top);
             eq_top.setPosition((byte) -5);
             equipped.addItemFromDB(eq_top);
@@ -89,16 +104,21 @@ public abstract class CharacterFactory {
             equipped.addItemFromDB(eq_weapon.copy());
         }
 
+        // 再次校验角色职业, 属性等信息
         if (!MakeCharInfoValidator.isNewCharacterValid(newCharacter)) {
             log.warn("Owner from account {} tried to packet edit in character creation", c.getAccountName());
             return -2;
         }
 
+        // 插入数据库
         if (!newCharacter.insertNewChar(recipe)) {
             return -2;
         }
+
+        // 角色信息封包返回给客户端
         c.sendPacket(PacketCreator.addNewCharEntry(newCharacter));
 
+        // 将新角色绑定到公共类中。
         Server.getInstance().createCharacterEntry(newCharacter);
         Server.getInstance().broadcastGMMessage(c.getWorld(), PacketCreator.sendYellowTip("[New Char]: " + c.getAccountName() + I18nUtil.getMessage("CharacterFactory.message1") + name));
         log.info("账号 {} 创建了角色 {}", c.getAccountName(), name);

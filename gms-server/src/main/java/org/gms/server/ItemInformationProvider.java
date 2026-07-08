@@ -1210,48 +1210,84 @@ public class ItemInformationProvider {
         return getEquipById(equipId, -1);
     }
 
-    private Item getEquipById(int equipId, int ringId) {
+    private Item getEquipById(int equipId, int ringId)
+    {
         Equip nEquip;
         nEquip = new Equip(equipId, (byte) 0, ringId);
         nEquip.setQuantity((short) 1);
         Map<String, Integer> stats = this.getEquipStats(equipId);
-        if (stats != null) {
-            for (Entry<String, Integer> stat : stats.entrySet()) {
-                if (stat.getKey().equals("STR")) {
+        if (stats != null)
+        {
+            for (Entry<String, Integer> stat : stats.entrySet())
+            {
+                if (stat.getKey().equals("STR"))
+                {
                     nEquip.setStr((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("DEX")) {
+                }
+                else if (stat.getKey().equals("DEX"))
+                {
                     nEquip.setDex((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("INT")) {
+                }
+                else if (stat.getKey().equals("INT"))
+                {
                     nEquip.setInt((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("LUK")) {
+                }
+                else if (stat.getKey().equals("LUK"))
+                {
                     nEquip.setLuk((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("PAD")) {
+                }
+                else if (stat.getKey().equals("PAD"))
+                {
                     nEquip.setWatk((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("PDD")) {
+                }
+                else if (stat.getKey().equals("PDD"))
+                {
                     nEquip.setWdef((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("MAD")) {
+                }
+                else if (stat.getKey().equals("MAD"))
+                {
                     nEquip.setMatk((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("MDD")) {
+                }
+                else if (stat.getKey().equals("MDD"))
+                {
                     nEquip.setMdef((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("ACC")) {
+                }
+                else if (stat.getKey().equals("ACC"))
+                {
                     nEquip.setAcc((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("EVA")) {
+                }
+                else if (stat.getKey().equals("EVA"))
+                {
                     nEquip.setAvoid((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("Speed")) {
+                }
+                else if (stat.getKey().equals("Speed"))
+                {
                     nEquip.setSpeed((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("Jump")) {
+                }
+                else if (stat.getKey().equals("Jump"))
+                {
                     nEquip.setJump((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("MHP")) {
+                }
+                else if (stat.getKey().equals("MHP"))
+                {
                     nEquip.setHp((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("MMP")) {
+                }
+                else if (stat.getKey().equals("MMP"))
+                {
                     nEquip.setMp((short) stat.getValue().intValue());
-                } else if (stat.getKey().equals("tuc")) {
+                }
+                else if (stat.getKey().equals("tuc"))
+                {
                     nEquip.setUpgradeSlots((byte) stat.getValue().intValue());
-                } else if (isUntradeableRestricted(equipId)) {  // thanks Hyun & Thora for showing an issue with more than only "Untradeable" items being flagged as such here
+                }
+                else if (isUntradeableRestricted(equipId))
+                {  // thanks Hyun & Thora for showing an issue with more than only "Untradeable" items being flagged as such here
                     short flag = nEquip.getFlag();
                     flag |= ItemConstants.UNTRADEABLE;
                     nEquip.setFlag(flag);
-                } else if (stats.get("fs") > 0) {
+                }
+                else if (stats.get("fs") > 0)
+                {
                     short flag = nEquip.getFlag();
                     flag |= ItemConstants.SPIKES;
                     nEquip.setFlag(flag);
@@ -1259,6 +1295,7 @@ public class ItemInformationProvider {
                 }
             }
         }
+
         return nEquip.copy();
     }
 

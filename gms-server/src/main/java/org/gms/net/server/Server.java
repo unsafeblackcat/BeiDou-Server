@@ -1222,7 +1222,9 @@ public class Server {
     }
 
     public void createCharacterEntry(Character chr) {
-        Integer accountid = chr.getAccountId(), chrid = chr.getId(), world = chr.getWorld();
+        Integer accountid = chr.getAccountId()
+                , chrid = chr.getId()
+                , world = chr.getWorld();
 
         lgnWLock.lock();
         try {

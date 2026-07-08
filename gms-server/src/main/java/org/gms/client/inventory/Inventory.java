@@ -49,7 +49,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Inventory implements Iterable<Item> {
     private static final Logger log = LoggerFactory.getLogger(Inventory.class);
     /**
-     * inventory 装备穿戴信息
+     * inventory 记录装备穿戴信息
      * Short 装备穿戴的位置
      * Item  装备信息
      * **/

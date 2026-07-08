@@ -122,7 +122,12 @@ public class CharacterFactoryRecipe {
             runningTypePosition.put(itemType, p);
         }
 
-        itemsWithType.add(new Pair<>(new Item(itemid, (short) p.getAndIncrement(), (short) quantity), itemType));
+        itemsWithType.add(new Pair<>(
+                new Item(
+                        itemid
+                        , (short) p.getAndIncrement()
+                        , (short) quantity)
+                , itemType));
     }
 
     public Job getJob() {

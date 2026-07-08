@@ -43,7 +43,18 @@ public class BeginnerCreator extends CharacterFactory {
         recipe.addStartingItem(itemid, quantity, itemType);
     }
 
-    public static int createCharacter(Client c, String name, int face, int hair, int skin, int top, int bottom, int shoes, int weapon, int gender) {
+    public static int createCharacter(
+            Client c
+            , String name
+            , int face      //脸部
+            , int hair      //发型+发型颜色
+            , int skin      //肤色
+            , int top       //衣服
+            , int bottom    //裤子
+            , int shoes     //鞋子
+            , int weapon    //武器
+            , int gender)   //性别
+    {
 
         int iMapID = MapId.MUSHROOM_TOWN;
         if (GameConfig.getServerBoolean("use_beidou_beginner_map"))
@@ -51,6 +62,13 @@ public class BeginnerCreator extends CharacterFactory {
             iMapID = MapId.BEIDOU_BEGINNER;
         }
 
-        return createNewCharacter(c, name, face, hair, skin, gender, createRecipe(Job.BEGINNER, 1, iMapID, top, bottom, shoes, weapon));
+        return createNewCharacter(
+                c
+                , name
+                , face
+                , hair
+                , skin
+                , gender
+                , createRecipe(Job.BEGINNER, 1, iMapID, top, bottom, shoes, weapon));
     }
 }
