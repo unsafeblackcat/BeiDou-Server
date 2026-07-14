@@ -131,6 +131,11 @@ public class Server {
      * 负责把角色ID和世界ID绑定在一块
      * **/
     private final Map<Integer, Integer> worldChars = new HashMap<>();
+    /**
+     * 设置角色过度状态
+     * String: 客户端连接的IP
+     * Integer: 角色CID
+     * **/
     private final Map<String, Integer> transitioningChars = new HashMap<>();
     private final List<Pair<Integer, String>> worldRecommendedList = new LinkedList<>();
     private final Map<Integer, Guild> guilds = new HashMap<>(100);

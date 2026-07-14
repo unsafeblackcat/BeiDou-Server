@@ -34,6 +34,11 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class PlayerStorage {
+    /**
+     * 角色信息
+     * Integer: cid
+     * Character: 角色对象
+     * **/
     private final Map<Integer, Character> storage = new LinkedHashMap<>();
     private final Map<String, Character> nameStorage = new LinkedHashMap<>();
     private final Lock rlock;

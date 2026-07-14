@@ -134,7 +134,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             Channel cserv = wserv.getChannel(c.getChannel());
             if (cserv == null)
             {
-                // 如果没有频道，啧设置频道1
+                // 如果没有频道，设置频道1
                 c.setChannel(1);
                 cserv = wserv.getChannel(c.getChannel());
 
@@ -266,7 +266,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             {
                 // 非新创建的角色
 
-                // 设置客户端语音
+                // 设置客户端语言
                 c.setLanguage(player.getClient().getLanguage());
 
                 // 设置客户端的插槽
@@ -342,6 +342,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             player.visitMap(player.getMap());
 
 
+            // 好友列表
             BuddyList bl = player.getBuddylist();
             int[] buddyIds = bl.getBuddyIds();
             wserv.loggedOn(player.getName(), player.getId(), c.getChannel(), buddyIds);
@@ -353,8 +354,10 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 bl.put(ble);
             }
 
+            // 发包好友列表
             c.sendPacket(PacketCreator.updateBuddylist(bl.getBuddies()));
 
+            // 家族列表信息
             c.sendPacket(PacketCreator.loadFamily(player));
             if (player.getFamilyId() > 0)
             {
@@ -386,6 +389,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 c.sendPacket(PacketCreator.getFamilyInfo(null));
             }
 
+            // 工会信息
             if (player.getGuildId() > 0)
             {
                 Guild playerGuild = server.getGuild(player.getGuildId(), player.getWorld(), player);
@@ -438,6 +442,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             //异常地图掉线信息提示
             c.getSysRescue().showMapChangeMessage(player);
 
+            // 派对角色？
             if (player.getParty() != null)
             {
                 PartyCharacter pchar = player.getMPC();
@@ -452,6 +457,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 player.updatePartyMemberHP();
             }
 
+            // 穿戴装备信息
             Inventory eqpInv = player.getInventory(InventoryType.EQUIPPED);
             eqpInv.lockInventory();
             try
@@ -466,8 +472,10 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 eqpInv.unlockInventory();
             }
 
+            // 发包穿戴装备信息
             c.sendPacket(PacketCreator.updateBuddylist(player.getBuddylist().getBuddies()));
 
+            // 请求添加好友列表
             CharacterNameAndId pendingBuddyRequest = c.getPlayer().getBuddylist().pollPendingRequest();
             if (pendingBuddyRequest != null)
             {
@@ -477,14 +485,20 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                         , pendingBuddyRequest.getName()));
             }
 
+            // 更新性别
             c.sendPacket(PacketCreator.updateGender(player));
+
+
             player.checkMessenger();
             c.sendPacket(PacketCreator.enableReport());
+
+            // 更改技能等级
             player.changeSkillLevel(
                     SkillFactory.getSkill(10000000 * player.getJobType() + 12)
                     , (byte) (player.getLinkedLevel() / 10)
                     , 20
                     , -1);
+
             player.checkBerserk(player.isHidden());
 
             if (newcomer)
@@ -536,43 +550,69 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             }
             else
             {
+                // 战列舰是什么鬼?
                 if (player.isRidingBattleship())
                 {
                     player.announceBattleshipHp();
                 }
             }
 
+            // 增益效果过期任务
             player.buffExpireTask();
+
+            // 疾病过期任务
             player.diseaseExpireTask();
+
+            // 技能冷却任务
             player.skillCooldownTask();
+
+            // 过期任务
             player.expirationTask();
+
+            // 任务过期处理任务
             player.questExpirationTask();
-            if (GameConstants.hasSPTable(player.getJob()) && player.getJob().getId() != 2001)
+
+
+            if (GameConstants.hasSPTable(player.getJob())
+                    && player.getJob().getId() != 2001)
             {
                 player.createDragon();
             }
 
+            // 提交排除项
             player.commitExcludedItems();
+
+            // 显示 Duey 通知
             showDueyNotification(c, player);
 
+            // 重置玩家费率
             player.resetPlayerRates();
+
             if (GameConfig.getServerBoolean("use_add_rates_by_level"))
             {
+                // 设置玩家费率
                 player.setPlayerRates();
             }
 
+            // 设置世界汇率
             player.setWorldRates();
+
+            // 更新优惠券利率
             player.updateCouponRates();
 
+            // 接收队伍成员生命值
             player.receivePartyMemberHP();
 
             if (player.getPartnerId() > 0)
             {
+                // 有情侣关系
+
                 int partnerId = player.getPartnerId();
                 final Character partner = wserv.getPlayerStorage().getCharacterById(partnerId);
 
                 if (partner != null && !partner.isAwayFromWorld())
                 {
+                    // 更新情侣信息
                     player.sendPacket(
                             WeddingPackets.OnNotifyWeddingPartnerTransfer(
                                     partnerId
@@ -596,11 +636,12 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             // Tell the client to use the custom scripts available for the NPCs provided, instead of the WZ entries.
             if (GameConfig.getServerBoolean("use_npcs_scriptable"))
             {
+                // 使用npc脚本
 
-                // Create a copy to prevent always adding entries to the server's list.
+                // 创建一个副本，以避免总是向服务器列表添加条目。
                 Map<Integer, String> npcsIds = GameConfig.getServerObject("npcs_scriptable", new HashMap<>());
 
-                // Any npc be specified as the rebirth npc. Allow the npc to use custom scripts explicitly.
+                // 可以将任意 NPC 指定为转生 NPC，并允许该 NPC 使用自定义脚本。
                 if (GameConfig.getServerBoolean("use_rebirth_system"))
                 {
                     npcsIds.put(GameConfig.getServerInt("rebirth_npc_id"), "Rebirth");

@@ -888,6 +888,9 @@ public class PacketCreator {
      * @return The server IP packet.
      */
     public static Packet getServerIP(InetAddress inetAddr, int port, int clientId) {
+        /**
+         * 返回客户端告知登录成功
+         * **/
         final OutPacket p = OutPacket.create(SendOpcode.SERVER_IP);
         p.writeShort(0);
         byte[] addr = inetAddr.getAddress();

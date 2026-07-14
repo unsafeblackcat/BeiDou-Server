@@ -74,13 +74,19 @@ public final class CharSelectedHandler extends AbstractPacketHandler {
             return;
         }
 
+        // 是否是被禁止的机器
         if (c.hasBannedMac() || c.hasBannedHWID()) {
             SessionCoordinator.getInstance().closeSession(c, true);
             return;
         }
 
+        /**
+         *  防止用户构造数据包乱登录
+         * */
+
         Server server = Server.getInstance();
         if (!server.haveCharacterEntry(c.getAccID(), charId)) {
+            // 检查账户中是否包含当前角色CID, 如果没有直接断开
             SessionCoordinator.getInstance().closeSession(c, true);
             return;
         }
@@ -88,21 +94,29 @@ public final class CharSelectedHandler extends AbstractPacketHandler {
         c.setWorld(server.getCharacterWorld(charId));
         World wserv = c.getWorldServer();
         if (wserv == null || wserv.isWorldCapacityFull()) {
+            // 判断角色CID 是否包含在对应的世界中, 如果没有直接断开
             c.sendPacket(PacketCreator.getAfterLoginError(10));
             return;
         }
 
+        // 拿到世界和频道的登录IP端口
         String[] socket = server.getInetSocket(c, c.getWorld(), c.getChannel());
         if (socket == null) {
             c.sendPacket(PacketCreator.getAfterLoginError(10));
             return;
         }
 
+        // 将当前登录状态移除
         server.unregisterLoginState(c);
+
+        // 设置客户端登录状态
         c.setCharacterOnSessionTransitionState(charId);
 
         try {
-            c.sendPacket(PacketCreator.getServerIP(InetAddress.getByName(socket[0]), Integer.parseInt(socket[1]), charId));
+            c.sendPacket(PacketCreator.getServerIP(
+                    InetAddress.getByName(socket[0])
+                    , Integer.parseInt(socket[1])
+                    , charId));
         } catch (UnknownHostException | NumberFormatException e) {
             e.printStackTrace();
         }
