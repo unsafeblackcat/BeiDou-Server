@@ -155,7 +155,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 hwid = SessionCoordinator.getInstance().pickLoginSessionHwid(c);
                 if (hwid == null)
                 {
-                    //
+                    // 没有的登录锅
                     c.disconnect(true, false);
                     return;
                 }
@@ -269,7 +269,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 // 设置客户端语言
                 c.setLanguage(player.getClient().getLanguage());
 
-                // 设置客户端的插槽
+                // 设置客户端的角色栏最大数量
                 c.setCharacterSlots((byte) player.getClient().getCharacterSlots());
 
                 // 角色信息绑定客户端类
@@ -294,6 +294,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             player.setEnteredChannelWorld();
 
 
+            // 角色增益buffer容器
             List<PlayerBuffValueHolder> buffs = server.getPlayerBuffStorage().getBuffsFromStorage(cid);
             if (buffs != null)
             {
@@ -301,6 +302,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 player.silentGiveBuffs(timedBuffs);
             }
 
+            // 负面buffer
             Map<Disease, Pair<Long, MobSkill>> diseases = server.getPlayerBuffStorage().getDiseasesFromStorage(cid);
             if (diseases != null)
             {
@@ -324,7 +326,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
                 }
             }
 
-            // 发包 按键，任务信息，宏命令
+            // 发包 按键，快捷栏，宏命令
             player.sendKeymap();
             player.sendQuickmap();
             player.sendMacros();
@@ -345,6 +347,8 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             // 好友列表
             BuddyList bl = player.getBuddylist();
             int[] buddyIds = bl.getBuddyIds();
+
+            // 更新好友列表
             wserv.loggedOn(player.getName(), player.getId(), c.getChannel(), buddyIds);
 
             for (CharacterIdChannelPair onlineBuddy : wserv.multiBuddyFind(player.getId(), buddyIds))

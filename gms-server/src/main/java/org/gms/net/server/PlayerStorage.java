@@ -40,6 +40,11 @@ public class PlayerStorage {
      * Character: 角色对象
      * **/
     private final Map<Integer, Character> storage = new LinkedHashMap<>();
+    /**
+     * 角色信息
+     * String: 角色昵称
+     * Character: 角色对象
+     * **/
     private final Map<String, Character> nameStorage = new LinkedHashMap<>();
     private final Lock rlock;
     private final Lock wlock;

@@ -2330,17 +2330,21 @@ public class MapleMap {
     }
 
     private void addPartyMemberInternal(Character chr, int partyid) {
-        if (partyid == -1) {
+        if (partyid == -1)
+        {
             return;
         }
 
         Set<Integer> partyEntry = mapParty.get(partyid);
-        if (partyEntry == null) {
+        if (partyEntry == null)
+        {
             partyEntry = new LinkedHashSet<>();
             partyEntry.add(chr.getId());
 
             mapParty.put(partyid, partyEntry);
-        } else {
+        }
+        else
+        {
             partyEntry.add(chr.getId());
         }
     }
@@ -2395,7 +2399,9 @@ public class MapleMap {
             characters.add(chr);
             chrSize = characters.size();
 
-            if (party != null && party.getMemberById(chr.getId()) != null) {
+            if (party != null
+                    && party.getMemberById(chr.getId()) != null)
+            {
                 addPartyMemberInternal(chr, party.getId());
             }
             itemMonitorTimeout = 1;

@@ -1316,19 +1316,26 @@ public class World {
 
     private void updateBuddies(int characterId, int channel, int[] buddies, boolean offline) {
         PlayerStorage playerStorage = getPlayerStorage();
-        for (int buddy : buddies) {
+        for (int buddy : buddies)
+        {
             Character chr = playerStorage.getCharacterById(buddy);
-            if (chr != null) {
+            if (chr != null)
+            {
                 BuddylistEntry ble = chr.getBuddylist().get(characterId);
-                if (ble != null && ble.isVisible()) {
+                if (ble != null && ble.isVisible())
+                {
                     int mcChannel;
-                    if (offline) {
+                    if (offline)
+                    {
                         ble.setChannel((byte) -1);
                         mcChannel = -1;
-                    } else {
+                    }
+                    else
+                    {
                         ble.setChannel(channel);
                         mcChannel = (byte) (channel - 1);
                     }
+
                     chr.getBuddylist().put(ble);
                     chr.sendPacket(PacketCreator.updateBuddyChannel(ble.getCharacterId(), mcChannel));
                 }

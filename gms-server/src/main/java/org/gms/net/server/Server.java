@@ -743,16 +743,23 @@ public class Server {
         ThreadManager.getInstance().start();
         initializeTimelyTasks();    // aggregated method for timely tasks thanks to lxconan
 
-        try {
-            for (int i = 0; i < worldCount; i++) {
+        try
+        {
+            for (int i = 0; i < worldCount; i++)
+            {
                 initWorld();
             }
-            // world初始化后需要加载的
+
+            // 重新加载加载世界玩家排名
             reloadWorldsPlayerRanking();
+
+            // 加载玩家NPC
             loadPlayerNpcMapStepFromDb();
+
             if (GameConfig.getServerBoolean("use_family_system")) {
                 familyService.loadAllFamilies();
             }
+
         } catch (Exception e) {
             log.error(I18nUtil.getLogMessage("Server.init.error3"), e); //For those who get errors
             System.exit(0);
@@ -765,7 +772,10 @@ public class Server {
         CommandsExecutor.getInstance().loadCommandsExecutor();
 
         log.info(I18nUtil.getLogMessage("Server.init.info7"));
-        for (Channel ch : this.getAllChannels()) {
+
+        // 所有频道加载事件脚本
+        for (Channel ch : this.getAllChannels())
+        {
             ch.reloadEventScriptManager();
         }
         log.info(I18nUtil.getLogMessage("Server.init.info8"));

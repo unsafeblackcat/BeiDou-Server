@@ -117,6 +117,7 @@ public class Character extends AbstractCharacterObject {
     private int world;
     @Getter
     @Setter
+    // 角色ID
     private int id;
     @Getter
     @Setter

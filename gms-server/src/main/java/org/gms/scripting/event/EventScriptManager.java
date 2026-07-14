@@ -135,8 +135,10 @@ public class EventScriptManager extends AbstractScriptManager {
     private EventEntry initializeEventEntry(String script, Channel channel) {
         ScriptEngine engine = getInvocableScriptEngine("event/" + script + ".js"); // 获取 JS 引擎
         Invocable iv = SynchronizedInvocable.of((Invocable) engine); // 包装为线程安全的调用接口
+
         EventManager eventManager = new EventManager(channel, iv, script); // 创建事件管理器
         engine.put(INJECTED_VARIABLE_NAME, eventManager); // 向 JS 引擎注入变量 "em"
+
         return new EventEntry(iv, eventManager); // 返回事件实体
     }
 
