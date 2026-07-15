@@ -688,9 +688,13 @@ public class Server {
         try (ExecutorService initExecutor = Executors.newVirtualThreadPerTaskExecutor()) {
             // 加载wz
             final List<Future<?>> futures = new ArrayList<>();
+            // 技能
             futures.add(initExecutor.submit(SkillFactory::loadAllSkills));
+            //现金道具
             futures.add(initExecutor.submit(CashItemFactory::loadAllCashItems));
+            // 任务
             futures.add(initExecutor.submit(Quest::loadAllQuests));
+            // 技能书
             futures.add(initExecutor.submit(SkillbookInformationProvider::loadAllSkillbookInformation));
             // Wait on all async tasks to complete
             for (Future<?> future : futures) {

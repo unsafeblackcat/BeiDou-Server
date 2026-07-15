@@ -266,6 +266,7 @@ public class Character extends AbstractCharacterObject {
     private int owlSearch;
     @Setter
     @Getter
+    // 成名时间
     private long lastfametime;
     @Setter
     @Getter
@@ -374,6 +375,7 @@ public class Character extends AbstractCharacterObject {
     private final SkillMacro[] skillMacros = new SkillMacro[5];
     @Setter
     @Getter
+    // 上个月知名度列表
     private List<Integer> lastmonthfameids;
     private final List<WeakReference<MapleMap>> lastVisitedMaps = new LinkedList<>();
     private WeakReference<MapleMap> ownedMap = new WeakReference<>(null);
@@ -492,6 +494,7 @@ public class Character extends AbstractCharacterObject {
     private final List<Ring> friendshipRings = new ArrayList<>();
     @Getter
     @Setter
+    // 登录状态
     private boolean loggedIn = false;
     @Getter
     private boolean useCS;  //chaos scroll upon crafting item.
@@ -517,6 +520,7 @@ public class Character extends AbstractCharacterObject {
     private boolean pendingNameChange; //only used to change name on logout, not to be relied upon elsewhere
     @Getter
     @Setter
+    // 登录时间
     private long loginTime;
     @Setter
     @Getter

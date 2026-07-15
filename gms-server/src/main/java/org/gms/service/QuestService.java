@@ -35,27 +35,54 @@ public class QuestService {
         queststatusMapper.deleteByQuery(QueryWrapper.create().where(QUESTSTATUS_D_O.CHARACTERID.eq(cid)));
     }
 
-    public List<QuestStatus> getQuestStatusByCharacter(int cid) {
-        List<QueststatusDO> queststatusDOList = queststatusMapper.selectListByQuery(QueryWrapper.create().where(QUESTSTATUS_D_O.CHARACTERID.eq(cid)));
-        List<QuestprogressDO> questprogressDOList = questprogressMapper.selectListByQuery(QueryWrapper.create().where(QUESTPROGRESS_D_O.CHARACTERID.eq(cid)));
-        List<MedalmapsDO> medalmapsDOList = medalmapsMapper.selectListByQuery(QueryWrapper.create().where(MEDALMAPS_D_O.CHARACTERID.eq(cid)));
+    public List<QuestStatus> getQuestStatusByCharacter(int cid)
+    {
+        /**
+         * select * from queststatus where CHARACTERID = cid;
+         * **/
+        List<QueststatusDO> queststatusDOList
+                = queststatusMapper.selectListByQuery(QueryWrapper.create().where(QUESTSTATUS_D_O.CHARACTERID.eq(cid)));
+
+        /**
+         * select * from questprogress where CHARACTERID = cdi;
+         * **/
+        List<QuestprogressDO> questprogressDOList
+                = questprogressMapper.selectListByQuery(QueryWrapper.create().where(QUESTPROGRESS_D_O.CHARACTERID.eq(cid)));
+
+        /**
+         * select * from medalmaps where CHARACTERID = cid;
+         * **/
+        List<MedalmapsDO> medalmapsDOList
+                = medalmapsMapper.selectListByQuery(QueryWrapper.create().where(MEDALMAPS_D_O.CHARACTERID.eq(cid)));
 
         return queststatusDOList.stream().map(queststatusDO -> {
             Quest quest = Quest.getInstance(queststatusDO.getQuest());
-            QuestStatus questStatus = new QuestStatus(quest, QuestStatus.Status.getById(queststatusDO.getStatus()));
-            if (queststatusDO.getTime() > -1) {
+
+            QuestStatus questStatus = new QuestStatus(
+                    quest
+                    , QuestStatus.Status.getById(queststatusDO.getStatus()));
+
+            if (queststatusDO.getTime() > -1)
+            {
                 questStatus.setCompletionTime(TimeUnit.SECONDS.toMillis(queststatusDO.getTime()));
             }
-            if (queststatusDO.getExpires() > 0) {
+
+            if (queststatusDO.getExpires() > 0)
+            {
                 questStatus.setExpirationTime(queststatusDO.getExpires());
             }
+
             questStatus.setForfeited(queststatusDO.getForfeited());
             questStatus.setCompleted(queststatusDO.getCompleted());
+
             questprogressDOList.stream()
                     .filter(questprogressDO -> Objects.equals(queststatusDO.getQueststatusid(), questprogressDO.getQueststatusid()))
                     .forEach(questprogressDO -> questStatus.setProgress(questprogressDO.getProgressid(),  questprogressDO.getProgress()));
+
             medalmapsDOList.stream()
-                    .filter(medalmapsDO -> Objects.equals(queststatusDO.getQueststatusid(), medalmapsDO.getQueststatusid()))
+                    .filter(medalmapsDO -> Objects.equals(
+                            queststatusDO.getQueststatusid()
+                            , medalmapsDO.getQueststatusid()))
                     .forEach(medalmapsDO -> questStatus.addMedalMap(medalmapsDO.getMapid()));
             return questStatus;
         }).toList();

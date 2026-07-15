@@ -371,6 +371,7 @@ public class CharacterService {
             return chr;
         }
 
+        // 设置玩家所在地图
         MapManager mapManager = client.getChannelServer().getMapFactory();
         MapleMap mapleMap = mapManager.getMap(chr.getMapId());
         if (mapleMap == null)
@@ -379,6 +380,9 @@ public class CharacterService {
         }
 
         chr.setMap(mapleMap);
+
+
+        // 门户?
         Portal portal = mapleMap.getPortal(chr.getInitialSpawnPoint());
         if (portal == null)
         {
@@ -388,6 +392,8 @@ public class CharacterService {
         chr.setPosition(portal.getPosition());
 
         World world = Server.getInstance().getWorld(charactersDO.getWorld());
+
+        // 聚会??
         int partyId = charactersDO.getParty();
         Party party = world.getParty(partyId);
         if (party != null)
@@ -400,6 +406,7 @@ public class CharacterService {
             }
         }
 
+        // 通讯??
         int messengerId = charactersDO.getMessengerid();
         int messengerPosition = charactersDO.getMessengerposition();
         if (messengerId > 0 && messengerPosition < 4 && messengerPosition > -1)
@@ -411,12 +418,18 @@ public class CharacterService {
                 chr.setMessengerPosition(messengerPosition);
             }
         }
+
+        // 设置登录状态
         chr.setLoggedIn(true);
 
+        // 任务状态
         List<QuestStatus> questStatusList = questService.getQuestStatusByCharacter(cid);
         questStatusList.forEach(questStatus -> chr.getQuests().put(questStatus.getQuestID(), questStatus));
 
-        List<SkillsDO> skillsDOList = skillsMapper.selectListByQuery(QueryWrapper.create().where(SKILLS_D_O.CHARACTERID.eq(cid)));
+
+        // 技能
+        List<SkillsDO> skillsDOList
+                = skillsMapper.selectListByQuery(QueryWrapper.create().where(SKILLS_D_O.CHARACTERID.eq(cid)));
         skillsDOList.forEach(skillsDO -> {
             Skill skill = SkillFactory.getSkill(skillsDO.getSkillid());
             if (skill != null)
@@ -435,6 +448,8 @@ public class CharacterService {
             }
         });
 
+
+        // 技能冷却时间内
         QueryWrapper cdQueryWrapper = QueryWrapper.create().where(COOLDOWNS_D_O.CHARID.eq(cid));
         List<CooldownsDO> cooldownsDOList = cooldownsMapper.selectListByQuery(cdQueryWrapper);
         cooldownsDOList.forEach(cooldownsDO -> {
@@ -452,6 +467,8 @@ public class CharacterService {
 
         cooldownsMapper.deleteByQuery(cdQueryWrapper);
 
+
+        // 玩家负面buffer
         QueryWrapper pdWrapper = QueryWrapper.create().where(PLAYERDISEASES_D_O.CHARID.eq(cid));
         List<PlayerdiseasesDO> playerdiseasesDOList = playerdiseasesMapper.selectListByQuery(pdWrapper);
         Map<Disease, Pair<Long, MobSkill>> loadedDiseases = new LinkedHashMap<>();
@@ -473,6 +490,7 @@ public class CharacterService {
             Server.getInstance().getPlayerBuffStorage().addDiseasesToStorage(cid, loadedDiseases);
         }
 
+        // 技能宏
         List<SkillmacrosDO> skillmacrosDOList
                 = skillmacrosMapper.selectListByQuery(
                         QueryWrapper.create().where(SKILLMACROS_D_O.CHARACTERID.eq(cid)));
@@ -487,6 +505,7 @@ public class CharacterService {
                         , skillmacrosDO.getPosition()
         ));
 
+        // 按键绑定
         List<KeymapDO> keymapDOList
                 = keymapMapper.selectListByQuery(
                         QueryWrapper.create().where(KEYMAP_D_O.CHARACTERID.eq(cid)));
@@ -506,6 +525,7 @@ public class CharacterService {
                                 savedlocationsDO.getMap()
                                 , savedlocationsDO.getPortal()));
 
+        // 日志
         List<FamelogDO> famelogDOList = famelogMapper.selectListByQuery(QueryWrapper.create()
                 .where(FAMELOG_D_O.CHARACTERID.eq(cid)).and(dateDiff(now(), FAMELOG_D_O.WHEN).lt(30)));
 
@@ -518,18 +538,25 @@ public class CharacterService {
         }
 
         chr.setLastfametime(lastFameTime);
+
+        // 上个月知名度列表
         chr.setLastmonthfameids(lastMonthFameIds);
 
+        // 查询好友信息
         chr.getBuddylist().loadFromDb(cid);
+
+        // 设置仓库信息
         Storage accountStorage = world.getAccountStorage(charactersDO.getAccountid());
         if (accountStorage == null)
         {
             world.loadAccountStorage(charactersDO.getAccountid());
             accountStorage = world.getAccountStorage(charactersDO.getAccountid());
         }
-
         chr.setStorage(accountStorage);
+
         chr.reapplyLocalStats();
+
+        // 检查HP MP
         chr.changeHpMp(charactersDO.getHp(), charactersDO.getMp(), true);
         return chr;
     }

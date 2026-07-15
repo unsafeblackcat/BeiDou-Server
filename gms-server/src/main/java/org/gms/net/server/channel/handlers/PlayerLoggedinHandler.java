@@ -310,7 +310,8 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             }
 
 
-            c.sendPacket(PacketCreator.getCharInfo(player));    //这里发送登录成功封包
+            // 发包角色信息，里面有些东西
+            c.sendPacket(PacketCreator.getCharInfo(player));
             if (player.isHidden())
             {
                 if (!GameConfig.getServerBoolean("use_auto_hide_gm"))

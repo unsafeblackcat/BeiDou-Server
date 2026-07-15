@@ -122,13 +122,16 @@ public class Quest {
         this.id = (short) id;
 
         Data reqData = questReq.getChildByPath(String.valueOf(id));
-        if (reqData == null) {//most likely infoEx
+        if (reqData == null)
+        {//most likely infoEx
             return;
         }
 
-        if (questInfo != null) {
+        if (questInfo != null)
+        {
             Data reqInfo = questInfo.getChildByPath(String.valueOf(id));
-            if (reqInfo != null) {
+            if (reqInfo != null)
+            {
                 name = DataTool.getString("name", reqInfo, "");
                 parent = DataTool.getString("parent", reqInfo, "");
 
@@ -139,31 +142,39 @@ public class Quest {
                 autoComplete = DataTool.getInt("autoComplete", reqInfo, 0) == 1;
 
                 int medalid = DataTool.getInt("viewMedalItem", reqInfo, 0);
-                if (medalid != 0) {
+                if (medalid != 0)
+                {
                     medals.put(this.id, medalid);
                 }
-            } else {
+            }
+            else
+            {
                 log.warn("No quest data for id {}", id);
             }
         }
 
         Data startReqData = reqData.getChildByPath("0");
-        if (startReqData != null) {
-            for (Data startReq : startReqData.getChildren()) {
+        if (startReqData != null)
+        {
+            for (Data startReq : startReqData.getChildren())
+            {
                 QuestRequirementType type = QuestRequirementType.getByWZName(startReq.getName());
-                switch (type) {
+                switch (type)
+                {
                 case INTERVAL:
                     repeatable = true;
                     break;
                 case MOB:
-                    for (Data mob : startReq.getChildren()) {
+                    for (Data mob : startReq.getChildren())
+                    {
                         relevantMobs.add(DataTool.getInt(mob.getChildByPath("id")));
                     }
                     break;
                 }
 
                 AbstractQuestRequirement req = this.getRequirement(type, startReq);
-                if (req == null) {
+                if (req == null)
+                {
                     continue;
                 }
 
@@ -172,16 +183,20 @@ public class Quest {
         }
 
         Data completeReqData = reqData.getChildByPath("1");
-        if (completeReqData != null) {
-            for (Data completeReq : completeReqData.getChildren()) {
+        if (completeReqData != null)
+        {
+            for (Data completeReq : completeReqData.getChildren())
+            {
                 QuestRequirementType type = QuestRequirementType.getByWZName(completeReq.getName());
 
                 AbstractQuestRequirement req = this.getRequirement(type, completeReq);
-                if (req == null) {
+                if (req == null)
+                {
                     continue;
                 }
 
-                if (type.equals(QuestRequirementType.MOB)) {
+                if (type.equals(QuestRequirementType.MOB))
+                {
                     for (Data mob : completeReq.getChildren()) {
                         relevantMobs.add(DataTool.getInt(mob.getChildByPath("id")));
                     }
@@ -189,13 +204,18 @@ public class Quest {
                 completeReqs.put(type, req);
             }
         }
+
         Data actData = questAct.getChildByPath(String.valueOf(id));
-        if (actData == null) {
+        if (actData == null)
+        {
             return;
         }
+
         final Data startActData = actData.getChildByPath("0");
-        if (startActData != null) {
-            for (Data startAct : startActData.getChildren()) {
+        if (startActData != null)
+        {
+            for (Data startAct : startActData.getChildren())
+            {
                 QuestActionType questActionType = QuestActionType.getByWZName(startAct.getName());
                 AbstractQuestAction act = this.getAction(questActionType, startAct);
 
@@ -206,13 +226,17 @@ public class Quest {
                 startActs.put(questActionType, act);
             }
         }
+
         Data completeActData = actData.getChildByPath("1");
-        if (completeActData != null) {
-            for (Data completeAct : completeActData.getChildren()) {
+        if (completeActData != null)
+        {
+            for (Data completeAct : completeActData.getChildren())
+            {
                 QuestActionType questActionType = QuestActionType.getByWZName(completeAct.getName());
                 AbstractQuestAction act = this.getAction(questActionType, completeAct);
 
-                if (act == null) {
+                if (act == null)
+                {
                     continue;
                 }
 

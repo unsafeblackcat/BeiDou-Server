@@ -226,17 +226,28 @@ public class Client extends ChannelInboundHandlerAdapter {
             int i = 0;
         }
 
-        if (handler != null && handler.validateState(this)) {
-            try {
+        if (handler != null && handler.validateState(this))
+        {
+            if (opcode != 0x18 && opcode != 0xC5)
+            {
+                log.info("收到封包 包头ID [{}] 内容： {}", String.format("0x%02X", opcode),packet);
+            }
+
+            try
+            {
                 ThreadLocalUtil.setCurrentClient(this);
                 MonitoredChrLogger.logPacketIfMonitored(this, opcode, packet.getBytes());
                 handler.handlePacket(packet, this);
-            } catch (final Throwable t) {
+            }
+            catch (final Throwable t)
+            {
                 final String chrInfo = player != null ? player.getName() + " 地图 [" + player.getMap().getMapName() + "] (" + player.getMapId() + ")" : "?";
                 log.warn("封包处理器 {} 出错. 账号 {}, 玩家 {}. 封包: {}", handler.getClass().getSimpleName(),
                         getAccountName(), chrInfo, packet, t);
                 enableActions();//解除客户端假死
-            } finally {
+            }
+            finally
+            {
                 ThreadLocalUtil.removeCurrentClient();
             }
         }
