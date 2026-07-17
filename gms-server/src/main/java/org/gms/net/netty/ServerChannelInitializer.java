@@ -40,17 +40,32 @@ public abstract class ServerChannelInitializer extends ChannelInitializer<Socket
     }
 
     void initPipeline(SocketChannel socketChannel, Client client) {
+
         final InitializationVector sendIv = InitializationVector.generateSend();
         final InitializationVector recvIv = InitializationVector.generateReceive();
+
         final ProtocolFactory protocolFactory = new ProtocolFactory(ClientCyphers.of(sendIv, recvIv));
-        protocolFactory.getProtocol(ServerConstants.VERSION).writeInitialUnencryptedHelloPacket(socketChannel, sendIv, recvIv, client);
+
+        protocolFactory.getProtocol(ServerConstants.VERSION)
+                .writeInitialUnencryptedHelloPacket(
+                        socketChannel
+                        , sendIv
+                        , recvIv
+                        , client);
+
         setUpHandlers(socketChannel.pipeline(), protocolFactory, client);
     }
 
-    private void setUpHandlers(ChannelPipeline pipeline, ProtocolFactory protocolFactory, Client client) {
-        pipeline.addLast("IdleStateHandler", new IdleStateHandler(0, 0, IDLE_TIME_SECONDS));
-        pipeline.addLast("PacketCodec", new PacketCodec(protocolFactory));
-        pipeline.addLast("Client", client);
+    private void setUpHandlers(ChannelPipeline pipeline, ProtocolFactory protocolFactory, Client client)
+    {
+        pipeline.addLast("IdleStateHandler"
+                , new IdleStateHandler(0, 0, IDLE_TIME_SECONDS));
+
+        pipeline.addLast("PacketCodec"
+                , new PacketCodec(protocolFactory));
+
+        pipeline.addLast("Client"
+                , client);
 
         pipeline.addBefore("Client", "SendPacketLogger", sendPacketLogger);
         pipeline.addBefore("Client", "ReceivePacketLogger", receivePacketLogger);

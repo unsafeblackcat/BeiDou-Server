@@ -417,16 +417,34 @@ public class Server {
 
         log.info(I18nUtil.getLogMessage("Server.initWorld.info1"), i);
 
+        // 经验倍率
         float expRate = GameConfig.getWorldFloat(i, "exp_rate");
+
+        // 金币倍率
         float mesoRate = GameConfig.getWorldFloat(i, "meso_rate");
+
+        // 掉落倍率
         float dropRate = GameConfig.getWorldFloat(i, "drop_rate");
+
+        // boos 掉落倍率
         float bossDropRate = GameConfig.getWorldFloat(i, "boss_drop_rate");
+
+        // 任务倍率
         float questRate = GameConfig.getWorldFloat(i, "quest_rate");
+
+        // 旅行倍率
         float travelRate = GameConfig.getWorldFloat(i, "travel_rate");
+
+        // 钓鱼倍率
         float fishingRate = GameConfig.getWorldFloat(i, "fishing_rate");
 
+        // 大区类型 0=普通大区，1=活动大区，2=新区，3=热门大区
         int flag = GameConfig.getWorldInt(i, "flag");
+
+        // 大区描述
         String event_message = GameConfig.getWorldString(i, "event_message");
+
+        // 大区推荐信息
         String recommend_message = GameConfig.getWorldString(i, "recommend_message");
 
         World world = new World(i, flag, event_message, expRate, dropRate, bossDropRate, mesoRate, questRate,
@@ -456,11 +474,14 @@ public class Server {
         }
 
         if (canDeploy) {
+            // 顶部滚动信息
             world.setServerMessage(GameConfig.getWorldString(i, "server_message"));
 
             log.info(I18nUtil.getLogMessage("Server.initWorld.info2"), i);
             return i;
-        } else {
+        }
+        else
+        {
             log.error(I18nUtil.getLogMessage("Server.initWorld.error1"), i);
             world.shutdown();
             return -2;
@@ -773,6 +794,7 @@ public class Server {
         log.info(I18nUtil.getLogMessage("Server.init.info6"), serviceProperty.getLoginPort());
 
         OpcodeConstants.generateOpcodeNames();
+
         CommandsExecutor.getInstance().loadCommandsExecutor();
 
         log.info(I18nUtil.getLogMessage("Server.init.info7"));

@@ -19,12 +19,20 @@ public class LoginServerInitializer extends ServerChannelInitializer {
 
         PacketProcessor packetProcessor = PacketProcessor.getLoginServerProcessor();
         final long clientSessionId = sessionId.getAndIncrement();
+
         final String remoteAddress = getRemoteAddress(socketChannel);
-        if (!RateLimitUtil.getInstance().check(remoteAddress)) {
+        if (!RateLimitUtil.getInstance().check(remoteAddress))
+        {
             log.warn(I18nUtil.getLogMessage("LoginServerInitializer.initChannel.warn1"), remoteAddress);
             socketChannel.close();
         }
-        final Client client = Client.createLoginClient(clientSessionId, remoteAddress, packetProcessor, LoginServer.WORLD_ID, LoginServer.CHANNEL_ID);
+
+        final Client client = Client.createLoginClient(
+                clientSessionId
+                , remoteAddress
+                , packetProcessor
+                , LoginServer.WORLD_ID
+                , LoginServer.CHANNEL_ID);
 
         if (!SessionCoordinator.getInstance().canStartLoginSession(client)) {
             socketChannel.close();

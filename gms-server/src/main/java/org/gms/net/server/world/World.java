@@ -157,8 +157,11 @@ public class World {
     private final Map<Integer, Pair<Integer, Integer>> relationshipCouples = new HashMap<>();
     private final Map<Integer, GuildSummary> gsStore = new HashMap<>();
     private PlayerStorage players = new PlayerStorage();
+
     private final ServicesManager services = new ServicesManager(WorldServices.SAVE_CHARACTER);
+
     private final MatchCheckerCoordinator matchChecker = new MatchCheckerCoordinator();
+
     private final PartySearchCoordinator partySearch = new PartySearchCoordinator();
 
     private final Lock chnRLock;
@@ -277,7 +280,9 @@ public class World {
         timeoutSchedule = tman.register(new TimeoutTask(this), SECONDS.toMillis(10), SECONDS.toMillis(10));
         hpDecSchedule = tman.register(new CharacterHpDecreaseTask(this), GameConfig.getServerLong("map_damage_overtime_interval"), GameConfig.getServerLong("map_damage_overtime_interval"));
 
-        if (GameConfig.getServerBoolean("use_family_system")) {
+        // 家族系统
+        if (GameConfig.getServerBoolean("use_family_system"))
+        {
             long timeLeft = Server.getTimeLeftForNextDay();
             FamilyDailyResetTask.resetEntitlementUsage(this);
             tman.register(new FamilyDailyResetTask(this), DAYS.toMillis(1), timeLeft);

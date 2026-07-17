@@ -64,7 +64,16 @@ public class PartySearchCoordinator {
 
     private int updateCount = 0;
 
+    /**
+     * 地图相邻结构
+     * Integer: 地图ID
+     * Set<Integer>: 当前地图ID下链接和其他地图关联的ID
+     * **/
     private static final Map<Integer, Set<Integer>> mapNeighbors = fetchNeighbouringMaps();
+
+    /**
+     *  职业表
+     * **/
     private static final Map<Integer, Job> jobTable = instantiateJobTable();
 
     public PartySearchCoordinator() {

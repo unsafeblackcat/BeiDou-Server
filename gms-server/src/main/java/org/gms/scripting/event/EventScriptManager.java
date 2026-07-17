@@ -133,10 +133,16 @@ public class EventScriptManager extends AbstractScriptManager {
      * @return 事件实体（包含 JS 引擎和事件管理器）
      */
     private EventEntry initializeEventEntry(String script, Channel channel) {
+        // 加载 JS 文件，创建 GraalJS 引擎实例
         ScriptEngine engine = getInvocableScriptEngine("event/" + script + ".js"); // 获取 JS 引擎
+
+        // 包装为线程安全的调用接口
         Invocable iv = SynchronizedInvocable.of((Invocable) engine); // 包装为线程安全的调用接口
 
+        // 创建 Java 端的事件管理器
         EventManager eventManager = new EventManager(channel, iv, script); // 创建事件管理器
+
+        // 把 EventManager 注入 JS 全局作用域
         engine.put(INJECTED_VARIABLE_NAME, eventManager); // 向 JS 引擎注入变量 "em"
 
         return new EventEntry(iv, eventManager); // 返回事件实体
