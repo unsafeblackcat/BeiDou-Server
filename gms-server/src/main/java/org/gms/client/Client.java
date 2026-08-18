@@ -690,7 +690,8 @@ public class Client extends ChannelInboundHandlerAdapter {
              PreparedStatement ps = con.prepareStatement("SELECT id, password, gender, banned, pin, pic, characterslots, tos, language FROM accounts WHERE name = ?")) {
             ps.setString(1, login);
 
-            try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = ps.executeQuery())
+            {
                 accId = -2;
                 if (rs.next()) {
                     accId = rs.getInt("id");
@@ -709,21 +710,37 @@ public class Client extends ChannelInboundHandlerAdapter {
                     String passhash = rs.getString("password");
                     byte tos = rs.getByte("tos");
 
-                    if (banned) {
+                    if (banned)
+                    {
                         return 3;
                     }
 
                     if (getLoginState() > LOGIN_NOTLOGGEDIN) { // already loggedin
                         loggedIn = false;
                         loginok = 7;
-                    } else if (GameConfig.getServerBoolean("use_debug") && GameConfig.getServerBoolean("no_password")) {
+                    }
+                    else if (GameConfig.getServerBoolean("use_debug")
+                            && GameConfig.getServerBoolean("no_password"))
+                    {
                         return 0;
-                    } else if (passhash.charAt(0) == '$' && passhash.charAt(1) == '2' && BCrypt.checkpw(pwd, passhash)) {
+                    }
+                    else if (passhash.charAt(0) == '$'
+                            && passhash.charAt(1) == '2'
+                            && BCrypt.checkpw(pwd, passhash))
+                    {
                         loginok = (tos == 0) ? 23 : 0;
-                    } else if (pwd.equals(passhash) || checkHash(passhash, "SHA-1", pwd) || checkHash(passhash, "SHA-512", pwd)) {
+                    }
+                    else if (pwd.equals(passhash)
+                            || checkHash(passhash, "SHA-1", pwd)
+                            || checkHash(passhash, "SHA-512", pwd))
+                    {
                         // thanks GabrielSin for detecting some no-bcrypt inconsistencies here
-                        loginok = (tos == 0) ? (!GameConfig.getServerBoolean("bcrypt_migration") ? 23 : -23) : (!GameConfig.getServerBoolean("bcrypt_migration") ? 0 : -10); // migrate to bcrypt
-                    } else {
+                        loginok = (tos == 0)
+                                ? (!GameConfig.getServerBoolean("bcrypt_migration") ? 23 : -23)
+                                : (!GameConfig.getServerBoolean("bcrypt_migration") ? 0 : -10); // migrate to bcrypt
+                    }
+                    else
+                    {
                         loggedIn = false;
                         loginok = 4;
                     }
@@ -735,7 +752,8 @@ public class Client extends ChannelInboundHandlerAdapter {
             e.printStackTrace();
         }
 
-        if (loginok == 0 || loginok == 4) {
+        if (loginok == 0 || loginok == 4)
+        {
             AntiMulticlientResult res = SessionCoordinator.getInstance().attemptLoginSession(this, hwid, accId, loginok == 4);  //loginok == 4，但是会导致限制多开参数 deterred_multi_client == true 时密码错误一次返回REMOTE_REACHED_LIMIT，需要重开客户端
 
             return switch (res) {
@@ -751,7 +769,9 @@ public class Client extends ChannelInboundHandlerAdapter {
                 case MANY_ACCOUNT_ATTEMPTS -> 16;
                 default -> 8;
             };
-        } else {
+        }
+        else
+        {
             return loginok;
         }
     }
@@ -883,19 +903,25 @@ public class Client extends ChannelInboundHandlerAdapter {
             try (PreparedStatement ps = con.prepareStatement("SELECT loggedin, lastlogin, birthday FROM accounts WHERE id = ?")) {
                 ps.setInt(1, getAccID());
 
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (!rs.next()) {
+                try (ResultSet rs = ps.executeQuery())
+                {
+                    if (!rs.next())
+                    {
                         throw new RuntimeException("获取登录状态-客户端账号：" + getAccID());
                     }
 
                     birthday = Calendar.getInstance();
-                    try {
+                    try
+                    {
                         birthday.setTime(rs.getDate("birthday"));
-                    } catch (SQLException e) {
+                    }
+                    catch (SQLException e)
+                    {
                     }
 
                     state = rs.getInt("loggedin");
-                    if (state == LOGIN_SERVER_TRANSITION) {
+                    if (state == LOGIN_SERVER_TRANSITION)
+                    {
                         Timestamp lastlogin = rs.getTimestamp("lastlogin");
                         // 兼容历史已经创建的账号，和自动注册但未登录的账号
                         if (lastlogin == null || lastlogin.getTime() + 30000 < Server.getInstance().getCurrentTime()) {
@@ -907,18 +933,26 @@ public class Client extends ChannelInboundHandlerAdapter {
                     }
                 }
             }
-            if (state == LOGIN_LOGGEDIN) {
+            if (state == LOGIN_LOGGEDIN)
+            {
                 loggedIn = true;
-            } else if (state == LOGIN_SERVER_TRANSITION) {
-                try (PreparedStatement ps2 = con.prepareStatement("UPDATE accounts SET loggedin = 0 WHERE id = ?")) {
+            }
+            else if (state == LOGIN_SERVER_TRANSITION)
+            {
+                try (PreparedStatement ps2 = con.prepareStatement(
+                        "UPDATE accounts SET loggedin = 0 WHERE id = ?")) {
                     ps2.setInt(1, getAccID());
                     ps2.executeUpdate();
                 }
-            } else {
+            }
+            else
+            {
                 loggedIn = false;
             }
             return state;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             loggedIn = false;
             e.printStackTrace();
             throw new RuntimeException("登录状态");

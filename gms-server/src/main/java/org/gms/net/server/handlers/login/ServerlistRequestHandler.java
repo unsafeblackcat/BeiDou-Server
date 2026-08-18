@@ -46,7 +46,7 @@ public final class ServerlistRequestHandler extends AbstractPacketHandler {
                             , GameConstants.WORLD_NAMES[world.getId()] //世界名称
                             , world.getFlag()
                             , world.getEventMessage()
-                            , world.getChannels()));  //评到列表
+                            , world.getChannels()));  //频道列表
         }
 
         c.sendPacket(PacketCreator.getEndOfServerList());

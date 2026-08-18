@@ -58,14 +58,11 @@ public abstract class ServerChannelInitializer extends ChannelInitializer<Socket
 
     private void setUpHandlers(ChannelPipeline pipeline, ProtocolFactory protocolFactory, Client client)
     {
-        pipeline.addLast("IdleStateHandler"
-                , new IdleStateHandler(0, 0, IDLE_TIME_SECONDS));
+        pipeline.addLast("IdleStateHandler", new IdleStateHandler(0, 0, IDLE_TIME_SECONDS));
 
-        pipeline.addLast("PacketCodec"
-                , new PacketCodec(protocolFactory));
+        pipeline.addLast("PacketCodec", new PacketCodec(protocolFactory));
 
-        pipeline.addLast("Client"
-                , client);
+        pipeline.addLast("Client", client);
 
         pipeline.addBefore("Client", "SendPacketLogger", sendPacketLogger);
         pipeline.addBefore("Client", "ReceivePacketLogger", receivePacketLogger);

@@ -132,7 +132,8 @@ public final class LoginPasswordHandler implements PacketHandler {
         {
             c.sendPacket(PacketCreator.getPermBan(c.getGReason()));//crashes but idc :D
             return;
-        } else if (loginok != 0)
+        }
+        else if (loginok != 0)
         {
             c.sendPacket(PacketCreator.getLoginFailed(loginok));
             return;

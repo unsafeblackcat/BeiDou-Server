@@ -150,6 +150,12 @@ public class BuddyList {
     {
         try (Connection con = DatabaseConnection.getConnection())
         {
+            /**
+             * SELECT b.buddyid, b.pending, b.group, c.name AS buddyname
+             * FROM buddies b, characters c
+             * WHERE c.id = b.buddyid
+             * 	AND b.characterid = cid
+             * **/
             try (PreparedStatement ps = con.prepareStatement(
                     "SELECT b.buddyid, b.pending, b.group, c.name as buddyname FROM buddies as b, characters as c WHERE c.id = b.buddyid AND b.characterid = ?")) {
                 ps.setInt(1, characterId);

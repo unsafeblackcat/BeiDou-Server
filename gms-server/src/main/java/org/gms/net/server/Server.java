@@ -137,6 +137,11 @@ public class Server {
      * Integer: 角色CID
      * **/
     private final Map<String, Integer> transitioningChars = new HashMap<>();
+    /**
+     * 大区推荐信息
+     * Integer: 世界id
+     * String: 推荐信息
+     * **/
     private final List<Pair<Integer, String>> worldRecommendedList = new LinkedList<>();
     private final Map<Integer, Guild> guilds = new HashMap<>(100);
     private final Map<Client, Long> inLoginState = new HashMap<>(100);

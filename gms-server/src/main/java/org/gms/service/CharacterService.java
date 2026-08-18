@@ -393,7 +393,7 @@ public class CharacterService {
 
         World world = Server.getInstance().getWorld(charactersDO.getWorld());
 
-        // 聚会??
+        // 队伍
         int partyId = charactersDO.getParty();
         Party party = world.getParty(partyId);
         if (party != null)
@@ -439,8 +439,8 @@ public class CharacterService {
                         , new SkillEntry(
                                 Optional.ofNullable(
                                         skillsDO.getSkilllevel())
-                                        .map(Integer::byteValue)
-                                        .orElse((byte) 0)
+                                            .map(Integer::byteValue)
+                                            .orElse((byte) 0)
                                 , skillsDO.getMasterlevel()
                                 , skillsDO.getExpiration()
                         )
@@ -449,7 +449,7 @@ public class CharacterService {
         });
 
 
-        // 技能冷却时间内
+        // 技能冷却时间
         QueryWrapper cdQueryWrapper = QueryWrapper.create().where(COOLDOWNS_D_O.CHARID.eq(cid));
         List<CooldownsDO> cooldownsDOList = cooldownsMapper.selectListByQuery(cdQueryWrapper);
         cooldownsDOList.forEach(cooldownsDO -> {
@@ -519,13 +519,14 @@ public class CharacterService {
                 = savedlocationsMapper.selectListByQuery(
                         QueryWrapper.create().where(SAVEDLOCATIONS_D_O.CHARACTERID.eq(cid)));
 
+        // 角色传送前位置
         savedlocationsDOList.forEach(
                 savedlocationsDO -> chr.getSavedLocations()[
                         SavedLocationType.valueOf(savedlocationsDO.getLocationtype()).ordinal()] = new SavedLocation(
                                 savedlocationsDO.getMap()
                                 , savedlocationsDO.getPortal()));
 
-        // 日志
+        // 人气值日志
         List<FamelogDO> famelogDOList = famelogMapper.selectListByQuery(QueryWrapper.create()
                 .where(FAMELOG_D_O.CHARACTERID.eq(cid)).and(dateDiff(now(), FAMELOG_D_O.WHEN).lt(30)));
 
@@ -539,7 +540,7 @@ public class CharacterService {
 
         chr.setLastfametime(lastFameTime);
 
-        // 上个月知名度列表
+        // 统计人气加减对象
         chr.setLastmonthfameids(lastMonthFameIds);
 
         // 查询好友信息
