@@ -23,6 +23,8 @@ import org.gms.config.GameConfig;
 import org.gms.net.server.Server;
 import org.gms.server.ThreadManager;
 import org.gms.server.TimerManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -37,6 +39,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Ronan
  */
 public class EventScriptScheduler {
+
+    private static final Logger log = LoggerFactory.getLogger(EventScriptScheduler.class);
 
     private boolean disposed = false;
     private int idleProcs = 0;
@@ -76,7 +80,11 @@ public class EventScriptScheduler {
             if (rmd.getValue() < timeNow) {
                 Runnable r = rmd.getKey();
 
-                r.run();  // runs the scheduled action
+                try {
+                    r.run();  // runs the scheduled action
+                } catch (Exception e) {
+                    log.error("Exception occurred while running scheduled event task", e);
+                }
                 toRemove.add(r);
             }
         }
@@ -93,8 +101,8 @@ public class EventScriptScheduler {
         }
     }
 
-    public void registerEntry(final Runnable scheduledAction, final long duration) {
-
+    public long registerEntry(final Runnable scheduledAction, final long duration) {
+        long nextScheduledTime = Server.getInstance().getCurrentTime() + duration;
         ThreadManager.getInstance().newTask(() -> {
             schedulerLock.lock();
             try {
@@ -107,11 +115,12 @@ public class EventScriptScheduler {
                     schedulerTask = TimerManager.getInstance().register(this::runBaseSchedule, GameConfig.getServerLong("mob_status_monitor_proc"), GameConfig.getServerLong("mob_status_monitor_proc"));
                 }
 
-                registeredEntries.put(scheduledAction, Server.getInstance().getCurrentTime() + duration);
+                registeredEntries.put(scheduledAction, nextScheduledTime);
             } finally {
                 schedulerLock.unlock();
             }
         });
+        return nextScheduledTime;
     }
 
     public void cancelEntry(final Runnable scheduledAction) {

@@ -16438,7 +16438,7 @@
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="我需要30张#r野猪皮#k、30个#r火独眼兽的眼睛#k和30个#r道符#k"/>
+                    <string name="0" value="我需要30张#r野猪皮#k、30个#r邪恶之眼的眼球#k和30个#r道符#k"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -16448,7 +16448,7 @@
             </imgdir>
             <imgdir name="yes">
                 <string name="0" value="虽然恶臭非常致命，但只要不吸进去的话就没事了。你必须要做的是配备能防止你受到恶臭刺激的装备。我只要几个材料就可以给你作一个。把那几个材料递给我好吗？"/>
-                <string name="1" value="30张#r野猪皮#k、30个#r火独眼兽的眼睛#k和30个#r道符#k"/>
+                <string name="1" value="30张#r野猪皮#k、30个#r邪恶之眼的眼球#k和30个#r道符#k"/>
             </imgdir>
             <imgdir name="no">
                 <string name="0" value="你肯定是吓到了..."/>
@@ -17712,10 +17712,10 @@
     </imgdir>
     <imgdir name="29300">
         <imgdir name="1">
-            <string name="0" value="你成功地达到了战士200级！真是了不起的成绩。"/>
-            <string name="1" value="请收下这个"/>
+            <string name="0" value="你已经以战士的身份达到200级！做得很好！"/>
+            <string name="1" value="请收下这个。"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人代表名誉之神宣布你是这个荣誉称号的主人。如果你想挑战新称号，请随时来找我。"/>
+                <string name="0" value="我德烈代表荣誉之神向世人宣布，你就是这个荣誉称号的主人。如果你想挑战新的称号，随时都可以再来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="npc">
@@ -17724,23 +17724,23 @@
             </imgdir>
         </imgdir>
         <imgdir name="0">
-            <string name="0" value="#v1142009# #e#b#t1142009##k\n\n - 战士200级达成\n\n#n你想看看有没有资格成为这个勋章的主人吗？"/>
+            <string name="0" value="#v1142009# #e#b#t1142009##k\n\n - 战士达到200级\n\n#n你想接受考验，看看自己是否有资格成为这个称号的主人吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="祝你好运。本挑战没有任何特殊限制，只要自认为实力足够，任何时候都欢迎来找我进行资格审查。另外，请注意，在没有完成本挑战或尚未放弃本挑战的情况下，不能进行其它挑战。"/>
+                <string name="0" value="祝你好运。这个挑战没有时间限制，只要你觉得自己准备好了，随时都可以回来找我。还有，在完成或放弃这个挑战之前，你不能参加其他称号挑战。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="准备好了之后，请你再来找我。"/>
+                <string name="0" value="准备好之后再来找我吧。"/>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29301">
         <imgdir name="1">
-            <string name="0" value="你成功地达到了魔法师200级！真是了不起的成绩。"/>
-            <string name="1" value="请收下这个"/>
+            <string name="0" value="你已经以魔法师的身份达到200级！做得很好！"/>
+            <string name="1" value="请收下这个。"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人代表名誉之神宣布你是这个荣誉称号的主人。如果你想挑战新称号，请随时来找我。"/>
+                <string name="0" value="我德烈代表荣誉之神向世人宣布，你就是这个荣誉称号的主人。如果你想挑战新的称号，随时都可以再来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="npc">
@@ -17749,23 +17749,23 @@
             </imgdir>
         </imgdir>
         <imgdir name="0">
-            <string name="0" value="#v1142010# #e#b#t1142010##k\n\n - 魔法师200级达成\n\n#n你想看看有没有资格成为这个勋章的主人吗？"/>
+            <string name="0" value="#v1142010# #e#b#t1142010##k\n\n - 魔法师达到200级\n\n#n你想接受考验，看看自己是否有资格成为这个称号的主人吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="祝你好运。本挑战没有任何特殊限制，只要自认为实力足够，任何时候都欢迎来找我进行资格审查。另外，请注意，在没有完成本挑战或尚未放弃本挑战的情况下，不能进行其它挑战。"/>
+                <string name="0" value="祝你好运。这个挑战没有时间限制，只要你觉得自己准备好了，随时都可以回来找我。还有，在完成或放弃这个挑战之前，你不能参加其他称号挑战。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="准备好了之后，请你再来找我。"/>
+                <string name="0" value="准备好之后再来找我吧。"/>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29302">
         <imgdir name="1">
-            <string name="0" value="你成功地达到了弓箭手200级！真是了不起的成绩。"/>
-            <string name="1" value="请收下这个"/>
+            <string name="0" value="你已经以弓箭手的身份达到200级！做得很好！"/>
+            <string name="1" value="请收下这个。"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人代表名誉之神宣布你是这个荣誉称号的主人。如果你想挑战新称号，请随时来找我。"/>
+                <string name="0" value="我德烈代表荣誉之神向世人宣布，你就是这个荣誉称号的主人。如果你想挑战新的称号，随时都可以再来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="npc">
@@ -17774,23 +17774,23 @@
             </imgdir>
         </imgdir>
         <imgdir name="0">
-            <string name="0" value="#v1142011# #e#b#t1142011##k\n\n - 弓箭手200级达成\n\n#n你想看看有没有资格成为这个勋章的主人吗？"/>
+            <string name="0" value="#v1142011# #e#b#t1142011##k\n\n - 弓箭手达到200级\n\n#n你想接受考验，看看自己是否有资格成为这个称号的主人吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="祝你好运。本挑战没有任何特殊限制，只要自认为实力足够，任何时候都欢迎来找我进行资格审查。另外，请注意，在没有完成本挑战或尚未放弃本挑战的情况下，不能进行其它挑战。"/>
+                <string name="0" value="祝你好运。这个挑战没有时间限制，只要你觉得自己准备好了，随时都可以回来找我。还有，在完成或放弃这个挑战之前，你不能参加其他称号挑战。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="准备好了之后，请你再来找我。"/>
+                <string name="0" value="准备好之后再来找我吧。"/>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29303">
         <imgdir name="1">
-            <string name="0" value="你成功地达到了飞侠200级！真是了不起的成绩。"/>
-            <string name="1" value="请收下这个"/>
+            <string name="0" value="你已经以飞侠的身份达到200级！做得很好！"/>
+            <string name="1" value="请收下这个。"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人代表名誉之神宣布你是这个荣誉称号的主人。如果你想挑战新称号，请随时来找我。"/>
+                <string name="0" value="我德烈代表荣誉之神向世人宣布，你就是这个荣誉称号的主人。如果你想挑战新的称号，随时都可以再来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="npc">
@@ -17799,23 +17799,23 @@
             </imgdir>
         </imgdir>
         <imgdir name="0">
-            <string name="0" value="#v1142012# #e#b#t1142012##k\n\n - 飞侠200级达成\n\n#n你想看看有没有资格成为这个勋章的主人吗？"/>
+            <string name="0" value="#v1142012# #e#b#t1142012##k\n\n - 飞侠达到200级\n\n#n你想接受考验，看看自己是否有资格成为这个称号的主人吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="祝你好运。本挑战没有任何特殊限制，只要自认为实力足够，任何时候都欢迎来找我进行资格审查。另外，请注意，在没有完成本挑战或尚未放弃本挑战的情况下，不能进行其它挑战。"/>
+                <string name="0" value="祝你好运。这个挑战没有时间限制，只要你觉得自己准备好了，随时都可以回来找我。还有，在完成或放弃这个挑战之前，你不能参加其他称号挑战。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="准备好了之后，请你再来找我。"/>
+                <string name="0" value="准备好之后再来找我吧。"/>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29304">
         <imgdir name="1">
-            <string name="0" value="你成功地达到了海盗200级！真是了不起的成绩。"/>
-            <string name="1" value="请收下这个"/>
+            <string name="0" value="你已经以海盗的身份达到200级！做得很好！"/>
+            <string name="1" value="请收下这个。"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人代表名誉之神宣布你是这个荣誉称号的主人。如果你想挑战新称号，请随时来找我。"/>
+                <string name="0" value="我德烈代表荣誉之神向世人宣布，你就是这个荣誉称号的主人。如果你想挑战新的称号，随时都可以再来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="npc">
@@ -17824,14 +17824,14 @@
             </imgdir>
         </imgdir>
         <imgdir name="0">
-            <string name="0" value="#v1142013# #e#b#t1142013##k\n\n - 海盗200级达成\n\n#n你想看看有没有资格成为这个勋章的主人吗？"/>
+            <string name="0" value="#v1142013# #e#b#t1142013##k\n\n - 海盗达到200级\n\n#n你想接受考验，看看自己是否有资格成为这个称号的主人吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="祝你好运。本挑战没有任何特殊限制，只要自认为实力足够，任何时候都欢迎来找我进行资格审查。另外，请注意，在没有完成本挑战或尚未放弃本挑战的情况下，不能进行其它挑战。"/>
+                <string name="0" value="祝你好运。这个挑战没有时间限制，只要你觉得自己准备好了，随时都可以回来找我。还有，在完成或放弃这个挑战之前，你不能参加其他称号挑战。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="准备好了之后，请你再来找我。"/>
+                <string name="0" value="准备好之后再来找我吧。"/>
             </imgdir>
         </imgdir>
     </imgdir>
@@ -17855,69 +17855,101 @@
     </imgdir>
     <imgdir name="29500">
         <imgdir name="0">
-        </imgdir>
-        <imgdir name="1">
-        </imgdir>
-    </imgdir>
-    <imgdir name="29501">
-        <imgdir name="0">
+            <string name="0" value="#v1142006:# #e#b#t1142006##k\n\n - 人气达到 1000\n\n#n你想挑战这枚勋章吗？"/>
+            <imgdir name="stop">
+            </imgdir>
+            <imgdir name="yes">
+                <string name="0" value="人气达到 1000 后，请再来找我接受审查。"/>
+            </imgdir>
+            <imgdir name="no">
+                <string name="0" value="准备好之后再来吧。"/>
+            </imgdir>
         </imgdir>
         <imgdir name="1">
             <imgdir name="stop">
                 <imgdir name="npc">
-                    <string name="0" value="只有打猎暗黑龙王最多的人才能获得本勋章。"/>
+                    <string name="0" value="你的人气还没有达到 1000。"/>
+                </imgdir>
+            </imgdir>
+        </imgdir>
+    </imgdir>
+    <imgdir name="29501">
+        <imgdir name="0">
+            <string name="0" value="#v1142007:# #e#b#t1142007##k\n\n - 击败暗黑龙王 1 次\n\n#n你想挑战这枚勋章吗？"/>
+            <imgdir name="stop">
+            </imgdir>
+            <imgdir name="yes">
+                <string name="0" value="击败暗黑龙王后，请再来找我报告。"/>
+            </imgdir>
+            <imgdir name="no">
+                <string name="0" value="准备好之后再来吧。"/>
+            </imgdir>
+        </imgdir>
+        <imgdir name="1">
+            <imgdir name="stop">
+                <imgdir name="npc">
+                    <string name="0" value="请先击败暗黑龙王 1 次。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29502">
         <imgdir name="0">
-            <string name="0" value="#i1140003##e#b#t1140003##k\n\n#n将人气提升2万\n\n\n你想测试一下你的技能，看看是否配得上这个称号吗？"/>
+            <string name="0" value="#v1142008:# #e#b#t1142008##k\n\n - 击败品克缤 1 次\n\n#n你想挑战这枚勋章吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="“祝你一切顺利。没有特定的时间限制，所以只要你准备好了，就回来找我吧。”"/>
+                <string name="0" value="击败品克缤后，请再来找我报告。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="当你准备好了再来吧。"/>
+                <string name="0" value="准备好之后再来吧。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
             <imgdir name="stop">
                 <imgdir name="npc">
-                    <string name="0" value="只有打猎品克缤数量最多的人才能获得本勋章。"/>
+                    <string name="0" value="请先击败品克缤 1 次。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29503">
         <imgdir name="0">
+            <string name="0" value="#v1142014:# #e#b#t1142014##k\n\n - 贡献 10000000 金币\n\n#n你想完成这次公益贡献吗？"/>
+            <imgdir name="stop">
+            </imgdir>
+            <imgdir name="yes">
+                <string name="0" value="准备好 10000000 金币后，请再来找我。"/>
+            </imgdir>
+            <imgdir name="no">
+                <string name="0" value="准备好之后再来吧。"/>
+            </imgdir>
         </imgdir>
         <imgdir name="1">
             <imgdir name="stop">
                 <imgdir name="npc">
-                    <string name="0" value="你募捐了么？"/>
+                    <string name="0" value="完成这次公益贡献需要 10000000 金币。"/>
                 </imgdir>
                 <imgdir name="quest">
-                    <string name="0" value="你募捐了么？"/>
+                    <string name="0" value="完成这次公益贡献需要 10000000 金币。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29505">
         <imgdir name="0">
-            <string name="0" value="#v1142077:# #e#b#t1142077##k\n\n - 怪物嘉年华2胜场数最高\n\n#n你想确认自己是否有资格拥有这枚勋章吗？"/>
+            <string name="0" value="#v1142077:# #e#b#t1142077##k\n\n - 怪物嘉年华2胜利 100 场\n\n#n你想确认自己是否有资格拥有这枚勋章吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="不断挑战并赢得怪物嘉年华2，是证明实力的最佳方式。只要你认为自己符合条件，随时可以回来找我接受审查。"/>
+                <string name="0" value="在怪物嘉年华2中取得 100 场胜利后，请回来接受审查。"/>
             </imgdir>
             <imgdir name="no">
                 <string name="0" value="想要获得绝对胜利的荣誉，就继续在怪物嘉年华2中挑战吧。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="让我看看你是否拥有怪物嘉年华2中最多的胜利。"/>
+            <string name="0" value="让我看看你是否已经取得 100 场怪物嘉年华2胜利。"/>
             <imgdir name="yes">
                 <string name="0" value="我宣布你成为#b#t1142077##k的主人。如果你想挑战新的称号，请随时再来找我。"/>
             </imgdir>
@@ -17930,49 +17962,49 @@
     </imgdir>
     <imgdir name="29506">
         <imgdir name="0">
-            <string name="0" value="#v1142078:# #e#b#t1142078##k\n\n - 怪物嘉年华2胜率最高\n\n#n你想确认自己是否有资格拥有这枚勋章吗？"/>
+            <string name="0" value="#v1142078:# #e#b#t1142078##k\n\n - 怪物嘉年华2至少 50 场\n - 胜率至少 70%\n\n#n你想确认自己是否有资格拥有这枚勋章吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="保持稳定的胜率，才是真正的嘉年华天才。只要你认为自己符合条件，随时可以回来找我接受审查。"/>
+                <string name="0" value="保持稳定的胜率，才是真正的嘉年华天才。符合条件后，请回来接受审查。"/>
             </imgdir>
             <imgdir name="no">
                 <string name="0" value="想证明自己的天赋，就继续在怪物嘉年华2中挑战吧。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="让我看看你是否拥有怪物嘉年华2中最高的胜率。"/>
+            <string name="0" value="让我看看你是否达到了怪物嘉年华2的场次和胜率要求。"/>
             <imgdir name="yes">
                 <string name="0" value="我宣布你成为#b#t1142078##k的主人。如果你想挑战新的称号，请随时再来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="你还没有获得#b#t1142078##k的资格。请在怪物嘉年华2中取得更高胜率后再来。"/>
+                    <string name="0" value="你还没有获得#b#t1142078##k的资格。请继续提升怪物嘉年华2战绩后再来。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29507">
         <imgdir name="0">
-            <string name="0" value="#v1142082:# #e#b#t1142082##k\n\n - 宠物亲密度1400点以上\n\n#n你想看看自己有没有资格成为这个勋章的主人吗？"/>
+            <string name="0" value="#v1142082:# #e#b#t1142082##k\n\n - 宠物亲密度 1400 点以上\n\n#n你想看看自己有没有资格成为这枚勋章的主人吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="查看宠物说明书，就可以知道提高宠物亲密度的方法。那就祝你好运。时间没有限制，你可以考虑一下。随时欢迎你回来接受审查。"/>
+                <string name="0" value="查看宠物说明书，就可以知道提高宠物亲密度的方法。时间没有限制，准备好后随时回来接受审查。"/>
             </imgdir>
             <imgdir name="no">
                 <string name="0" value="请准备得更充分一点，然后再来。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="你和宠物已经足够亲密了！如果不是深爱着自己的宠物的话，是绝对不可能做到的。"/>
+            <string name="0" value="你和宠物已经足够亲密了！如果不是深爱着自己的宠物，是绝对不可能做到的。"/>
             <string name="1" value="请收下这个。"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人代表名誉之神，向全世界宣布你成为了这个荣誉称号的主人。如果你想挑战新的称号，请随时来找我。"/>
+                <string name="0" value="我代表名誉之神，向全世界宣布你成为了这个荣誉称号的主人。如果你想挑战新的称号，请随时来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="要想获得#b可爱宠物主人#k称号，必须把宠物亲密度提高到1400点以上。如果你觉得太难，可以挑战其他称号。"/>
+                    <string name="0" value="要想获得#b可爱宠物主人#k称号，必须把宠物亲密度提高到 1400 点以上。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -17994,24 +18026,24 @@
     </imgdir>
     <imgdir name="29509">
         <imgdir name="0">
-            <string name="0" value="#v1142084:# #e#b#t1142084##k\n\n- #y2111#完成\n- #y2112#完成\n- #y2113#完成\n\n#n你想看看自己有没有资格成为这个勋章的主人吗？"/>
+            <string name="0" value="#v1142084:# #e#b#t1142084##k\n\n- #y2111#完成\n- #y2112#完成\n- #y2113#完成\n\n#n你想看看自己有没有资格成为这枚勋章的主人吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="没有比消灭大量的怪物更难的挑战了。请你去消灭散布在各个猎场的冒险岛的3种代表性的蘑菇怪物，完成#b危险的迷宫任务#k。完成3种#b危险的迷宫#k任务后，你可以随时来我这里接受审查。"/>
+                <string name="0" value="完成林中之城的三个危险迷宫任务后，你可以随时来我这里接受审查。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="如果你能完成艰难的挑战，就可以获得两倍的奖励..."/>
+                <string name="0" value="如果你能完成艰难的挑战，就可以获得这份荣誉。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
             <string name="0" value="真了不起！你真是个有毅力的人。"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人代表名誉之神，向全世界宣布你成为了荣誉称号#b无尽的挑战者#k的主人。如果你想挑战新的称号，请随时来找我。"/>
+                <string name="0" value="我代表名誉之神，向全世界宣布你成为了荣誉称号#b坚强的挑战者#k的主人。如果你想挑战新的称号，请随时来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="quest">
-                    <string name="0" value="- #y2111# (#u2111#)\n- #y2112# (#u2112#)\n- #y2113# (#u2113#)\n\n你好像还没有资格获得#b无尽的挑战者#k称号...请在准备完成之后再来找我。"/>
+                    <string name="0" value="- #y2111# (#u2111#)\n- #y2112# (#u2112#)\n- #y2113# (#u2113#)\n\n你好像还没有资格获得#b坚强的挑战者#k称号，请在完成之后再来找我。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -18035,24 +18067,24 @@
     </imgdir>
     <imgdir name="29512">
         <imgdir name="0">
-            <string name="0" value="#v1142083:# #e#b#t1142083##k\n\n- 必须获得 30 种或更多种怪物卡（#r每种卡片需收集5张#k）。#n\n您想测试一下自己，看看自己是否具备成为这枚勋章的拥有者的能力？"/>
+            <string name="0" value="#v1142083:# #e#b#t1142083##k\n\n- 收集 30 张怪物卡\n\n#n你想测试一下自己，看看是否具备成为这枚勋章拥有者的能力吗？"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="您最多可以收集5张相同的卡片，当您获得5张相同卡片时，您可以详细了解怪物。有些卡片具有特殊的力量，可以帮助您进行冒险。当您收集 #b30 种#k卡片时，请来找我。"/>
+                <string name="0" value="收集 30 张怪物卡后，请来找我。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="嗨，真遗憾。你会收集到很多关于怪物的有用的信息，这将有助于你的冒险。"/>
+                <string name="0" value="怪物卡会提供很多有用的信息，有助于你的冒险。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="让我们看看你是否具备被称为#b怪物专家#k的能力。你收集了多少张怪物卡？"/>
+            <string name="0" value="让我看看你是否具备被称为#b怪物博士#k的能力。你收集了多少张怪物卡？"/>
             <imgdir name="yes">
-                <string name="0" value="我勋章老人，代表荣誉之神，向全世界宣布您是#b怪物专家#k称号的所有者。如果您想尝试新称号，请随时回来找我。"/>
+                <string name="0" value="我代表名誉之神，向全世界宣布你成为#b怪物博士#k称号的主人。如果你想挑战新的称号，请随时回来找我。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="您必须至少收集 #b30#k 种怪物卡才能获得#b怪物专家勋章#k。当您收集到至少 30 种怪物卡时，请来找我。"/>
+                    <string name="0" value="你必须至少收集 #b30#k 张怪物卡才能获得#b怪物博士勋章#k。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -18083,37 +18115,37 @@
     </imgdir>
     <imgdir name="29904">
         <imgdir name="0">
-            <string name="0" value="20000小女王的问候联动任务"/>
+            <string name="0" value="完成小女王的问候后，可以领取骑士团初心者称号。"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="yes"/>
+                <string name="0" value="好的。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="no"/>
+                <string name="0" value="稍后再说。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
             <imgdir name="yes">
-                <string name="0" value="ㅁㄴㅇ"/>
+                <string name="0" value="你已经证明了自己是皇家骑士团的一员。"/>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="29905">
         <imgdir name="0">
-            <string name="0" value="第4个任务 - 与20015小女王的问候进行联动..."/>
+            <string name="0" value="完成另一条小女王的问候后，可以领取骑士团初心者称号。"/>
             <imgdir name="stop">
             </imgdir>
             <imgdir name="yes">
-                <string name="0" value="ok\n"/>
+                <string name="0" value="好的。\n"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="no"/>
+                <string name="0" value="稍后再说。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
             <imgdir name="yes">
-                <string name="0" value="那就麻烦你了"/>
+                <string name="0" value="那就麻烦你了。"/>
             </imgdir>
         </imgdir>
     </imgdir>
@@ -24247,7 +24279,7 @@
             <string name="1" value="虽然我有很多的缺点和不足，但是朱丽叶的话，我相信她应该会理解我的。即使不能马上结婚，我也想尽快和她订婚，然后把这个好消息告诉大家。"/>
             <string name="2" value="您一直看着我们两个走到了现在。您能...理解我的心吗？"/>
             <imgdir name="yes">
-                <string name="0" value="那么...我能拜托您一件事吗？听说#b婚礼桥#k那里有个制作戒指的匠人。我想请您帮我去那里定做求婚戒指。"/>
+                <string name="0" value="那么...我能拜托您一件事吗？听说#b婚礼村#k那里有个制作戒指的匠人。我想请您帮我去那里定做求婚戒指。"/>
                 <string name="1" value="如果不是您一直支持我们俩的话，这件事情我决不敢交给别人。相信您一定会帮我的。"/>
             </imgdir>
         </imgdir>
@@ -24256,7 +24288,7 @@
             <string name="1" value="现在...就剩下向朱丽叶求婚了。虽然不知道她会怎么回答...但是不管她会怎么回答，我一定会在您的面前保持坚强。"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="看样子您还没买到戒指啊...听说只有#b婚礼桥#k的#b阿尔雷哥#k可以制作用于求婚的戒指，请您去找找他吧。"/>
+                    <string name="0" value="看样子您还没买到戒指啊...听说只有#b婚礼村#k的#b穆尼#k可以制作用于求婚的戒指，请您去找找他吧。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -27632,10 +27664,10 @@
         </imgdir>
         <imgdir name="0">
             <string name="0" value="哎呀...真是#p2071010#。\r\n#L0##b头上怎么长了个包呢？"/>
-            <string name="1" value="几天前，他被不知何人丢掉的斧头砍伤，一气之下将斧头丢弃在池塘外边。刚刚有个樵夫来找我，让我把他的斧头交出来。他很固执，我说给他金银斧都不要。\r\n#L0##b最后决定怎么办啊？"/>
+            <string name="1" value="几天前，他被不知是谁丢来的斧头砍伤，一气之下把那把斧头扔在池塘外。刚刚有个樵夫来找我，说那是他的斧头。可他固执得很，我说给他金斧头、银斧头都不要。\r\n#L0##b那现在该怎么办？"/>
             <string name="2" value="我答应给他找回斧头，可怎么找也找不到啊。最近这附近有些头上插着斧头的怪物，会不会是他们拿走了？你帮帮我好吗？"/>
             <imgdir name="yes">
-                <string name="0" value="找回仍在池塘外的#b樵夫的铁斧#k还给樵夫吧。可能是怪物拿走了。把#r黑斧木妖#k给你的#b斧头#k带回来。我来给你鉴定是不是樵夫的铁斧。"/>
+                <string name="0" value="去找回还留在池塘外的#b樵夫的铁斧#k，再还给樵夫吧。也许它已经被怪物拿走了。把#r黑斧木妖#k掉落的#b斧头#k带回来，我会帮你鉴定是不是#b#t4031315##k。"/>
             </imgdir>
             <imgdir name="no">
                 <string name="0" value="竟然会拒绝#p2071010#的请求。哎呦...头啊包好像越来越大了。"/>
@@ -27664,7 +27696,7 @@
         <imgdir name="1">
             <string name="0" value="这里写着字呢。我看不清楚，你帮我看看。"/>
             <imgdir name="yes">
-                <string name="0" value="好好看。如果是樵夫的铁斧，就把斧头送到住在乌山某处的#b#p2071011##k那儿。如果不是樵夫铁斧，再去找别的斧头。"/>
+                <string name="0" value="看清楚了。如果鉴定结果是#b#t4031315##k，就把它送去给住在乌山某处的#b#p2071011##k。如果不是，就再去找别的斧头。"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="item">
@@ -42832,7 +42864,7 @@
             <string name="4" value="非常感谢你找到了！我会给你这个以表彰你的出色工作。我不知道这对你是否有用，但……请善加利用！"/>
             <imgdir name="stop">
                 <imgdir name="npc">
-                    <string name="0" value="前往Eos Tower，从#b#o7130300##k处取得#b50 #t04000148##k，还有从#b#o7130010##k处获得#b50 #t04000147##k？当您获得所有物品后，请首先去拜访#b#p9120011##k。"/>
+                    <string name="0" value="前往玩具塔，从#b#o7130300##k处取得#b50个#t04000148##k，再从#b#o7130010##k处取得#b50个#t04000147##k。收集齐所有物品后，请先去找#b#p9120011##k。"/>
                 </imgdir>
                 <imgdir name="item">
                     <string name="0" value="你找到我的洋娃娃了吗？如果没有，请问冒险岛的 #b#p1012109##k 是否能想出办法。"/>
@@ -42916,218 +42948,218 @@
     </imgdir>
     <imgdir name="8072">
         <imgdir name="0">
-            <string name="0" value="哦~ !这简直太完美了。嘿，陌生人，你能帮我一把吗?"/>
-            <string name="1" value="我很抱歉。我在打扫卫生的时候发现了这个。我能读懂这个，但我不知道这是什么意思…"/>
-            <string name="2" value="(收到了木野河野寄来的一张旧纸。它看起来很模糊，但上面写了些什么。)"/>
-            <string name="3" value="上面写着“K H H L P□”……最后一个字母是空的。那封信一定是什么?？"/>
-            <string name="4" value="(上面清楚地写着“K H E L P”，加上P后面的空白，除此之外，没有任何字母或图画的迹象。)"/>
-            <string name="5" value="我能感觉到那张纸有些不寻常。你能帮我解这个代码吗?"/>
+            <string name="0" value="哎呀！这可真是太巧了。喂，陌生人，你能帮我一个忙吗？"/>
+            <string name="1" value="不好意思，我打扫的时候发现了这个。我看得懂一些，可是不明白它到底是什么意思。"/>
+            <string name="2" value="（收到了木野子寄来的旧纸条。纸条看起来有些模糊，但上面确实写着什么。）"/>
+            <string name="3" value="上面写着“K H H L P□”……最后一个字母是空着的。这封信到底是什么意思呢？"/>
+            <string name="4" value="（仔细看，上面应该写着“K H E L P”，P 后面还留着空白。除此之外，没有其他字母或图案的痕迹。）"/>
+            <string name="5" value="我总觉得这张纸不太寻常。你能帮我解开这个暗号吗？"/>
             <imgdir name="yes">
-                <string name="0" value="祝你好运。我等你的答复。"/>
+                <string name="0" value="祝你好运。我会等你的消息。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="我明白了。我看得出来你是个大忙人。哦…!"/>
+                <string name="0" value="我明白了。看来你也很忙。唉……"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="(根据从木野Konoko那里学到的代码，我去了第7-2节，然后……的什么?雕像上好像刻了什么东西。"/>
+            <string name="0" value="（根据从木野子那里得到的暗号，我来到了林中之城。那座奇怪的雕像上似乎刻着什么。）"/>
             <imgdir name="stop">
                 <imgdir name="npc">
-                    <string name="0" value="你破解代码了吗?我将等待好消息……"/>
+                    <string name="0" value="你解开暗号了吗？我会等你的好消息……"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="8073">
         <imgdir name="0">
-            <string name="0" value="(雕像上刻着什么。它看起来像一个句子。我应该试着读读这个…)"/>
+            <string name="0" value="（雕像上刻着一段文字。看起来像是一句话。我应该试着读一读。）"/>
             <imgdir name="yes">
-                <string name="0" value="我是你的救世主。\n从千百万种可能中被选中，从那时起，我就一直默默地陪伴着你。 \n取我健壮的身躯，把你的印记刻在我的胸前。如果你站着不动，对着我吹。人们需要你，聚集在我面前，他们只能祈祷……\n\n我是谁?"/>
-                <string name="1" value="(这…第二法典是什么?这是什么意思?？这之后我该去哪里?)"/>
+                <string name="0" value="我是你的救主。\n在千万种可能中被选中，自那时起，我便一直静静陪伴着你。\n取我强健之躯，将你的印记刻在我的胸前。若你停下脚步，向我吹响。人们需要你时，聚集在我面前，只能祈祷……\n\n我是谁？"/>
+                <string name="1" value="（这……第二个暗号是什么意思？接下来我该去哪里？）"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="(嗯…我还不该读这篇文章吗?)"/>
+                <string name="0" value="（嗯……我现在还是先别读这段文字吧。）"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="(根据代码，我发现自己站在雪谷中央的一个小坟墓前。如果我破译的代码是正确的，这里应该有东西…)"/>
+            <string name="0" value="（根据暗号，我来到雪谷中的一座小坟墓前。如果我解读正确，这里应该有什么线索……）"/>
             <imgdir name="stop">
                 <imgdir name="npc">
-                    <string name="0" value="(第二法典的含义是什么?)"/>
+                    <string name="0" value="（第二个暗号到底是什么意思？）"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="8074">
         <imgdir name="0">
-            <string name="0" value="(在积雪覆盖的群山中间，有一个没有人注意到的小坟墓。)"/>
+            <string name="0" value="（在积雪覆盖的群山之间，有一座几乎无人注意的小坟墓。）"/>
             <imgdir name="yes">
-                <string name="0" value="(墓碑上刻着一些东西，但由于多年的风化，几乎无法辨认。)"/>
-                <string name="1" value="(这个代码似乎暗示着被安葬在这里的人的存在，但是……现在甚至不可能找出他到底是谁。)"/>
-                <string name="2" value="(首先，我要回到木野子神社，让木野子谈谈这件事。)"/>
+                <string name="0" value="（墓碑上刻着一些东西，但因为多年风化，几乎无法辨认。）"/>
+                <string name="1" value="（这段暗号似乎暗示着被安葬在这里之人的存在，可是……现在已经不可能查明他究竟是谁了。）"/>
+                <string name="2" value="（首先，我得回到木野子神社，把这件事告诉木野子。）"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="(这里有一座白雪覆盖的小坟墓，几乎看不出来。)"/>
+                <string name="0" value="（这里有一座被白雪覆盖的小坟墓，几乎看不出来。）"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="哦,你回来了!代码怎么了?"/>
-            <string name="1" value="(我把暗号的含义告诉了木野子)"/>
-            <string name="2" value="我明白了…我看到!很难理解，在积雪覆盖的山中央有一个小坟墓。 \n很难找出代码的意思，但我肯定它有什么意思…"/>
-            <string name="3" value="但是你知道，最终解开这些令人费解的代码感觉很好，因为它已经困扰我很长时间了。干得好。谢谢。希望能再见到你。"/>
+            <string name="0" value="啊？你回来了！暗号怎么样了？"/>
+            <string name="1" value="（我把暗号的含义告诉了木野子。）"/>
+            <string name="2" value="我明白了……原来如此！真难以想象，在积雪覆盖的山中竟然有一座小坟墓。\n虽然很难弄清暗号真正的意思，但我确信它一定有某种含义……"/>
+            <string name="3" value="不过你知道吗，终于解开这些困扰我许久的暗号，感觉真好。做得好，谢谢你。希望还能再见到你。"/>
             <imgdir name="stop">
                 <imgdir name="npc">
-                    <string name="0" value="(我发现了一个小坟墓。我需要回到木之子神社，让木之子知道发生的事情。)"/>
+                    <string name="0" value="（我发现了一座小坟墓。我需要回到木野子神社，把发生的事告诉木野子。）"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="8075">
         <imgdir name="0">
-            <string name="0" value="我不知道，我不知道。。。\n你能把你的智慧借给我一秒钟吗？\n我已经为此失眠三天了。"/>
-            <string name="1" value="谢谢你！\n如你所知，7-2区是草药的圣地，\n我在这里住了很长时间的原因是因为我总能收集到大量现成的草药。也因为我也在寻找完全不同的东西。"/>
-            <string name="2" value="这是很久以前写的草药档案。 \n这是一个档案，它的存在本身就被认为是传奇的。"/>
-            <string name="3" value="嗯…我看到.\n我在地狱里走了一圈又一圈，最后在森林深处一个太阳无法到达的地方找到了那份档案。"/>
-            <string name="4" value="退一步说，我不知所措!！\n草药档案，是一位学者多年前写的，就在我手里！\n当然，我周围的人认为这是假的，哈哈哈!"/>
-            <string name="5" value="我只是想相信这个事实这就是人们谈论的传奇档案。\n通过解决这个档案中提供的谜语，我可能最终能够获得“三大”，三种古老的草药被认为是所有草药的顶峰。"/>
-            <string name="6" value="别那样怀疑地看着我。\n一旦我找到这个，这可能会变成一大笔钱!然而，我对它不感兴趣。\n如果我能解开这个档案的谜题，找到三巨头，请放心，我会给你相应的奖励。"/>
-            <string name="7" value="你觉得呢？你想参军吗？\n我很想用你这样聪明的头脑来解开这个古老的谜题！\n...虽然“三巨头”在科学上被认为是辉煌的，但实际的药用效果可能存在问题……"/>
+            <string name="0" value="我不知道，我不知道……\n你能借我一点智慧吗？\n这件事已经让我失眠三天了。"/>
+            <string name="1" value="谢谢你。\n你也知道，7-2区是药草的圣地。\n我会长期住在这里，是因为这里总能采到各种珍贵药草，也因为我一直在寻找另一种完全不同的东西。"/>
+            <string name="2" value="那是很久以前写成的药草档案。\n光是它的存在，就已经像传说一样了。"/>
+            <string name="3" value="嗯……是这样的。\n我费尽千辛万苦，终于在森林深处一个阳光照不到的地方找到了那份档案。"/>
+            <string name="4" value="我当时简直激动得说不出话！\n古代学者留下的药草档案，竟然就在我手里！\n当然，身边的人都说那是骗人的，哈哈哈！"/>
+            <string name="5" value="可我还是愿意相信，那就是传说中的档案。\n只要解开档案里的谜题，也许就能找到被称为药草顶点的“三大古代药草”。"/>
+            <string name="6" value="别用那种怀疑的眼神看着我。\n如果真的找到了它们，确实可能变成一大笔财富！不过我在意的不是钱。\n如果你能帮我解开档案之谜，找到三大药草，我一定会好好酬谢你。"/>
+            <string name="7" value="怎么样？你愿意加入我们吗？\n我很想和你这样聪明的人一起解开古代谜题！\n……不过，“三大药草”虽然在学术上极具价值，实际药效可能还有待确认。"/>
             <imgdir name="yes">
-                <string name="0" value="好!谢谢你！\n萨比特拉玛档案研究委员会正在这里成立!"/>
-                <string name="1" value="档案中提到了有关古代草药的重要事实。我读给你听。"/>
-                <string name="2" value="...\n黑白之灵向大地告别，出现在我面前。在两个沉默的灵魂上做个标记，灵魂就会混合在一起，变成第一药草。"/>
-                <string name="3" value="...\n你怎么看待一个在摇篮里吮吸孤独和黑暗的人，而灵魂早已离开了身体?不能回归的灵魂必须找到一个灵魂伴侣，与之共度永恒。你是娃娃，在里面，你会找到第二个药草。"/>
-                <string name="4" value="...\n关于第三药草，这一页被撕掉了，所以没办法知道这里写了什么。\n一份缺少最重要一页的档案……真可惜。"/>
-                <string name="5" value="关于第三种药草，我会在其他书中寻找线索。如果你能帮我解开前两个谜语，我会很感激的。\n你能做到吗？\n在这种情况下，直觉在解开谜题中发挥了重要作用！\n请三思而后行。"/>
-                <string name="6" value="我想，关于第一种药草，我必须找到“黑白之灵”。没有这两者，就很难得到这种草药。\n祝你好运，委员们!"/>
+                <string name="0" value="太好了！谢谢你！\n萨比特拉玛档案研究委员会，就在此刻正式成立！"/>
+                <string name="1" value="档案里记载了关于古代药草的重要内容。我念给你听。"/>
+                <string name="2" value="……\n黑与白之灵告别大地，出现在我面前。在两个沉默的灵体上留下印记，灵体相融，化为第一药草。"/>
+                <string name="3" value="……\n你如何看待那个在摇篮中吞噬孤独与黑暗、灵魂早已离开身体的存在？无法回归的灵魂必须找到能共度永恒的伴侣。你是人偶，而第二药草就在其中。"/>
+                <string name="4" value="……\n至于第三药草，最关键的那一页被撕掉了，完全看不出写了什么。\n偏偏缺了最重要的一页……真是太可惜了。"/>
+                <string name="5" value="关于第三药草，我会再去其他书里寻找线索。前两个谜题就拜托你了。\n你能做到吗？\n这种时候，直觉在解谜中也很重要！\n行动前请仔细思考。"/>
+                <string name="6" value="关于第一药草，我想你必须找到“黑与白之灵”。少了其中任何一个，都很难得到药草。\n祝你好运，研究委员！"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="嗯…很遗憾你拒绝加入萨比特拉马档案研究委员会。"/>
+                <string name="0" value="嗯……真遗憾，你不愿意加入萨比特拉玛档案研究委员会。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="委员们，你觉得苏米是个什么样的人?我还是找不到任何关于第三种药草的线索。我想这比我想象的要花更多的时间."/>
-            <string name="1" value="这个…就是这样!！\n就是这样，委员们！\nBri...辉煌！！！"/>
-            <string name="2" value="我…我现在高兴得发抖。我这辈子都没这么开心过。\n这个…是古老的草药…!我真不敢相信!"/>
-            <string name="3" value="你是怎么找到它的？\n什么……？嗯…所以？\nOh~~！\n不，这就是为什么，就像这样，那样，还有……"/>
-            <string name="4" value="哦，原来是这样!"/>
-            <string name="5" value="黑与白的精神……那是黑石魔像和魔像的碎片!那些岩石表面肯定有一些精致的东西。所以从这块岩石散发出神秘力量的草药…那是第一个赫伯!"/>
-            <string name="6" value="第二种药草。 \n一个被遗弃的没有灵魂的娃娃……我知道那是什么意思，但是…嗯，是的，另一个留在同一个身体里的存在，控制娃娃的死亡泰迪。受控制的娃娃是用棉花做的，棉花就是第二种药草!"/>
-            <string name="7" value="干得好，委员们。\n我不得不说，你渊博的知识和智慧给我留下了深刻的印象。作为委员会的领导，我祝贺你工作做得很好。 \n愿萨比特拉玛档案研究委员会兴旺发达!"/>
-            <string name="8" value="好了，到目前为止还没有关于第三种药草的线索。时机成熟时我会告诉你的。这是对你的奖赏。我还把“危险因素”算进了这个工资里。我还要给你这个，我魔法收藏的一部分。 \n\n再接再厉!"/>
+            <string name="0" value="研究委员，你觉得线索会是什么？我还是没找到第三药草的消息，看来还需要比预想更久的时间。"/>
+            <string name="1" value="这……就是它！\n就是它啊，研究委员！\n太……太了不起了！！！"/>
+            <string name="2" value="我……我现在激动得发抖。这辈子都没这么开心过。\n这就是……古代药草……！真不敢相信！"/>
+            <string name="3" value="你是怎么找到的？\n什么……？嗯……原来如此？\n哦～～！\n难怪，是这样，又是那样，然后才……"/>
+            <string name="4" value="哦，原来如此！"/>
+            <string name="5" value="黑与白之灵……原来就是黑石巨人与石巨人的碎片！那些石块表面确实有精巧的纹路。吸收了石块散发出的神秘力量后孕育出的药草……那就是第一药草！"/>
+            <string name="6" value="还有第二药草。\n没有灵魂的废弃人偶……我大概明白它的意思了。嗯，留在同一具身体里的另一个存在，就是操纵人偶的死灵玩具熊。那些被操纵的人偶由棉花制成，而棉花就是第二药草！"/>
+            <string name="7" value="干得好，研究委员。\n我必须说，你的知识和智慧让我非常佩服。作为委员会负责人，我祝贺你完成了出色的工作。\n愿萨比特拉玛档案研究委员会繁荣昌盛！"/>
+            <string name="8" value="好了，第三药草目前还没有线索。等时机成熟，我会再通知你。这是你的报酬，我也把这次的危险补贴算进去了。另外，这件我的魔法收藏也送给你。\n\n继续努力吧！"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="Hmmm...？\n这一点都不坏吗?遗憾的是，我们的样本量太小了，所以无法判断它是否是一种古老的草药。请再多收集一些。我明白了……我想每人100分就足够了。"/>
-                    <string name="1" value="我就指望你了，委员!"/>
+                    <string name="0" value="嗯……？\n这些看起来确实不错。可惜样本数量太少，还不能判断它们是不是古代药草。请再多收集一些。嗯……每种100个应该就够了。"/>
+                    <string name="1" value="拜托你了，研究委员！"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="8076">
         <imgdir name="0">
-            <string name="0" value="欢迎回来. \n关于第三药草的线索有一些急需的进展。"/>
-            <string name="1" value="丢失的那一页档案是在一个相当有趣的地方找到的。住在VIP桑拿房的韦特巴顿先生，他的祖先就是这样。\n只观察远处的物体，如灯塔，你的焦点不匹配时，看近。我认为它的意思是根据外表来猜测一个人的性格从来都不是一件好事。"/>
-            <string name="2" value="现在，回到现实，我也不认为我们能轻易得到这个。第三种药草背后的技能是这样的。"/>
-            <string name="3" value="...\n这是什么不祥的药草?？这种草药不能放在人类附近，所以把力量密封在一个球形物体中，永远不要让它再次看到光明……"/>
-            <string name="4" value="这里是这么写的。与之前的草药相比，我真的不太指望它，但我现在真的不想放弃它，只是因为它通向更危险的道路。"/>
-            <string name="5" value="像你这样的人，已经找到了三个中的两个，我相信你可以找到第三个。我将不惜一切代价寻找这种药草。既然我们都来了，那就完成任务吧?"/>
-            <string name="6" value="祝你好运，委员们！\n向委员会致敬!"/>
+            <string name="0" value="欢迎回来。\n关于第三药草的线索终于有了重要进展。"/>
+            <string name="1" value="档案遗失的那一页，在一个很有意思的地方被找到了。住在高级桑拿房的韦特巴顿先生，他的祖先竟然保存着那一页。\n如果只盯着灯塔那样遥远的东西，回头看近处时焦点就会对不上。我想这句话是在说，绝不能只凭外表判断一个人。"/>
+            <string name="2" value="现在说正题。第三药草恐怕也没办法轻易取得。档案上是这样写的。"/>
+            <string name="3" value="……\n这是何等不祥的药草？绝不可让它接近人类。将它的力量封入球形之物，永远不要让它再见天日……"/>
+            <string name="4" value="上面就是这么写的。和之前的药草相比，这条路危险得多，但都走到这里了，我实在不想放弃。"/>
+            <string name="5" value="你已经找到了三种药草中的两种，我相信你一定也能找到第三种。我会不惜代价寻找这株药草。既然都到这一步了，就把它完成吧？"/>
+            <string name="6" value="祝你好运，研究委员！\n委员会万岁！"/>
             <imgdir name="yes">
-                <string name="0" value="我知道你不会拒绝的。就我个人而言，我相信赫伯拥有不可思议的魔力，而且它是密封的，所以任何力量都不会泄露出去。即使我们找到了它，我们也得小心翼翼地处理它。\ n \ n好吧,祝你好运。"/>
+                <string name="0" value="我就知道你不会拒绝。就我个人来看，这株药草拥有惊人的魔力，而且被封印得非常严密，力量几乎不会外泄。即使找到它，也必须极其小心地处理。\n\n那么，祝你好运。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="这里没什么好害怕的。\n档案里写的那些可能看起来很惊人，但我不认为它们能被称为充满咒语的草药。你想改变主意吗?"/>
+                <string name="0" value="没什么好害怕的。\n档案里的内容看起来确实惊人，但我不认为那些药草真的被什么咒语缠住了。你要不要改变主意？"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="事情进展如何?你找到第三种药草了吗?"/>
-            <string name="1" value="嗯，所以你告诉我#b#t4000129##k是草药?"/>
-            <string name="2" value="啊，我明白了，我明白了!我以为这只是一个帽子配件，但它实际上是懒巴菲拥有的。是的，我能从这里感受到力量。真不敢相信这里面居然有第三种药草。"/>
-            <string name="3" value="等等，不可能是人类旁边的东西…嗯…我看到!我不知道怎么去掉这个。外层被另一层薄薄的覆盖着，我甚至不能碰它。草药肯定是被密封在大理石里面的…!档案里说的基本都成真了。"/>
-            <string name="4" value="这是…?"/>
-            <string name="5" value="不,还没有。现在放弃还为时过早。在过去，移走这个球体可能是不可能的，但如果我们把现代科学应用于此，那么……!"/>
-            <string name="6" value="委员会成员!你能想办法把草药从球里取出来吗?我不知道是谁在搞现代科学。请帮我查一下。这是你找到那个人可能需要的钱。祝你好运。"/>
+            <string name="0" value="进展如何？你找到第三药草了吗？"/>
+            <string name="1" value="嗯……你是说，#b#t4000129##k 就是那株药草？"/>
+            <string name="2" value="啊，我明白了！我原本以为这只是帽子上的装饰，没想到它其实被懒惰巴菲占有着。没错，我能从这里感受到力量。真不敢相信，第三药草竟然就在里面。"/>
+            <string name="3" value="等等，不能靠近人类的东西……嗯……我懂了！我不知道该怎么取出来。外层被另一层薄膜包住，连碰都碰不得。药草确实被封在这颗珠子里……！档案里写的几乎都成真了。"/>
+            <string name="4" value="难道就到此为止了吗……？"/>
+            <string name="5" value="不，还没有。现在放弃还太早。过去也许无法打开这个球体，但如果借助现代科学的话……！"/>
+            <string name="6" value="研究委员！请你想办法把药草从珠子里取出来。我不知道现在谁最懂现代科学，请你帮我找出来。这些钱也许能派上用场。祝你好运。"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="太糟糕了，我们的样本量太少了，所以没有办法判断它是否是第三种药草。请再多收集一些。我明白了……我想每人200金币就够了。"/>
+                    <string name="0" value="可惜样本数量还是太少，还无法判断它是不是第三药草。请再多收集一些。嗯……200个应该就够了。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="8077">
         <imgdir name="0">
-            <string name="0" value="发生什么事了吗?我正忙着创造终极机器人，所以现在请不要打扰我。波特，请把这个人带出去。"/>
-            <string name="1" value="嘿,嘿,什么?即使是这样一件首饰也不会阻止我对机器人的热爱。请把它收起来。你找错人了。"/>
-            <string name="2" value="波特,你这个傻瓜！\n别摆出你想要的表情!你没有自尊心吗?你只是……盯着它看!"/>
-            <string name="3" value="是吗?什么?\n那颗宝石被一个古老的咒语封印着它蕴含着难以置信的神秘力量?"/>
-            <string name="4" value="那又怎样?你想让我怎么做？\n我不感兴趣。"/>
-            <string name="5" value="怎么啦？还有别的吗?？\n你是说大理石里有传说中的&quot;三巨头&quot;吗?"/>
-            <string name="6" value="嗯，我不感兴趣。"/>
-            <string name="7" value="喂,住手!你还在吗?怎么啦？怎么啦？\n你是说即使是我强大的技术资源也无法破解它吗?"/>
-            <string name="8" value="等一下!\n别犯傻了!以我丰富的现代科学知识，打开这样的东西是小菜一碟。没什么是金医生解决不了的，好吗?我可以保证!"/>
-            <string name="9" value="给我。 \n让我们看看…嗯…事情就是这样。古代的“技术”也许是伟大的，但它比不上现代科学。金!"/>
-            <string name="10" value="...Hmmm.\n我想我有办法把它去掉，但我不能免费给你。如果你能为我的终极机器人收集到足够的零件，那我就会考虑的。给我带#b500 #t04000133##k，可以通过双海盗找到。"/>
+            <string name="0" value="有什么事吗？我正忙着制造终极机器人，现在请不要打扰我。波特，把这位客人请出去。"/>
+            <string name="1" value="喂喂，什么？就算你拿出那种宝石，也无法动摇我对机器人的热爱。请收起来，你找错人了。"/>
+            <string name="2" value="波特，你这个笨蛋！\n别摆出一副想要的表情！你没有自尊吗？你只是……一直盯着它看！"/>
+            <string name="3" value="嗯？什么？\n那颗宝珠被古代咒术封印，里面蕴含着难以置信的神秘力量？"/>
+            <string name="4" value="那又怎样？你想让我做什么？\n我没兴趣。"/>
+            <string name="5" value="什么？还有别的事？\n你是说，那颗珠子里封着传说中的“三大药草”之一？"/>
+            <string name="6" value="嗯，我还是没兴趣。"/>
+            <string name="7" value="喂，够了！你怎么还在？什么？什么？\n你是说，连我伟大的科技都打不开它？"/>
+            <string name="8" value="等一下！\n别开玩笑了！以我丰富的现代科学知识，打开这种东西根本不算什么。没有金博士解决不了的问题，懂吗？我可以保证！"/>
+            <string name="9" value="把它给我。\n我看看……嗯……原来如此。古代“技术”或许厉害，但和现代科学，不，和金博士相比还差得远！"/>
+            <string name="10" value="……嗯。\n我大概找到了解开封印的方法，但不能白白告诉你。如果你能为我的终极机器人收集足够的零件，我就考虑帮你。去打双刀海盗，带来 #b500个 #t04000133##k。"/>
             <imgdir name="yes">
-                <string name="0" value="好了，我们的交易完成了。"/>
+                <string name="0" value="好，交易成立。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="我觉得你没有别的地方可以指望打开这个了。我建议你在这里处理……哈哈"/>
+                <string name="0" value="除了我之外，你恐怕也找不到别人能打开它了。建议你还是在这里解决……哈哈。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="怎么样?你找到螺旋桨了吗?"/>
-            <string name="1" value="哦!我意识到是我让你去拿的，而你真的把500张都弄到了。你现在一定是打猎方面最好的了。我知道我说了些难听的话，但过去的就让它过去吧。"/>
-            <string name="2" value="封条已经打开了。 \n这是大理石减去印章。嘿嘿，小心点!这是一个非常敏感的问题。如果你太用力碰它，里面的东西就会弹出来!"/>
-            <string name="3" value="你不想自己打开它，对吧?\n我知道，我知道。然而，有了我的新“芝麻开门”，这就不是问题了。把这个发给7-2区的萨比特拉马就好了。"/>
-            <string name="4" value="还有你不妥协的态度，我很喜欢。就那种品质而言，波特无法与你相提并论。这是我送给你的礼物!请收下吧。"/>
+            <string name="0" value="怎么样？螺旋桨零件收集到了吗？"/>
+            <string name="1" value="哦！我只是让你去收集，你竟然真的带来了500个。论狩猎能力，你现在大概是最顶尖的了。之前我说话有点难听，就让那些事过去吧。"/>
+            <string name="2" value="封印已经解除。\n这是解除封印后的宝珠。喂喂，小心点！它非常敏感。如果碰得太重，里面的东西会一下子弹出来！"/>
+            <string name="3" value="你不会想自己打开它吧？\n我懂，我懂。用我的新发明“芝麻开门”就没问题了。我会把它送到7-2区的萨比特拉玛那里。"/>
+            <string name="4" value="还有，你这种不轻易妥协的态度我很欣赏。波特在这方面可完全比不上你。这是给你的礼物，请收下。"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="我认为你的钱不够。我知道这很难，但是继续努力。"/>
+                    <string name="0" value="数量还不够。虽然辛苦，但请继续收集。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
     </imgdir>
     <imgdir name="8078">
         <imgdir name="0">
-            <string name="0" value="我一直在这里等你。什么，封印失效了吗?"/>
-            <string name="1" value="这是金医生给我的，名字叫&quot;芝麻开门&quot;辉煌!城市里的人对名字的品味真不错!"/>
-            <string name="2" value="其实我是昨天早上收到的，一直在等你。我自己打不开这个;我需要我的委员和我在一起。没有你，我一开始就打不开这个。"/>
-            <string name="3" value="好了，现在让我们打开这个!"/>
-            <string name="4" value="…嗯?发生什么事了…有点不对劲!嗯?？"/>
-            <string name="5" value="什么……它没有打开!"/>
-            <string name="6" value="粘在盒子上的这张纸是什么?手动吗?好吧，让我们看看上面写了什么……"/>
-            <string name="7" value="“这是伟大的科学家金博士创造的下一代盒子，配有下一代安全装置。这个盒子需要你支付1,000,000 金币才能打开。这笔钱将直接捐给伟大的科学家金博士。不接受支票。”"/>
-            <string name="8" value="这是什么废话?什么箱子要收费才能打开?所以基本上，我们必须付钱。真是一派胡言!"/>
-            <string name="9" value="我们费了那么大劲才收集到这些东西，现在又来这个?"/>
-            <string name="10" value="我该怎么办?他是那种实事求是做事的人，好像什么事都没有。这不是通过压力和暴力就能解决的。然而，我确实相信BIG 3的价值超过100万金币。如果我有那么多钱，我会很快买下它，但是，唉，我没有那么多钱。我也对要求你支付这笔费用的可能性感到不好意思……"/>
-            <string name="11" value="三巨头的命运，以及这个盒子，都取决于你的答案。你愿意花1,000,000 金币来打开这个盒子吗?一旦你打开它，就完了。你不可能拿回你的一百万金币。"/>
+            <string name="0" value="哦，我一直在这里等你。\n什么，封印已经解除了？"/>
+            <string name="1" value="我收到了金博士送来的装置，名字叫“芝麻开门”。真是太棒了！城里人取名字果然很有品味！"/>
+            <string name="2" value="其实我昨天早上就收到了，一直在等你。我一个人打不开它，必须和我的研究委员一起。没有你，我根本不可能走到这一步。"/>
+            <string name="3" value="好了，现在就打开它吧！"/>
+            <string name="4" value="……咦？怎么回事……好像不太对劲！嗯？？"/>
+            <string name="5" value="什么……打不开！"/>
+            <string name="6" value="盒子上贴着的这张纸是什么？嗯……说明书？我看看……"/>
+            <string name="7" value="“这是伟大的科学家金博士制作的新一代箱子，并附带新一代安全装置。支付1,000,000金币前，本箱无法开启。所有费用将直接用于资助伟大的科学家金博士。拒收支票。”"/>
+            <string name="8" value="这是什么乱七八糟的东西？哪有箱子还要付费才能打开的？也就是说，我们必须付钱。太荒唐了！"/>
+            <string name="9" value="我们好不容易一路收集到这里，最后竟然是这样？"/>
+            <string name="10" value="该怎么办？他就是那种会若无其事做出这种事的人。靠压力或武力大概也没用。不过我相信，三大药草的价值一定超过100万金币。如果我有这笔钱，早就付了，可惜我没有那么多。我也不太好意思让你来付……"/>
+            <string name="11" value="三大药草和这个箱子的命运，都取决于你的回答。你愿意花1,000,000金币打开这个箱子吗？一旦打开，金币就不会退还。"/>
             <imgdir name="yes">
-                <string name="0" value="哇，太酷了！\n作为萨比特拉玛档案研究委员会的负责人，我感到非常高兴和幸运，有像你这样的人在我的领导下。"/>
-                <string name="1" value="我知道，我知道!\n我也想找出“三巨头”背后的真相，对草药永无止境的渴望……我以前也是这样的。"/>
-                <string name="2" value="啊,我很抱歉。 \n我感觉自己被人无缘无故地敲了脑袋。\n不过，别担心。"/>
-                <string name="3" value="请再考虑一下，仔细考虑一下。你决定了就告诉我。"/>
+                <string name="0" value="太帅了！\n作为萨比特拉玛档案研究委员会的负责人，能有你这样的委员，我真的非常高兴，也非常幸运。"/>
+                <string name="1" value="我知道，我知道！\n我也想知道“三大药草”的真相。那种对药草永无止境的渴望……我以前也是这样。"/>
+                <string name="2" value="啊，抱歉。\n我好像突然被什么敲醒了一样。\n别太在意。"/>
+                <string name="3" value="请再仔细考虑一下。等你下定决心后再告诉我。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="是的，没错……\n总有一天我会收集到1,000,000个金币，然后打开这个盒子。看这个，委员们。"/>
+                <string name="0" value="嗯，你说得也对……\n总有一天我会凑齐1,000,000金币，然后打开这个箱子。等着瞧吧，研究委员。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="100万金币能奏效吗?"/>
-            <string name="1" value="点击!"/>
-            <string name="2" value="啊,它是开放……\n它就在这里!\n所以封条完全打开了?如果我碰一下这个，香草就会冒出来?\n我要~"/>
-            <string name="3" value="流行!"/>
-            <string name="4" value="哦,我的……源源不断的强大力量……所以这确实是第三种药草!我很有信心!"/>
-            <string name="5" value="B…辉煌!！\n我感觉有点奇怪，这光和草看起来都很美!"/>
+            <string name="0" value="100万金币真的能让它打开吗？"/>
+            <string name="1" value="咔嗒！"/>
+            <string name="2" value="啊，打开了……\n它就在里面！\n封印真的完全解除了？只要我碰一下，药草就会出现？\n那我来了～"/>
+            <string name="3" value="砰！"/>
+            <string name="4" value="哦天啊……这股源源不断、压倒性的力量……这一定就是第三药草！我敢肯定！"/>
+            <string name="5" value="太……太惊人了！！\n这种奇妙的感觉，还有光芒和草叶，都美得不可思议！"/>
             <string name="6" value="什么！"/>
-            <string name="7" value="等等,什么?？？\n草为什么要枯死!！！\n Noonononono！"/>
-            <string name="8" value="哦，不，这已经变成了一种垂死的粉末。呵……"/>
-            <string name="9" value="我看到…事情就是这样。档案里提到永远不要见光，永远不要再被碰……"/>
-            <string name="10" value="这是好的!我明白档案里的信息。最后我把草药弄丢了，这很糟糕，但在我拿着它的那一瞬间，我感到多年来最好的。第三种药草其实一直在我们心中生长……"/>
-            <string name="11" value="你怎么一副目瞪口呆的样子?多亏了你，我才能收集到所有现存的古代草药。我真的很抱歉我让你用了1,000,000个金币，我不知道是否有一个词可以充分表达我对你的感激之情。"/>
-            <string name="12" value="我建议你带着我的魔法收藏离开这里。至于薪水，我会提高到副总统的水平。"/>
+            <string name="7" value="等等，怎么回事？？？\n为什么药草在枯萎！！！\n不不不不不！"/>
+            <string name="8" value="糟了，它已经变成一撮枯萎的粉末了。唉……"/>
+            <string name="9" value="我、我明白了……原来是这样。档案上说过，绝不能让它见天日，也绝不能再被触碰……"/>
+            <string name="10" value="没关系！我理解档案想传达的信息了。最后失去了药草确实遗憾，但在握住它的那一瞬间，我感受到了多年来最美妙的心情。第三药草其实一直生长在我们的心里……"/>
+            <string name="11" value="你为什么一脸茫然？多亏了你，我才能接触到所有古代药草。让你花了1,000,000金币，我真的很抱歉，也不知道该用什么话表达我的感谢。"/>
+            <string name="12" value="请带着我的魔法收藏离开这里吧。至于报酬，我会再提高一些，按副会长的待遇来给你。"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="委员，很抱歉，你们没有足够的金币。这是一大笔钱，所以如果你对此犹豫不决，我建议你趁早退出。"/>
+                    <string name="0" value="研究委员，很抱歉，你的金币不够。这是一大笔钱，如果你还犹豫，我建议你趁现在放弃也不迟。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -43467,24 +43499,24 @@
     </imgdir>
     <imgdir name="8222">
         <imgdir name="0">
-            <string name="1" value="好满足,冒险家。我是#b布卢坎·德·维西恩#k，红木堡的骑士。正如人们对守卫自己领地的人所期望的那样，他们应该知道自己在哪里，以及他们所守卫的地方的情况如何。奇怪的是，我最近认不出这些树林了，最重要的是，许多怪物开始在周围游荡。"/>
+            <string name="1" value="很高兴见到你，冒险家。我是#b卢坎·德·维里森#k，绯红要塞的骑士。守卫自己领地的人，本该清楚自己身在何处，也该知道自己守护之地的状况。奇怪的是，我最近已经认不出这片森林了；更重要的是，许多怪物开始在周围徘徊。"/>
             <imgdir name="yes">
-                <string name="0" value="很好，用干掉10个风暴破坏者来证明你的话。"/>
+                <string name="0" value="很好。击败风暴破坏者，并带回10枚徽章来证明你的话。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="嗯，我想我现在不能指望你了，因为你看起来也很忙。"/>
+                <string name="0" value="嗯，我现在恐怕不能指望你了。你看起来也很忙。"/>
             </imgdir>
-            <string name="0" value="你能帮我从风暴破坏者那里收集一些#r徽章 #k吗?那些#r骑士般的#k生物，穿着红色盔甲，使用闪电型武器，作为研究问题根源的手段。"/>
+            <string name="0" value="你能帮我从风暴破坏者那里收集一些#r徽章#k吗？那些#r骑士般的#k生物穿着红色盔甲，使用闪电形武器。我要借此调查问题的根源。"/>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="哦,太棒了。你已经完成了你的任务。我现在可以相信你和那些风暴破坏者没有关系。你知道，我是风暴主宰军队中的一名骑士，来自红木堡。现在我迷失在这片雾蒙蒙的森林里，寻找通往堡垒的路。"/>
-            <string name="1" value="怎么啦？红木堡已成历史?你在说什么?好吧，考虑到许多怪物只是神秘地出现，而我实际上被森林本身迷惑了方向，说我可能来自另一个时代似乎是合理的。"/>
+            <string name="0" value="啊，太好了。你已经完成了任务。现在我可以相信你和那些风暴破坏者没有关系了。你知道，我是风暴召唤骑士团的一员，来自绯红要塞。如今我迷失在这片雾气弥漫的森林里，正在寻找通往要塞的道路。"/>
+            <string name="1" value="什么？绯红要塞已经成为历史？你在说什么？好吧，考虑到这些怪物莫名其妙地出现，而我也确实被森林本身迷惑了方向，说我可能来自另一个时代似乎也并非不合理。"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="击败#b100 #o9400581##k和收集#b15 #t4032006##k就是我的条件...而你并没有达到这个数量。既然你接受了我的条件，你就有义务满足我的条件。等你完成了再来找我。"/>
+                    <string name="0" value="击败#b100个#o9400581##k并收集#b15个#t4032006##k，这就是我的条件……而你还没有达到这个数量。既然你接受了我的条件，就有义务完成它。完成后再来找我。"/>
                 </imgdir>
             </imgdir>
-            <string name="2" value="然而，在这一切之后，有一些非常可疑的事情。我想我现在要去调查了，谢谢你的支持。"/>
+            <string name="2" value="不过，经历这一切后，确实有些非常可疑的事。我想我现在该去调查了。谢谢你的帮助。"/>
         </imgdir>
     </imgdir>
     <imgdir name="8223">
@@ -43522,12 +43554,12 @@
         <imgdir name="0">
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="再次感谢你还回了我们的地图。这一行为说明了你的人格有多么高尚，说明你是个...值得信任的盟友。至于到底是不是这样，只有时间能告诉我了。"/>
-            <string name="1" value="你问过我们不是匪徒的话是什么人。&lt;微笑&gt;那我就告诉你好了：我们是#b渡鸦忍者部族#k的成员，来自克拉齐亚海岸北部一个叫警忍之岛的地方。"/>
-            <string name="2" value="我们渡鸦忍者的血脉能够追溯到古克拉齐亚的#b暗影骑士#k团，因此，你可以说守护者的要塞就是我们先祖的家。我们来到这里的目的是解开克拉齐亚的消失和回归之谜。很显然这跟现在占据守护者的要塞的那帮家伙脱不了干系，你和杰克·巴里凯德也在调查这事吧。"/>
-            <string name="3" value="基于你告诉我的情报，我给我们的任务添加了新一个目标——消灭那些占据了守护者的要塞的入侵者。&lt;微笑&gt;这可是我们的专长。不过你要是也消灭了他们，只要出示相应的证明，我们就会给你对应的#b奖励#k。你就当是接了我们的生意吧。我的兄弟#b约库#k会告诉你具体细节的。"/>
+            <string name="0" value="再次感谢你归还我们的地图。这个举动说明你的人格有多么高尚，也说明你是个……值得信任的盟友。至于事实是否如此，只有时间能告诉我。"/>
+            <string name="1" value="你问过我们如果不是强盗，那究竟是什么人。&lt;微笑&gt;那我就告诉你吧：我们是#b渡鸦忍者部族#k的成员，来自克拉奇亚海岸北部一个名为警忍之岛的地方。"/>
+            <string name="2" value="我们渡鸦忍者的血脉可以追溯到古克拉奇亚的#b暗影骑士#k军团。因此，你可以说守护者要塞就是我们祖先的家。我们来到这里，是为了揭开克拉奇亚消失与回归之谜。很显然，这和如今占据守护者要塞的那帮家伙脱不了关系。你和杰克·贝瑞加德也在调查这件事吧。"/>
+            <string name="3" value="根据你告诉我的情报，我给我们的任务增加了新的目标——消灭那些占据守护者要塞的入侵者。&lt;微笑&gt;这正是我们的专长。不过，如果你也消灭了他们，只要出示相应证明，我们就会给你对应的#b赏金#k。你就当是接下了我们的生意吧。我的兄弟#b乔科#k会告诉你具体细节。"/>
             <imgdir name="yes">
-                <string name="0" value="哦，这地图你留着好了。杰克把它给你还真是给对人了。那么，就此别过吧，吾友。"/>
+                <string name="0" value="哦，这张地图你就留着吧。杰克把它交给你，看来还真是给对了人。那么，就此别过吧，朋友。"/>
             </imgdir>
         </imgdir>
     </imgdir>
@@ -43582,7 +43614,7 @@
         <imgdir name="1">
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="怎么，没啥收获？可别半途而废啊...继续尝试吧，高手！这儿总归有知道点什么的人！"/>
+                    <string name="0" value="怎么，没有收获吗？可别半途而废……继续试试吧，高手！这里总会有人知道些什么！"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -45905,9 +45937,9 @@
     </imgdir>
     <imgdir name="8860">
         <imgdir name="0">
-            <string name="0" value="嘿!我叫克劳迪娅，是新来的。为了帮助我的客户更好地保持头发，我正在研究一种新的发胶配方，叫做“光滑黏液”。不过我需要25块软软的液体。你能帮忙吗?"/>
+            <string name="0" value="嘿！我叫克劳迪娅，是新来的发型师。为了让客人的发型更持久，我正在研究一种新的定型配方，叫做“顺滑黏胶”。不过我还需要25份黏稠液体，你能帮忙吗？"/>
             <imgdir name="yes">
-                <string name="0" value="哈哈,不错!你知道怎么谈判!好吧,我游戏。如果你能帮我弄到#b25黏糊糊的液体#k，我就给你免费理发。匆忙;我的顾客排了很长的队!"/>
+                <string name="0" value="哈哈，不错！你还挺会谈条件的。这样吧，如果你能帮我带来#b25份黏稠液体#k，我就免费帮你设计一次发型。动作快点，我的客人还在排队呢！"/>
             </imgdir>
             <imgdir name="no">
                 <string name="0" value="真可惜。如果你改变主意了，来找我!"/>
@@ -46144,20 +46176,20 @@
         <imgdir name="0">
             <string name="0" value="复活节就要到了。为了庆祝，我会为大家制作复活节篮子。你想要一个吗?"/>
             <imgdir name="yes">
-                <string name="0" value="不错的选择。你能给我拿来#b100树枝#k，#b100黏糊糊的液体#k吗?"/>
+                <string name="0" value="好选择。你能帮我带来#b100根树枝#k和#b100份黏稠液体#k吗？"/>
             </imgdir>
             <imgdir name="no">
                 <string name="0" value="我明白了。我做的篮子是镇上最好的，所以如果你改变主意了，我就在这里。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="收集了#b100树枝#k，#b100黏糊糊的液体#k需要制作#烤面包篮#k。现在让我看看……"/>
+            <string name="0" value="制作#烤面包篮#k需要#b100根树枝#k和#b100份黏稠液体#k。让我看看材料……"/>
             <imgdir name="yes">
                 <string name="0" value="这是你的#r复活节篮子#k!顺便说一下，我听说复活节兔子的讨厌表弟想要毁了今年的复活节。避开那个臭鸡蛋。他是这个赛季的耻辱"/>
             </imgdir>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="你是不是错过了什么?我需要#b100树枝#k，#b100黏糊糊的液体#k来制作一个#烤篮#k。"/>
+                    <string name="0" value="是不是少了什么？制作#烤篮#k需要#b100根树枝#k和#b100份黏稠液体#k。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -64896,21 +64928,21 @@
     </imgdir>
     <imgdir name="28344">
         <imgdir name="0">
-            <string name="0" value="新的狩猎季节已经开始了！我打算在埃尔娜市场这里搭起一个小摊，出售品质最好的皮革。为此，我指望你把所有这些皮革带到这里，当然会有非常丰厚的报酬。如果你错过了这个季节，你就不是一个认真的猎人。那是非常重要的。你知道，我可以给你一个关于如何有效狩猎的特别提示。你感兴趣吗？"/>
+            <string name="0" value="新的狩猎季已经开始了！我打算在冰峰雪域市场摆个摊，出售品质最好的#r皮革#k。为此，我指望你把这些皮革都带来。当然，我会给你一份#b相当不错的报酬#k。如果错过这个季节，你可算不上认真的猎人。事情就是这么重要。你知道吗，我还可以给你一个有效狩猎的特别诀窍。你有兴趣吗？"/>
             <imgdir name="yes">
-                <string name="0" value="哦，哈哈...当然你能做到。作为一名正在训练中的猎人，你应该习惯我们周围的不确定性。拿去这份我需要你带来的皮革清单，并把它们带到这里，好吗？如果你通过了这次考验，你将不会后悔！"/>
-                <string name="1" value="你首先需要一捆60个正常的#b#t4000021##k。在#rLeafre#k，寻找一些#b#t4000264##k。在#rMu Lung#k，寻找一些#b#t4000281##k和#b#t4000295##k，这些在这里非常受欢迎，而且很少见。在#rVictoria Island#k，寻找一些#b#t4000030##k，它们的坚韧但灵活的质地形成了独特的风味。"/>
-                <string name="2" value="最后，#b#t4032475##k。通常它们的皮质并不太一致。不过，一旦我们进入开放狩猎季节，它们就可以用来装饰一些东西。说了这些，祝你狩猎好运，注意安全。"/>
+                <string name="0" value="哦呵呵……当然有兴趣。作为正在修行的猎人，你应该习惯周围充满不确定性的情况。拿着这份我要的皮革清单，把它们带到这里来，明白吗？如果你通过这次考验，一定不会后悔！"/>
+                <string name="1" value="首先，你需要普通的#b#t4000021##k，一共60个。在#r神木村#k，去寻找一些#b#t4000264##k。在#r武陵#k，寻找一些#b#t4000281##k和#b#t4000295##k，这些在这里很受欢迎，也很少见。在#r维多利亚岛#k，寻找一些#b#t4000030##k，它们坚韧又有弹性的质地相当有特色。"/>
+                <string name="2" value="最后是#b#t4032475##k。通常它们的皮质并不稳定。不过一到开放狩猎季，就能用来装饰一些东西。就这些，祝你狩猎顺利，注意安全。"/>
             </imgdir>
             <imgdir name="no">
-                <string name="0" value="“嘿，人们排成长龙来听我的成功狩猎的秘诀。我真诚希望你不会后悔你的决定，但你会后悔的。”"/>
+                <string name="0" value="嘿，想听我成功狩猎秘诀的人能排出好几里。我真心希望你不会后悔这个决定，不过你会的。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="做得非常好！这段时间我一直在训练我的烧烤技巧，但是，嗯，你花了这么长时间，它都冷冻结了！啊，好吧，让我重新加热一下给你。拿好你的奖品。"/>
+            <string name="0" value="做得非常好！这段时间我一直在练习烧烤技巧，不过，呃，你花的时间太久，它都冻住了！好吧，让我重新加热一下。拿好你的奖品。"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="“你为什么还没带他们来？你的奖品在这里，带他们来拿吧！它在凉着。”"/>
+                    <string name="0" value="你为什么还没把东西带来？你的奖品就在这里，带来材料就能领取！它都快凉了。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -65250,27 +65282,6 @@
             </imgdir>
         </imgdir>
     </imgdir>
-    <imgdir name="28344">
-        <imgdir name="0">
-            <string name="0" value="The new hunting season has begun! I am planning to set-up a stand here at the El-Nath Market, selling #rleathers#k of the most fine quality. And for this, I am counting on you to bring all these leathers here, obviously for a #bvery nice reward#k. If you miss that season, you&apos;re not a serious hunter. It&apos;s that important. You know, I can give you a special tip on how to hunt effectively. Are you interested?"/>
-            <imgdir name="yes">
-                <string name="0" value="Oh hoho... Surely you do. As a hunter in training, you should get accostumed with the uncertainties that surround us. So, take this list of leathers I want you to bring, and bring them here, ok? If you pass this test, you will not regret it!"/>
-                <string name="1" value="You will need firstly regular #b#t4000021##k in a bunch of 60. In #rLeafre#k, hunt for some #b#t4000264##k. In #rMu Lung#k, hunt for some #b#t4000281##k and #b#t4000295##k, these are widely appreciated around here, and quite rare to find. In #rVictoria Island#k, hunt some #b#t4000030##k, their tough yet flexible texture form quite the spice."/>
-                <string name="2" value="Finally, #b#t4032475##k. Normally their leather are not very consistent. However, once we are in open hunt season, they have some utility for adorning things. Said all that, good luck on your hunt and be safe."/>
-            </imgdir>
-            <imgdir name="no">
-                <string name="0" value="Hey, people line up for miles to hear my secret for successful hunting. I sincerely hope you don&apos;t regret your decision, but you will."/>
-            </imgdir>
-        </imgdir>
-        <imgdir name="1">
-            <string name="0" value="Very well done! I&apos;ve been training my barbecue skills in the meantime but, well, you took so long it froze over! Ah, well, let me reheat it for you. Take your prize."/>
-            <imgdir name="stop">
-                <imgdir name="item">
-                    <string name="0" value="Why did you not bring them yet? Your prize is right here, bring them to receive it! It&apos;s cooling."/>
-                </imgdir>
-            </imgdir>
-        </imgdir>
-    </imgdir>
     <imgdir name="28325">
         <imgdir name="1">
             <string name="0" value="Oh, you&apos;ve completed it!"/>
@@ -65449,41 +65460,41 @@
     </imgdir>
     <imgdir name="8075">
         <imgdir name="0">
-            <string name="0" value="我不知道，我不知道。。。\n你能把你的智慧借给我一秒钟吗？\n我已经为此失眠三天了。"/>
-            <string name="1" value="谢谢你！\n如你所知，7-2区是草药的圣地，\n我在这里住了很长时间的原因是因为我总能收集到大量现成的草药。也因为我也在寻找完全不同的东西。"/>
-            <string name="2" value="这是很久以前写的草药档案。 \n这是一个档案，它的存在本身就被认为是传奇的。"/>
-            <string name="3" value="嗯...我看到.\n我在地狱里走了一圈又一圈，最后在森林深处一个太阳无法到达的地方找到了那份档案。"/>
-            <string name="4" value="退一步说，我不知所措!！\n草药档案，是一位学者多年前写的，就在我手里！\n当然，我周围的人认为这是假的，哈哈哈!"/>
-            <string name="5" value="我只是想相信这个事实这就是人们谈论的传奇档案。\n通过解决这个档案中提供的谜语，我可能最终能够获得“三大”，三种古老的草药被认为是所有草药的顶峰。"/>
-            <string name="6" value="别那样怀疑地看着我。\n一旦我找到这个，这可能会变成一大笔钱!然而，我对它不感兴趣。\n如果我能解开这个档案的谜题，找到三巨头，请放心，我会给你相应的奖励。"/>
-            <string name="7" value="你觉得呢？你想参军吗？\n我很想用你这样聪明的头脑来解开这个古老的谜题！\n...虽然“三巨头”在科学上被认为是辉煌的，但实际的药用效果可能存在问题......"/>
-            <imgdir name="no">
-                <string name="0" value="嗯...很遗憾你拒绝加入萨比特拉马档案研究委员会。"/>
-            </imgdir>
+            <string name="0" value="我不知道，我不知道……\n你能借我一点智慧吗？\n这件事已经让我失眠三天了。"/>
+            <string name="1" value="谢谢你。\n你也知道，7-2区是药草的圣地。\n我会长期住在这里，是因为这里总能采到各种珍贵药草，也因为我一直在寻找另一种完全不同的东西。"/>
+            <string name="2" value="那是很久以前写成的药草档案。\n光是它的存在，就已经像传说一样了。"/>
+            <string name="3" value="嗯……是这样的。\n我费尽千辛万苦，终于在森林深处一个阳光照不到的地方找到了那份档案。"/>
+            <string name="4" value="我当时简直激动得说不出话！\n古代学者留下的药草档案，竟然就在我手里！\n当然，身边的人都说那是骗人的，哈哈哈！"/>
+            <string name="5" value="可我还是愿意相信，那就是传说中的档案。\n只要解开档案里的谜题，也许就能找到被称为药草顶点的“三大古代药草”。"/>
+            <string name="6" value="别用那种怀疑的眼神看着我。\n如果真的找到了它们，确实可能变成一大笔财富！不过我在意的不是钱。\n如果你能帮我解开档案之谜，找到三大药草，我一定会好好酬谢你。"/>
+            <string name="7" value="怎么样？你愿意加入我们吗？\n我很想和你这样聪明的人一起解开古代谜题！\n……不过，“三大药草”虽然在学术上极具价值，实际药效可能还有待确认。"/>
             <imgdir name="yes">
-                <string name="0" value="好!谢谢你！\n萨比特拉玛档案研究委员会正在这里成立!"/>
-                <string name="1" value="档案中提到了有关古代草药的重要事实。我读给你听。"/>
-                <string name="2" value="...\n黑白之灵向大地告别，出现在我面前。在两个沉默的灵魂上做个标记，灵魂就会混合在一起，变成第一药草。"/>
-                <string name="3" value="...\n你怎么看待一个在摇篮里吮吸孤独和黑暗的人，而灵魂早已离开了身体?不能回归的灵魂必须找到一个灵魂伴侣，与之共度永恒。你是娃娃，在里面，你会找到第二个药草。"/>
-                <string name="4" value="...\n关于第三药草，这一页被撕掉了，所以没办法知道这里写了什么。\n一份缺少最重要一页的档案......真可惜。"/>
-                <string name="5" value="关于第三种药草，我会在其他书中寻找线索。如果你能帮我解开前两个谜语，我会很感激的。\n你能做到吗？\n在这种情况下，直觉在解开谜题中发挥了重要作用！\n请三思而后行。"/>
-                <string name="6" value="我想，关于第一种药草，我必须找到“黑白之灵”。没有这两者，就很难得到这种草药。\n祝你好运，委员们!"/>
+                <string name="0" value="太好了！谢谢你！\n萨比特拉玛档案研究委员会，就在此刻正式成立！"/>
+                <string name="1" value="档案里记载了关于古代药草的重要内容。我念给你听。"/>
+                <string name="2" value="……\n黑与白之灵告别大地，出现在我面前。在两个沉默的灵体上留下印记，灵体相融，化为第一药草。"/>
+                <string name="3" value="……\n你如何看待那个在摇篮中吞噬孤独与黑暗、灵魂早已离开身体的存在？无法回归的灵魂必须找到能共度永恒的伴侣。你是人偶，而第二药草就在其中。"/>
+                <string name="4" value="……\n至于第三药草，最关键的那一页被撕掉了，完全看不出写了什么。\n偏偏缺了最重要的一页……真是太可惜了。"/>
+                <string name="5" value="关于第三药草，我会再去其他书里寻找线索。前两个谜题就拜托你了。\n你能做到吗？\n这种时候，直觉在解谜中也很重要！\n行动前请仔细思考。"/>
+                <string name="6" value="关于第一药草，我想你必须找到“黑与白之灵”。少了其中任何一个，都很难得到药草。\n祝你好运，研究委员！"/>
+            </imgdir>
+            <imgdir name="no">
+                <string name="0" value="嗯……真遗憾，你不愿意加入萨比特拉玛档案研究委员会。"/>
             </imgdir>
         </imgdir>
         <imgdir name="1">
-            <string name="0" value="委员们，你觉得苏米是个什么样的人?我还是找不到任何关于第三种药草的线索。我想这比我想象的要花更多的时间."/>
-            <string name="1" value="这个...就是这样!！\n就是这样，委员们！\nBri...辉煌！！！"/>
-            <string name="2" value="我...我现在高兴得发抖。我这辈子都没这么开心过。\n这个...是古老的草药...!我真不敢相信!"/>
-            <string name="3" value="你是怎么找到它的？\n什么......？嗯...所以？\nOh~~！\n不，这就是为什么，就像这样，那样，还有......"/>
-            <string name="4" value="哦，原来是这样!"/>
-            <string name="5" value="黑与白的精神......那是黑石魔像和魔像的碎片!那些岩石表面肯定有一些精致的东西。所以从这块岩石散发出神秘力量的草药...那是第一个赫伯!"/>
-            <string name="6" value="第二种药草。 \n一个被遗弃的没有灵魂的娃娃......我知道那是什么意思，但是...嗯，是的，另一个留在同一个身体里的存在，控制娃娃的死亡泰迪。受控制的娃娃是用棉花做的，棉花就是第二种药草!"/>
-            <string name="7" value="干得好，委员们。\n我不得不说，你渊博的知识和智慧给我留下了深刻的印象。作为委员会的领导，我祝贺你工作做得很好。 \n愿萨比特拉玛档案研究委员会兴旺发达!"/>
-            <string name="8" value="好了，到目前为止还没有关于第三种药草的线索。时机成熟时我会告诉你的。这是对你的奖赏。我还把“危险因素”算进了这个工资里。我还要给你这个，我魔法收藏的一部分。 \n\n再接再厉!"/>
+            <string name="0" value="研究委员，你觉得线索会是什么？我还是没找到第三药草的消息，看来还需要比预想更久的时间。"/>
+            <string name="1" value="这……就是它！\n就是它啊，研究委员！\n太……太了不起了！！！"/>
+            <string name="2" value="我……我现在激动得发抖。这辈子都没这么开心过。\n这就是……古代药草……！真不敢相信！"/>
+            <string name="3" value="你是怎么找到的？\n什么……？嗯……原来如此？\n哦～～！\n难怪，是这样，又是那样，然后才……"/>
+            <string name="4" value="哦，原来如此！"/>
+            <string name="5" value="黑与白之灵……原来就是黑石巨人与石巨人的碎片！那些石块表面确实有精巧的纹路。吸收了石块散发出的神秘力量后孕育出的药草……那就是第一药草！"/>
+            <string name="6" value="还有第二药草。\n没有灵魂的废弃人偶……我大概明白它的意思了。嗯，留在同一具身体里的另一个存在，就是操纵人偶的死灵玩具熊。那些被操纵的人偶由棉花制成，而棉花就是第二药草！"/>
+            <string name="7" value="干得好，研究委员。\n我必须说，你的知识和智慧让我非常佩服。作为委员会负责人，我祝贺你完成了出色的工作。\n愿萨比特拉玛档案研究委员会繁荣昌盛！"/>
+            <string name="8" value="好了，第三药草目前还没有线索。等时机成熟，我会再通知你。这是你的报酬，我也把这次的危险补贴算进去了。另外，这件我的魔法收藏也送给你。\n\n继续努力吧！"/>
             <imgdir name="stop">
                 <imgdir name="item">
-                    <string name="0" value="Hmmm...？\n这一点都不坏吗?遗憾的是，我们的样本量太小了，所以无法判断它是否是一种古老的草药。请再多收集一些。我明白了......我想每人100分就足够了。"/>
-                    <string name="1" value="我就指望你了，委员!"/>
+                    <string name="0" value="嗯……？\n这些看起来确实不错。可惜样本数量太少，还不能判断它们是不是古代药草。请再多收集一些。嗯……每种100个应该就够了。"/>
+                    <string name="1" value="拜托你了，研究委员！"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -66440,7 +66451,7 @@
                     <string name="0" value="为了让怪物们无法复活，请你去搜集战利品各10个。"/>
                 </imgdir>
                 <imgdir name="mob">
-                    <string name="0" value="Please eliminate 50 of every type of monster in town."/>
+                    <string name="0" value="请消灭村庄里每一种怪物各50只。"/>
                 </imgdir>
             </imgdir>
         </imgdir>
@@ -67359,30 +67370,6 @@
             <imgdir name="stop">
                 <imgdir name="item">
                     <string name="0" value="我知道你很累，但别撒谎！"/>
-                </imgdir>
-            </imgdir>
-        </imgdir>
-    </imgdir>
-    <imgdir name="8072">
-        <imgdir name="0">
-            <string name="0" value="哦~ !这简直太完美了。嘿，陌生人，你能帮我一把吗?"/>
-            <string name="1" value="我很抱歉。我在打扫卫生的时候发现了这个。我能读懂这个，但我不知道这是什么意思..."/>
-            <string name="2" value="(收到了木野河野寄来的一张旧纸。它看起来很模糊，但上面写了些什么。)"/>
-            <string name="3" value="上面写着“K H H L P□”......最后一个字母是空的。那封信一定是什么?？"/>
-            <string name="4" value="(上面清楚地写着“K H E L P”，加上P后面的空白，除此之外，没有任何字母或图画的迹象。)"/>
-            <string name="5" value="我能感觉到那张纸有些不寻常。你能帮我解这个代码吗?"/>
-            <imgdir name="no">
-                <string name="0" value="我明白了。我看得出来你是个大忙人。哦...!"/>
-            </imgdir>
-            <imgdir name="yes">
-                <string name="0" value="祝你好运。我等你的答复。"/>
-            </imgdir>
-        </imgdir>
-        <imgdir name="1">
-            <string name="0" value="(根据从木野Konoko那里学到的代码，我去了第7-2节，然后......的什么?雕像上好像刻了什么东西。"/>
-            <imgdir name="stop">
-                <imgdir name="npc">
-                    <string name="0" value="你破解代码了吗?我将等待好消息......"/>
                 </imgdir>
             </imgdir>
         </imgdir>

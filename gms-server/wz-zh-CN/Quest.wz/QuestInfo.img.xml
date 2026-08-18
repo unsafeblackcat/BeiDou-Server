@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <imgdir name="QuestInfo.img">
     <imgdir name="1000">
         <string name="name" value="借来莎丽的镜子"/>
@@ -3144,7 +3144,7 @@
         <int name="order" value="3"/>
     </imgdir>
     <imgdir name="2017">
-        <string name="name" value="艾温的玻璃鞋"/>
+        <string name="name" value="（重复）艾温的玻璃鞋"/>
         <null name="parent"/>
         <string name="0" value="听说魔法密林的艾温丢了什么。。。"/>
         <string name="1" value="魔法密林叫艾温的妖精告诉我，她几天前去勇士部落的路上受到了全身都是火焰的怪物的攻击。那怪物抢走了她贵重的#b玻璃鞋#k。妖精族非常喜欢那样闪闪发光的东西，所以她很想找回来。在勇士部落打怪物的话，说不定可以找回艾温的玻璃鞋。"/>
@@ -5764,7 +5764,7 @@
         <int name="area" value="6"/>
         <string name="0" value="达到31级之后，突然收到了#b#p1002104##k的召唤。是新的情报搜集工作吗？但是他什么都没有说……"/>
         <string name="1" value="#p1002104#说有个重要的情报，让我赶快去#b#m104000004##k找他。说是非常紧急的事情……到底是什么事情呢？"/>
-        <string name="2" value="和我说话的原来是黑色之翼变身而成的假#p1002104#。这是人偶师为了把我引出来而设置的陷阱！还好最终击败了人偶师，但是没能抓住他，让他逃走了……#p1002104#从#p1201000#那里拿到了技能之后，好像出了事情。还好#p1002104#守住了技能，他把#b斗气掌握#k技能交给了我。"/>
+        <string name="2" value="和我说话的原来是黑色之翼变身而成的假#p1002104#。这是人偶师为了把我引出来而设置的陷阱！还好最终击败了人偶师，但是没能抓住他，让他逃走了……#p1002104#从#p1201000#那里拿到了技能之后，好像出了事情。还好#p1002104#守住了技能，他把#b精准矛#k技能交给了我。"/>
         <int name="autoStart" value="1"/>
         <string name="type" value="[技能]"/>
     </imgdir>
@@ -6853,7 +6853,7 @@
         <string name="1" value="为了证明自己可以成为拯救蘑菇王国的英雄，搜集#b50个#t4000499##k，交给#p1300005#。"/>
         <string name="2" value="证明了自己可以成为拯救蘑菇王国的英雄。"/>
         <string name="summary" value="消灭得意的蘑菇仔，搜集#b50个变种孢子#k，交给#p1300005#。"/>
-        <string name="rewardSummary" value="经验值11,500"/>
+        <string name="rewardSummary" value="经验值11,500&#xD;&#xA;可进行“事件的内幕”"/>
         <string name="demandSummary" value="#i4000499:# #t4000499:# #c4000499# / 50"/>
     </imgdir>
     <imgdir name="2313">
@@ -6864,7 +6864,7 @@
         <string name="1" value="去见见蘑菇王国的内务大臣。"/>
         <string name="2" value="从蘑菇王国的内务大臣那里了解了事件的概要。"/>
         <string name="summary" value="去见见蘑菇王国的#b内务大臣#k。"/>
-        <string name="rewardSummary" value="经验值4,000"/>
+        <string name="rewardSummary" value="经验值4,000&#xD;&#xA;可进行“探索蘑菇森林(1)”"/>
     </imgdir>
     <imgdir name="2314">
         <string name="name" value="探索蘑菇森林(1)"/>
@@ -8962,7 +8962,7 @@
     <imgdir name="28282">
         <string name="name" value="如何躲避恶臭"/>
         <string name="0" value="#b林中之城#k的#b#@1061011:##k说，他已经得到了有关地狱大公的最新情报。"/>
-        <string name="1" value="他已经找到了#r地狱大公#k所在的位置，但是那里充满了强烈刺鼻的恶臭，普通人根本无法靠近。只要你搜集到下列材料，他就可以帮你制作一个防毒面具。\n\n30张#r野猪皮#k、30个#r火独眼兽的眼睛#k、30个#r道符#k\n\n搜集完成后，回到#b林中之城#k向#b#@1061011:##k报告。"/>
+        <string name="1" value="他已经找到了#r地狱大公#k所在的位置，但是那里充满了强烈刺鼻的恶臭，普通人根本无法靠近。只要你搜集到下列材料，他就可以帮你制作一个防毒面具。\n\n30张#r野猪皮#k、30个#r邪恶之眼的眼球#k、30个#r道符#k\n\n搜集完成后，回到#b林中之城#k向#b#@1061011:##k报告。"/>
         <string name="2" value="#r狂野之眼的防毒面具#k已经做好了。虽然面具本身也有点味道，但如果前方恶臭难以忍受，它应该能帮你顺利通过。"/>
         <int name="area" value="30"/>
         <string name="demandSummary" value="#i4001372:# #t4001372:# #c4001372# / 30 #i4000008:# #t4000008:# #c4000008# / 30 #i4001373:# #t4001373:# #c4001373# / 30 "/>
@@ -9345,45 +9345,45 @@
         <int name="autoStart" value="1"/>
     </imgdir>
     <imgdir name="28344">
-        <string name="name" value="Hunter&apos;s Profission"/>
+        <string name="name" value="猎人的职业素养"/>
         <int name="area" value="50"/>
-        <string name="0" value="Scadur seems up to something big this time. I should move to El Nath and see what he is looking for..."/>
-        <string name="1" value="So Scadur is going to set-up a &quot;Leather Festival&quot; on El Nath... I&apos;m out to find and collect all these items for him. Hope the reward of this mission is really worth it...\n\n#i4000021# #t4000021# #c4000021# / #r60#k\n#i4000264# #t4000264# #c4000264# / #r30#k\n#i4000281# #t4000281# #c4000281# / #r30#k\n#i4000295# #t4000295# #c4000295# / #r30#k\n#i4000030# #t4000030# #c4000030# / #r15#k\n#i4032475# #t4032475# #c4032475# / #r10#k"/>
-        <string name="2" value="I helped Scadur in his &quot;Leather Festival&quot;, held on El Nath."/>
+        <string name="0" value="斯卡德尔这次似乎在筹备什么大事。我应该去冰峰雪域看看他需要什么……"/>
+        <string name="1" value="原来斯卡德尔打算在冰峰雪域举办一场“皮革节”……我要帮他寻找并收集这些材料。希望这次任务的报酬真的值得期待……\n\n#i4000021# #t4000021# #c4000021# / #r60#k\n#i4000264# #t4000264# #c4000264# / #r30#k\n#i4000281# #t4000281# #c4000281# / #r30#k\n#i4000295# #t4000295# #c4000295# / #r30#k\n#i4000030# #t4000030# #c4000030# / #r15#k\n#i4032475# #t4032475# #c4032475# / #r10#k"/>
+        <string name="2" value="我帮助斯卡德尔完成了在冰峰雪域举办的“皮革节”。"/>
     </imgdir>
     <imgdir name="29000">
-        <string name="name" value="挑战勋章-组队任务狂人勋章"/>
-        <string name="0" value="#b#e挑战勋章-组队任务狂人勋章#n\n#k听说完成5个组队任务，且每个任务的成绩都达到S级，就能获得#e#b组队任务狂人勋章#k#n？勋章老人等待着那些敢于挑战名誉勋章的勇士们。"/>
-        <string name="1" value="#b#e挑战勋章-组队任务狂人勋章#n\n#k \n - 组队任务S级: #b#jscnt##k个数 / 5个 \n                              #jgaugePqS# #jperPqS# %"/>
-        <string name="2" value="#b#e挑战勋章-组队任务狂人勋章#n\n#k \n - 组队任务S级: #b#jscnt##k个数 / 5个 \n                              #jgaugePqS# #jperPqS# %\n\n已经成功完成了5个成绩为S级的组队任务！勋章老人赐予我&apos;#b组队任务狂人勋章#k&apos;。他说只有像我这样热衷于组队任务的少数冒险家才能获得这个荣誉。"/>
+        <string name="name" value="挑战 - 组队任务狂人"/>
+        <string name="0" value="#b#e挑战 - 组队任务狂人#n\n#k听说完成 5 个组队任务，且每个任务的成绩都达到 S 级，就能获得#e#b组队任务狂人勋章#k#n。勋章老人正在等待那些敢于挑战荣誉的勇士们。"/>
+        <string name="1" value="#b#e挑战 - 组队任务狂人#n\n#k \n - 组队任务S级: #b#jscnt##k个数 / 5个 \n                              #jgaugePqS# #jperPqS# %"/>
+        <string name="2" value="#b#e挑战 - 组队任务狂人#n\n#k \n - 组队任务S级: #b#jscnt##k个数 / 5个 \n                              #jgaugePqS# #jperPqS# %\n\n已经成功完成了 5 个成绩为 S 级的组队任务！勋章老人赐予我&apos;#b组队任务狂人勋章#k&apos;。他说只有像我这样热衷于组队任务的少数冒险家才能获得这个荣誉。"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142001"/>
     </imgdir>
     <imgdir name="29001">
-        <string name="name" value="挑战勋章-任务狂人勋章"/>
-        <string name="0" value="#b#e挑战勋章-任务狂人勋章#n\n#k有在活动任务以外还能完成800个任务的勇士吗？……很难说吧。勋章老人将授予取得如此伟大成就的冒险家#e#b任务狂人勋章#k#n。"/>
-        <string name="1" value="#b#e挑战勋章-任务狂人勋章#n\n\n#k - 完成任务数: #b#jcmpcnt##k / 800个(活动任务除外)\n                              #jgaugeQCnt# #jperQCnt# %"/>
-        <string name="2" value="#b#e挑战勋章-任务狂人勋章#n\n\n#k - 完成任务数: #b#jcmpcnt##k / 800个(活动任务除外)\n                              #jgaugeQCnt# #jperQCnt# %\n\n成功完成了除活动任务外的800个任务！勋章老人以名誉神官的名义赐予我&apos;#b任务狂人勋章#k&apos;。"/>
+        <string name="name" value="挑战 - 任务狂人"/>
+        <string name="0" value="#b#e挑战 - 任务狂人#n\n#k有在活动任务以外还能完成 800 个任务的勇士吗？……很难说吧。勋章老人将授予取得如此伟大成就的冒险家#e#b任务狂人勋章#k#n。"/>
+        <string name="1" value="#b#e挑战 - 任务狂人#n\n\n#k - 完成任务数: #b#jcmpcnt##k / 800个(活动任务除外)\n                              #jgaugeQCnt# #jperQCnt# %"/>
+        <string name="2" value="#b#e挑战 - 任务狂人#n\n\n#k - 完成任务数: #b#jcmpcnt##k / 800个(活动任务除外)\n                              #jgaugeQCnt# #jperQCnt# %\n\n成功完成了除活动任务外的 800 个任务！勋章老人以名誉神官的名义赐予我&apos;#b任务狂人勋章#k&apos;。"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142002"/>
     </imgdir>
     <imgdir name="29002">
-        <string name="name" value="挑战勋章-超人气王勋章!"/>
-        <string name="0" value="#b#e挑战勋章-超人气王勋章#n\n#k在限定的30天内将人气度提高1000，就能获得这个荣誉。去找勋章老人挑战#e#b超人气王勋章#n#k吧。"/>
-        <string name="1" value="#b#e挑战勋章-超人气王勋章#n\n#k - 剩余时间: #Qdaylimit#天 #Qhourlimit#小时 #Qminlimit#分\n - 人气度增加量: #b#jpopgap##k / #jpopG#\n               #jgaugePop# #jperPop# %"/>
-        <string name="2" value="#b#e挑战勋章-超人气王勋章#n\n#k - 剩余时间: #Qdaylimit#天 #Qhourlimit#小时 #Qminlimit#分\n - 人气度增加量 : #b#jpopgap##k / #jpopG#\n               #jgaugePop# #jperPop# %\n\n成功在30天内将人气度提高了1000！连勋章老人也对我刮目相看，终于从名誉神官的手中获得了&apos;#b超人气王勋章#k&apos;。呼，再来挑战&apos;#b冒险岛偶像明星勋章(特级)#k&apos;试试？"/>
+        <string name="name" value="挑战 - 超人气王"/>
+        <string name="0" value="#b#e挑战 - 超人气王#n\n#k在限定的 30 天内将人气度提高 1000，就能获得这个荣誉。去找勋章老人挑战#e#b超人气王勋章#n#k吧。"/>
+        <string name="1" value="#b#e挑战 - 超人气王#n\n#k - 剩余时间: #Qdaylimit#天 #Qhourlimit#小时 #Qminlimit#分\n - 人气度增加量: #b#jpopgap##k / #jpopG#\n               #jgaugePop# #jperPop# %"/>
+        <string name="2" value="#b#e挑战 - 超人气王#n\n#k - 剩余时间: #Qdaylimit#天 #Qhourlimit#小时 #Qminlimit#分\n - 人气度增加量 : #b#jpopgap##k / #jpopG#\n               #jgaugePop# #jperPop# %\n\n成功在 30 天内将人气度提高了 1000！连勋章老人也对我刮目相看，终于从名誉神官的手中获得了&apos;#b超人气王勋章#k&apos;。呼，再来挑战&apos;#b冒险岛偶像明星勋章(特级)#k&apos;试试？"/>
         <int name="timeLimit2" value="2592000"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142003"/>
     </imgdir>
     <imgdir name="29003">
-        <string name="name" value="挑战勋章-诚实的冒险家"/>
-        <string name="0" value="#b#e挑战勋章-诚实的冒险家#n\n#k在30天的限制时间内，如果成功地达到27天在线3小时以上，就可以获得#e#b诚实的冒险家#k#n称号。去见见名誉之神官达利尔吧。"/>
-        <string name="1" value="#b#e挑战勋章-诚实的冒险家#n\n#k - 剩余时间：#Qdaylimit#天#Qhourlimit#小时#Qminlimit#分#Qseclimit#秒\n -今天游戏时间：#Dhour#小时#Dmin#分#Dsec#秒/ #Dminhour#小时\n - 成功日/目标日：#Dcount#天/ #Ddaylimit#天\n                             #jgaugeDays#  #jperDays#%"/>
-        <string name="2" value="#b#e挑战勋章-诚实的冒险家#n\n#k - 剩余时间：#Qdaylimit#天#Qhourlimit#小时#Qminlimit#分#Qseclimit#秒\n - 今天游戏时间：#Dhour#小时#Dmin#分#Dsec#秒/ #Dminhour#小时\n - 成功日/目标日#Dcount#天/ #Ddaylimit#天\n                             #jgaugeDays#  #jperDays#%\n\n名誉之神官达利尔称赞了我，说诚实才是冒险家的首要条件，并给成功完成挑战的我颁发了”#b诚实的冒险家#k“称号。"/>
+        <string name="name" value="挑战 - 诚实的冒险家"/>
+        <string name="0" value="#b#e挑战 - 诚实的冒险家#n\n#k在 30 天的限制时间内，如果成功地达到 27 天在线 3 小时以上，就可以获得#e#b诚实的冒险家#k#n称号。去见见名誉之神官达利尔吧。"/>
+        <string name="1" value="#b#e挑战 - 诚实的冒险家#n\n#k - 剩余时间：#Qdaylimit#天#Qhourlimit#小时#Qminlimit#分#Qseclimit#秒\n -今天游戏时间：#Dhour#小时#Dmin#分#Dsec#秒/ #Dminhour#小时\n - 成功日/目标日：#Dcount#天/ #Ddaylimit#天\n                             #jgaugeDays#  #jperDays#%"/>
+        <string name="2" value="#b#e挑战 - 诚实的冒险家#n\n#k - 剩余时间：#Qdaylimit#天#Qhourlimit#小时#Qminlimit#分#Qseclimit#秒\n - 今天游戏时间：#Dhour#小时#Dmin#分#Dsec#秒/ #Dminhour#小时\n - 成功日/目标日#Dcount#天/ #Ddaylimit#天\n                             #jgaugeDays#  #jperDays#%\n\n名誉之神官达利尔称赞了我，说诚实才是冒险家的首要条件，并给成功完成挑战的我颁发了”#b诚实的冒险家#k“称号。"/>
         <int name="timeLimit2" value="2592000"/>
         <int name="dailyPlayTime" value="10800"/>
         <int name="area" value="51"/>
@@ -9400,9 +9400,9 @@
         <int name="viewMedalItem" value="1142111"/>
     </imgdir>
     <imgdir name="29005">
-        <string name="name" value="挑战勋章-新手探险家"/>
+        <string name="name" value="新手探险家勋章"/>
         <int name="area" value="51"/>
-        <string name="0" value="让我们开始探索吧！你可以获得#b&lt;新手探险家&gt;#k 通过探索冒险岛的地区来获得勋章。"/>
+        <string name="0" value="让我们开始探索吧！通过探索冒险岛的主要地区，你可以获得#b&lt;新手探险家&gt;#k勋章。"/>
         <string name="1" value="#b#e勋章 - 新手探险家#k#n\r\n探索冒险岛的20个主要地区。\r\n#b● 状态 : #R27010# / 20 完成#k"/>
         <string name="2" value="你已获得#b&lt;新手探险家&gt;#k探索冒险岛各地之旅的勋章，所有冒险都从这里开始。"/>
         <int name="medalCategory" value="1"/>
@@ -9510,97 +9510,97 @@
         <string name="0" value="挑战自己，探索金银岛吧！\r\n新手探险家\n林中之城探险家\n必须共获得2个称号。"/>
     </imgdir>
     <imgdir name="29017">
-        <string name="name" value="Title - Soul Conjurer"/>
+        <string name="name" value="称号 - 阴阳师"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142138"/>
-        <string name="0" value="You can acquire the title of #b&lt;Soul Conjurer&gt;#k by eliminating undead monsters and sending them back to nirvana..."/>
-        <string name="1" value="#b#eTitle - Soul Conjurer#k#n\r\nEliminate undead monsters and send them back to where they came from.\n\n1 #t2383036#\n1 #t2384003#\n1 #t2383037# \n1 #t2383038# \n1 #t2388008# \n\n#o5150001# #a290171#\n#o6230602# #a290172#\n#o5130107# #a290173#\n#o5130108# #a290174#\n#o6300005# #a290175#"/>
-        <string name="2" value="You were able to eliminate the undead monsters and acquired the title of #b&lt;Soul Conjurer&gt;#k."/>
+        <string name="0" value="消灭亡灵怪物并将它们送往应去之处，即可获得#b&lt;阴阳师&gt;#k称号。"/>
+        <string name="1" value="#b#e称号 - 阴阳师#k#n\r\n消灭亡灵怪物，将它们送回应去之处。\n\n1 #t2383036#\n1 #t2384003#\n1 #t2383037# \n1 #t2383038# \n1 #t2388008# \n\n#o5150001# #a290171#\n#o6230602# #a290172#\n#o5130107# #a290173#\n#o5130108# #a290174#\n#o6300005# #a290175#"/>
+        <string name="2" value="你消灭了亡灵怪物，获得了#b&lt;阴阳师&gt;#k称号。"/>
         <int name="autoComplete" value="1"/>
         <string name="demandSummary" value="#t2383036# 1\r\n#t2384003# 1\r\n#t2383037# 1\r\n#t2383038# 1\r\n#t2388008# 1\r\n#t2384010# 1\r\n#o5150001# #a290171#\r\n#o6230602# #a290172#\r\n#o5130107# #a290173#\r\n#o5130108# #a290174#\r\n#o6300005# #a290175#\r\n#o6090000# #a290176#\r\n"/>
-        <string name="rewardSummary" value="#Wbasic#\r\n#i1142138:# #t1142138:# 1 \r\nGo on to &apos;Title - Soul Guardian&apos; quest\r\n"/>
+        <string name="rewardSummary" value="#Wbasic#\r\n#i1142138:# #t1142138:# 1 \r\n继续进行&lt;称号 - 退魔师&gt;任务\r\n"/>
     </imgdir>
     <imgdir name="29018">
-        <string name="name" value="Title - Soul Guardian"/>
+        <string name="name" value="称号 - 退魔师"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142139"/>
-        <string name="0" value="You can apparently acquire the title of #b&lt;Soul Guardian&gt;#k by eliminating undead monsters and sending them back to nirvana…"/>
-        <string name="1" value="#b#eTitle - Soul Guardian#k#n\r\nEliminate undead monsters and send them back to where they came from.\n\n1 #t2384004# \n1 #t2384014# \n1 #t2384018# \n1 #t2385000# \n1 #t2385020# \n\n#o6230400# #a290181#\n#o6230500# #a290182#\n#o6110301# #a290183#\n#o8140300# #a290184#\n#o7130300# #a290185#"/>
-        <string name="2" value="You were able to eliminate the undead monsters and acquired the title of #b&lt;Soul Guardian&gt;#k."/>
+        <string name="0" value="消灭亡灵怪物并将它们送往应去之处，即可获得#b&lt;退魔师&gt;#k称号。"/>
+        <string name="1" value="#b#e称号 - 退魔师#k#n\r\n消灭亡灵怪物，将它们送回应去之处。\n\n1 #t2384004# \n1 #t2384014# \n1 #t2384018# \n1 #t2385000# \n1 #t2385020# \n\n#o6230400# #a290181#\n#o6230500# #a290182#\n#o6110301# #a290183#\n#o8140300# #a290184#\n#o7130300# #a290185#"/>
+        <string name="2" value="你消灭了亡灵怪物，获得了#b&lt;退魔师&gt;#k称号。"/>
         <int name="autoComplete" value="1"/>
         <string name="demandSummary" value="#t2384004# 1\r\n#t2384014# 1\r\n#t2384018# 1\r\n#t2384019# 1\r\n#t2385000# 1\r\n#t2385012# 1\r\n#t2385020# 1\r\n#o6230400# #a290181#\r\n#o6230500# #a290182#\r\n#o6110301# #a290183#\r\n#o8140200# #a290184#\r\n#o8140300# #a290185#\r\n#o7130010# #a290186#\r\n#o7130300# #a290187#\r\n"/>
-        <string name="rewardSummary" value="#Wbasic#\r\n#i1142139:# #t1142139:# 1 \r\nGo on to &apos;Title - Saint Exorcist&apos; quest\r\n"/>
+        <string name="rewardSummary" value="#Wbasic#\r\n#i1142139:# #t1142139:# 1 \r\n继续进行&lt;称号 - 神圣驱魔&gt;任务\r\n"/>
     </imgdir>
     <imgdir name="29019">
-        <string name="name" value="Title - Saint Exorcist"/>
+        <string name="name" value="称号 - 神圣驱魔"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142140"/>
-        <string name="0" value="You can apparently acquire the title of #b&lt;Saint Exorcist&gt;#k by eliminating undead monsters and sending them back to nirvana…"/>
-        <string name="2" value="You were able to eliminate the undead monsters and acquired the title of #b&lt;Saint Exorcist&gt;#k."/>
+        <string name="0" value="消灭亡灵怪物并将它们送往应去之处，即可获得#b&lt;神圣驱魔&gt;#k称号。"/>
+        <string name="2" value="你消灭了亡灵怪物，获得了#b&lt;神圣驱魔&gt;#k称号。"/>
         <int name="autoComplete" value="1"/>
-        <string name="1" value="#b#eTitle - Saint Exorcist#k#n\r\nEliminate undead monsters and send them back to where they came from.\n\n1 #t2386000# \n1 #t2386004# \n1 #t2386010# \n1 #t2387002# \n1 #t2387003# \n\n#o8140600# #a290191#\n#o8142000# #a290192#\n#o8143000# #a290193#\n#o8190003# #a290194#\n#o8190004# #a290194#\r\n"/>
+        <string name="1" value="#b#e称号 - 神圣驱魔#k#n\r\n消灭亡灵怪物，将它们送回应去之处。\n\n1 #t2386000# \n1 #t2386004# \n1 #t2386010# \n1 #t2387002# \n1 #t2387003# \n\n#o8140600# #a290191#\n#o8142000# #a290192#\n#o8143000# #a290193#\n#o8190003# #a290194#\n#o8190004# #a290194#\r\n"/>
         <string name="demandSummary" value="#t2386000# 1\r\n#t2386004# 1\r\n#t2386010# 1\r\n#t2387001# 1\r\n#t2387002# 1\r\n#t2387003# 1\r\n#o8140600# #a290191#\r\n#o8142000# #a290192#\r\n#o8143000# #a290193#\r\n#o8170000# #a290194#\r\n#o8190003# #a290195#\r\n#o8190004# #a290196#\r\n"/>
         <string name="rewardSummary" value="#Wbasic#\r\n#i1142140:# #t1142140:# 1 \r\n"/>
     </imgdir>
     <imgdir name="29020">
-        <string name="name" value="Title - Dynamic Hair"/>
+        <string name="name" value="称号挑战 - 发型变换达人"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142122"/>
-        <string name="0" value="If you change your hairstyle more than 50 times, the Maple Hair Association will offer you the title of #b&lt;Dynamic Hair&gt;#k..."/>
-        <string name="1" value="#b#eTitle - Dynamic Hair#k#n\r\nUse Hair Salon\n(Change hairstyles, whether it be regular, special, or random. Hair color not included.)\r\n#b- Current Progress\nHair Changes #R29020# / 50 completed."/>
-        <string name="2" value="You changed your hairstyle 50 times and received the title #b&lt;Dynamic Hair&gt;#k."/>
+        <string name="0" value="听说冒险岛发型师协会正在寻找热衷造型变化的冒险家。只要累计变换发型 50 次以上，就能获得#b&lt;发型变换达人&gt;#k称号。"/>
+        <string name="1" value="#b#e称号挑战 - 发型变换达人#k#n\r\n使用理发店变换发型\n（包括普通、特别或随机发型，不包含染发。）\r\n#b- 当前进度\n变换发型次数 #R29020# / 50 次完成。"/>
+        <string name="2" value="你已累计变换发型 50 次，获得了#b&lt;发型变换达人&gt;#k称号。"/>
         <int name="autoComplete" value="1"/>
         <string name="rewardSummary" value="#Wbasic#\r\n#i1142122:# #t1142122:# 1 \r\n"/>
     </imgdir>
     <imgdir name="29300">
-        <string name="name" value="Title Challenge - Ultimate Warrior"/>
-        <string name="0" value="#b#eTitle Challenge - Ultimate Warrior#n\n#kThe Monk of Honor, Dalair, said he will give those who reach the highest level in their job each a different title.  Warriors will get the title, #e#bGallant Warrior#k#n, Magicians, #e#bWiseman#k#n, Archers, #e#bLord Sniper#k#n, Thieves, #e#bLegendary Thief#k#n and Pirates, #e#bKing Pirate#k#n.  If I&apos;m qualified enough to be selected by the God of Honor, I should go see Dalair and take the test. "/>
-        <string name="1" value="#b#eTitle Challenge - Ultimate Warrior#n\n#k\n - Level : #b#jlevel##k / 200"/>
-        <string name="2" value="#b#eTitle Challenge - Ultimate Warrior#n\n#k\n - Level : #b#jlevel##k / 200\n\nThe Monk of Honor, Dalair, presented me with the Ultimate Warrior title &apos;#bGallant Warrior#k&apos; after I reached level 200. "/>
+        <string name="name" value="称号挑战 - 终极战士"/>
+        <string name="0" value="#b#e称号挑战 - 终极战士#n\n#k荣誉修士德烈说，会给达到职业巅峰的人授予不同的称号。战士可以获得#e#b战武神#k#n，魔法师可以获得#e#b圣贤者#k#n，弓箭手可以获得#e#b狙击王#k#n，飞侠可以获得#e#b影飞侠#k#n，海盗可以获得#e#b海盗王#k#n。如果我有资格接受荣誉之神的考验，就去见德烈吧。"/>
+        <string name="1" value="#b#e称号挑战 - 终极战士#n\n#k\n - 等级：#b#jlevel##k / 200"/>
+        <string name="2" value="#b#e称号挑战 - 终极战士#n\n#k\n - 等级：#b#jlevel##k / 200\n\n达到200级后，荣誉修士德烈授予了我终极战士称号“#b战武神#k”。"/>
         <int name="area" value="10"/>
         <int name="viewMedalItem" value="1142009"/>
     </imgdir>
     <imgdir name="29301">
-        <string name="name" value="Title Challenge - Ultimate Magician"/>
-        <string name="0" value="#b#eTitle Challenge - Ultimate Magician#n\n#kThe Monk of Honor, Dalair, said those who reach the highest level in their job will each receive their own unique title.  Warriors will get the title, #e#bGallant Warrior#k#n, Magicians, #e#bWiseman#k#n, Archers, #e#bLord Sniper#k#n, Thieves, #e#bLegendary Thief#k#n and Pirates, #e#bKing Pirate#k#n.  If I&apos;m qualified enough to be selected by the God of Honor, I should go see Dalair and take the test. "/>
-        <string name="1" value="#b#eTitle Challenge - Ultimate Magician#n\n#k\n - Level : #b#jlevel##k / 200"/>
-        <string name="2" value="#b#eTitle Challenge - Ultimate Magician#n\n#k\n - Level : #b#jlevel##k / 200\n\nThe Monk of Honor, Dalair, presented me with the Ultimate Magician title &apos;#bWiseman#k&apos; after I reached level 200."/>
+        <string name="name" value="称号挑战 - 终极魔法师"/>
+        <string name="0" value="#b#e称号挑战 - 终极魔法师#n\n#k荣誉修士德烈说，会给达到职业巅峰的人授予不同的称号。战士可以获得#e#b战武神#k#n，魔法师可以获得#e#b圣贤者#k#n，弓箭手可以获得#e#b狙击王#k#n，飞侠可以获得#e#b影飞侠#k#n，海盗可以获得#e#b海盗王#k#n。如果我有资格接受荣誉之神的考验，就去见德烈吧。"/>
+        <string name="1" value="#b#e称号挑战 - 终极魔法师#n\n#k\n - 等级：#b#jlevel##k / 200"/>
+        <string name="2" value="#b#e称号挑战 - 终极魔法师#n\n#k\n - 等级：#b#jlevel##k / 200\n\n达到200级后，荣誉修士德烈授予了我终极魔法师称号“#b圣贤者#k”。"/>
         <int name="area" value="10"/>
         <int name="viewMedalItem" value="1142010"/>
     </imgdir>
     <imgdir name="29302">
-        <string name="name" value="Title Challenge - Ultimate Archer"/>
-        <string name="0" value="#b#eTitle Challenge - Ultimate Archer#n\n#kThe Monk of Honor, Dalair, said he will give those who reach the highest level in their job each a different title.  Warriors will get the title, #e#bGallant Warrior#k#n, Magicians, #e#bWiseman#k#n, Archers, #e#bLord Sniper#k#n, Thieves, #e#bLegendary Thief#k#n and Pirates, #e#bKing Pirate#k#n.  If I&apos;m qualified enough to be selected by the God of Honor, I should go see Dalair and take the test. "/>
-        <string name="1" value="#b#eTitle Challenge - Ultimate Archer#n\n#k\n - Level : #b#jlevel##k / 200"/>
-        <string name="2" value="#b#eTitle Challenge - Ultimate Archer#n\n#k\n - Level : #b#jlevel##k / 200\n\nThe Monk of Honor, Dalair, presented me with the Ultimate Archer title &apos;#bLord Sniper#k&apos; after I reached level 200."/>
+        <string name="name" value="称号挑战 - 终极弓箭手"/>
+        <string name="0" value="#b#e称号挑战 - 终极弓箭手#n\n#k荣誉修士德烈说，会给达到职业巅峰的人授予不同的称号。战士可以获得#e#b战武神#k#n，魔法师可以获得#e#b圣贤者#k#n，弓箭手可以获得#e#b狙击王#k#n，飞侠可以获得#e#b影飞侠#k#n，海盗可以获得#e#b海盗王#k#n。如果我有资格接受荣誉之神的考验，就去见德烈吧。"/>
+        <string name="1" value="#b#e称号挑战 - 终极弓箭手#n\n#k\n - 等级：#b#jlevel##k / 200"/>
+        <string name="2" value="#b#e称号挑战 - 终极弓箭手#n\n#k\n - 等级：#b#jlevel##k / 200\n\n达到200级后，荣誉修士德烈授予了我终极弓箭手称号“#b狙击王#k”。"/>
         <int name="area" value="10"/>
         <int name="viewMedalItem" value="1142011"/>
     </imgdir>
     <imgdir name="29303">
-        <string name="name" value="Title Challenge - Ultimate Thief"/>
-        <string name="0" value="#b#eTitle Challenge - Ultimate Thief#n\n#kThe Monk of Honor, Dalair, said he will give those who reach the highest level in their job each a different title.  Warriors will get the title, #e#bGallant Warrior#k#n, Magicians, #e#bWiseman#k#n, Archers, #e#bLord Sniper#k#n, Thieves, #e#bLegendary Thief#k#n and Pirates, #e#bKing Pirate#k#n.  If I&apos;m qualified enough to be selected by the God of Honor, I should go see Dalair and take the test. "/>
-        <string name="1" value="#b#eTitle Challenge - Ultimate Thief#n\n#k\n - Level : #b#jlevel##k / 200"/>
-        <string name="2" value="#b#eTitle Challenge - Ultimate Thief#n\n#k\n - Level : #b#jlevel##k / 200\n\nThe Monk of Honor, Dalair, presented me with the Ultimate Thief title &apos;#bLegendary Thief#k&apos; after I reached level 200."/>
+        <string name="name" value="称号挑战 - 终极飞侠"/>
+        <string name="0" value="#b#e称号挑战 - 终极飞侠#n\n#k荣誉修士德烈说，会给达到职业巅峰的人授予不同的称号。战士可以获得#e#b战武神#k#n，魔法师可以获得#e#b圣贤者#k#n，弓箭手可以获得#e#b狙击王#k#n，飞侠可以获得#e#b影飞侠#k#n，海盗可以获得#e#b海盗王#k#n。如果我有资格接受荣誉之神的考验，就去见德烈吧。"/>
+        <string name="1" value="#b#e称号挑战 - 终极飞侠#n\n#k\n - 等级：#b#jlevel##k / 200"/>
+        <string name="2" value="#b#e称号挑战 - 终极飞侠#n\n#k\n - 等级：#b#jlevel##k / 200\n\n达到200级后，荣誉修士德烈授予了我终极飞侠称号“#b影飞侠#k”。"/>
         <int name="area" value="10"/>
         <int name="viewMedalItem" value="1142012"/>
     </imgdir>
     <imgdir name="29304">
-        <string name="name" value="Title Challenge - Ultimate Pirate"/>
-        <string name="0" value="#b#eTitle Challenge - Ultimate Pirate#n\n#kThe Monk of Honor, Dalair, said he will give those who reach the highest level in their job each a different title.  Warriors will get the title, #e#bGallant Warrior#k#n, Magicians, #e#bWiseman#k#n, Archers, #e#bLord Sniper#k#n, Thieves, #e#bLegendary Thief#k#n and Pirates, #e#bKing Pirate#k#n.  If I&apos;m qualified enough to be selected by the God of Honor, I should go see Dalair and take the test. "/>
-        <string name="1" value="#b#eTitle Challenge - Ultimate Pirate#n\n#k\n - Level : #b#jlevel##k / 200"/>
-        <string name="2" value="#b#eTitle Challenge - Ultimate Pirate#n\n#k\n - Level : #b#jlevel##k / 200\n\nThe Monk of Honor, Dalair, presented me with the Ultimate Pirate title &apos;#bKing Pirate#k&apos; after I reached level 200."/>
+        <string name="name" value="称号挑战 - 终极海盗"/>
+        <string name="0" value="#b#e称号挑战 - 终极海盗#n\n#k荣誉修士德烈说，会给达到职业巅峰的人授予不同的称号。战士可以获得#e#b战武神#k#n，魔法师可以获得#e#b圣贤者#k#n，弓箭手可以获得#e#b狙击王#k#n，飞侠可以获得#e#b影飞侠#k#n，海盗可以获得#e#b海盗王#k#n。如果我有资格接受荣誉之神的考验，就去见德烈吧。"/>
+        <string name="1" value="#b#e称号挑战 - 终极海盗#n\n#k\n - 等级：#b#jlevel##k / 200"/>
+        <string name="2" value="#b#e称号挑战 - 终极海盗#n\n#k\n - 等级：#b#jlevel##k / 200\n\n达到200级后，荣誉修士德烈授予了我终极海盗称号“#b海盗王#k”。"/>
         <int name="area" value="10"/>
         <int name="viewMedalItem" value="1142013"/>
     </imgdir>
     <imgdir name="29400">
-        <string name="name" value="挑战勋章-勤奋冒险家勋章"/>
-        <string name="0" value="#b#e挑战勋章 - 勤奋冒险家勋章#n\n#k在30天内狩猎等级符合条件的#r100000只#k怪物！达利尔正在寻找最聪明伶俐、韧劲十足的勇士。完成挑战后，将被授予#e#b勤奋冒险家勋章#k#n。"/>
-        <string name="1" value="#b#e挑战勋章 - 勤奋冒险家勋章#b#n\n\n#k - 剩余时间：#Qdaylimit#天 #Qhourlimit#小时 #Qminlimit#分 #Qseclimit#秒\n - 已杀怪物数：#r#a294001##k\n\n※ 120级以下角色：必须狩猎等级高于自身等级的怪物。\n※ 120级及以上角色：必须狩猎120级及以上的怪物。\n" />
-        <string name="2" value="#b#e挑战勋章 - 勤奋冒险家勋章#b#n\n\n#k - 已完成：#r100000#k / 100000\n\n你已经完成挑战，获得了#b勤奋冒险家勋章#k。勋章遗失时，需要重新接受挑战并再次完成100000只怪物狩猎目标后才能重新领取。" />
+        <string name="name" value="挑战 - 勤奋冒险家"/>
+        <string name="0" value="#b#e挑战 - 勤奋冒险家#n\n#k在30天内狩猎等级符合条件的#r100000只#k怪物！达利尔正在寻找最聪明伶俐、韧劲十足的勇士。完成挑战后，将被授予#e#b勤奋冒险家勋章#k#n。"/>
+        <string name="1" value="#b#e挑战 - 勤奋冒险家#b#n\n\n#k - 剩余时间：#Qdaylimit#天 #Qhourlimit#小时 #Qminlimit#分 #Qseclimit#秒\n - 已杀怪物数：#r#a294001##k\n\n※ 120级以下角色：必须狩猎等级高于自身等级的怪物。\n※ 120级及以上角色：必须狩猎120级及以上的怪物。\n" />
+        <string name="2" value="#b#e挑战 - 勤奋冒险家#b#n\n\n#k - 已完成：#r100000#k / 100000\n\n你已经完成挑战，获得了#b勤奋冒险家勋章#k。勋章遗失时，需要重新接受挑战并再次完成100000只怪物狩猎目标后才能重新领取。" />
         <string name="demandSummary" value="已杀怪物数：#a294001#\r\n30天内击杀100000只符合等级条件的怪物。" />
         <string name="rewardSummary" value="#Wbasic# #v1142004:##t1142004:# 1"/>
         <int name="timeLimit2" value="2592000"/>
@@ -9609,37 +9609,36 @@
         <int name="viewMedalItem" value="1142004"/>
     </imgdir>
     <imgdir name="29500">
-        <string name="name" value="挑战勋章-冒险岛偶像明星勋章(特级)"/>
-        <string name="0" value="#b#e挑战勋章-冒险岛偶像明星勋章#n(特级)\n#k最受大家追捧的冒险家是谁呢？勋章老人将授予其#e#b冒险岛偶像明星勋章(特级)#k#n。"/>
-        <string name="1" value="#b#e挑战勋章-冒险岛偶像明星勋章#n(特级)\n\n#k - 人气度: #b#jpop##k"/>
-        <string name="2" value="#b#e挑战勋章-冒险岛偶像明星勋章#n(特级)\n\n#k - 人气度: #b#jpop##k \n\n只有世界人气度最高的人才有资格获得&apos;#b冒险岛偶像明星勋章(特级)#k&apos;的荣誉。勋章老人提醒大家只有制定好相应策略，该荣誉每月仅有一次机会挑战。"/>
+        <string name="name" value="挑战 - 冒险岛偶像明星(特级)"/>
+        <string name="0" value="#b#e挑战 - 冒险岛偶像明星#n(特级)\n#k人气达到 #b1000#k 后，即可领取#e#b冒险岛偶像明星勋章(特级)#k#n。"/>
+        <string name="1" value="#b#e挑战 - 冒险岛偶像明星#n(特级)\n\n#k - 需要人气度: #b1000#k\n - 当前人气度: #b#jpop##k"/>
+        <string name="2" value="#b#e挑战 - 冒险岛偶像明星#n(特级)\n\n#k达到指定人气度后获得&apos;#b冒险岛偶像明星勋章(特级)#k&apos;。"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142006"/>
     </imgdir>
     <imgdir name="29501">
-        <string name="name" value="挑战勋章-暗黑龙王杀手勋章(特级)"/>
-        <string name="0" value="#b#e挑战勋章-暗黑龙王杀手勋章#n(特级)\n#k只有打猎暗黑龙王数量最多的冒险家才有资格获得#e#b暗黑龙王杀手勋章(特级)#k#n！勋章老人表示对于打猎了暗黑龙王却未向自己报告的一律不予承认。"/>
-        <string name="1" value="#b#e挑战勋章-暗黑龙王杀手勋章#n(特级)\n#k\n - 勋章老人所知的暗黑龙王打猎记录: #r#jmon##k 次\n\n勋章老人表示这个荣誉只授予那些在狩猎暗黑龙王后向自己报告次数最多的勇士。不过……请注意！一旦放弃挑战，下一次挑战时将从零开始计数！！！"/>
-        <string name="2" value="#b#e挑战勋章-暗黑龙王杀手勋章#n(特级)\n#k\n - 勋章老人所知的暗黑龙王打猎记录: #r#jmon##k 次\n\n向捕获暗黑龙王数量最多的一位勇士颁发&apos;#b暗黑龙王杀手勋章(特级)#k&apos;。"/>
+        <string name="name" value="挑战 - 暗黑龙王杀手(特级)"/>
+        <string name="0" value="#b#e挑战 - 暗黑龙王杀手#n(特级)\n#k击败暗黑龙王 #b1#k 次后，即可领取#e#b暗黑龙王杀手勋章(特级)#k#n。"/>
+        <string name="1" value="#b#e挑战 - 暗黑龙王杀手#n(特级)\n\n#k - 暗黑龙王击败记录: #r#jmon##k / 1 次"/>
+        <string name="2" value="#b#e挑战 - 暗黑龙王杀手#n(特级)\n\n#k完成个人击败暗黑龙王挑战后获得&apos;#b暗黑龙王杀手勋章(特级)#k&apos;。"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142007"/>
     </imgdir>
     <imgdir name="29502">
-        <string name="name" value="挑战勋章-品克缤杀手勋章(特级)"/>
-        <string name="0" value="#b#e挑战勋章-品克缤杀手勋章#n(特级)\n#k只有打猎品克缤的数量最多的勇士才有资格获得#e#b品克缤杀手勋章(特级)#k#n！勋章老人表示对于打猎了品克缤却未向自己报告的一律不予承认。"/>
-        <string name="1" value="#b#e挑战勋章-品克缤杀手勋章#n(特级)\n#k\n - 勋章老人所知的品克缤打猎记录: #r#jmon##k 次\n\n只有将自己打猎品克缤的情况向勋章老人报告次数最多的勇士才有资格获得本荣誉。不过……请注意！一旦放弃挑战，下次挑战时将从零开始计数！！！"/>
-        <string name="2" value="#b#e挑战勋章-品克缤杀手勋章#n(特级)\n#k\n - 勋章老人所知的品克缤打猎记录: #r#jmon##k 次\n\n只有捕获品克缤数量最多的一位勇士才有资格获得&apos;#b品克缤杀手勋章(特级)#k&apos;。"/>
+        <string name="name" value="挑战 - 品克缤杀手(特级)"/>
+        <string name="0" value="#b#e挑战 - 品克缤杀手#n(特级)\n#k击败品克缤 #b1#k 次后，即可领取#e#b品克缤杀手勋章(特级)#k#n。"/>
+        <string name="1" value="#b#e挑战 - 品克缤杀手#n(特级)\n\n#k - 品克缤击败记录: #r#jmon##k / 1 次"/>
+        <string name="2" value="#b#e挑战 - 品克缤杀手#n(特级)\n\n#k完成个人击败品克缤挑战后获得&apos;#b品克缤杀手勋章(特级)#k&apos;。"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142008"/>
     </imgdir>
     <imgdir name="29503">
-        <string name="name" value="挑战勋章-爱心使者"/>
-        <string name="0" value="#b#e挑战勋章-爱心使者#n(特级称号)\n#k挑战只有1人可以拥有的财力和名誉的象征——#e#b爱心使者#k#n称号吧！听说现在正在选拔代表各个村庄的爱心使者。去见见名誉之神官#b#p9000040##k吧。"/>
-        <string name="1" value="#b#e挑战勋章-爱心使者#n(特级称号)\n#k\n - 剩余时间：#Qminlimit#分#Qseclimit#秒\n - 捐献数额：#b#jmoney##k金币\n\n每月初所有村庄的捐献记录初始化。达利尔叮嘱说并不单纯由捐献的金额决定称号的主人，让我发挥自己的智慧。"/>
-        <string name="2" value="#b#e挑战勋章-爱心使者#n(特级称号)\n#k\n - 剩余时间：#Qminlimit#分#Qseclimit#秒\n - 捐献村庄：#b#jm##k\n - 捐献数额：#b#jmoney##k金币\n\n达利尔叮嘱说并不单纯由捐献的金额决定称号的主人，让我发挥自己的智慧。"/>
-        <int name="timeLimit2" value="3600"/>
+        <string name="name" value="称号挑战 - 爱心使者"/>
+        <string name="0" value="#b#e称号挑战 - 爱心使者#n(特级称号)\n#k贡献 #b10000000#k 金币用于公共设施建设后，即可领取#e#b爱心使者#k#n称号。"/>
+        <string name="1" value="#b#e称号挑战 - 爱心使者#n(特级称号)\n\n#k - 需要贡献金币: #b10000000#k"/>
+        <string name="2" value="#b#e称号挑战 - 爱心使者#n(特级称号)\n\n#k完成固定金币贡献后获得&apos;#b爱心使者#k&apos;称号。"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142014"/>
@@ -9647,38 +9646,38 @@
     <imgdir name="29505">
         <string name="name" value="嘉年华百战百胜者"/>
         <int name="area" value="10"/>
-        <string name="0" value="如果你认为自己在怪物嘉年华2中拥有最多胜场，就去找休彼德蔓领取#b#t1142077##k吧！"/>
-        <string name="1" value="如果你认为自己在怪物嘉年华2中拥有最多胜场，就去找休彼德蔓领取#b#t1142077##k吧！"/>
-        <string name="2" value="已因在怪物嘉年华2中拥有最多胜场而获得#b#t1142077##k。"/>
+        <string name="0" value="在怪物嘉年华2中取得 #b100#k 场胜利后，可向休彼德蔓领取#b#t1142077##k。"/>
+        <string name="1" value="怪物嘉年华2胜场达到 #b100#k 场后，可向休彼德蔓领取#b#t1142077##k。"/>
+        <string name="2" value="已因在怪物嘉年华2中取得 #b100#k 场胜利而获得#b#t1142077##k。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142077"/>
     </imgdir>
     <imgdir name="29506">
         <string name="name" value="嘉年华天才"/>
         <int name="area" value="10"/>
-        <string name="0" value="如果你认为自己在怪物嘉年华2中拥有最高胜率，就去找休彼德蔓领取#b#t1142078##k吧！"/>
-        <string name="1" value="如果你认为自己在怪物嘉年华2中拥有最高胜率，就去找休彼德蔓领取#b#t1142078##k吧！"/>
-        <string name="2" value="已因在怪物嘉年华2中拥有最高胜率而获得#b#t1142078##k。"/>
+        <string name="0" value="参加至少 #b50#k 场怪物嘉年华2，并保持 #b70%#k 以上胜率后，可向休彼德蔓领取#b#t1142078##k。"/>
+        <string name="1" value="怪物嘉年华2场次达到 #b50#k 场且胜率不低于 #b70%#k 后，可向休彼德蔓领取#b#t1142078##k。"/>
+        <string name="2" value="已因在怪物嘉年华2中保持优秀胜率而获得#b#t1142078##k。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142078"/>
     </imgdir>
     <imgdir name="29507">
-        <string name="name" value="挑战勋章-可爱宠物主人勋章"/>
+        <string name="name" value="称号挑战 - 可爱宠物主人"/>
         <int name="area" value="51"/>
-        <string name="0" value="#b#eTitle Challenge - Wonderful Pet Owner#n\n#kIf you have a pet, see if you can acquire #r1400 Closeness points#k with your pet! Dalair, on behalf of the God of Honor, is looking for passionate and caring pet owners. He says anyone who reaches #r1400 Closeness points#k with a pet will receive the #e#bWonderful Pet Owner#k#n title."/>
-        <string name="1" value="#b#eTitle Challenge - Wonderful Pet Owner#n#k\n\nAcquire #r1400#k Closeness points with your pet."/>
-        <string name="2" value="#b#eTitle Challenge - Wonderful Pet Owner#n#k\n\nYou have received the #bWonderful Pet Owner#k title and the associated medal."/>
-        <string name="demandSummary" value="Acquire 1400 Closeness points with your pet."/>
+        <string name="0" value="#b#e称号挑战 - 可爱宠物主人#n\n#k将任意宠物亲密度提升到 #r1400#k 后，即可领取#b可爱宠物主人#k称号。"/>
+        <string name="1" value="#b#e称号挑战 - 可爱宠物主人#n#k\n\n将任意宠物亲密度提升到 #r1400#k。"/>
+        <string name="2" value="#b#e称号挑战 - 可爱宠物主人#n#k\n\n你已获得#b可爱宠物主人#k称号和对应勋章。"/>
+        <string name="demandSummary" value="任意宠物亲密度达到 1400。"/>
         <string name="rewardSummary" value="#Wbasic# #v1142082:##t1142082:# 1"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142082"/>
     </imgdir>
     <imgdir name="29508">
-        <string name="name" value="挑战勋章 - 最佳公民勋章"/>
+        <string name="name" value="挑战 - 最佳公民"/>
         <int name="area" value="51"/>
-        <string name="0" value="#b#e挑战勋章 - 最佳公民勋章#n\n积极参与#k#b结婚、公会和家族#k活动吧！达利尔代表荣誉之神寻找活跃的市民。只要你已经#b结婚#k、#b加入公会#k，并且#b拥有至少 1 名后辈#k，就能获得#e#b最佳公民勋章#k#n称号。"/>
-        <string name="1" value="#b#e挑战勋章 - 最佳公民勋章#n#k\n积极参与结婚、公会和家族活动。"/>
-        <string name="2" value="#b#e挑战勋章 - 最佳公民勋章#n#k\n\n你已经获得#b最佳公民勋章#k称号和对应勋章。"/>
+        <string name="0" value="#b#e挑战 - 最佳公民#n\n积极参与#k#b结婚、公会和家族#k活动吧！达利尔代表荣誉之神寻找活跃的市民。只要你已经#b结婚#k、#b加入公会#k，并且#b拥有至少 1 名后辈#k，就能获得#e#b最佳公民勋章#k#n称号。"/>
+        <string name="1" value="#b#e挑战 - 最佳公民#n#k\n积极参与结婚、公会和家族活动。"/>
+        <string name="2" value="#b#e挑战 - 最佳公民#n#k\n\n你已经获得#b最佳公民勋章#k称号和对应勋章。"/>
         <string name="demandSummary" value="完成结婚、加入公会，并拥有至少 1 名后辈。"/>
         <string name="rewardSummary" value="#Wbasic# #v1142081:##t1142081:# 1"/>
         <int name="medalCategory" value="2"/>
@@ -9692,11 +9691,11 @@
         <string name="2" value="最佳公民勋章挑战的内部资格状态。"/>
     </imgdir>
     <imgdir name="29509">
-        <string name="name" value="坚强的挑战者"/>
+        <string name="name" value="称号挑战 - 坚强的挑战者"/>
         <int name="area" value="51"/>
-        <string name="0" value="#b#eTitle Challenge - Persevering Challenger#n\nComplete the #k#bDangerous Dungeon!#k quest. Dalair, on behalf of the God of Honor, is looking for explorers who never cease to face challenges. He says anyone who defeats a lot of monsters in the dungeons in Sleepywood will receive the #bPersevering Challenger#k#n title."/>
-        <string name="1" value="#b#eTitle Challenge - Persevering Challenger#n#k\nComplete 3 types of #bDangerous Dungeon!#k quests in Sleepywood."/>
-        <string name="2" value="#b#eTitle Challenge - Persevering Challenger#n#k\n\nYou have acquired the #bPersevering Challenger#k title and the associated medal."/>
+        <string name="0" value="#b#e称号挑战 - 坚强的挑战者#n\n#k完成林中之城的 3 个#b危险的迷宫#k任务后，即可领取#b坚强的挑战者#k称号。"/>
+        <string name="1" value="#b#e称号挑战 - 坚强的挑战者#n#k\n完成林中之城的 3 个#b危险的迷宫#k任务。"/>
+        <string name="2" value="#b#e称号挑战 - 坚强的挑战者#n#k\n\n你已获得#b坚强的挑战者#k称号和对应勋章。"/>
         <string name="demandSummary" value="- #y2111# (#u2111#) - #y2112# (#u2112#) - #y2113# (#u2113#)"/>
         <string name="rewardSummary" value="#Wbasic# #v1142084:##t1142084:# 1"/>
         <int name="medalCategory" value="2"/>
@@ -9712,10 +9711,10 @@
     <imgdir name="29512">
         <string name="name" value="挑战勋章-怪物博士勋章"/>
         <int name="area" value="51"/>
-        <string name="0" value="#b#eTitle Challenge - Monster Expert#n\nCollect #k#b30 Monster Cards#k. Dalair, on behalf of the God of Honor, is looking for explorers who know everything there is to know about the monsters in Maple World. He says anyone who collects more than 30 Monster Cards will receive the #bMonster Expert#k#n title."/>
-        <string name="1" value="Collect the Monster Cards, which will help you understand the tendencies, habitats, and dropped items of various monsters. Some cards have special powers that will help you in your adventures."/>
-        <string name="2" value="#b#eTitle Challenge - Monster Expert#n#k\n\nYou have received the #bMonster Expert#k title and the associated medal."/>
-        <string name="demandSummary" value="Acquire at least 30 Monster Cards."/>
+        <string name="0" value="#b#e挑战勋章-怪物博士勋章#n\n#k收集 #b30#k 张怪物卡后，即可领取#b怪物博士#k称号。"/>
+        <string name="1" value="收集怪物卡可以了解怪物的习性、栖息地和掉落物。收集 #b30#k 张怪物卡后即可完成挑战。"/>
+        <string name="2" value="#b#e挑战勋章-怪物博士勋章#n#k\n\n你已获得#b怪物博士#k称号和对应勋章。"/>
+        <string name="demandSummary" value="至少收集 30 张怪物卡。"/>
         <string name="rewardSummary" value="#Wbasic# #v1142083:##t1142083:# 1"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142083"/>
@@ -9724,10 +9723,10 @@
         <string name="name" value="新手冒险家"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="You can earn the #b&lt;Beginner Adventurer&gt;#k title by completing your 1st Job Advancement as an Adventurer."/>
-        <string name="1" value="Adventurers who complete the 1st Job Advancement will receive the #b&lt;Beginner Adventurer&gt;#k title. Go find NPC #p9000040#, who can be found in every town."/>
-        <string name="2" value="You have earned the #b&lt;Beginner Adventurer&gt;#k title by completing the 2nd Job Advancement as an Adventurer."/>
-        <string name="demandSummary" value="Report to NPC #b#p900040##k and receive the honorable #t1142107# Medal."/>
+        <string name="0" value="完成冒险家的1转后，即可获得#b&lt;新手冒险家&gt;#k称号。"/>
+        <string name="1" value="完成冒险家的1转后，即可获得#b&lt;新手冒险家&gt;#k称号。请前往各个村庄寻找NPC #p9000040#。"/>
+        <string name="2" value="你已完成冒险家的1转，获得了#b&lt;新手冒险家&gt;#k称号。"/>
+        <string name="demandSummary" value="向NPC #b#p9000040##k报告，并领取光荣的#t1142107#。"/>
         <string name="rewardSummary" value="#Wbasic#"/>
         <int name="autoAccept" value="1"/>
         <int name="viewMedalItem" value="1142107"/>
@@ -9736,10 +9735,10 @@
         <string name="name" value="中级冒险家"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="Adventurers who complete the 2nd Job Advancement will receive the #b&lt;Junior Adventurer&gt;#k title."/>
-        <string name="1" value="Adventurers who complete the 2nd Job Advancement will receive the #b&lt;Junior Adventurer&gt;#k title. Go find NPC #p9000040#, who can be found in every town."/>
-        <string name="2" value="You have earned the #b&lt;Junior Adventurer&gt;#k title by completing the 2nd Job Advancement as an Adventurer."/>
-        <string name="demandSummary" value="Report to NPC #b#p900040##k and receive the honorable #t1142108# Medal."/>
+        <string name="0" value="完成冒险家的2转后，即可获得#b&lt;中级冒险家&gt;#k称号。"/>
+        <string name="1" value="完成冒险家的2转后，即可获得#b&lt;中级冒险家&gt;#k称号。请前往各个村庄寻找NPC #p9000040#。"/>
+        <string name="2" value="你已完成冒险家的2转，获得了#b&lt;中级冒险家&gt;#k称号。"/>
+        <string name="demandSummary" value="向NPC #b#p9000040##k报告，并领取光荣的#t1142108#。"/>
         <string name="rewardSummary" value="#Wbasic#"/>
         <int name="autoAccept" value="1"/>
         <int name="viewMedalItem" value="1142108"/>
@@ -9748,10 +9747,10 @@
         <string name="name" value="高级冒险家"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="You can earn the #b&lt;Veteran Adventurer&gt;#k title by completing your 3rd Job Advancement as an Adventurer."/>
-        <string name="1" value="Adventurers who complete the 3rd Job Advancement will receive the #b&lt;Veteran Adventurer&gt;#k title. Go find NPC #p9000040#, who can be found in every town."/>
-        <string name="2" value="You have earned the #b&lt;Junior Adventurer&gt;#k title by completing your 3rd Job Advancement as an Adventurer."/>
-        <string name="demandSummary" value="Report to NPC #b#p900040##k and receive the honorable #t1142109# Medal."/>
+        <string name="0" value="完成冒险家的3转后，即可获得#b&lt;高级冒险家&gt;#k称号。"/>
+        <string name="1" value="完成冒险家的3转后，即可获得#b&lt;高级冒险家&gt;#k称号。请前往各个村庄寻找NPC #p9000040#。"/>
+        <string name="2" value="你已完成冒险家的3转，获得了#b&lt;高级冒险家&gt;#k称号。"/>
+        <string name="demandSummary" value="向NPC #b#p9000040##k报告，并领取光荣的#t1142109#。"/>
         <string name="rewardSummary" value="#Wbasic#"/>
         <int name="autoAccept" value="1"/>
         <int name="viewMedalItem" value="1142109"/>
@@ -9760,304 +9759,307 @@
         <string name="name" value="大师冒险家"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="You can earn the #b&lt;Master Adventurer&gt;#k title by completing your 4th Job Advancement as an Adventurer."/>
-        <string name="1" value="Adventurers who complete the 4th Job Advancement will receive the #b&lt;Master Adventurer&gt;#k title. Go find NPC #p9000040#, who can be found in every town."/>
-        <string name="2" value="You have earned the #b&lt;Master Adventurer&gt;#k title by completing your 4th Job Advancement as an Adventurer."/>
-        <string name="demandSummary" value="Report to NPC #b#p900040##k and receive the honorable #t1142110# Medal."/>
+        <string name="0" value="完成冒险家的4转后，即可获得#b&lt;大师冒险家&gt;#k称号。"/>
+        <string name="1" value="完成冒险家的4转后，即可获得#b&lt;大师冒险家&gt;#k称号。请前往各个村庄寻找NPC #p9000040#。"/>
+        <string name="2" value="你已完成冒险家的4转，获得了#b&lt;大师冒险家&gt;#k称号。"/>
+        <string name="demandSummary" value="向NPC #b#p9000040##k报告，并领取光荣的#t1142110#。"/>
         <string name="rewardSummary" value="#Wbasic#"/>
         <int name="autoAccept" value="1"/>
         <int name="viewMedalItem" value="1142110"/>
     </imgdir>
     <imgdir name="29904">
-        <string name="name" value="Noblesse"/>
+        <string name="name" value="骑士团初心者"/>
         <int name="area" value="51"/>
-        <string name="1" value="Prove that you&apos;re one of the Cygnus Knights and receive the #b&lt;Noblesse&gt;#k title."/>
+        <string name="1" value="证明你是皇家骑士团的一员，并获得#b&lt;骑士团初心者&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
-        <string name="2" value="As a member of the honorable knighthood, you have received your first title, the #b&lt;Noblesse&gt;#k, upon pledging your loyalty to the Empress."/>
-        <string name="demandSummary" value="20000 Greetings from the Young Empress Chain Quest"/>
+        <string name="2" value="作为光荣骑士团的一员，在向女皇宣誓效忠后，你获得了第一个称号：#b&lt;骑士团初心者&gt;#k。"/>
+        <string name="demandSummary" value="完成 20000 小女王的问候 连锁任务。"/>
         <int name="autoAccept" value="1"/>
-        <string name="0" value="Prove that you&apos;re one of the Cygnus Knights and receive the #b&lt;Noblesse&gt;#k title."/>
+        <string name="0" value="证明你是皇家骑士团的一员，并获得#b&lt;骑士团初心者&gt;#k称号。"/>
         <int name="viewMedalItem" value="1142065"/>
     </imgdir>
     <imgdir name="29905">
-        <string name="name" value="Noblesse"/>
+        <string name="name" value="骑士团初心者"/>
         <int name="area" value="51"/>
-        <string name="1" value="Prove that you&apos;re one of the Cygnus Knights and receive the #b&lt;Noblesse&gt;#k title."/>
+        <string name="1" value="证明你是皇家骑士团的一员，并获得#b&lt;骑士团初心者&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
-        <string name="2" value="As a member of the honorable knighthood, you have received your first title, the #b&lt;Noblesse&gt;#k, upon pledging your loyalty to the Empress."/>
+        <string name="2" value="作为光荣骑士团的一员，在向女皇宣誓效忠后，你获得了第一个称号：#b&lt;骑士团初心者&gt;#k。"/>
         <int name="autoAccept" value="1"/>
-        <string name="0" value="Prove that you&apos;re one of the Cygnus Knights and receive the #b&lt;Noblesse&gt;#k title."/>
+        <string name="0" value="证明你是皇家骑士团的一员，并获得#b&lt;骑士团初心者&gt;#k称号。"/>
         <int name="viewMedalItem" value="1142065"/>
     </imgdir>
     <imgdir name="29906">
-        <string name="name" value="Knight-in-Training"/>
+        <string name="name" value="修炼骑士"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="You can acquire the #b&lt;Knight-in-Training&gt;#k title by completing the 1st Job Advancement as a Knight."/>
-        <string name="2" value="You have earned the #b&lt;Knight-in-Training&gt;#k title, which is given to those who are determined to follow the honorable path of the Knight."/>
-        <string name="demandSummary" value="Acquire the #b&lt;Knight-in-Training&gt;#k title by completing the 1st Job Advancement as a Knight."/>
+        <string name="0" value="完成皇家骑士团第1次转职后，可以获得#b&lt;修炼骑士&gt;#k称号。"/>
+        <string name="2" value="你获得了#b&lt;修炼骑士&gt;#k称号。这是授予决心踏上光荣骑士之路者的称号。"/>
+        <string name="demandSummary" value="完成皇家骑士团第1次转职，获得#b&lt;修炼骑士&gt;#k称号。"/>
         <int name="autoAccept" value="1"/>
-        <string name="1" value="You can earn the #b&lt;Knight-in-Training&gt;#k title by completing the 1st Job Advancement as a Knight."/>
+        <string name="1" value="完成皇家骑士团第1次转职后，可以获得#b&lt;修炼骑士&gt;#k称号。"/>
         <int name="viewMedalItem" value="1142066"/>
     </imgdir>
     <imgdir name="29907">
-        <string name="name" value="Official Knight"/>
+        <string name="name" value="正式骑士"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="You can acquire the #b&lt;Official Knight&gt;#k title by completing the 2nd Job Advancement as a Knight."/>
-        <string name="2" value="Your prowess has been recognized! You have earned the #b&lt;Official Knight&gt;#k title."/>
+        <string name="0" value="完成皇家骑士团第2次转职后，可以获得#b&lt;正式骑士&gt;#k称号。"/>
+        <string name="2" value="你的实力获得了认可！你获得了#b&lt;正式骑士&gt;#k称号。"/>
         <int name="autoAccept" value="1"/>
-        <string name="1" value="You can acquire the #b&lt;Official Knight&gt;#k title by completing the 2nd Job Advancement as a Knight."/>
+        <string name="1" value="完成皇家骑士团第2次转职后，可以获得#b&lt;正式骑士&gt;#k称号。"/>
         <int name="viewMedalItem" value="1142067"/>
     </imgdir>
     <imgdir name="29908">
-        <string name="name" value="Advanced Knight"/>
+        <string name="name" value="高级骑士"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="You can acquire the #b&lt;Advanced Knight&gt;#k title by completing the 3rd Job Advancement as a Knight."/>
-        <string name="2" value="You have been given the #b&lt;Advanced Knight&gt;#k title for guarding Shinsoo&apos;s Teardrop."/>
+        <string name="0" value="完成皇家骑士团第3次转职后，可以获得#b&lt;高级骑士&gt;#k称号。"/>
+        <string name="2" value="你守护了神兽之泪，因此获得了#b&lt;高级骑士&gt;#k称号。"/>
         <int name="autoAccept" value="1"/>
-        <string name="1" value="You can acquire the #b&lt;Advanced Knight&gt;#k title by completing the 3rd Job Advancement as a Knight."/>
+        <string name="1" value="完成皇家骑士团第3次转职后，可以获得#b&lt;高级骑士&gt;#k称号。"/>
         <int name="viewMedalItem" value="1142068"/>
     </imgdir>
     <imgdir name="29909">
-        <string name="name" value="Chief Knight"/>
+        <string name="name" value="骑士团长"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
-        <string name="0" value="You can acquire the #b&lt;Chief Knight&gt;#k title by blocking the curse of the Black Witch."/>
-        <string name="2" value="You have saved the Empress from danger by blocking the curse of the Black Witch. For your tremendous accomplishment, you have received the#b&lt;Chief Knight&gt;#k title, the highest position in the Cygnus Knights."/>
+        <string name="0" value="阻止黑巫婆的诅咒后，可以获得#b&lt;骑士团长&gt;#k称号。"/>
+        <string name="2" value="你阻止了黑巫婆的诅咒，将女皇从危险中拯救出来。凭借这项伟大的功绩，你获得了皇家骑士团最高职位的称号：#b&lt;骑士团长&gt;#k。"/>
         <int name="autoAccept" value="1"/>
-        <string name="1" value="You can acquire the #&lt;Chief Knight&gt;#k title by blocking the curse of the Black Witch."/>
+        <string name="1" value="阻止黑巫婆的诅咒后，可以获得#b&lt;骑士团长&gt;#k称号。"/>
         <int name="viewMedalItem" value="1142069"/>
     </imgdir>
     <imgdir name="29910">
-        <string name="name" value="Gallant Warrior"/>
+        <string name="name" value="战武神"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142009"/>
-        <string name="0" value="#b#eTitle - Gallant Warrior#n#\r\n#kChallenge yourself to the  #b&lt;Gallant Warrior&gt;#k title, given only to powerful Warriors over Lv. 200.\r\n●Requirement(s) : Complete #b&lt;#y29300#&gt;#k "/>
+        <string name="0" value="#b#e称号 - 战武神#n#\r\n#k挑战只有达到200级以上的强大战士才能获得的#b&lt;战武神&gt;#k称号。\r\n●条件：完成#b&lt;#y29300#&gt;#k"/>
         <string name="1" value=".."/>
-        <string name="2" value="You have accomplished something incredible. You&apos;ve reached Lv. 200! You have earned the #b&lt;Gallant Warrior&gt;#k title."/>
+        <string name="2" value="你达成了了不起的成就，成功达到200级！获得了#b&lt;战武神&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29911">
-        <string name="name" value="Wiseman"/>
+        <string name="name" value="圣贤者"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142010"/>
-        <string name="0" value="#b#eTitle - Wiseman#n#\r\n#kChallenge yourself to the #b&lt;Wiseman&gt;#k title, given only to powerful Magicians over Lv. 200.\r\n●Requirement(s) : Complete #b&lt;#y29301#&gt;#k"/>
+        <string name="0" value="#b#e称号 - 圣贤者#n#\r\n#k挑战只有达到200级以上的强大魔法师才能获得的#b&lt;圣贤者&gt;#k称号。\r\n●条件：完成#b&lt;#y29301#&gt;#k"/>
         <string name="1" value=".."/>
-        <string name="2" value="You have accomplished something incredible. You&apos;ve reached Lv. 200! You have earned the #b&lt;Wiseman&gt;#k title."/>
+        <string name="2" value="你达成了了不起的成就，成功达到200级！获得了#b&lt;圣贤者&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <int name="autoComplete" value="1"/>
     </imgdir>
     <imgdir name="29912">
-        <string name="name" value="Lord Sniper"/>
+        <string name="name" value="狙击王"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142011"/>
-        <string name="0" value="#b#eTitle - Lord Sniper#n#\r\n#kChallenge yourself to the #b&lt;Lord Sniper&gt;#k title, given only to powerful Bowmen over Lv. 200.\r\n●Requirement(s) : Complete #b&lt;#y29302#&gt;#k"/>
+        <string name="0" value="#b#e称号 - 狙击王#n#\r\n#k挑战只有达到200级以上的强大弓箭手才能获得的#b&lt;狙击王&gt;#k称号。\r\n●条件：完成#b&lt;#y29302#&gt;#k"/>
         <string name="1" value=".."/>
-        <string name="2" value="You have accomplished something incredible. You&apos;ve reached Lv. 200! You have earned the #b&lt;Lord Sniper&gt;#k title."/>
+        <string name="2" value="你达成了了不起的成就，成功达到200级！获得了#b&lt;狙击王&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29913">
-        <string name="name" value="Legendary Thief"/>
+        <string name="name" value="影飞侠"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142012"/>
-        <string name="0" value="#b#eTitle - Legendary Thief#n#\r\n#kChallenge yourself to the #b&lt;Legendary Thief&gt;#k title, given only to the powerful Thieves over Lv. 200.\r\n●Requirement(s) : Complete #b&lt;#y29303#&gt;#k"/>
+        <string name="0" value="#b#e称号 - 影飞侠#n#\r\n#k挑战只有达到200级以上的强大飞侠才能获得的#b&lt;影飞侠&gt;#k称号。\r\n●条件：完成#b&lt;#y29303#&gt;#k"/>
         <string name="1" value=".."/>
-        <string name="2" value="You have accomplished something incredible. You&apos;ve reached Lv. 200! You have earned the #b&lt;Legendary Thief&gt;#k title."/>
+        <string name="2" value="你达成了了不起的成就，成功达到200级！获得了#b&lt;影飞侠&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29914">
-        <string name="name" value="King Pirate"/>
+        <string name="name" value="海盗王"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142013"/>
-        <string name="0" value="#b#eTitle - King Pirate#n#\r\n#kChallenge yourself to the #b&lt;King Pirate&gt;#k title, given only to powerful Pirates over Lv. 200. \r\n●Requirement(s) : Complete #b&lt;#y29304#&gt;#k"/>
+        <string name="0" value="#b#e称号 - 海盗王#n#\r\n#k挑战只有达到200级以上的强大海盗才能获得的#b&lt;海盗王&gt;#k称号。\r\n●条件：完成#b&lt;#y29304#&gt;#k"/>
         <string name="1" value=".."/>
-        <string name="2" value="You have accomplished something incredible. You&apos;ve reached Lv. 200! You have earned the #b&lt;King Pirate&gt;#k title."/>
+        <string name="2" value="你达成了了不起的成就，成功达到200级！获得了#b&lt;海盗王&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29915">
-        <string name="name" value="Mu Lung Dojo Vanquisher"/>
+        <string name="name" value="武陵道场征服者"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="1"/>
         <int name="viewMedalItem" value="1142064"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="0" value="#b#eTitle - Mu Lung Dojo Vanquisher#n#\r\n#k#b&lt;Mu Lung Dojo Vanquisher&gt;#k, a coveted title given only to Mu Lung Dojo experts. \r\n●Requirement(s) : Acquire the #bMu Lung Dojo Vanquisher Medal#k from #bMu Lung Dojo#k."/>
-        <string name="2" value="You have earned the #b&lt;Mu Lung Dojo Vanquisher&gt;#k title by defeating all of the master monsters in Mu Lung Dojo."/>
+        <string name="0" value="#b#e称号 - 武陵道场征服者#n#\r\n#k#b&lt;武陵道场征服者&gt;#k，只有精通武陵道场的勇士才能获得的荣誉称号。\r\n●条件：在#b武陵道场#k获得#b武陵道场征服者勋章#k。"/>
+        <string name="2" value="你已经通过击败武陵道场中的所有大师怪物，获得了#b&lt;武陵道场征服者&gt;#k称号。"/>
     </imgdir>
     <imgdir name="29916">
-        <string name="name" value="Henesys Donor Medal"/>
+        <string name="name" value="射手村爱心使者勋章"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="2" value="Donations are a quick way to give back to the community. You have earned the #b&lt;Henesys Donor&gt;#k title."/>
+        <string name="2" value="捐赠是回馈社区的好方法。你已经获得了#b&lt;射手村爱心使者&gt;#k称号。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142014"/>
     </imgdir>
     <imgdir name="29917">
-        <string name="name" value="Ellinia Donor Medal"/>
+        <string name="name" value="魔法密林爱心使者勋章"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="2" value="Donations are a quick way to give back to the community. You have earned the #b&lt;Ellinia Donor&gt;#k title."/>
+        <string name="2" value="捐赠是回馈社区的好方法。你已经获得了#b&lt;魔法密林爱心使者&gt;#k称号。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142015"/>
     </imgdir>
     <imgdir name="29918">
-        <string name="name" value="Perion Donor Medal"/>
+        <string name="name" value="勇士部落爱心使者勋章"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="2" value="Donations are a quick way to give back to the community. You have earned the #b&lt;Perion Donor&gt;#k title."/>
+        <string name="2" value="捐赠是回馈社区的好方法。你已经获得了#b&lt;勇士部落爱心使者&gt;#k称号。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142016"/>
     </imgdir>
     <imgdir name="29919">
-        <string name="name" value="Kerning City Donor Medal"/>
+        <string name="name" value="废弃都市爱心使者勋章"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="2" value="Donations are a quick way to give back to the community. You have earned the #b&lt;Kerning City Donor&gt;#k title."/>
+        <string name="2" value="捐赠是回馈社区的好方法。你已经获得了#b&lt;废弃都市爱心使者&gt;#k称号。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142017"/>
     </imgdir>
     <imgdir name="29920">
-        <string name="name" value="Sleepywood Donor Medal"/>
+        <string name="name" value="林中之城爱心使者勋章"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="2" value="Donations are a quick way to give back to the community. You have earned the #b&lt;Sleepywood Donor&gt;#k title."/>
+        <string name="2" value="捐赠是回馈社区的好方法。你已经获得了#b&lt;林中之城爱心使者&gt;#k称号。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142018"/>
     </imgdir>
     <imgdir name="29921">
-        <string name="name" value="Nautilus Donor Medal"/>
+        <string name="name" value="诺特勒斯爱心使者勋章"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="2" value="Donations are a quick way to give back to the community. You have earned the #b&lt;Nautilus Donor&gt;#k title."/>
+        <string name="2" value="捐赠是回馈社区的好方法。你已经获得了#b&lt;诺特勒斯爱心使者&gt;#k称号。"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142019"/>
     </imgdir>
     <imgdir name="29922">
-        <string name="name" value="Veteran Hunter"/>
+        <string name="name" value="勤奋冒险家"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142004"/>
-        <string name="2" value="You have earned the #b&lt;Veteran Hunter&gt;#k title by hunting 100,000 monsters that are above you in level within 30 days."/>
+        <string name="2" value="你已经在30天内狩猎100,000只符合条件的怪物，获得了#b&lt;勤奋冒险家&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29923">
-        <string name="name" value="Legendary Hunter"/>
+        <string name="name" value="传说中的冒险家"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142005"/>
-        <string name="2" value="No one can trump your hunting skills! You have earned the #b&lt;Legendary Hunter&gt;#k title."/>
+        <string name="2" value="无人能超越你的狩猎技巧！你已经获得了#b&lt;传说中的冒险家&gt;#k称号。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29924">
-        <string name="name" value="The Revived Aran"/>
+        <string name="name" value="苏醒的战神"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142129"/>
-        <string name="0" value="You still don&apos;t remember anything…"/>
-        <string name="1" value="You still don&apos;t remember anything…"/>
-        <string name="2" value="You still don&apos;t remember anything…"/>
+        <string name="0" value="你仍未完全想起过去的一切，但苏醒的英雄已经迈出了第一步。准备好后，去找德烈领取称号吧。"/>
+        <string name="1" value="成为 10 级以上战神后，前往德烈处领取称号。"/>
+        <string name="2" value="获得称号#b苏醒的战神#k。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29925">
-        <string name="name" value="Aran and Memory"/>
+        <string name="name" value="记忆中的战神"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="1"/>
         <int name="viewMedalItem" value="1142130"/>
-        <string name="0" value="Maha…was your weapon…? You&apos;re beginning to remember...little by little…"/>
-        <string name="1" value="Maha…was your weapon…? You&apos;re beginning to remember...little by little…"/>
-        <string name="2" value="Maha…was your weapon…? You&apos;re beginning to remember...little by little…"/>
+        <string name="0" value="玛哈曾是你的武器，记忆也正一点一点回到心中。准备好后，去找德烈领取称号吧。"/>
+        <string name="1" value="成为 30 级以上战神后，前往德烈处领取称号。"/>
+        <string name="2" value="获得称号#b记忆中的战神#k。"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
     </imgdir>
     <imgdir name="29926">
-        <string name="name" value="Aran in Agony"/>
+        <string name="name" value="试炼中的战神"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142131"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="0" value="You made a Red Jade for Maha. This should help him relax for a bit, right?"/>
-        <string name="1" value="You made a Red Jade for Maha. This should help him relax for a bit, right?"/>
-        <string name="2" value="You made a Red Jade for Maha. This should help him relax for a bit, right?"/>
+        <string name="0" value="你在找回昔日英雄之名的路上又经历了一次试炼。准备好后，去找德烈领取称号吧。"/>
+        <string name="1" value="成为 70 级以上战神后，前往德烈处领取称号。"/>
+        <string name="2" value="获得称号#b试炼中的战神#k。"/>
     </imgdir>
     <imgdir name="29927">
-        <string name="name" value="Aran of Hope"/>
+        <string name="name" value="希望中的战神"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142132"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="0" value="You finally managed to put the enraged Maha to sleep."/>
-        <string name="1" value="You finally managed to put the enraged Maha to sleep."/>
-        <string name="2" value="You finally managed to put the enraged Maha to sleep."/>
+        <string name="0" value="希望已经重新回到苏醒的英雄心中。准备好后，去找德烈领取称号吧。"/>
+        <string name="1" value="成为 120 级以上战神后，前往德烈处领取称号。"/>
+        <string name="2" value="获得称号#b希望中的战神#k。"/>
     </imgdir>
     <imgdir name="29928">
-        <string name="name" value="Aran the Hero"/>
+        <string name="name" value="英雄战神"/>
         <int name="area" value="51"/>
         <int name="viewMedalItem" value="1142133"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
-        <string name="0" value="You feel like you&apos;ve restored most of your past memories as well as your abilities."/>
-        <string name="1" value="You feel like you&apos;ve restored most of your past memories as well as your abilities."/>
-        <string name="2" value="You feel like you&apos;ve restored most of your past memories as well as your abilities."/>
+        <string name="0" value="你感觉自己的记忆与能力几乎都回来了。准备好后，去找德烈领取称号吧。"/>
+        <string name="1" value="成为 200 级战神后，前往德烈处领取称号。"/>
+        <string name="2" value="获得称号#b英雄战神#k。"/>
     </imgdir>
     <imgdir name="29929">
         <int name="area" value="51"/>
         <int name="medalCategory" value="3"/>
         <int name="viewMedalItem" value="1140001"/>
-        <string name="name" value="2010 Winter King"/>
-        <string name="0" value="With the chilly winter once again here, a special title has been prepared for everyone. Visit #b#p9010010##k, located in every town! \r\n#b*Note: You are only eligible for the 2010 Winter King or 2010 Winter Queen title that matches your gender."/>
-        <string name="1" value="#e#bChallenge yourself to the 2010 Winter King title#k#n\r\n* Requirements : #bAcquire at least 20 #t1140000:#s#kduring the event period\r\n* Event: #b20/1/2010 16/2/2010#k\r\n"/>
-        <string name="2" value="Acquired the title #b2010 Winter King#."/>
+        <string name="name" value="2010冬季王者"/>
+        <string name="0" value="为足够强大的男性冒险家准备的冬季称号正在等待你。去找德烈领取称号吧。"/>
+        <string name="1" value="男性角色达到 13 级后，前往德烈处领取称号。"/>
+        <string name="2" value="获得称号#b2010冬季王者#k。"/>
     </imgdir>
     <imgdir name="29930">
         <int name="area" value="51"/>
         <int name="medalCategory" value="3"/>
         <int name="viewMedalItem" value="1141001"/>
-        <string name="name" value="2010 Winter Queen"/>
-        <string name="0" value="With the chilly winter once again here, a special title has been prepared for everyone. Visit #b#p9010010##k, located in every town! \r\n#b*Note: You are only eligible for the 2010 Winter King or 2010 Winter Queen title that matches your gender."/>
-        <string name="1" value="#e#bChallenge yourself to the 2010 Winter Queen title#k#n\r\n* Requirements : #bAcquire at least 20 #t1140000:#s#kduring the event period\r\n* Event: #b20/1/2010 16/2/2010#k"/>
-        <string name="2" value="Acquired the title #b2010 Winter Queen#."/>
+        <string name="name" value="2010冬季女王"/>
+        <string name="0" value="为足够强大的女性冒险家准备的冬季称号正在等待你。去找德烈领取称号吧。"/>
+        <string name="1" value="女性角色达到 13 级后，前往德烈处领取称号。"/>
+        <string name="2" value="获得称号#b2010冬季女王#k。"/>
     </imgdir>
     <imgdir name="29931">
-        <string name="name" value="Honorary Subway Worker"/>
+        <string name="name" value="荣誉乘务员"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="1"/>
         <int name="viewMedalItem" value="1142141"/>
-        <string name="0" value="The subway lines in the northern part of Kerning City is about to shut down construction because of monsters. Rescue #e#bMr. Lim#k#n from the abandoned subway station and acquire the title #b&lt;Honorary Subway Worker&gt;#k."/>
-        <string name="2" value="Acquired the title #bHonorary Subway Worker#k."/>
-        <string name="1" value="#e#bHonorary Subway Worker title#k#n\r\n* Requirements: Eliminate at least #b10,000 monsters#k on the Abandoned Subway Platform\r\n* Current count: #b#R7762##k\r\nAfter completing the requirements, see #bMr. Lim#k to receive your medal.\r\n"/>
+        <string name="0" value="废弃地铁月台需要勇敢的协助者。击退威胁铁路的怪物，领取属于你的称号吧。"/>
+        <string name="2" value="获得称号#b荣誉乘务员#k。"/>
+        <string name="1" value="在废弃地铁月台消灭至少 #b10,000 只怪物#k。
+当前数量：#b#R7762##k
+完成条件后，前往德烈处领取勋章。"/>
     </imgdir>
     <imgdir name="29932">
-        <string name="name" value="Protector of Pharaoh"/>
+        <string name="name" value="法老守护者"/>
         <int name="area" value="51"/>
         <int name="medalCategory" value="1"/>
         <int name="viewMedalItem" value="1142142"/>
-        <string name="0" value="Visit the mysterious pyramid in Ariant. You may be able to acquire the #b&lt;Protector of Pharaoh&gt;#k title."/>
-        <string name="2" value="Acquired the #bProtector of Pharaoh#k title."/>
-        <string name="1" value="#e#bChallenge yourself to earn the Protector of Pharaoh title!#k#n\r\n* Requirements: Eliminate #b50,000 monsters#k in Nett&apos;s Pyramid \r\n* Current Count: #b#R7760##k\r\nAfter completing the requirements, see #bDuarte#k to receive your medal.\r\n"/>
+        <string name="0" value="阿里安特神秘的金字塔需要坚定的守护者。击退其中的怪物，领取属于你的称号吧。"/>
+        <string name="2" value="获得称号#b法老守护者#k。"/>
+        <string name="1" value="在奈特的金字塔中消灭 #b50,000 只怪物#k。
+当前数量：#b#R7760##k
+完成条件后，前往德烈处领取勋章。"/>
     </imgdir>
     <imgdir name="29933">
-        <string name="name" value="Lith Harbor Donor"/>
+        <string name="name" value="明珠港爱心使者"/>
         <int name="area" value="51"/>
         <int name="autoStart" value="1"/>
         <int name="autoAccept" value="1"/>
         <int name="medalCategory" value="2"/>
         <int name="viewMedalItem" value="1142030"/>
-        <string name="2" value="Charity is key to a prosperous life. Acquired the title #b&lt;Lith Harbor Donor&gt;#k.\r\n"/>
+        <string name="2" value="慈善是美好生活的重要基石。你已经获得了#b&lt;明珠港爱心使者&gt;#k称号。\r\n"/>
     </imgdir>
     <imgdir name="3000">
         <string name="name" value="查里中士"/>
@@ -12088,16 +12090,16 @@
     <imgdir name="3379">
         <string name="name" value="罗密欧的求婚"/>
         <string name="0" value="正和朱丽叶处于热恋之中的玛加提亚的炼金术士罗密欧。他说他终于下定决心，要想朱丽叶求婚。去见见#b罗密欧#k吧。"/>
-        <string name="1" value="罗密欧说自己虽然有很多缺点，但是相信朱丽叶一定会理解自己，因此决定向她求婚。让我帮他去买结婚戒指。戒指好像只要去#b玛加提亚#k的#b阿尔雷哥#k那里购买就行。\n\n#i4031806##t4031806# #b#c4031806##k/1 "/>
+        <string name="1" value="罗密欧说自己虽然有很多缺点，但是相信朱丽叶一定会理解自己，因此决定向她求婚。让我帮他去买结婚戒指。戒指好像只要去#b婚礼村#k的#b穆尼#k那里购买就行。\n\n#i4031806##t4031806# #b#c4031806##k/1 "/>
         <string name="2" value="把买到的求婚戒指交给了罗密欧。好了，接下去的求婚，就是他自己的事情了。虽然有点惊世骇俗，但是比任何人都要般配的罗密欧和朱丽叶。两个人一定会成功的……"/>
         <int name="area" value="44"/>
         <string name="sortkey" value="70"/>
     </imgdir>
     <imgdir name="3380">
-        <string name="name" value="戒指匠人阿尔雷哥!"/>
-        <string name="0" value="决心向朱丽叶求婚的罗密欧。为了帮他进行求婚，帮他去购买戒指吧。据说婚礼桥的戒指匠人阿尔雷哥可以制作戒指。"/>
-        <string name="1" value="阿尔雷哥说最适合罗密欧和朱丽叶的是纯洁的银翼戒指，让我帮他去搜集制作戒指的材料。\n\n#i4021007##t4021007# #b#c4021007##k/2 \n#i4011004##t4011004# #b#c4011004##k/2"/>
-        <string name="2" value="从阿尔雷哥那里拿到了戒指。赶紧把它交给#b罗密欧#k吧。"/>
+        <string name="name" value="戒指匠人穆尼!"/>
+        <string name="0" value="决心向朱丽叶求婚的罗密欧。为了帮他进行求婚，帮他去购买戒指吧。据说婚礼村的戒指匠人穆尼可以制作戒指。"/>
+        <string name="1" value="穆尼说最适合罗密欧和朱丽叶的是纯洁的银翼戒指，让我帮他去搜集制作戒指的材料。\n\n#i4021007##t4021007# #b#c4021007##k/2 \n#i4011004##t4011004# #b#c4011004##k/2"/>
+        <string name="2" value="从穆尼那里拿到了戒指。赶紧把它交给#b罗密欧#k吧。"/>
         <int name="area" value="44"/>
         <string name="sortkey" value="70"/>
     </imgdir>
@@ -13373,298 +13375,298 @@
         <string name="rewardSummary" value="经验值 30,000\r\n可参加“流浪者的行踪1”任务。\r\n"/>
     </imgdir>
     <imgdir name="3716">
-        <string name="name" value="The Wanderer&apos;s Whereabouts 1"/>
+        <string name="name" value="流浪者的行踪1"/>
         <int name="area" value="41"/>
-        <string name="1" value="#bSyras the ticket agent#k at Ariant Station claims the suspicious wanderer headed to Orbis and that you should talk to #bIsa#k at Orbis Station."/>
-        <string name="parent" value="The Truth Behind that Man"/>
+        <string name="1" value="阿里安特车站售票员#b赛拉斯#k说，可疑的流浪者已经前往天空之城，让我去天空之城码头找#b艺斯#k打听。"/>
+        <string name="parent" value="那个人背后的真相"/>
         <int name="order" value="2"/>
-        <string name="2" value="You meet Isa the station guide as Syras instructed. Isa says an absent-minded man asked her directions to Leafre. She added that he was rather strange."/>
-        <string name="demandSummary" value="#bTalk to Isa the Station Guide in Orbis"/>
-        <string name="rewardSummary" value="EXP 30,000\r\nCan participate in the &quot;Wanderer&apos;s Whereabouts 2&quot; quest.\r\n"/>
+        <string name="2" value="按照赛拉斯的指示，我见到了天空之城码头的服务员艺斯。艺斯说，有个心神不宁的男人向他询问去神木村的路，还说那个人非常奇怪。"/>
+        <string name="demandSummary" value="#b与天空之城码头的服务员艺斯对话。"/>
+        <string name="rewardSummary" value="经验值 30,000\r\n可参加“流浪者的行踪2”任务。\r\n"/>
     </imgdir>
     <imgdir name="3717">
-        <string name="name" value="The Wanderer&apos;s Whereabouts 2"/>
+        <string name="name" value="流浪者的行踪2"/>
         <int name="area" value="41"/>
-        <string name="parent" value="The Truth Behind that Man"/>
+        <string name="parent" value="那个人背后的真相"/>
         <int name="order" value="3"/>
-        <string name="demandSummary" value="#bFind Tera Forest"/>
-        <string name="1" value="Isa the station guide at Orbis Station informs you that the strange man was heading to Tera Forest, located east of Minar Forest. Will you be able to find this foreign place called Tera Forest?"/>
-        <string name="2" value="You found the entrance to Tera Forest by searching the outskirts of east Minar Forest. There, you met the strange man you were searching for, Andy."/>
-        <string name="rewardSummary" value="EXP 30,000\r\nCan participate in the &quot;Andy the Time Traveler&quot; quest.\r\n"/>
+        <string name="demandSummary" value="#b寻找塔拉森林。"/>
+        <string name="1" value="天空之城码头的服务员艺斯说，那个奇怪的男人正前往米纳尔森林东边的塔拉森林。我能找到这个陌生的地方吗？"/>
+        <string name="2" value="我在米纳尔森林东边一带找到了塔拉森林的入口，并在那里见到了自己一直寻找的奇怪男人——安迪。"/>
+        <string name="rewardSummary" value="经验值 30,000\r\n可参加“时间旅行者安迪”任务。\r\n"/>
     </imgdir>
     <imgdir name="3718">
-        <string name="name" value="Andy the Time Traveler"/>
+        <string name="name" value="时间旅行者安迪"/>
         <int name="area" value="41"/>
-        <string name="parent" value="The Truth Behind that Man"/>
+        <string name="parent" value="那个人背后的真相"/>
         <int name="order" value="4"/>
-        <string name="1" value="Andy the Time Traveler has asked you to help him find the Pocket Watch, the key to the Time Gate, which he&apos;s lost in Minar Forest."/>
-        <string name="2" value="The Pocket Watch has chosen you as the new Time Traveler. You begin to wonder what you&apos;ve got yourself into."/>
+        <string name="1" value="时间旅行者安迪弄丢了启动时间门所需的怀表。他请求你在米纳尔森林帮他找回怀表。"/>
+        <string name="2" value="怀表选择你成为新的时间旅行者。你开始好奇自己究竟卷入了什么事件。"/>
         <string name="demandSummary" value="#i4032511:# #t4032511:# #c4032511# / 1 "/>
-        <string name="rewardSummary" value="EXP 40,000\r\n#Wbasic#\r\n#i4001393:# 1 #t4001393:#\r\nCan participate in the &quot;Nex the Time Guard&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 40,000\r\n#Wbasic#\r\n#i4001393:# 1 #t4001393:#\r\n可以开始“时间守护者尼克斯”任务。\r\n"/>
     </imgdir>
     <imgdir name="3719">
-        <string name="name" value="Nex the Time Guard"/>
+        <string name="name" value="时间守护者尼克斯"/>
         <int name="area" value="41"/>
-        <string name="1" value="Andy the Time Traveler informs you that you must pass the test Nex the Gatekeeper of Time, who lives in the Old Tree of Tera, gives you before you can travel through time. Enter the Old Tree of Tera and pass Nex&apos;s test."/>
-        <string name="2" value="You have passed the first test given by Nex the Gatekeeper of Time and have earned the right to travel to another time. You can now teleport to Average Town in the year 2021. Go to the Time Gate with the Time Traveler&apos;s Pocket Watch."/>
-        <string name="parent" value="Year 2021- Just Another Day"/>
+        <string name="1" value="时间旅行者安迪告诉你，在穿越时间之前，必须通过居住在塔拉古树中的时间守护者尼克斯的考验。进入塔拉古树，通过尼克斯的试炼吧。"/>
+        <string name="2" value="你通过了时间守护者尼克斯的第一次考验，获得前往另一个时代的资格。现在可以传送到2021年的普通城。带着时间旅行者的怀表前往时间门吧。"/>
+        <string name="parent" value="2021年 - 平凡的一天"/>
         <int name="order" value="1"/>
         <string name="demandSummary" value="#o7120100# #a37191# "/>
-        <string name="0" value="Andy the Time Traveler says he has something to tell you before your first time travel."/>
-        <string name="rewardSummary" value="EXP 80,000\r\nCan participate in the &quot;First Clue&quot; quest.\r\n"/>
+        <string name="0" value="时间旅行者安迪说，在你第一次穿越时间之前，有些事情要告诉你。"/>
+        <string name="rewardSummary" value="经验值 80,000\r\n可以开始“第一条线索”任务。\r\n"/>
     </imgdir>
     <imgdir name="3720">
-        <string name="name" value="The First Clue"/>
+        <string name="name" value="第一条线索"/>
         <int name="area" value="41"/>
-        <string name="1" value="Year 2021. You must go through trash cans, find the clue that Andy needs, and bring it to him."/>
-        <string name="2" value="You teleported to the year 2021, found a piece of paper that appeared to be the clue, and took it to Andy. Unfortunately, that was not what Andy was looking for. Will your time travel end in failure? Go back to year 2021."/>
-        <string name="parent" value="Year 2021- Just Another Day"/>
+        <string name="1" value="这里是2021年。翻找垃圾桶，找到安迪需要的线索并带回给他。"/>
+        <string name="2" value="你传送到2021年，找到了一张看似线索的纸并交给安迪。遗憾的是，那并不是安迪要找的东西。你的时间旅行会就此失败吗？再回到2021年看看吧。"/>
+        <string name="parent" value="2021年 - 平凡的一天"/>
         <int name="order" value="2"/>
         <string name="demandSummary" value="#i4032512:# #t4032512:# #c4032512# / 1 "/>
-        <string name="0" value="Andy has a request."/>
-        <string name="rewardSummary" value="EXP 61,000\r\nCan participate in the &apos;Dangerous Slimes&apos; quest.\r\n"/>
+        <string name="0" value="安迪有事想拜托你。"/>
+        <string name="rewardSummary" value="经验值 61,000\r\n可以开始“危险的绿水灵”任务。\r\n"/>
     </imgdir>
     <imgdir name="3721">
-        <string name="name" value="Dangerous Slimes"/>
+        <string name="name" value="危险的绿水灵"/>
         <int name="area" value="41"/>
-        <string name="1" value="The year is 2021. Eliminate 50 Slimes that are threatening the boy and another 50 Slimes that are threatening the girl. Then collect 30 dropped items from each group of Slimes to prevent the Slimes from reviving and report back to the Brainy Boy."/>
-        <string name="2" value="You worked hard to eliminate so many Slimes, but the population of the Slimes has not gotten any smaller. Where are these monsters coming from?"/>
-        <string name="parent" value="Year 2021- Just Another Day"/>
+        <string name="1" value="这里是2021年。消灭威胁男孩的50只绿水灵和威胁女孩的50只绿水灵，并从各类绿水灵身上收集30个掉落物，防止它们复活。完成后向聪明男孩报告。"/>
+        <string name="2" value="你努力消灭了许多绿水灵，可它们的数量却没有减少。这些怪物究竟从哪里来的？"/>
+        <string name="parent" value="2021年 - 平凡的一天"/>
         <int name="order" value="3"/>
         <string name="demandSummary" value="#i4000545:# #t4000545:# #c4000545# / 30 #i4000546:# #t4000546:# #c4000546# / 30 #i4000547:# #t4000547:# #c4000547# / 30 #o7120103# #a37211# #o7120104# #a37212# #o7120105# #a37213# "/>
-        <string name="rewardSummary" value="EXP 100,000\r\nCan participate in &quot;The Crying Girl&apos;s Sketchbook&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 100,000\r\n可以开始“哭泣女孩的速写本”任务。\r\n"/>
     </imgdir>
     <imgdir name="3722">
-        <string name="name" value="The Crying Girl&apos;s Sketchbook"/>
+        <string name="name" value="哭泣女孩的速写本"/>
         <int name="area" value="41"/>
-        <string name="1" value="Find Loose-Leaf Pages from the Sketchbook the Slimes ate and return it to the Crying Girl.\r\n"/>
-        <string name="2" value="You have collected the Loose-Leaf Pages from the Sketchbook and returned them to the Girl. However, the girl seemed to be even more saddened by the pages that were chewed up by the Slimes."/>
-        <string name="parent" value="Year 2021- Just Another Day"/>
+        <string name="1" value="从绿水灵身上找回被吃掉的速写本散页，并交还给哭泣的女孩。\n"/>
+        <string name="2" value="你收集了速写本的散页并交还给女孩。然而，看到被绿水灵咬坏的纸页后，女孩似乎更加伤心了。"/>
+        <string name="parent" value="2021年 - 平凡的一天"/>
         <int name="order" value="4"/>
         <string name="demandSummary" value="#i4032513:# #t4032513:# #c4032513# / 20 "/>
-        <string name="rewardSummary" value="EXP 65,000\r\nCan participate in &quot;The Boy and the Girl&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 65,000\r\n可以开始“男孩和女孩”任务。\r\n"/>
     </imgdir>
     <imgdir name="3723">
-        <string name="name" value="The Boy and the Girl"/>
+        <string name="name" value="男孩和女孩"/>
         <int name="area" value="41"/>
-        <string name="1" value="The Brainy Boy swore that he would find more Loose-Leaf Pages from the Crying Girl&apos;s Sketchbook, including her drawing of a Robot. This sounds like something Andy mentioned. Perhaps you should tell him about this."/>
-        <string name="2" value="When Andy heard the story about the kids, said it was a useful piece of information and that you should prepare yourself for your next time travel. "/>
-        <string name="parent" value="Year 2021- Just Another Day"/>
+        <string name="1" value="聪明男孩发誓要找回更多哭泣女孩的速写本散页，其中还包括她画的机器人。这听起来像安迪提到过的事情，也许应该告诉他。"/>
+        <string name="2" value="安迪听了孩子们的故事后，认为这是一条有用的线索，并提醒你准备下一次时间旅行。"/>
+        <string name="parent" value="2021年 - 平凡的一天"/>
         <int name="order" value="5"/>
-        <string name="rewardSummary" value="EXP 30,000\r\nCan participate in &quot;Nex the Time Guard&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 30,000\r\n可以开始“时间守护者尼克斯”任务。\r\n"/>
     </imgdir>
     <imgdir name="3724">
-        <string name="name" value="Nex the Time Guard"/>
+        <string name="name" value="时间守护者尼克斯"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2099- The Harbor"/>
+        <string name="parent" value="2099年 - 港口"/>
         <int name="order" value="1"/>
-        <string name="0" value="Andy the Time Traveler says he has something to tell you before your second time travel."/>
-        <string name="1" value="Andy the Time Traveler has informed you that you must pass the test Next the Gatekeeper of Time, who lives in the Old Tree of Tera, gives you before embarking on your second time travel. Enter the Old Tree of Tera and pass Nex&apos;s test."/>
-        <string name="2" value="You have passed the second test given by Nex the Gatekeeper of Time and earned the right to travel to another time. You can now teleport to Midnight Harbor in the year 2099. Go to the Time Gate with the Time Traveler&apos;s Pocket Watch."/>
+        <string name="0" value="时间旅行者安迪说，在你第二次穿越时间之前，有些事情要告诉你。"/>
+        <string name="1" value="时间旅行者安迪告诉你，在第二次时间旅行前，必须通过居住在塔拉古树中的时间守护者尼克斯的考验。进入塔拉古树，通过尼克斯的试炼吧。"/>
+        <string name="2" value="你通过了时间守护者尼克斯的第二次考验，获得前往另一个时代的资格。现在可以传送到2099年的午夜港。带着时间旅行者的怀表前往时间门吧。"/>
         <string name="demandSummary" value="#o7120101# #a37241# "/>
-        <string name="rewardSummary" value="EXP 90,000\r\nCan participate in &quot;The Hidden Truth about the Past&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 90,000\r\n可以开始“隐藏在过去的真相”任务。\r\n"/>
     </imgdir>
     <imgdir name="3725">
-        <string name="name" value="The Hidden Truth about the Past"/>
+        <string name="name" value="隐藏在过去的真相"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2099- The Harbor"/>
+        <string name="parent" value="2099年 - 港口"/>
         <int name="order" value="2"/>
-        <string name="1" value="Andy the Time Traveler has requested that you travel to Midnight Harbor in the year 2099 to investigate and if possible, destroy the giant robot, if it exists."/>
-        <string name="2" value="You traveled to Midnight Harbor in the year 2099 as Andy the Time Traveler has requested, during which time you spotted a giant robot and destroyed it as instructed."/>
+        <string name="1" value="时间旅行者安迪请我前往2099年的深夜港口调查，并在可能的情况下摧毁那台巨型机器人。"/>
+        <string name="2" value="我按照时间旅行者安迪的请求前往2099年的深夜港口，并在那里发现了巨型机器人，将它摧毁了。"/>
         <string name="demandSummary" value="#o7220005# #a37251# "/>
-        <string name="rewardSummary" value="EXP 120,000\r\nCan participate in the &quot;Nex the Time Guard&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 120,000\r\n可以进行“时间守护者尼克斯”任务。\r\n"/>
     </imgdir>
     <imgdir name="3726">
-        <string name="name" value="Policeman in Danger"/>
+        <string name="name" value="陷入危机的警察"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2099- The Harbor"/>
+        <string name="parent" value="2099年 - 港口"/>
         <int name="order" value="3"/>
-        <string name="1" value="The Policeman you met at Midnight Harbor in the year 2099 wants you to help him eliminate some monsters that have been taking over the harbor. Specifically, 50 Overlord A and 40 Overlord B monsters."/>
-        <string name="2" value="The Policeman you met at Midnight Harbor in the year 2099 asked you to help him eliminate some monsters, so you eliminated Overlord A and Overlord B monsters."/>
+        <string name="1" value="我在2099年深夜港口遇到的警察，希望我帮他消灭占领港口的怪物。具体来说，要消灭50只欧贝隆A和40只欧贝隆B。"/>
+        <string name="2" value="我帮2099年深夜港口遇到的警察消灭了怪物，解决了欧贝隆A和欧贝隆B。"/>
         <string name="demandSummary" value="#o7120106# #a37261# #o7120107# #a37262# "/>
-        <string name="rewardSummary" value="EXP 72,000\r\nCan participate in the &quot;Shelter Key&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 72,000\r\n可以进行“避难所钥匙”任务。\r\n"/>
     </imgdir>
     <imgdir name="3727">
-        <string name="name" value="The Shelter Key"/>
+        <string name="name" value="避难所钥匙"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2099- The Harbor"/>
+        <string name="parent" value="2099年 - 港口"/>
         <int name="order" value="4"/>
-        <string name="1" value="The Policeman you met at Midnight Harbor in the year 2099 wants you to find the Shelter Key and deliver it to Captain Edmond, who is somewhere at the harbor."/>
-        <string name="2" value="The Policeman you met at Midnight Harbor in the year 2099 asked you to find the Shelter Key and deliver it to Captain Edmond. You retrieved the key from the monsters and gave it to Captain Edmond at the quayside."/>
+        <string name="1" value="我在2099年深夜港口遇到的警察，希望我找到避难所钥匙并交给港口某处的爱德蒙船长。"/>
+        <string name="2" value="我按照2099年深夜港口警察的请求找到避难所钥匙，并在码头边把它交给了爱德蒙船长。"/>
         <string name="demandSummary" value="#i4032514:# #t4032514:# #c4032514# / 1 "/>
-        <string name="rewardSummary" value="EXP 60,000\r\nCan participate in the &quot;Temporary Measure&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 60,000\r\n可以进行“临时措施”任务。\r\n"/>
     </imgdir>
     <imgdir name="3728">
-        <string name="name" value="Temporary Relief"/>
+        <string name="name" value="临时措施"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2099- The Harbor"/>
+        <string name="parent" value="2099年 - 港口"/>
         <int name="order" value="5"/>
-        <string name="1" value="When you meet Captain Edmond in 2099, he asks you bring him 20 Overlord A Radar Devices and 40 Overlord B Radar Devices to temporarily stop the monsters at the harbor."/>
-        <string name="2" value="When you met Captain Edmond in 2099, he complained that he didn&apos;t approve of the monsters that overtook the harbor. He then asked that you bring him their radar devices, which you did."/>
+        <string name="1" value="见到2099年的爱德蒙船长后，他让我带来20个欧贝隆A雷达装置和40个欧贝隆B雷达装置，以便暂时阻止港口的怪物。"/>
+        <string name="2" value="见到2099年的爱德蒙船长后，他抱怨那些占据港口的怪物令人难以接受，并让我带来它们的雷达装置。我照办了。"/>
         <string name="demandSummary" value="#i4000548:# #t4000548:# #c4000548# / 20 #i4000549:# #t4000549:# #c4000549# / 40 "/>
-        <string name="rewardSummary" value="EXP 75,000\r\n"/>
+        <string name="rewardSummary" value="经验值 75,000\r\n"/>
     </imgdir>
     <imgdir name="3730">
-        <string name="name" value="Nex the Time Guard"/>
+        <string name="name" value="时间守护者尼克斯"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2215- The Bombing"/>
+        <string name="parent" value="2215年 - 轰炸"/>
         <int name="order" value="1"/>
-        <string name="0" value="Andy the Time Traveler says he has something to tell you before your third time travel."/>
-        <string name="1" value="Andy the Time Traveler has informed you that you must pass the test Nex the Gatekeeper of Time, who lives in the Old Tree of Tera, gives you before embarking on your third time travel. Enter the Old Tree of Tera and pass Nex&apos;s test."/>
-        <string name="2" value="You have passed the third test given by Nex the Gatekeeper of Time and earned the right to travel to another time. You can now teleport to the Bombed City Center in the year 2099. Go to the Time Gate with the Time Traveler&apos;s Pocket Watch."/>
+        <string name="0" value="时间旅行者安迪说，在我第三次时间旅行前有话要告诉我。"/>
+        <string name="1" value="时间旅行者安迪告诉我，开始第三次时间旅行前，必须先通过住在塔拉古树里的时间守护者尼克斯的考验。进入塔拉古树，通过尼克斯的考验吧。"/>
+        <string name="2" value="我通过了时间守护者尼克斯的第三次考验，获得了前往其他时代的资格。现在可以传送到2215年的遭轰炸城区中心。带着时间旅行者的怀表前往时间门吧。"/>
         <string name="demandSummary" value="#o7120102# #a37301# "/>
-        <string name="rewardSummary" value="EXP 110,000\r\nCan participate in the &quot;Identity of the Missile&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 110,000\r\n可以进行“导弹的真面目”任务。\r\n"/>
     </imgdir>
     <imgdir name="3731">
-        <string name="name" value="Identity of the Missile"/>
+        <string name="name" value="导弹的真面目"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2215- The Bombing"/>
+        <string name="parent" value="2215年 - 轰炸"/>
         <int name="order" value="2"/>
-        <string name="1" value="Andy the Time Traveler has asked you to travel to the year 2215 to investigate the Bombed City Center and destroy the A.I. missile known as Dunas."/>
-        <string name="2" value="Andy the Time Traveler asked you to travel to the year 2215 to investigate the Bombed City Center and destroy the A.I. missile known as Dunas. To your surprised, you discovered that Dunas was an android missile that closely resembled a human. You may have succeeded in destroying Dunas, but the Bombed City Center doesn&apos;t appear to be restorable."/>
+        <string name="1" value="时间旅行者安迪让我前往2215年，调查遭轰炸的城区中心，并摧毁名为杜纳斯的人工智能导弹。"/>
+        <string name="2" value="时间旅行者安迪让我前往2215年调查遭轰炸的城区中心，并摧毁名为杜纳斯的人工智能导弹。令人惊讶的是，杜纳斯竟是外形酷似人类的机器人导弹。虽然我成功摧毁了杜纳斯，但遭轰炸的城区中心似乎已经无法恢复了。"/>
         <string name="demandSummary" value="#o8220010# #a37311# "/>
-        <string name="rewardSummary" value="EXP 140,000\r\nCan participate in the &apos;&quot;Nex the Time Guard&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 140,000\r\n可以进行“时间守护者尼克斯”任务。\r\n"/>
     </imgdir>
     <imgdir name="3732">
-        <string name="name" value="Rambunctious Robots"/>
+        <string name="name" value="吵闹的机器人"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2215- The Bombing"/>
+        <string name="parent" value="2215年 - 轰炸"/>
         <int name="order" value="3"/>
-        <string name="1" value="You meet May in the middle of the Bombed City Center in the year 2215. What&apos;s she doing in the destroyed City Center? In any case, she asks you to defeat the Robbies that appeared after the bombing. She says they&apos;re so loud and rambunctious that she&apos;s about to have a nervous breakdown."/>
-        <string name="2" value="You met May in the middle of the Bombed City Center in the year 2215. She asked you to defeat the Robbies that appeared after the bombing. She said they were so loud and rambunctious that she was about to have a nervous breakdown. Well, that worked out since you were thinking about getting rid of those noisy robots anyway."/>
+        <string name="1" value="我在2215年遭轰炸的城区中心遇到了梅伊。她为什么会在被毁的市中心？总之，她让我消灭轰炸后出现的罗比。她说那些机器人又吵又闹，快把她逼到崩溃了。"/>
+        <string name="2" value="我在2215年遭轰炸的城区中心遇到了梅伊。她拜托我消灭轰炸后出现的罗比，说它们又吵又闹，快让她精神崩溃了。反正我也正想除掉这些吵闹的机器人，正好顺手解决。"/>
         <string name="demandSummary" value="#o7120108# #a37321# "/>
-        <string name="rewardSummary" value="EXP 90,000\r\nCan participate in the &quot;Survivor Search&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 90,000\r\n可以进行“寻找幸存者”任务。\r\n"/>
     </imgdir>
     <imgdir name="3733">
-        <string name="name" value="Survivor Search"/>
+        <string name="name" value="寻找幸存者"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2215- The Bombing"/>
+        <string name="parent" value="2215年 - 轰炸"/>
         <int name="order" value="4"/>
-        <string name="1" value="May was happy that you were able to reduce the population of the noisy Robbies, but was also concerned that she may be the only survivor left. She asks you to investigate the area where the missile landed and search for survivors."/>
-        <string name="2" value="You have searched the area all the way to the location where the missile landed, as May requested. Fortunately, you were able to find a male survivor named Bao. How is it that he doesn&apos;t even have a tiny scratch on him?"/>
-        <string name="rewardSummary" value="EXP 30,000\r\nCan participate in &quot;The Dangerous Android&quot; quest.\r\n"/>
+        <string name="1" value="梅伊很高兴我减少了吵闹罗比的数量，但也担心自己可能是唯一的幸存者。她让我调查导弹坠落的区域，寻找其他幸存者。"/>
+        <string name="2" value="我按照梅伊的请求，一直搜索到导弹坠落的地点。幸运的是，我找到了一名叫鲍的男性幸存者。他身上居然连一点擦伤都没有，真奇怪。"/>
+        <string name="rewardSummary" value="经验值 30,000\r\n可以进行“危险的机器人”任务。\r\n"/>
     </imgdir>
     <imgdir name="3734">
-        <string name="name" value="The Dangerous Android"/>
+        <string name="name" value="危险的机器人"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2215- The Bombing"/>
+        <string name="parent" value="2215年 - 轰炸"/>
         <int name="order" value="5"/>
-        <string name="1" value="May was right. When you went into the City Center, you found another survivor, Bao. Bao could not move an inch because he was so afraid of Iruvatas and asked that you help him. He appears to be a big guy, but really, he&apos;s just a softie inside."/>
-        <string name="2" value="You defeated Iruvatas that were scaring Bao. Bao thanked you for your help. What a softie."/>
+        <string name="1" value="梅伊说得没错。我进入市中心后，找到了另一个幸存者鲍。鲍因为害怕伊鲁瓦塔而寸步难行，请我帮帮他。他看起来很高大，其实内心很胆小。"/>
+        <string name="2" value="我打倒了吓到鲍的伊鲁瓦塔。鲍感谢了我的帮助。真是个外强中干的人。"/>
         <string name="demandSummary" value="#o7120109# #a37341# "/>
-        <string name="rewardSummary" value="EXP 90,000\r\nCan participate in the &quot;The Wreckage of the Missile&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 90,000\r\n可以进行“导弹残骸”任务。\r\n"/>
     </imgdir>
     <imgdir name="3735">
-        <string name="name" value="The Wreckage of the Missile"/>
+        <string name="name" value="导弹残骸"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2215- The Bombing"/>
+        <string name="parent" value="2215年 - 轰炸"/>
         <int name="order" value="6"/>
-        <string name="1" value="Bao says that the Iruvatas and Robbies seem to come from the place the missile landed and suggests you search around there. How did he know you were looking for something? He seemed a little dull and slow, but perhaps he actually has a perceptive side. Anyway, investigate and report your findings to Andy."/>
-        <string name="2" value="Bao said that the Iruvatas and Robbies seemed to come from the area the missile landed and suggested you search there. You then defeated Dunas the missile android in the bombed City Center and delivered the Time Sand you acquired to Andy."/>
+        <string name="1" value="鲍说伊鲁瓦塔和罗比似乎来自导弹坠落的地方，并建议我去那里搜索。他怎么知道我在找东西？他看起来有点迟钝，也许其实很敏锐。总之，去调查后向安迪报告吧。"/>
+        <string name="2" value="鲍说伊鲁瓦塔和罗比似乎来自导弹坠落的区域，并建议我去那里搜索。之后我击败了机器人导弹杜纳斯，并把获得的时间沙交给了安迪。"/>
         <string name="demandSummary" value="#i4032516:# #t4032516:# #c4032516# / 1 "/>
-        <string name="rewardSummary" value="EXP 60,000\r\n"/>
+        <string name="rewardSummary" value="经验值 60,000\r\n"/>
     </imgdir>
     <imgdir name="3736">
-        <string name="name" value="Nex the Time Guard"/>
+        <string name="name" value="时间守护者尼克斯"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2216- The Ruins"/>
+        <string name="parent" value="2216年 - 废墟"/>
         <int name="order" value="1"/>
-        <string name="0" value="Andy the Time Traveler says he has something to tell you before your fourth time travel."/>
-        <string name="1" value="Andy the Time Traveler has informed you that you must pass the test Next the Gatekeeper of Time, who lives in the Old Tree of Tera, gives you before embarking on your fourth time travel. Enter the Old Tree of Tera and pass Nex&apos;s test."/>
-        <string name="2" value="You have passed the fourth test given by Nex the Gatekeeper of Time and earned the right to travel to another time. You can now teleport to the ruins of the city in year 2216. Go to the Time Gate with the Time Traveler&apos;s Pocket Watch."/>
+        <string name="0" value="时间旅行者安迪说，在我第四次时间旅行前有话要告诉我。"/>
+        <string name="1" value="时间旅行者安迪告诉我，开始第四次时间旅行前，必须先通过住在塔拉古树里的时间守护者尼克斯的考验。进入塔拉古树，通过尼克斯的考验吧。"/>
+        <string name="2" value="我通过了时间守护者尼克斯的第四次考验，获得了前往其他时代的资格。现在可以传送到2216年的废墟之城。带着时间旅行者的怀表前往时间门吧。"/>
         <string name="demandSummary" value="#o8120100# #a37361# "/>
-        <string name="rewardSummary" value="EXP 130,000\r\nCan participate in the &quot;Central Robot Aufheben&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 130,000\r\n可以进行“中央机器人奥芙赫班”任务。\r\n"/>
     </imgdir>
     <imgdir name="3737">
-        <string name="name" value="Central Robot Aufheben"/>
+        <string name="name" value="中央机器人奥芙赫班"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2216 - The Ruins"/>
+        <string name="parent" value="2216年 - 废墟"/>
         <int name="order" value="2"/>
-        <string name="1" value="Andy has requested that you travel to the ruins of the city in the year 2216 and defeat Aufheben, the central robot that controls all electronic devices in the city. Andy says if Dunas was an android, it is very likely that Aufheben is also an android."/>
-        <string name="2" value="Andy requested that you travel to the ruins of the city in the year 2216 and defeat Aufheben, the central robot that controlled all electronic devices in the city. As suspected, Aufheben was an android. The battle between humans and robots seems interminable."/>
+        <string name="1" value="安迪让我前往2216年的废墟之城，击败控制城市中所有电子设备的中央机器人奥芙赫班。安迪说，如果杜纳斯是机器人，那么奥芙赫班很可能也是机器人。"/>
+        <string name="2" value="安迪让我前往2216年的废墟之城，击败控制城市中所有电子设备的中央机器人奥芙赫班。和预想一样，奥芙赫班也是机器人。人类与机器人的战斗似乎永无止境。"/>
         <string name="demandSummary" value="#o8220011# #a37371# "/>
-        <string name="rewardSummary" value="EXP 170,000\r\nCan participate in the &quot;Nex the Time Guard&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 170,000\r\n可以进行“时间守护者尼克斯”任务。\r\n"/>
     </imgdir>
     <imgdir name="3738">
-        <string name="name" value="Disturbing the Army of Robots"/>
+        <string name="name" value="扰乱机器人军团"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2216- The Ruins"/>
+        <string name="parent" value="2216年 - 废墟"/>
         <int name="order" value="3"/>
-        <string name="1" value="You have traveled to the year 2216 on your fourth time travel. Thanks to Ken, who assumes you are from the support unit, you must eliminate monsters. Things keep coming up and hindering you from doing what you&apos;re here to do. Keep in mind that you are here for a reason."/>
-        <string name="2" value="You traveled to the year 2216 on your fourth time travel. Thanks to Ken, who just assumed that you were from the support unit, you had to eliminate monsters. Conditions in the city appear to be deteriorating."/>
+        <string name="1" value="我第四次时间旅行来到了2216年。肯把我当成支援部队，让我去消灭怪物。事情总是一件接一件地妨碍我完成原本的目标。别忘了，我来到这里是有理由的。"/>
+        <string name="2" value="我第四次时间旅行来到了2216年。肯误以为我是支援部队，于是我只好去消灭怪物。城市的状况似乎正在持续恶化。"/>
         <string name="demandSummary" value="#o8120102# #a37381# #o8120103# #a37382# "/>
-        <string name="rewardSummary" value="EXP 105,000\r\nCan participate in &quot;Isabella&apos;s Search&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 105,000\r\n可以进行“寻找伊莎贝拉”任务。\r\n"/>
     </imgdir>
     <imgdir name="3739">
-        <string name="name" value="Isabella&apos;s Search"/>
+        <string name="name" value="寻找伊莎贝拉"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2216- The Ruins"/>
+        <string name="parent" value="2216年 - 废墟"/>
         <int name="order" value="4"/>
-        <string name="1" value="Ken, who you met in the ruins of the city in the year 2216, requests that you investigate the eastern regions where he received a rescue signal. You must hurry and find the person who he suspects to be a teenage female. Begin your search right away."/>
-        <string name="2" value="Ken, whom you met in the ruins of the city in year 2216, requested that you investigate the eastern regions where he received a rescue signal. You found a teenage female who appeared to be passed out from exhaustion. Fortunately, she was conscious when you talked to her."/>
-        <string name="rewardSummary" value="EXP 50,000\r\nCan participate in the &quot;What Was That I Saw?&quot; quest.\r\n"/>
+        <string name="1" value="我在2216年废墟之城遇到的肯，请我调查他收到求救信号的东部区域。他怀疑那里有一名少女，必须尽快找到她。立刻开始搜索吧。"/>
+        <string name="2" value="我按照在2216年废墟之城遇到的肯的请求，调查了收到求救信号的东部区域。我找到了一名似乎因疲惫而昏倒的少女。幸好和她说话时，她已经恢复了意识。"/>
+        <string name="rewardSummary" value="经验值 50,000\r\n可以进行“我刚才看到了什么？”任务。\r\n"/>
     </imgdir>
     <imgdir name="3740">
-        <string name="name" value="What Was That I Saw?"/>
+        <string name="name" value="我刚才看到了什么？"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2216- The Ruins"/>
+        <string name="parent" value="2216年 - 废墟"/>
         <int name="order" value="5"/>
-        <string name="1" value="When she regained consciousness, Isabella kept rambling nonsense about how she saw an angel to the east, where the high rise collapsed. An angel? Is she insane? The only way to confirm that is to go over and see for yourself. You may even find a Time Sand."/>
-        <string name="2" value="When she regained consciousness, Isabella kept rambling nonsense about how she saw an angel. The only way to confirm that was to go over and see for yourself. You did, and even found a Time Sand."/>
+        <string name="1" value="伊莎贝拉恢复意识后，一直语无伦次地说她在东边高楼倒塌的地方看到了天使。天使？她疯了吗？唯一能确认的方法就是亲自过去看看。也许还能找到时间沙。"/>
+        <string name="2" value="伊莎贝拉恢复意识后，一直语无伦次地说她看到了天使。唯一能确认的方法就是亲自过去看看。我去了那里，还找到了时间沙。"/>
         <string name="demandSummary" value="#i4032517:# #t4032517:# #c4032517# / 1 "/>
-        <string name="rewardSummary" value="EXP 70,000\r\n"/>
+        <string name="rewardSummary" value="经验值 70,000\r\n"/>
     </imgdir>
     <imgdir name="3742">
-        <string name="name" value="Nex the Time Guard"/>
+        <string name="name" value="时间守护者尼克斯"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2230- Imminent Collapse!"/>
+        <string name="parent" value="2230年 - 迫在眉睫的崩塌！"/>
         <int name="order" value="1"/>
-        <string name="0" value="Andy the Time Traveler says he has something to tell you before your fifth time travel."/>
-        <string name="1" value="Andy the Time Traveler has informed you that you must pass the test Nex the Gatekeeper of Time, who lives in the Old Tree of Tera, gives you before embarking on your fifth time travel. Enter the Old Tree of Tera and pass Nex&apos;s test."/>
-        <string name="2" value="You have passed the fifth test given by Nex the Gatekeeper of Time and earned the right to travel to another time. You can now teleport to the dangerous towers of the year 2230. Go to the Time Gate with the Time Traveler&apos;s Pocket Watch."/>
+        <string name="0" value="时间旅行者安迪说，在我第五次时间旅行前有话要告诉我。"/>
+        <string name="1" value="时间旅行者安迪告诉我，开始第五次时间旅行前，必须先通过住在塔拉古树里的时间守护者尼克斯的考验。进入塔拉古树，通过尼克斯的考验吧。"/>
+        <string name="2" value="我通过了时间守护者尼克斯的第五次考验，获得了前往其他时代的资格。现在可以传送到2230年的危险高塔。带着时间旅行者的怀表前往时间门吧。"/>
         <string name="demandSummary" value="#o8120101# #a37421# "/>
-        <string name="rewardSummary" value="EXP 140,000\r\nCan participate in &quot;The New and Improved, Oberon&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 140,000\r\n可以进行“全新改良型奥伯伦”任务。\r\n"/>
     </imgdir>
     <imgdir name="3743">
-        <string name="name" value="The New and Improved, Oberon"/>
+        <string name="name" value="全新改良型奥伯伦"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2230- Imminent Collapse!"/>
+        <string name="parent" value="2230年 - 迫在眉睫的崩塌！"/>
         <int name="order" value="2"/>
-        <string name="1" value="Andy says, based on the findings from the previous time travels, it is likely that the Fifth Time Sand is in the year 2230. He wants you to defeat Oberon, an android even more advanced than Aufheben, and bring back the Time Sand."/>
-        <string name="2" value="As Andy suspected, Oberon had the Fifth Time Sand. You have successfully defeated Oberon and found the Fifth Time Sand in the dangerous tower in the year 2230."/>
+        <string name="1" value="安迪说，根据之前几次时间旅行得到的线索，第五个时间沙很可能在2230年。他希望我击败比奥芙赫班更先进的机器人奥伯伦，并带回时间沙。"/>
+        <string name="2" value="正如安迪所料，奥伯伦持有第五个时间沙。我成功击败了奥伯伦，并在2230年的危险高塔中找到了第五个时间沙。"/>
         <string name="demandSummary" value="#i4032518:# #t4032518:# #c4032518# / 1 #o8220012# #a37431# "/>
-        <string name="rewardSummary" value="EXP 200,000\r\nCan participate in the &quot;Nex the Time Guard&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 200,000\r\n可以进行“时间守护者尼克斯”任务。\r\n"/>
     </imgdir>
     <imgdir name="3744">
-        <string name="name" value="Defeat the Mavericks"/>
+        <string name="name" value="击败马维里克"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2230- Imminent Collapse!"/>
+        <string name="parent" value="2230年 - 迫在眉睫的崩塌！"/>
         <int name="order" value="3"/>
-        <string name="1" value="Hoya, the boy you met at the lobby of the dangerous tower in the year 2230, has asked you to eliminate the pesky Mavericks and report it to Nalo."/>
-        <string name="2" value="Hoya, the boy you met at the lobby of the dangerous tower in the year 2230, asked you to eliminate some pesky Mavericks. You did so and reported it to Nalo at the top of the tower. Nalo seemed concerned about Hoya&apos;s immature and irresponsible actions."/>
+        <string name="1" value="我在2230年危险高塔大厅遇到的男孩霍亚，请我消灭烦人的马维里克，然后向纳洛报告。"/>
+        <string name="2" value="我在2230年危险高塔大厅遇到的男孩霍亚，请我消灭一些烦人的马维里克。我照做后到塔顶向纳洛报告。纳洛似乎很担心霍亚幼稚又不负责任的行动。"/>
         <string name="demandSummary" value="#o8120104# #a37441# #o8120105# #a37442# #o8120106# #a37443# "/>
-        <string name="rewardSummary" value="EXP 90,000\r\n"/>
+        <string name="rewardSummary" value="经验值 90,000\r\n"/>
     </imgdir>
     <imgdir name="3748">
-        <string name="name" value="Nex the Time Guard"/>
+        <string name="name" value="时间守护者尼克斯"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2503- From the Sky"/>
+        <string name="parent" value="2503年 - 来自天空"/>
         <int name="order" value="1"/>
-        <string name="0" value="Andy the Time Traveler says he has something to tell you before your sixth time travel."/>
-        <string name="1" value="Andy the Time Traveler has informed you that you must pass the test Nex the Gatekeeper of Time, who lives in the Old Tree of Tera, gives you before embarking on your sixth time travel. Enter the Old Tree of Tera and pass Nex&apos;s test."/>
-        <string name="2" value="You have passed the sixth test given by Nex the Gatekeeper of Time and earned the right to travel to another time. You can now teleport to the Air Battleship of the year 2503. Go to the Time Gate with the Time Traveler&apos;s Pocket Watch."/>
+        <string name="0" value="时间旅行者安迪说，在我第六次时间旅行前有话要告诉我。"/>
+        <string name="1" value="时间旅行者安迪告诉我，开始第六次时间旅行前，必须先通过住在塔拉古树里的时间守护者尼克斯的考验。进入塔拉古树，通过尼克斯的考验吧。"/>
+        <string name="2" value="我通过了时间守护者尼克斯的第六次考验，获得了前往其他时代的资格。现在可以传送到2503年的空中战舰。带着时间旅行者的怀表前往时间门吧。"/>
         <string name="demandSummary" value="#o8140510# #a37481# "/>
-        <string name="rewardSummary" value="EXP 150,000\r\nCan participate in the &quot;Nibelung&apos;s Song&quot; quest.\r\n"/>
+        <string name="rewardSummary" value="经验值 150,000\r\n可以进行“尼贝隆之歌”任务。\r\n"/>
     </imgdir>
     <imgdir name="3749">
-        <string name="name" value="Nibelung&apos;s Song"/>
+        <string name="name" value="尼贝隆之歌"/>
         <int name="area" value="41"/>
-        <string name="parent" value="Year 2503- From the Sky"/>
+        <string name="parent" value="2503年 - 来自天空"/>
         <int name="order" value="2"/>
-        <string name="1" value="In the end, Andy says the answer is in the year 2503, where he&apos;s from. He wants you to travel to the year 2503 to destroy Nibelung and report it to Ashura. Will this solve the problem?"/>
-        <string name="2" value="You destroyed Nibelung and reported that to Ashura. She showed her gratitude and wished for peaceful days in the future."/>
+        <string name="1" value="最后，安迪说答案就在他来自的2503年。他希望我前往2503年摧毁尼贝隆，并向阿修罗报告。这样真的能解决问题吗？"/>
+        <string name="2" value="我摧毁了尼贝隆，并向阿修罗报告了结果。她表达了感谢，并祈愿未来能迎来和平的日子。"/>
         <string name="demandSummary" value="#o8220015# #a37491# "/>
-        <string name="rewardSummary" value="EXP 220,000\r\n#Wbasic#\r\n#i1003039:# #t1003039:# 1\r\n"/>
+        <string name="rewardSummary" value="经验值 220,000\r\n#Wbasic#\r\n#i1003039:# #t1003039:# 1\r\n"/>
     </imgdir>
     <imgdir name="3800">
         <string name="name" value="诺功的教导1"/>
@@ -14053,7 +14055,7 @@
         <string name="0" value="百草村的黄船长想告诉你一个关于百草村东边雾海的诡异传闻。他的故事似乎很有趣，要不要听听看？"/>
         <string name="1" value="百草村的黄船长讲述了连接百草村和水下世界的东部航线。这条航线是冒险岛世界最长的水路，途经武陵桃园东边被称为#b&quot;雾海&quot;#k的海域。据说有一艘幽灵船在雾海中出没。\r\n黄船长建议你去寻找那艘幽灵船，并提示说也许能从海豚出租车那里得到一些线索。"/>
         <string name="2" value="百草村的黄船长讲述了连接百草村和水下世界的东部航线。这条航线是冒险岛世界最长的水路，途经武陵桃园东边被称为#b&quot;雾海&quot;#k的海域。据说有一艘幽灵船在雾海中出没。你被黄船长的故事吸引，在海豚出租车的帮助下来到了雾海中的无名小岛，并发现了那艘幽灵船。"/>
-        <int name="autoStart" value="1"/>
+        <int name="autoStart" value="0"/>
     </imgdir>
     <imgdir name="3900">
         <string name="name" value="学习阿里安特的文化"/>
@@ -15092,7 +15094,7 @@
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="4523">
-        <string name="name" value="幽灵船长的回归"/>
+        <string name="name" value="幽灵船长的回归(重复)"/>
         <string name="0" value="#b流浪汉拉尔夫#k感到黑暗力量出没在幽灵船地区附近…我必须要再去跟他确认一次。"/>
         <string name="1" value="#b流浪汉拉尔夫#k相信，#r幽灵船长#k又回来了！！！他希望我再次回到轮机舱，不过他要确定我还能够胜任。我必须要向他证明自己一直在锻炼并且做好了准备。\n\n"/>
         <string name="2" value="我终于证明了自己还是那个为进入轮机舱做好准备的人。现在，看我怎么收拾幽灵船长吧！"/>
@@ -15498,27 +15500,27 @@
         <string name="name" value="苏白尼的遗物 - 发现"/>
         <string name="parent" value="苏白尼的遗物 "/>
         <int name="order" value="1"/>
-        <string name="0" value="我听说在大笨钟底下的内部齿轮装置上有一个探险家。哪里隐藏了什么奥秘之处呢？我得查清楚！"/>
-        <string name="1" value="我和世界知名的寻宝公司的强 贝瑞加德交谈过。跟他谈到了苏白尼，传说中负责整个枫之世界黑暗卷轴的巫师。他相信在内部齿轮装置内有某些东西可能是他的宝藏。我答应帮助清除道路。我必须要击败#b50 只杀人虎头蜂、30朵巨灵食人花和40 头火焰象#k，我就能更深入内部齿轮装置探险…"/>
-        <string name="2" value="我清出了一条直接通向内部齿轮装置的路，现在可以在哪里安静地探险。当我准备好的时候，就可以见到强 贝瑞加德继续这次冒险的下一个阶段！ "/>
+        <string name="0" value="听说大笨钟下方的内部齿轮装置里有一位探险家。那里似乎藏着什么秘密，我得去查清楚。"/>
+        <string name="1" value="我见到了闻名世界的寻宝人约翰·贝瑞加德。他提到传说中的巫师苏白尼，以及散落在枫之世界各地的黑暗卷轴。他认为内部齿轮装置里可能藏着苏白尼的遗物。为了继续深入调查，我答应帮他清出道路，需要击败#b50只杀人虎头蜂、30朵巨灵食人花和40头火焰象#k。"/>
+        <string name="2" value="我已经清出通往内部齿轮装置深处的道路。等准备好了，就去找约翰·贝瑞加德，继续下一阶段的冒险。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="4914">
         <string name="name" value="苏白尼的遗物  - 侵入"/>
         <string name="parent" value="苏白尼的遗物 "/>
         <int name="order" value="2"/>
-        <string name="0" value="强 贝瑞加德正在等我！他已经有所发现了！"/>
-        <string name="1" value="我和强交谈过，他在内部齿轮装置中发现了一组他无法破解的神秘符文。他提到需要名为#b翻译水晶#k的特殊水晶。我答应捉 #b50#k 个给他用来破解符文。电击象…强认为牠们头上的机制内可能有翻译水晶。"/>
-        <string name="2" value="我拿到了 #b50个强所需要的翻译水晶#k，他正在努力破解那些符文。我必须快点回来看看他是否已经完成！"/>
+        <string name="0" value="约翰·贝瑞加德正在等我！他似乎有了新的发现。"/>
+        <string name="1" value="我和约翰·贝瑞加德谈过了。他在内部齿轮装置中发现了一组无法解读的神秘符文，需要一种叫做#b翻译水晶#k的特殊水晶来破解。强认为电击象头部的机械装置里可能藏有这种水晶，我答应帮他收集#b50个翻译水晶#k。"/>
+        <string name="2" value="我已经拿到约翰·贝瑞加德需要的#b50个翻译水晶#k。他正在尝试破解那些符文，我得尽快回去看看结果。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="4915">
         <string name="name" value="苏白尼的遗物  - 释出"/>
         <string name="parent" value="苏白尼的遗物  "/>
         <int name="order" value="3"/>
-        <string name="0" value="强已经完成译码这些符文了！我现在必须回到他那边！"/>
-        <string name="1" value="强和我再度交谈，并且有意外事件发生。我将必须去搜寻内部齿轮装置地图片让他能汇集成地图！他提到了那些他「借来」帮忙的机器人发疯了，不停地说「#b我是机器人#k」 因为它们匆匆走入了克兰卡丛林... 最好小心 - 我可不想被吓到！"/>
-        <string name="2" value="终于完成了！我把这些碎片带回去给强，他开始拼成地图。不过，他的确偶然看到了一个奇怪的戒指，转交给我。 如果这是第一个宝物，我想知道其余的在哪里..."/>
+        <string name="0" value="约翰·贝瑞加德已经破解了那些符文！我得立刻回去找他。"/>
+        <string name="1" value="我再次见到约翰·贝瑞加德时，事情出现了意外。他需要我找回内部齿轮装置的地图碎片，才能拼出完整地图。他还提到，那些被他“借来”帮忙的机器人突然失控，嘴里不停喊着「#b我是机器人#k」，然后冲进了克兰卡丛林。最好小心一点，我可不想被它们吓到。"/>
+        <string name="2" value="终于完成了！我把地图碎片带回去交给约翰·贝瑞加德，他开始拼合地图。与此同时，他发现了一枚奇怪的戒指，并把它交给了我。如果这就是第一件宝物，那其他宝物又会藏在哪里呢……"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="4916">
@@ -15564,7 +15566,7 @@
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="4922">
-        <string name="name" value="清除街道 - 后续"/>
+        <string name="name" value="(重复)清除街道 - 后续"/>
         <string name="0" value="新叶城中来了一位新警长。我应该去看看是谁！"/>
         <string name="1" value="我见过那位新警长，莉塔 罗莉丝。她是艾斯比亚德老朋友其中之一，接任为新警长。我答应帮忙她整顿这个城镇，透过消灭新叶城内的 #b200只电击象以及200只狮鹫兽#k。我最好赶快开始！"/>
         <string name="2" value="我…我成功了！200只电击象和狮鹫兽已经阵亡在我的威力之下！ 除此之外，我从莉塔那得到一个酷道具作为「感谢」。从现在开始，只要我想，随时都可以回去帮助她…"/>
@@ -15580,21 +15582,21 @@
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="4924">
-        <string name="name" value="Brand Materia"/>
-        <string name="parent" value="Brand Materia"/>
+        <string name="name" value="品牌魔石"/>
+        <string name="parent" value="品牌魔石"/>
         <int name="order" value="1"/>
-        <string name="0" value="Looks like the Glimmer Man is looking for a rare material from the alternate dimension of Versal, the very #b#t4031760##k that I now possess.  Perhaps I should visit him in New Leaf City and see what he wants with it.  Maybe he&apos;ll reward me for bringing him some..."/>
-        <string name="1" value="I visited the Glimmer Man, and discovered that he&apos;s an ultra-powerful mage whose ability to turn his entire body into pure diamond (hence his name) has allowed him to journey to space and other inhospitable environments.  Through the vast knowledge he&apos;s acquired during his explorations, he&apos;s also become somewhat of a renowned weapons creator and arms dealer.\r\nThe Glimmer Man has landed in Masteria looking for something called #b#t4031760##k, a rare element from the alternate dimension of Versal he&apos;s been dying to experiment with.  To thank me for recovering some and bringing it to him, he&apos;s promised to make me a weapon of my own from it. However, I&apos;ve got to also track down #b7 #t4021008#s#k and return these to him as well.  Only then can he reduce the naturally unstable Materia down to a useable form.  A weapon made from an otherwordly material! I wonder what it does..."/>
-        <string name="2" value="I returned to the Glimmer Man and he synthesized the #b#t4031760##k and the #b7 #t4021008#s#k I gave him to form a Materia Orb.  He&apos;s said his precocious friend Spindle can turn this into a weapon, so I should see him when I&apos;m ready to make the weapon...WOOT!  Spindle is currently residing in the Omega Sector.  Additionally, anytime I find more White Versal Materia, I can bring it to the Glimmer Man and he&apos;ll create another Materia Orb for me so I can make another weapon!"/>
+        <string name="0" value="微光人似乎正在寻找来自异界维萨尔的稀有材料，也就是我手上的#b#t4031760##k。也许我该去新叶城找他，问问他到底想用它做什么。带一些给他的话，说不定会有报酬……"/>
+        <string name="1" value="我拜访了微光人，发现他是一位极其强大的魔法师。他能把自己的身体变成纯钻石，因此才能前往宇宙和其他恶劣环境探索。凭借旅途中积累的知识，他也成了颇有名气的武器制作者和军火商。\r\n微光人来到玛斯特里亚，是为了寻找名为#b#t4031760##k的材料。这是来自异界维萨尔的稀有元素，他一直想拿来做实验。作为我帮他找回材料的谢礼，他答应为我制作一把专属武器。不过我还得再找来#b7个#t4021008##k交给他。只有这样，他才能把天生不稳定的魔石转化成可用形态。用异界材料制作的武器啊！真想知道它会有什么力量……"/>
+        <string name="2" value="我回去找微光人，他把我交给他的#b#t4031760##k和#b7个#t4021008##k合成为一颗魔石宝珠。他说他的朋友斯宾德尔可以把它打造成武器，所以等我准备好制作武器时，就去找斯宾德尔吧。斯宾德尔目前住在地球防御本部。另外，只要我以后再找到白色维萨尔魔石，也可以带给微光人，请他再制作一颗魔石宝珠。"/>
         <int name="area" value="50"/>
     </imgdir>
     <imgdir name="4925">
-        <string name="name" value="Brand Materia Continued"/>
-        <string name="parent" value="Brand Materia"/>
+        <string name="name" value="品牌魔石 - 后续"/>
+        <string name="parent" value="品牌魔石"/>
         <int name="order" value="2"/>
-        <string name="0" value="Looks like the Glimmer Man is looking for a rare material from the alternate dimension of Versal, the very #b#t4031760##k that I now possess.  Perhaps I should visit him in New Leaf City and see what he wants with it.  Maybe he&apos;ll reward me for bringing him some..."/>
-        <string name="1" value="I visited the Glimmer Man, and discovered that he&apos;s an ultra-powerful mage whose ability to turn his entire body into pure diamond (hence his name) has allowed him to journey to space and other inhospitable environments.  Through the vast knowledge he&apos;s acquired during his explorations, he&apos;s also become somewhat of a renowned weapons creator and arms dealer.\r\nThe Glimmer Man has landed in Masteria looking for something called #b#t4031760##k, a rare element from the alternate dimension of Versal he&apos;s been dying to experiment with.  To thank me for recovering some and bringing it to him, he&apos;s promised to make me a weapon of my own from it. However, I&apos;ve got to also track down #b7 #t4021008#s#k and return these to him as well.  Only then can he reduce the naturally unstable Materia down to a useable form.  A weapon made from an otherwordly material! I wonder what it does..."/>
-        <string name="2" value="I returned to the Glimmer Man and he synthesized the #b#t4031760##k and the #b7 #t4021008#s#k I gave him to form a Materia Orb.  He&apos;s said his precocious friend Spindle can turn this into a weapon, so I should see him when I&apos;m ready to make the weapon...WOOT!  Spindle is currently residing in the Omega Sector.  Additionally, anytime I find more White Versal Materia, I can bring it to the Glimmer Man and he&apos;ll create another Materia Orb for me so I can make another weapon!"/>
+        <string name="0" value="微光人似乎正在寻找来自异界维萨尔的稀有材料，也就是我手上的#b#t4031760##k。也许我该去新叶城找他，问问他到底想用它做什么。带一些给他的话，说不定会有报酬……"/>
+        <string name="1" value="我拜访了微光人，发现他是一位极其强大的魔法师。他能把自己的身体变成纯钻石，因此才能前往宇宙和其他恶劣环境探索。凭借旅途中积累的知识，他也成了颇有名气的武器制作者和军火商。\r\n微光人来到玛斯特里亚，是为了寻找名为#b#t4031760##k的材料。这是来自异界维萨尔的稀有元素，他一直想拿来做实验。作为我帮他找回材料的谢礼，他答应为我制作一把专属武器。不过我还得再找来#b7个#t4021008##k交给他。只有这样，他才能把天生不稳定的魔石转化成可用形态。用异界材料制作的武器啊！真想知道它会有什么力量……"/>
+        <string name="2" value="我回去找微光人，他把我交给他的#b#t4031760##k和#b7个#t4021008##k合成为一颗魔石宝珠。他说他的朋友斯宾德尔可以把它打造成武器，所以等我准备好制作武器时，就去找斯宾德尔吧。斯宾德尔目前住在地球防御本部。另外，只要我以后再找到白色维萨尔魔石，也可以带给微光人，请他再制作一颗魔石宝珠。"/>
         <int name="area" value="50"/>
     </imgdir>
     <imgdir name="4926">
@@ -15605,10 +15607,10 @@
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="4927">
-        <string name="name" value="Ancient Artifacts"/>
-        <string name="0" value="John Barricade has told me about the Ancient Artifacts I&apos;ve found in my offline travels (playing the MapleStory Trading Card Game).  He thinks that these can be used to construct powerful weapons and items.  If I bring him a valid set of those I find, he&apos;ll be able to tell me what I can make and how to make them."/>
-        <string name="1" value="John Barricade has told me about the Ancient Artifacts I&apos;ve found in my offline travels (playing the MapleStory Trading Card Game).  He thinks that these can be used to construct powerful weapons and items.  If I bring him a valid set of those I find, he&apos;ll be able to tell me what I can make and how to make them."/>
-        <string name="2" value="John Barricade has told me about the Ancient Artifacts I&apos;ve found in my offline travels (playing the MapleStory Trading Card Game).  He thinks that these can be used to construct powerful weapons and items.  If I bring him a valid set of those I find, he&apos;ll be able to tell me what I can make and how to make them."/>
+        <string name="name" value="远古遗物"/>
+        <string name="0" value="约翰·贝瑞加德听我说起在现实旅途中（冒险岛集换式卡牌游戏）发现的远古遗物。他认为这些遗物或许能用来打造强力武器和道具。如果我带来一组有效的遗物，他就能告诉我可以制作什么，以及该怎么制作。"/>
+        <string name="1" value="约翰·贝瑞加德听我说起在现实旅途中（冒险岛集换式卡牌游戏）发现的远古遗物。他认为这些遗物或许能用来打造强力武器和道具。如果我带来一组有效的遗物，他就能告诉我可以制作什么，以及该怎么制作。"/>
+        <string name="2" value="约翰·贝瑞加德听我说起在现实旅途中（冒险岛集换式卡牌游戏）发现的远古遗物。他认为这些遗物或许能用来打造强力武器和道具。如果我带来一组有效的遗物，他就能告诉我可以制作什么，以及该怎么制作。"/>
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="4928">
@@ -17874,10 +17876,10 @@
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8033">
-        <string name="name" value="Youthful Mariwaka"/>
-        <string name="0" value="Mariwaka of Showa Town apparently has great concern. I should at least listen to her and see what the fuss is about."/>
-        <string name="1" value=" Mariwaka desired to keep her beauty eternal, and she found out about a potion that&apos;ll help her do so. Sounds very fishy, but since she really believes in it, I should get her #b50 #t04000149#s#k for her eternal beauty.\n#t04000149# #b#c04000149##k/50"/>
-        <string name="2" value="I really doubt that those potions enable eternal youth. Oh well, she likes it anyways, and that&apos;s the bottom line. I&apos;ll just leave her be."/>
+        <string name="name" value="青春永驻的鞠若"/>
+        <string name="0" value="昭和村的鞠若似乎有很大的烦恼。至少先听听她想说什么吧。"/>
+        <string name="1" value="鞠若希望永远保持美丽，并听说有一种药水能帮她实现愿望。虽然听起来很可疑，但既然她深信不疑，就帮她收集 #b50个 #t04000149##k 吧。\n#t04000149# #b#c04000149##k/50"/>
+        <string name="2" value="我实在怀疑那些药水能让人永葆青春。不过她看起来很满意，这就够了。还是让她高兴地相信下去吧。"/>
         <int name="area" value="48"/>
     </imgdir>
       <imgdir name="8034">
@@ -17989,10 +17991,10 @@
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8051">
-        <string name="name" value="An Unknown Love"/>
-        <string name="0" value=" An unknown lady in Kerning City spends yet another day shivering in coldness. I should hear her side of the story."/>
-        <string name="1" value="Am I even allowed to take these...? I do feel like helping her find true love though... Whoever that may be... well, these are dropped by #b#o7130300##k, alright. \n#t04000148#  #b#c04000148##k/100"/>
-        <string name="2" value=" I surely wish she makes a good couple with that special someone. Hahaha...But then again, it&apos;s a little disturbing, come to think of it. I better ask her what&apos;s up next time."/>
+        <string name="name" value="无名之爱"/>
+        <string name="0" value="凯宁城一位不知名的女士又在寒冷中瑟瑟发抖。先听听她的故事吧。"/>
+        <string name="1" value="这些东西真的可以拿来吗……？虽然不知道她心中的真爱是谁，但我确实想帮她一把。总之，这些是 #b#o7130300##k 掉落的东西。\n#t04000148#  #b#c04000148##k/100"/>
+        <string name="2" value="真希望她能和那个特别的人顺利在一起。哈哈……不过仔细想想，这事也有点奇怪。下次还是问清楚她到底想做什么吧。"/>
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="7778">
@@ -18091,47 +18093,47 @@
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="8064">
-        <string name="name" value="Soul in the Dark"/>
-        <string name="0" value="I should ask #b#p1012109##k of #m100000000# how the book is coming along."/>
-        <string name="1" value="Just as I suspected, the stuff I gathered up for him last time didn&apos;t help much. This time, he wanted me to defeat #b#o6230500##k and gather up #b50 #t4000144#s#k for #p1012109# of #m100000000#.\n\n#t4000144#  #b#c4000144#/50#k"/>
-        <string name="2" value="I gave #p1012109# of #m100000000# #b50 #t4000144#s#k. Hopefully THIS will help me finish up the book."/>
+        <string name="name" value="黑暗中的灵魂"/>
+        <string name="0" value="我应该去问问#m100000000#的#b#p1012109##k，那本书写得怎么样了。"/>
+        <string name="1" value="果然和我想的一样，上次替他搜集的东西帮助不大。这一次，#m100000000#的#p1012109#希望我击败#b#o6230500##k，并搜集#b50个#t4000144##k。\n\n#t4000144#  #b#c4000144#/50#k"/>
+        <string name="2" value="我把#b50个#t4000144##k交给了#m100000000#的#p1012109#。希望这一次真的能帮助他完成那本书。"/>
         <int name="area" value="48"/>
-        <string name="parent" value="Soul in the Dark"/>
+        <string name="parent" value="黑暗中的灵魂"/>
     </imgdir>
     <imgdir name="8065">
-        <string name="name" value="The Ghost Whereabout"/>
-        <string name="parent" value="Freed From Darkness"/>
+        <string name="name" value="幽灵的去向"/>
+        <string name="parent" value="摆脱黑暗"/>
         <int name="order" value="1"/>
-        <string name="0" value="#b#p1012109##k of #b#p1012109##k&apos;s book should be ready by now. I should go talk to him."/>
-        <string name="1" value="Apparenlty the #b#t4000144#s#k have disappeared to the direction of #b#m801000000##k. I need to find it and return it to its original state."/>
-        <string name="2" value="Apparently, #p9120011#&apos;s doll just went about on its one way. Maybe this has something to do with #b#t4000144##k that #p1012109# is looking for..."/>
+        <string name="0" value="#b#p1012109##k的书现在应该已经准备好了。去找他谈谈吧。"/>
+        <string name="1" value="听说#b#t4000144##k朝着#b#m801000000##k的方向消失了。我得找到它，并让它恢复原状。"/>
+        <string name="2" value="听说#p9120011#的玩偶自己跑走了。也许这和#p1012109#正在寻找的#b#t4000144##k有关……"/>
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="8066">
-        <string name="name" value="A Puppet"/>
-        <string name="parent" value="Freed From Darkness"/>
+        <string name="name" value="玩偶"/>
+        <string name="parent" value="摆脱黑暗"/>
         <int name="order" value="2"/>
-        <string name="0" value="Apparently #p9120011#&apos;s doll just walked out and disappeared. I better check out this story."/>
-        <string name="1" value="#p9120011#&apos;s doll apparently just walked out on her and disappeared. Maybe this has something to do with the #b#t4000144##k that #p1012109# is looking for. I should go to #b#p1012109##k&apos;s place and talk to him."/>
-        <string name="2" value="#b#p1012109##k seems to catch on to something here."/>
+        <string name="0" value="听说#p9120011#的玩偶自己走出去后消失了。我最好去查清楚这件事。"/>
+        <string name="1" value="#p9120011#的玩偶似乎自己走出去后消失了。也许这和#p1012109#正在寻找的#b#t4000144##k有关。我应该去找#b#p1012109##k谈谈。"/>
+        <string name="2" value="#b#p1012109##k似乎察觉到了什么。"/>
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="8067">
-        <string name="name" value="The Man of Convention"/>
-        <string name="parent" value="Freed From Darkness"/>
+        <string name="name" value="守规矩的人"/>
+        <string name="parent" value="摆脱黑暗"/>
         <int name="order" value="3"/>
-        <string name="0" value="#b#p1012109##k seems to catch on to something here. I&apos;ll need to hear this."/>
-        <string name="1" value="He said #p9120011#&apos;s doll that is laden with #t4000144# may be controlled by something. I can&apos;t just stand still listening to this! I&apos;ll have to gather up #b50 #t04000148#s#k from #b#o7130300##k, as well as #b50 #t04000147#s#k from #b#o7130010##k. \nSince #p9120011# is crying, I&apos;ll have to return #b#t04000147##k to her first and hand #b#t04000147##k to her, then go to where #b#p1012109##k is.\n\n#t04000148# #b#c04000148##k/50\n#t04000147# #b#c04000147##k/50"/>
-        <string name="2" value="After handing #b#t04000147##k to #p9120011#, a blinding light engulfted the dolls, and then they transformed back to their original state. Too bad #b#t04000148##k disappeared in the process. What should I do? I better go talk to #b#p9120011##k."/>
+        <string name="0" value="#b#p1012109##k似乎察觉到了什么。我得听听他的说法。"/>
+        <string name="1" value="他说，附着了#t4000144#的#p9120011#的玩偶可能正被某种东西控制。不能只是站着听下去！我得从#b#o7130300##k那里搜集#b50个#t04000148##k，并从#b#o7130010##k那里搜集#b50个#t04000147##k。\n#p9120011#还在哭，先把#b#t04000147##k交给她，再去找#b#p1012109##k吧。\n\n#t04000148# #b#c04000148##k/50\n#t04000147# #b#c04000147##k/50"/>
+        <string name="2" value="把#b#t04000147##k交给#p9120011#后，耀眼的光芒包围了玩偶，它们随后恢复了原状。可惜#b#t04000148##k也在过程中消失了。该怎么办？最好去问问#b#p9120011##k。"/>
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8068">
-        <string name="name" value="Ray of Light"/>
-        <string name="parent" value="Freed From Darkness"/>
+        <string name="name" value="一线光芒"/>
+        <string name="parent" value="摆脱黑暗"/>
         <int name="order" value="4"/>
-        <string name="0" value="After handing #p9120011# the doll, #b#t04000148#k also disappeared! #b#p9120011##k said she&apos;ll tell me a story..."/>
-        <string name="1" value="#p9120011# suggested that I go to where #b#p1012109##k is and look for it. That&apos;s true, since standing pat doesn&apos;t do anything for me. I better go back and discuss this with him."/>
-        <string name="2" value="Apparently, #t04000148# and #t04000147# were both moved by warmth and compassion #p9120011# exudes. Isn&apos;t that nice to see? Just the way #p1012109# said, if everyone genuinely loves everything around them, then there would be no monster to begin with...? Anyway, it was nice to hear that #p1012109# may be ready to write the next chapter in the book. I&apos;m can&apos;t wait~!"/>
+        <string name="0" value="把玩偶交给#p9120011#后，#b#t04000148#k也消失了！#b#p9120011##k说她会告诉我一个故事……"/>
+        <string name="1" value="#p9120011#建议我去#b#p1012109##k那里找找看。说得没错，站在原地也解决不了问题。我最好回去和他商量。"/>
+        <string name="2" value="看来#t04000148#和#t04000147#都被#p9120011#散发出的温暖与善意打动了。这不是很好吗？正如#p1012109#所说，如果每个人都真心爱着身边的一切，也许一开始就不会有怪物了……不管怎样，听说#p1012109#准备写下一章了，真让人期待！"/>
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8069">
@@ -18153,55 +18155,55 @@
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8072">
-        <string name="name" value="An Old Code"/>
-        <string name="parent" value="A Puzzling Code"/>
+        <string name="name" value="古老的暗号"/>
+        <string name="parent" value="令人费解的暗号"/>
         <int name="order" value="1"/>
-        <string name="0" value="Kinokonoko of the Mushroom Shrine apparently found something. I should check it out."/>
-        <string name="1" value="Kinokonoko asked me if I could solve this puzzling code. What does this code mean...?"/>
-        <string name="2" value=" I managed to solve the code Kinokonoko gave me--answers lie in Sleepywood."/>
+        <string name="0" value="木野子神社的木野子好像发现了什么。我应该去看看。"/>
+        <string name="1" value="木野子问我能不能解开这段令人费解的暗号。这段暗号到底是什么意思……？"/>
+        <string name="2" value="我解开了木野子给我的暗号——答案指向林中之城。"/>
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8073">
-        <string name="name" value="2nd Code"/>
-        <string name="parent" value="A Puzzling Code"/>
+        <string name="name" value="第二个暗号"/>
+        <string name="parent" value="令人费解的暗号"/>
         <int name="order" value="2"/>
-        <string name="0" value="After solving the code, I found out there&apos;s a clue in Sleepywood! I better go there immediately."/>
-        <string name="1" value="Based on the bizarre-looking statue in Sleepywood, I was enable to find another code. What would this code imply?"/>
-        <string name="2" value="After solving the code written on the bizarre-looking statue, I headed over to a small grave."/>
+        <string name="0" value="解开暗号后，我发现线索在林中之城！我得立刻赶过去。"/>
+        <string name="1" value="根据林中之城那座奇异雕像上的线索，我找到了另一个暗号。这个暗号又代表着什么呢？"/>
+        <string name="2" value="解开奇异雕像上的暗号后，我前往了一座小坟墓。"/>
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="8074">
-        <string name="name" value="The Meaning of the Code"/>
-        <string name="parent" value="A Puzzling Code"/>
+        <string name="name" value="暗号的含义"/>
+        <string name="parent" value="令人费解的暗号"/>
         <int name="order" value="3"/>
-        <string name="0" value="Should I head over to the small grave that serves as the answer to the code written on the bizarre-looking statue? I should--knowing is better than not knowing."/>
-        <string name="1" value="Solving the code took me to this small grave. I better let Kinokonoko knowof this."/>
-        <string name="2" value="I told Kinokonoko everything I knew in regards to this puzzling code."/>
+        <string name="0" value="我应该前往那座小坟墓吗？它似乎就是奇异雕像上暗号的答案。还是去看看吧——知道总比不知道好。"/>
+        <string name="1" value="解开暗号后，我来到了这座小坟墓。我最好把这件事告诉木野子。"/>
+        <string name="2" value="我把关于这段令人费解的暗号所知道的一切都告诉了木野子。"/>
         <int name="area" value="30"/>
     </imgdir>
     <imgdir name="8076">
-        <string name="name" value="The Committee Challenges"/>
-        <string name="parent" value="The Committee Challenges"/>
+        <string name="name" value="委员会的挑战"/>
+        <string name="parent" value="委员会的挑战"/>
         <int name="order" value="1"/>
-        <string name="0" value="Sabitrama of Sleepywood has been looking for me. Something must have happened. I should drop by when there&apos;s time."/>
-        <string name="1" value="Sabitrama found the clues needed for the 3rd Herb.\nThe message was still too hard to understand. The archive said something like this! ...\nWhat kind of an ominous herb is this?? This herb cannot be placed near a human being, so seal up the force in a spherical object, and never let it see the day of light again...\n\nIf it&apos;s anything like the herbs before, then I&apos;ll still have to obtain this through monsters again. Arrgh, this is frustrating!"/>
-        <string name="2" value="We found the 3rd Herb, but it is tightly sealed inside Lazy Buffy&apos;s Marble. It seems like it&apos;s been attached for so long, that I don&apos;t think we can just pluck it out of the sphere. Sabitrama then mentioned something like applying modern science to opening this. We&apos;ve come so far, that there&apos;s no way we&apos;re about to give up.\nBut then again, who am I supposed to find?&quot;"/>
+        <string name="0" value="林中城的萨比特拉玛正在找我。一定又发生了什么事，有空时去看看吧。"/>
+        <string name="1" value="萨比特拉玛找到了第三药草的线索。\n内容依旧很难理解，档案上大概是这样写的：\n这是什么不祥的药草？这种药草不能靠近人类，所以要把力量封入球形之物，永远不要让它再见天日……\n\n如果和之前的药草一样，看来还是得从怪物身上寻找。真让人头疼！"/>
+        <string name="2" value="我们找到了第三药草，但它被严密封在懒惰巴菲的珠子里。它似乎已经附着太久，不能直接从球体里取出来。萨比特拉玛提到，也许可以用现代科学打开它。既然已经走到这里，就不能轻易放弃。\n不过，我该去找谁呢？"/>
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8077">
-        <string name="name" value="The Father of Modern Science"/>
-        <string name="parent" value="The Committee Challenges"/>
+        <string name="name" value="现代科学之父"/>
+        <string name="parent" value="委员会的挑战"/>
         <int name="order" value="2"/>
-        <string name="0" value="We found the 3rd Herb, but it is tightly sealed inside Lazy Buffy&apos;s Marble. It seems like it&apos;s been attached for so long, that I don&apos;t think we can just pluck it out of the sphere. Sabitrama then mentioned something like applying modern science to opening this. We&apos;ve come so far, that there&apos;s no way we&apos;re about to give up.\nBut then again, who am I supposed to find?&quot;"/>
-        <string name="1" value="He may have talked too candidly on some things, but I think the herb can be plucked out of the marble. As part of the deal, I have to gather up #b500 #t04000133#s#k.\n\n\n#t04000133#  #b#c04000133##k/500"/>
-        <string name="2" value="The seal is disabled, but since the marble itself isn&apos;t very stable, Dr. Kim made a device called &quot;Open Sesami&quot; and sent it to Sabitrama. I should go see him later. \nAnyway, he&apos;s pretty good at what he does, but man he&apos;s terrible at naming his inventions!"/>
+        <string name="0" value="我们找到了第三药草，但它被严密封在懒惰巴菲的珠子里。它似乎已经附着太久，不能直接从球体里取出来。萨比特拉玛提到，也许可以用现代科学打开它。既然已经走到这里，就不能轻易放弃。\n不过，我该去找谁呢？"/>
+        <string name="1" value="虽然他说话有点直接，但我觉得他确实能把药草从珠子里取出来。作为交换，我必须收集 #b500个 #t04000133##k。\n\n\n#t04000133#  #b#c04000133##k/500"/>
+        <string name="2" value="封印已经解除，但珠子本身并不稳定。金博士制作了一个名叫“芝麻开门”的装置，并把它送到了萨比特拉玛那里。我之后应该去见见萨比特拉玛。\n不管怎么说，金博士确实很有本事，只是给发明取名的品味实在糟糕！"/>
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8078">
-        <string name="name" value="Open Sesami"/>
-        <string name="0" value="The device known as &quot;Open Sesame&quot; should arrive at Sabitrama house any minute. I better go see him right now."/>
-        <string name="1" value="I&apos;ll need 1,000,000 mesos to open up &quot;Open Sesami&quot;. I have a feeling that, even after making the investment, we may not get to touch the herb. Even with great hesitation, I must decide right now."/>
-        <string name="2" value=" I think, as soon as the seal was disabled with the 3rd Herb, it perished the moment it touched the open air. Sabitrama seemed content with it, but ... I must admit, he&apos;s one heck of an enthusiast in terms of herbs. 1,000,000 mesos was a stiff price to pay, but I got the Magic Collection, so I&apos;m good with that!"/>
+        <string name="name" value="芝麻开门"/>
+        <string name="0" value="名为“芝麻开门”的装置应该快送到萨比特拉玛那里了。我最好现在就去见他。"/>
+        <string name="1" value="打开“芝麻开门”需要1,000,000金币。我有种预感，就算付出这笔钱，我们也未必能真正触碰到药草。虽然非常犹豫，但现在必须作出决定。"/>
+        <string name="2" value="第三药草解除封印后，似乎一接触外界空气就枯萎了。萨比特拉玛看起来很满足，不过……我不得不承认，他真是个药草狂热者。1,000,000金币的代价很高，但我得到了魔法收藏，也算值得了！"/>
         <int name="area" value="48"/>
     </imgdir>
     <imgdir name="8079">
@@ -18297,10 +18299,10 @@
         <int name="area" value="50"/>
     </imgdir>
     <imgdir name="8213">
-        <string name="name" value="Ancient Artifacts"/>
-        <string name="0" value="John Barricade has told me about the Ancient Artifacts I&apos;ve found in my offline travels (playing the MapleStory Trading Card Game).  He thinks that these can be used to construct powerful weapons and items.  If I bring him a valid set of those I find, he&apos;ll be able to tell me what I can make and how to make them."/>
-        <string name="1" value="John Barricade has told me about the Ancient Artifacts I&apos;ve found in my offline travels (playing the MapleStory Trading Card Game).  He thinks that these can be used to construct powerful weapons and items.  If I bring him a valid set of those I find, he&apos;ll be able to tell me what I can make and how to make them."/>
-        <string name="2" value="John Barricade has told me about the Ancient Artifacts I&apos;ve found in my offline travels (playing the MapleStory Trading Card Game).  He thinks that these can be used to construct powerful weapons and items.  If I bring him a valid set of those I find, he&apos;ll be able to tell me what I can make and how to make them."/>
+        <string name="name" value="远古遗物"/>
+        <string name="0" value="约翰·贝瑞加德听我说起在现实旅途中（冒险岛集换式卡牌游戏）发现的远古遗物。他认为这些遗物或许能用来打造强力武器和道具。如果我带来一组有效的遗物，他就能告诉我可以制作什么，以及该怎么制作。"/>
+        <string name="1" value="约翰·贝瑞加德听我说起在现实旅途中（冒险岛集换式卡牌游戏）发现的远古遗物。他认为这些遗物或许能用来打造强力武器和道具。如果我带来一组有效的遗物，他就能告诉我可以制作什么，以及该怎么制作。"/>
+        <string name="2" value="约翰·贝瑞加德听我说起在现实旅途中（冒险岛集换式卡牌游戏）发现的远古遗物。他认为这些遗物或许能用来打造强力武器和道具。如果我带来一组有效的遗物，他就能告诉我可以制作什么，以及该怎么制作。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8218">
@@ -18311,38 +18313,38 @@
         <int name="area" value="50"/>
     </imgdir>
     <imgdir name="8219">
-        <string name="name" value="Finding Jack"/>
-        <string name="0" value="I heard that John Barricade has received news from his brother Jack!  I should go find John in Bigger Ben and see what he&apos;s learned."/>
-        <string name="1" value="Apparently, Jack Barricade is in Masteria and has discovered Crimsonwood Keep deep in the Phantom Forest.  However, the last letter John received from his brother was dated over a month ago.  John wants me to head to Crimsonwood after him and see why Jack&apos;s communiques have stopped.  Looks like I need to make my way through the Phantom Forest... I&apos;d better stock up on potions!"/>
-        <string name="2" value="I found Jack Barricade resting in a cave on Crimsonwood Mountain.  It turns out that after exploring the Masterian wilderness for weeks, Jack finally came across the ancient stronghold - only it wasn&apos;t deserted.  Jack was captured and imprisoned in the Keep by the evil soldiers I&apos;ve been seeing around, but luckily managed to escape.  John will be relieved that Jack is okay."/>
+        <string name="name" value="寻找杰克"/>
+        <string name="0" value="听说约翰·贝瑞加德收到了他兄弟杰克的消息！我应该去大本钟找约翰，看看他知道了什么。"/>
+        <string name="1" value="原来杰克·贝瑞加德正在玛斯特里亚一带探索，并在幻影森林深处发现了绯红要塞。可是约翰最后一次收到杰克的来信，已经是一个多月前的事了。约翰希望我前往绯红要塞寻找杰克，查清他为什么停止联络。看来我得穿过幻影森林……最好先准备足够的药水！"/>
+        <string name="2" value="我在绯红山脉的洞穴里找到了正在休息的杰克·贝瑞加德。原来他在玛斯特里亚荒野中探索了数周后，终于发现了那座古老要塞——但那里并不是空城。杰克被我一路见到的邪恶士兵抓住并关进要塞，幸好最后成功逃了出来。约翰知道杰克平安无事后，一定会松一口气。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8220">
-        <string name="name" value="Translated Communique"/>
-        <string name="0" value="I lost the translated communique, then Let&apos;s go to Elpam Gorlab!"/>
-        <string name="1" value="I told Elpam Gorlab what I want."/>
-        <string name="2" value="I got the translated communique from Elpam Gorlab again. Thank You!"/>
+        <string name="name" value="翻译好的密信"/>
+        <string name="0" value="我弄丢了翻译好的密信，去找艾尔帕姆·高拉布吧！"/>
+        <string name="1" value="我把自己的请求告诉了艾尔帕姆·高拉布。"/>
+        <string name="2" value="我再次从艾尔帕姆·高拉布那里拿到了翻译好的密信。谢谢你！"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8221">
-        <string name="name" value="The Mark of Heroism"/>
-        <string name="0" value="Lukan told me about the Valley of Heroes and the giant Menhir columns barring the way through.  He mentioned that the Heroic Statues that line the valley would also act as teleporters, for only someone who had an artifact known as the Marker of Heroism.  Perhaps someone well-versed in ancient artifacts would know something about these Markers of Heroism... I think I may have an idea on who to ask.  Otherwise, it&apos;s time for some ledge hopping!"/>
-        <string name="1" value="I was right: John Barricade&apos;s extensive knowledge about ancient civilizations and items has paid off again!  He&apos;ll give me the Barricades&apos; Marker of Heroism if I reimburse him for the materials they had to acquire to recreate it: #b1 Power Crystal#k, #b10 Gold Ores#k and #b4 Typhon Feathers#k.  The only problem: Typhons nest in the upper reaches of the mountain!  To get up the mountain, I&apos;ll have to go through the Valley first!  Ugh!  Looks like a catch-22!  Hmmm, I guess I could see if someone else might have these feathers... I wonder if anyone else has already made it through the Valley on their own?"/>
-        <string name="2" value="John gave me the Marker of Heroism artifact after I brought him the hard-to-find Typhon feathers and the other materials.  Now I&apos;ll be able to the Heroic Statues to get through the Valley.  However, it&apos;s not all candy and cake yet; I still need to figure out the correct statues to use, but at least it&apos;ll make it easier for me to move around.  Guess I&apos;ll try each statue as I go along and see where they lead!"/>
+        <string name="name" value="英雄印记"/>
+        <string name="0" value="卢坎告诉我英雄峡谷的事，以及挡住道路的巨大石柱。他还说，峡谷里的英雄雕像其实也能当作传送点使用，但只有持有名为英雄印记的遗物的人才能启动它们。也许熟悉远古遗物的人会知道英雄印记的线索……我大概知道该去问谁。否则就只能一路跳过去了！"/>
+        <string name="1" value="我猜对了：约翰·贝瑞加德对远古文明和遗物的渊博知识又派上了用场！只要我补偿他们重制英雄印记时用掉的材料，他就愿意把贝瑞加德家的英雄印记交给我：#b1个力量水晶#k、#b10个黄金母矿#k和#b4根台风羽毛#k。问题是台风怪栖息在山的高处！想上山又得先穿过峡谷！真是两难。嗯……也许可以问问有没有人已经独自穿过峡谷，手里正好有这些羽毛。"/>
+        <string name="2" value="我带来了难找的台风羽毛和其他材料后，约翰·贝瑞加德把英雄印记交给了我。现在我可以利用英雄雕像穿过峡谷了。不过事情还没那么简单，我还得找出正确的雕像顺序。至少行动会方便许多，就一边前进一边试试看吧！"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8222">
-        <string name="name" value="The Brewing Storm"/>
-        <string name="0" value="I&apos;ve heard tell that many travelers get lost in the spooky Phantom Forest.  If I come across any of them, perhaps one of them will have an interesting tale to tell about the area.  I should search them out, but I better make sure I don&apos;t become one of these lost travelers myself... yikes!"/>
-        <string name="1" value="I met a knight lost in the Phantom Forest named #bLukan de Vrisien#k.  His armor is very ancient-looking, and he seems to be from another era.  Lukan asked if I knew anything about the unfriendly #bStormbreaker#k warriors wandering the forest.  He seems to hate them, though strangely, his armor looks almost exactly like theirs... lightning bolts and all!  Regarding this, Lukan remains tight-lipped... at least until I prove I&apos;m not in league with them.  To gain his trust, and prove my fighting prowess, I need to #bdefeat these Stormbreakers#k and #bcollect 10 of their badges#k to bring to him.  "/>
-        <string name="2" value="After defeating the Stormbreakers as he requested, Lukan explained that he is a #bStormcaster Knight#k from Crimsonwood Keep.  When I told him that Crimsonwood Keep was ancient history, and that Masteria had been lost for a millenium, he seemed at a loss for words.  Somehow, he has been transported to this time period, his future.  Strange things are brewing indeed."/>
+        <string name="name" value="酝酿中的风暴"/>
+        <string name="0" value="听说许多旅人在阴森的幻影森林中迷路了。如果我遇到他们，也许能听到关于这片地区的有趣故事。我该去找找看，不过最好别让自己也变成迷路的旅人……真吓人！"/>
+        <string name="1" value="我在幻影森林里遇到了一名迷路的骑士，名叫#b卢坎·德·维里森#k。他的盔甲看起来非常古老，似乎来自另一个时代。卢坎问我是否知道那些在森林里游荡、并不友善的#b风暴破坏者#k。他似乎很憎恨他们，但奇怪的是，他的盔甲几乎和那些人一模一样……连闪电纹样都一样！关于这一点，卢坎闭口不谈……至少要等我证明自己不是他们的同伙。为了取得他的信任并证明我的战斗能力，我需要#b击败这些风暴破坏者#k，并#b收集10个徽章#k带给他。"/>
+        <string name="2" value="按照卢坎的要求击败风暴破坏者后，他解释说自己是来自绯红要塞的#b风暴召唤骑士#k。当我告诉他绯红要塞早已成为古代历史、玛斯特利亚也已失落千年时，他一时说不出话来。不知为何，他被带到了这个时代，也就是他的未来。奇怪的风暴确实正在酝酿。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8223">
-        <string name="name" value="Storming the Castle"/>
-        <string name="0" value="To enter the Grandmaster Hall of Crimsonwood Keep and find the new twisted Masters, Jack Barricade says I&apos;ll need to find some way to open the gate to the Keep&apos;s Inner Sanctum.  Perhaps someone who has firsthand knowledge of the Keep will know what I need... and I know just who to ask!"/>
-        <string name="1" value="I asked Lukan about the Inner Sanctum Gate, and as I surmised, he knew how to get in.  Being a well-respected Stormcaster Knight, he was given a #bCrimsonwood Keystone#k by the Keep&apos;s Grandmasters.  However, Lukan thinks that I&apos;m mad to assault the castle and refuses to give me the key, calling it a suicide mission.  However, if I can whittle down the Keep&apos;s defenders, he&apos;ll relent and give me the Keystone.  I&apos;ve already put the hurt on the Stormbreakers, but I&apos;ll need to defeat at least #b75 Windraiders, 75 Firebrands#k, and #b75 Nightshadows#k more to put a sizeable enough dent in this evil army!"/>
-        <string name="2" value="I defeated the twisted Crimsonwood warriors!  And true to his word, Lukan gave me his #bCrimsonwood Keystone#k.  He also said that although the Keystone will physically unlock the Inner Sanctum Gate, the red energy field that surrounds them is foreign to him, and likely a new addition by the Keep&apos;s new Masters.  I should take the key back to Jack Barricade and let him know what I&apos;ve discovered."/>
+        <string name="name" value="攻入城堡"/>
+        <string name="0" value="杰克·贝瑞加德说，若想进入绯红要塞的大师大厅，找出新的扭曲大师，就必须想办法打开通往内部圣所的大门。也许熟悉要塞的人会知道方法……我正好知道该找谁！"/>
+        <string name="1" value="我向卢坎询问了内圣所大门的事，和我猜的一样，他知道进入的方法。作为一名备受尊敬的风暴召唤骑士，他曾从要塞宗师们那里获得一块#b守护者的键石#k。不过卢坎认为我攻打城堡的想法太疯狂，称这简直是自杀任务，因此拒绝把键石交给我。只要我能削弱要塞守军，他就会松口交出键石。我已经重创了风暴破坏者，但还需要再击败至少#b75名风袭者、75名火焰使者#k和#b75名夜影#k，才能对这支邪恶军队造成足够大的打击！"/>
+        <string name="2" value="我击败了那些被扭曲的绯红要塞战士！卢坎也信守承诺，把他的#b守护者的键石#k交给了我。他还说，虽然这块键石可以从物理上打开内圣所大门，但环绕大门的红色能量场对他来说很陌生，很可能是要塞新主人后来加上的。我应该把键石带回给杰克·贝瑞加德，并告诉他我的发现。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8224">
@@ -18353,45 +18355,45 @@
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8225">
-        <string name="name" value="The Right Path"/>
-        <string name="0" value="Jack Barricade has given me the #bMap of Phantom Forest#k that he took from Taggrin.  He explained that he was forced to steal it from Taggrin, who had refused to give it to him even after he&apos;d won it in a bet fair and square.  Now that Jack&apos;s made it up to the Crimsonwood Mountain, he&apos;s given the map to me for my own use.  Perhaps I should return it to Taggrin?  If I keep it, the map will come in handy while navigating the tricky Phantom Forest, #ballowing me to use the marked shortcuts#k and save time traveling.  But at the same time, there&apos;s a part of me that feels that this map still rightfully belongs to Taggrin.  What should I do?  It&apos;s a dilemma..."/>
-        <string name="1" value="I told Taggrin that I&apos;d found Jack up the Crimsonwood Mountain, and explained Jack&apos;s purpose.  Taggrin was surprised when I offered to return his Map of Phantom Forest to him... and was moved by my gesture. He seems to have warmed up to me, and ask that I return and speak to him. What could he want?"/>
-        <string name="2" value="In return for making the honorable gesture of returning his map, Taggrin let me in on a secret of his own: he and his band are not bandits at all, but are actually #bRaven Ninjas#k, descendants of the ancient #bShadowknights#k!  They&apos;re here to discover what happened to their ancestral Keep and the reason behind the disappearance of Masteria.  As such, Taggrin is offering a bounty on the Keep&apos;s unrightful occupiers.  I can now speak to Joko to redeem any #rBadges#k I find off these corrupted warriors (the #rWindraiders#k, the #rStormbreakers#k, the #rFirebrands#k, and the #rNightshadowsRk) for #bmeso bounties#k, and possibly even #bRaven Ninja gear#k!  I can make #bone Badge Bounty Redemption per day#k"/>
+        <string name="name" value="正确的道路"/>
+        <string name="0" value="杰克·贝瑞加德把他从塔格林那里拿来的#b幻影森林地图#k交给了我。他解释说，塔格林即使在赌局中公平输给他，也拒绝把地图交出来，所以他才不得不把地图偷走。如今杰克已经登上绯红木山，就把这张地图交给我使用。也许我应该把它还给塔格林？如果留下它，地图能帮助我在复杂的幻影森林中移动，#b利用标记好的捷径#k节省赶路时间。但与此同时，我心里总觉得这张地图本该属于塔格林。我该怎么办？真是两难……"/>
+        <string name="1" value="我告诉塔格林，我在绯红木山上找到了杰克，并说明了杰克的目的。当我提出归还他的幻影森林地图时，塔格林既惊讶又被我的举动打动了。他似乎对我亲近了些，并让我之后再回来找他。他会有什么事呢？"/>
+        <string name="2" value="为了回报我归还地图这一正直的举动，塔格林告诉了我一个秘密：他和他的同伴根本不是强盗，而是#b渡鸦忍者#k，是古代#b暗影骑士#k的后裔！他们来到这里，是为了查明祖先的要塞发生了什么，以及玛斯特利亚消失的原因。因此，塔格林正在悬赏占据要塞的不义之徒。现在我可以找乔科，用从腐化战士身上取得的#r徽章#k（#r风袭者#k、#r风暴破坏者#k、#r火焰使者#k和#r夜影#k）兑换#b金币赏金#k，甚至有机会获得#b渡鸦忍者装备#k！每天可以进行#b一次徽章赏金兑换#k。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8226">
-        <string name="name" value="The Fallen Warriors"/>
-        <string name="0" value="I should speak to Taggrin to see if he has another task for me."/>
-        <string name="1" value="Taggrin has one more task for me: he wants me to hunt down the #bElder Wraiths#k and collect #b50 of their Elder Ashes#k.  Warning me that this would be no easy task, he explained that the wraiths are the souls of brave Crimsonwood Keep warriors who fell in battle in the forest, protecting the Keep from the invading Krakians.  Never given a proper burial, they have become mindless undead, threatening the Keep&apos;s foes and innocent travelers alike.  With these ashes, Taggrin intends to give these noble lost souls the final rest they so rightfully deserve."/>
-        <string name="2" value="Taggrin was impressed that I manage to collect the ashes from the Elder Wraiths.  I can now speak to #bFiona#k about #bupgrading any Raven Ninja gear#k I may have!  Taggrin also mentioned that the talented ninja smith has experimented with some weapon designs of her own; I should speak to her about the possibility of #bcrafting new items#k from scratch. "/>
+        <string name="name" value="堕落的战士"/>
+        <string name="0" value="我应该和塔格林谈谈，看看他还有没有任务交给我。"/>
+        <string name="1" value="塔格林还有一件事要我办：猎杀#b上古幽灵#k并收集#b50份上古灰烬#k。他提醒我这并不容易，并解释说这些幽灵是绯红要塞勇士的灵魂。他们曾在森林中战死，保护要塞免受克拉奇人入侵，却没有得到安葬，最终化为无意识的亡灵，威胁要塞敌人和无辜旅人。塔格林要用这些灰烬来安抚他们。"/>
+        <string name="2" value="塔格林对我收集上古幽灵灰烬的表现很满意。现在我可以找#b菲欧娜#k升级手中的#b渡鸦忍者装备#k了！塔格林还提到，这位技艺高超的忍者铁匠也试验过自己的武器设计，我可以向她打听从零打造新装备的可能。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8227">
-        <string name="name" value="Lost in Translation 1"/>
-        <string name="0" value="I should see if Jack Barricade needs my help with anything..."/>
-        <string name="1" value="Jack needs John&apos;s help, and needs me to be the go-between.  He wants me to deliver a letter to his brother in NLC; the #bCoded Communique#k contains a transcription of some strange symbol code that he saw while being held in Crimsonwood Keep.  Hopefully, with his expertise in ancient languages, John should be able to decipher it.  I should hop to it!  I have a feeling some serious events are unfolding..."/>
-        <string name="2" value="Looks like Jack was right about the symbols he saw in the Grandmaster Council Hall; the Versalian code seems to indicate that the new Masters are planning to attack NLC with the soldiers they&apos;re training!  It&apos;s going to be up to us to stop them!"/>
+        <string name="name" value="翻译迷局 1"/>
+        <string name="0" value="我应该看看杰克·贝瑞加德是否需要帮忙……"/>
+        <string name="1" value="杰克需要约翰的帮助，并让我在中间传话。他要我把一封信送给在新叶城的哥哥；这份#b加密密信#k记录了他被关在绯红要塞时看到的奇怪符号。凭约翰对古代文字的了解，也许能解读出来。我得赶快行动，总觉得严重的事情正在发生……"/>
+        <string name="2" value="看来杰克说得没错，他在大师议事厅看到的符号经艾尔帕姆解读后，似乎说明新大师们正计划让训练中的士兵袭击新叶城！阻止他们就靠我们了！"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8228">
-        <string name="name" value="Lost in Translation 2"/>
-        <string name="0" value="I should see if John needs my help with anything..."/>
-        <string name="1" value="After showing John the #bCoded Communique#k that Jack gave me, John used a Hyper Glyph to try to decipher the symbols... to no avail.  While John attempts to fix and recalibrate the Hyper Glyphs to work on these symbols, he asked me to show the letter around to the #bother experts in town#k.  Maybe they can shine some light on all this..."/>
-        <string name="2" value="I told John about Elpam&apos;s translation, and John was able to fill in some more of the blanks for me.  I need to get this new information Jack and see what else he knows..."/>
+        <string name="name" value="翻译迷局 2"/>
+        <string name="0" value="我应该看看约翰是否需要帮忙……"/>
+        <string name="1" value="把杰克给我的#b加密密信#k交给约翰后，约翰试着用超级雕文解读那些符号，却没有成功。约翰要修理并重新校准超级雕文，同时请我把信拿给#b城里的其他专家#k看看。也许他们能看出些什么……"/>
+        <string name="2" value="我把艾尔帕姆的翻译告诉约翰后，约翰又补全了一些内容。我需要把这些新情报告诉杰克，看看他还知道些什么……"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8229">
-        <string name="name" value="Lost in Translation 3"/>
-        <string name="0" value="I showed the #bCoded Communique#k to Elpam Gorlab, and he recognized the symbols as being #bVersalian#k!  Elpam translated what he could and gave me a #bTranslated Communique#k.  I should show this to John immediately!"/>
-        <string name="1" value="I must traverse Crimsonwood Mountain and get this new information Jack and see what else he knows...!"/>
-        <string name="2" value="I reached Jack and gave him the info-he&apos;s going through it all now..."/>
+        <string name="name" value="翻译迷局 3"/>
+        <string name="0" value="我把#b加密密信#k拿给艾尔帕姆·高拉布看，他认出那些符号属于#b维萨利亚文字#k！艾尔帕姆尽力翻译，并给了我一份#b翻译好的密信#k。我应该立刻拿给约翰看！"/>
+        <string name="1" value="我必须穿越绯红山，把这些新情报告诉杰克，看看他还知道些什么……"/>
+        <string name="2" value="我找到了杰克，并把情报交给了他。他正在仔细研究……"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8230">
-        <string name="name" value="Stemming the Tide"/>
-        <string name="0" value="The Versalian code that Jack uncovered and that Elpam translated points to some sort of imminent attack on New Leaf City by the Twisted Masters&apos; army.  It&apos;s up to us to stop them!  I should talk to John..."/>
-        <string name="1" value="Someone who has firsthand knowledge of the Keep.  I think I have an idea who might be able to help."/>
-        <string name="2" value="I brought Lukan&apos;s #bCrimsonwood Keystone#k to Jack.  I explained what Lukan told me: that this would unlock the gate mechanically, but the red energy field was a new development. Jack thinks he can figure out a solution for the magical barrier, but he&apos;ll need some time.  I should check in with him later and see if he&apos;s made any progress."/>
+        <string name="name" value="力挽狂澜"/>
+        <string name="0" value="杰克发现、并由艾尔帕姆翻译出的维萨利亚暗号显示，扭曲大师的军队似乎即将袭击新叶城。阻止他们就靠我们了！我应该去找约翰谈谈……"/>
+        <string name="1" value="需要找一位亲眼了解要塞情况的人。我想我知道谁能帮上忙。"/>
+        <string name="2" value="我把卢坎的#b守护者的键石#k带给了杰克，并转述了卢坎的话：它可以从机械结构上打开大门，但红色能量屏障是新出现的问题。杰克认为他能找到解决魔法屏障的方法，不过需要一点时间。我应该之后再来看看他有没有进展。"/>
         <int name="area" value="45"/>
     </imgdir>
     <imgdir name="8231">
@@ -22567,9 +22569,9 @@
         <string name="name" value="今天的日程安排"/>
     </imgdir>
     <imgdir name="8075">
-        <string name="0" value="林中城的萨比特拉玛显然因为某些事情而失眠。那是什么事呢?"/>
-        <string name="1" value="委员会成员?什么……\n我觉得好像是被萨比特拉玛骗进去的，但我觉得解开古代档案的谜题会很有趣。档案馆是这样说的。 \n\n关于第一草：\n黑白之灵告别大地，出现在我面前。在两个沉默的精灵身上做标记，精灵就会融合成第一草。\n\n关于第二草：\n你怎么看待那个在摇篮里扼杀孤独和黑暗，而灵魂却从身体里解放出来的人无法回归的灵魂必须找到一个可以共度永恒的灵魂伴侣。你是玩偶，在里面，你会发现第二草药。\n\n嗯…我从哪里开始?"/>
-        <string name="2" value="被称为委员会成员很臭，但我得到了丰厚的报酬，而且很有趣。第三草药的线索仍然找不到，但是。。。我真的想再帮他一次。\n过一会儿我会来的。"/>
+        <string name="0" value="林中城的萨比特拉玛似乎因为某件事失眠了。到底是什么事呢？"/>
+        <string name="1" value="研究委员？什么啊……\n总觉得是被萨比特拉玛半推半就拉进了委员会，不过解开古代档案中的谜题应该会很有趣。档案上是这样写的。\n\n关于第一药草：\n黑与白之灵告别大地，出现在我面前。在两个沉默的灵体上留下印记，灵体相融，化为第一药草。\n\n关于第二药草：\n你如何看待那个在摇篮中吞噬孤独与黑暗、灵魂早已离开身体的存在？无法回归的灵魂必须找到能共度永恒的伴侣。你是人偶，而第二药草就在其中。\n\n嗯……该从哪里开始呢？"/>
+        <string name="2" value="虽然被叫作研究委员有点不好意思，但报酬很丰厚，过程也很有趣。第三药草的线索还没有找到，不过……如果有机会，我真的还想再帮他一次。\n过一阵子再来看看吧。"/>
         <int name="area" value="30"/>
         <string name="name" value="萨比特拉玛的毕生作品"/>
     </imgdir>

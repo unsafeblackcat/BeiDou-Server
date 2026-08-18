@@ -235,22 +235,25 @@ public final class Channel {
     }
 
     private void closeAllMerchants() {
+        List<HiredMerchant> merchs;
+
+        merchWlock.lock();
         try {
-            List<HiredMerchant> merchs;
+            merchs = new ArrayList<>(hiredMerchants.values());
+            hiredMerchants.clear();
+        } finally {
+            merchWlock.unlock();
+        }
 
-            merchWlock.lock();
+        // 每个商店独立 try-catch：单店异常不中断后续商店保存，避免一个店挂掉导致
+        // 剩余店全部跳过 saveItems 而物品丢失。
+        for (HiredMerchant merch : merchs) {
             try {
-                merchs = new ArrayList<>(hiredMerchants.values());
-                hiredMerchants.clear();
-            } finally {
-                merchWlock.unlock();
-            }
-
-            for (HiredMerchant merch : merchs) {
                 merch.forceClose();
+            } catch (Exception e) {
+                log.error("Failed to forceClose HiredMerchant owner={}, world={}, channel={}",
+                        merch.getOwnerId(), world, channel, e);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -369,19 +372,23 @@ public final class Channel {
         }
     }
 
-    public void addHiredMerchant(int chrid, HiredMerchant hm) {
+    public boolean addHiredMerchant(int chrid, HiredMerchant hm) {
         merchWlock.lock();
         try {
+            if (hiredMerchants.containsKey(chrid)) {
+                return false;
+            }
             hiredMerchants.put(chrid, hm);
+            return true;
         } finally {
             merchWlock.unlock();
         }
     }
 
-    public void removeHiredMerchant(int chrid) {
+    public boolean removeHiredMerchant(int chrid, HiredMerchant expected) {
         merchWlock.lock();
         try {
-            hiredMerchants.remove(chrid);
+            return hiredMerchants.remove(chrid, expected);
         } finally {
             merchWlock.unlock();
         }

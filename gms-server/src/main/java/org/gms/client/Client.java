@@ -1013,6 +1013,13 @@ public class Client extends ChannelInboundHandlerAdapter {
                 }
             }
 
+        } catch (final Throwable t) {
+            log.error("账号卡住 (玩家清理)", t);
+        }
+
+        // 地图移除必须独立保证执行：即便上面的清理抛异常，也要把玩家从地图摘除并触发怪物 controller 重分配，
+        // 否则会留下"PlayerStorage 已移除、MapleMap 仍持有"的幽灵玩家，导致该图怪物 controller 卡死、怪物不动。
+        try {
             if (player.getMap() != null) {
                 int mapId = player.getMapId();
                 player.getMap().removePlayer(player);
@@ -1026,7 +1033,7 @@ public class Client extends ChannelInboundHandlerAdapter {
             }
 
         } catch (final Throwable t) {
-            log.error("账号卡住", t);
+            log.error("账号卡住 (地图移除)", t);
         }
     }
 

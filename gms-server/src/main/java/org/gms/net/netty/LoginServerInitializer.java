@@ -25,6 +25,7 @@ public class LoginServerInitializer extends ServerChannelInitializer {
         {
             log.warn(I18nUtil.getLogMessage("LoginServerInitializer.initChannel.warn1"), remoteAddress);
             socketChannel.close();
+            return;
         }
 
         final Client client = Client.createLoginClient(
