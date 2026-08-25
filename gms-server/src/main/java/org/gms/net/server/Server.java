@@ -988,28 +988,37 @@ public class Server {
         return getGuild(id, world, null);
     }
 
-    public Guild getGuild(int id, int world, Character mc) {
-        synchronized (guilds) {
+    public Guild getGuild(int id, int world, Character mc)
+    {
+        synchronized (guilds)
+        {
             Guild g = guilds.get(id);
-            if (g != null) {
+            if (g != null)
+            {
                 return g;
             }
             // character表默认的guildId为0，导致会生成一个没有名字的guid，进而影响showGuildInfo的发包
-            if (id == 0) {
+            if (id == 0)
+            {
                 return null;
             }
 
             g = new Guild(id, world);
-            if (g.getId() == -1) {
+            if (g.getId() == -1)
+            {
                 return null;
             }
 
-            if (mc != null) {
+            if (mc != null)
+            {
                 GuildCharacter mgc = g.getMGC(mc.getId());
-                if (mgc != null) {
+                if (mgc != null)
+                {
                     mc.setMGC(mgc);
                     mgc.setCharacter(mc);
-                } else {
+                }
+                else
+                {
                     log.error("Could not find chr {} when loading guild {}", mc.getName(), id);
                 }
 

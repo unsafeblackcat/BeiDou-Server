@@ -109,8 +109,11 @@ public class Quest {
     protected Map<QuestActionType, AbstractQuestAction> startActs = new EnumMap<>(QuestActionType.class);
     protected Map<QuestActionType, AbstractQuestAction> completeActs = new EnumMap<>(QuestActionType.class);
     protected List<Integer> relevantMobs = new LinkedList<>();
+    // 任务能否自动开始
     private boolean autoStart;
+    // 任务能否自动完成
     private boolean autoPreComplete, autoComplete;
+    // 任务需求类型为 “间隔” INTERVAL
     private boolean repeatable = false;
     private String name = "", parent = "";
     private final static DataProvider questData = DataProviderFactory.getDataProvider(WZFiles.QUEST);
@@ -280,9 +283,16 @@ public class Quest {
         return ir.getInterval() < HOURS.toMillis(GameConfig.getServerLong("quest_point_repeatable_interval"));
     }
 
-    public boolean canStartQuestByStatus(Character chr) {
+    public boolean canStartQuestByStatus(Character chr)
+    {
         QuestStatus mqs = chr.getQuest(this);
-        return !(!mqs.getStatus().equals(Status.NOT_STARTED) && !(mqs.getStatus().equals(Status.COMPLETED) && repeatable));
+
+        return !(// 任务未开始
+                !mqs.getStatus().equals(Status.NOT_STARTED)
+                        //任务状态完成
+                && !(mqs.getStatus().equals(Status.COMPLETED)
+                    // 任务需求为 “间隔”
+                     && repeatable));
     }
 
     public boolean canQuestByInfoProgress(Character chr) {
@@ -309,13 +319,17 @@ public class Quest {
         return true;
     }
 
-    public boolean canStart(Character chr, int npcid) {
-        if (!canStartQuestByStatus(chr)) {
+    public boolean canStart(Character chr, int npcid)
+    {
+        if (!canStartQuestByStatus(chr))
+        {
             return false;
         }
 
-        for (AbstractQuestRequirement r : startReqs.values()) {
-            if (!r.check(chr, npcid)) {
+        for (AbstractQuestRequirement r : startReqs.values())
+        {
+            if (!r.check(chr, npcid))
+            {
                 return false;
             }
         }
@@ -338,17 +352,25 @@ public class Quest {
         return canQuestByInfoProgress(chr);
     }
 
-    public void start(Character chr, int npc) {
-        if (autoStart || canStart(chr, npc)) {
+    public void start(Character chr, int npc)
+    {
+        if (autoStart || canStart(chr, npc))
+        {
             Collection<AbstractQuestAction> acts = startActs.values();
-            for (AbstractQuestAction a : acts) {
-                if (!a.check(chr, null)) { // would null be good ?
+
+            for (AbstractQuestAction a : acts)
+            {
+                if (!a.check(chr, null))
+                { // would null be good ?
                     return;
                 }
             }
-            for (AbstractQuestAction a : acts) {
+
+            for (AbstractQuestAction a : acts)
+            {
                 a.run(chr, null);
             }
+
             forceStart(chr, npc);
         }
     }
@@ -393,19 +415,28 @@ public class Quest {
         return true;
     }
 
-    public boolean forceStart(Character chr, int npc) {
+    public boolean forceStart(Character chr, int npc)
+    {
         QuestStatus newStatus = new QuestStatus(this, QuestStatus.Status.STARTED, npc);
 
         QuestStatus oldStatus = chr.getQuest(this.getId());
-        for (Entry<Integer, String> e : oldStatus.getProgress().entrySet()) {
+
+        for (Entry<Integer, String> e : oldStatus.getProgress().entrySet())
+        {
             newStatus.setProgress(e.getKey(), e.getValue());
         }
 
-        if (id / 100 == 35 && GameConfig.getServerInt("tot_mob_quest_requirement") > 0) {
+        if (id / 100 == 35
+                && GameConfig.getServerInt("tot_mob_quest_requirement") > 0)
+        {
+            // 指定时间神殿任务要求刷怪数，0为默认取wz中设置的999
+
             int setProg = 999 - Math.min(999, GameConfig.getServerInt("tot_mob_quest_requirement"));
 
-            for (Integer pid : newStatus.getProgress().keySet()) {
-                if (pid >= 8200000 && pid <= 8200012) {
+            for (Integer pid : newStatus.getProgress().keySet())
+            {
+                if (pid >= 8200000 && pid <= 8200012)
+                {
                     String pr = StringUtil.getLeftPaddedStr(Integer.toString(setProg), '0', 3);
                     newStatus.setProgress(pid, pr);
                 }
@@ -415,11 +446,14 @@ public class Quest {
         newStatus.setForfeited(chr.getQuest(this).getForfeited());
         newStatus.setCompleted(chr.getQuest(this).getCompleted());
 
-        if (timeLimit > 0) {
+        if (timeLimit > 0)
+        {
             newStatus.setExpirationTime(System.currentTimeMillis() + SECONDS.toMillis(timeLimit));
             chr.questTimeLimit(this, timeLimit);
         }
-        if (timeLimit2 > 0) {
+
+        if (timeLimit2 > 0)
+        {
             newStatus.setExpirationTime(System.currentTimeMillis() + SECONDS.toMillis(timeLimit2));
             chr.questTimeLimit2(this, newStatus.getExpirationTime());
         }

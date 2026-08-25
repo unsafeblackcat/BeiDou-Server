@@ -257,74 +257,110 @@ public class CharacterService {
         }
         int world = charactersDO.getWorld();
         // 删除guild（传 null character：跳过 setGuildMemberOnline，仍执行 leaveGuild/disbandGuild）
-        if (Optional.ofNullable(charactersDO.getGuildid()).orElse(0) > 0) {
-            Server.getInstance().deleteGuildCharacter(new GuildCharacter(null, cid, 0, charactersDO.getName(),
-                    (byte) -1, (byte) -1, 0, Optional.ofNullable(charactersDO.getGuildrank()).orElse(0),
-                    Optional.ofNullable(charactersDO.getGuildid()).orElse(0), false,
-                    Optional.ofNullable(charactersDO.getAllianceRank()).orElse(0)));
+        if (Optional.ofNullable(charactersDO.getGuildid()).orElse(0) > 0)
+        {
+            Server.getInstance().deleteGuildCharacter(
+                    new GuildCharacter(null, cid, 0, charactersDO.getName()
+                            , (byte) -1
+                            , (byte) -1
+                            , 0
+                            , Optional.ofNullable(charactersDO.getGuildrank()).orElse(0)
+                            , Optional.ofNullable(charactersDO.getGuildid()).orElse(0)
+                            , false
+                            , Optional.ofNullable(charactersDO.getAllianceRank()).orElse(0)));
         }
+
         // 删除buddies
         QueryWrapper buddiesQueryWrapper = QueryWrapper.create().where(BUDDIES_D_O.CHARACTERID.eq(cid));
         List<BuddiesDO> buddiesDOS = buddiesMapper.selectListByQuery(buddiesQueryWrapper);
         buddiesDOS.forEach(buddiesDO -> {
-            Character buddy = Server.getInstance().getWorld(world).getPlayerStorage().getCharacterById(buddiesDO.getBuddyid());
-            if (buddy != null) {
+            Character buddy = Server.getInstance()
+                    .getWorld(world)
+                    .getPlayerStorage()
+                    .getCharacterById(buddiesDO.getBuddyid());
+            if (buddy != null)
+            {
                 buddy.deleteBuddy(cid);
             }
         });
+
         buddiesMapper.deleteByQuery(buddiesQueryWrapper);
         // 删除bbs_threads bbs_replies
         QueryWrapper bbsThreadsQueryWrapper = QueryWrapper.create().where(BBS_THREADS_D_O.POSTERCID.eq(cid));
         List<BbsThreadsDO> bbsThreadsDOS = bbsThreadsMapper.selectListByQuery(bbsThreadsQueryWrapper);
         List<Long> threadIds = bbsThreadsDOS.stream().map(BbsThreadsDO::getThreadid).toList();
-        if (!threadIds.isEmpty()) {
-            bbsRepliesMapper.deleteByQuery(QueryWrapper.create().where(BBS_REPLIES_D_O.THREADID.in(threadIds)));
+        if (!threadIds.isEmpty())
+        {
+            bbsRepliesMapper.deleteByQuery(
+                    QueryWrapper.create().where(BBS_REPLIES_D_O.THREADID.in(threadIds)));
+
             bbsThreadsMapper.deleteByQuery(bbsThreadsQueryWrapper);
         }
         // 删除wishlists
         wishlistsMapper.deleteByQuery(QueryWrapper.create().where(WISHLISTS_D_O.CHARID.eq(cid)));
+
         // 删除cooldowns
         cooldownsMapper.deleteByQuery(QueryWrapper.create().where(COOLDOWNS_D_O.CHARID.eq(cid)));
+
         // 删除playerdiseases
         playerdiseasesMapper.deleteByQuery(QueryWrapper.create().where(PLAYERDISEASES_D_O.CHARID.eq(cid)));
+
         // 删除area_info
         areaInfoMapper.deleteByQuery(QueryWrapper.create().where(AREA_INFO_D_O.CHARID.eq(cid)));
+
         // 删除monsterbook
         monsterbookMapper.deleteByQuery(QueryWrapper.create().where(MONSTERBOOK_D_O.CHARID.eq(cid)));
+
         // 删除characters
         charactersMapper.deleteById(cid);
+
         // 删除family_character
         familyCharacterMapper.deleteByQuery(QueryWrapper.create().where(FAMILY_CHARACTER_D_O.CID.eq(cid)));
+
         // 删除famelog
         famelogMapper.deleteByQuery(QueryWrapper.create().where(FAMELOG_D_O.CHARACTERID_TO.eq(cid).or(FAMELOG_D_O.CHARACTERID.eq(cid))));
+
         // 删除背包库存
         inventoryService.deleteInventoryByCharacterId(cid);
+
         // 删除任务进度
         questService.deleteQuestProgressByCharacter(cid);
+
         // 删除fredstorage
         fredstorageMapper.deleteByQuery(QueryWrapper.create().where(FREDSTORAGE_D_O.CID.eq(cid)));
+
         // 删除拍卖行
         mtsService.deleteMtsByCharacterId(cid);
+
         // 删除keymap
         keymapMapper.deleteByQuery(QueryWrapper.create().where(KEYMAP_D_O.CHARACTERID.eq(cid)));
+
         // 删除savedlocations
         savedlocationsMapper.deleteByQuery(QueryWrapper.create().where(SAVEDLOCATIONS_D_O.CHARACTERID.eq(cid)));
+
         // 删除trocklocations
         trocklocationsMapper.deleteByQuery(QueryWrapper.create().where(TROCKLOCATIONS_D_O.CHARACTERID.eq(cid)));
+
         // 删除技能
         skillsMapper.deleteByQuery(QueryWrapper.create().where(SKILLS_D_O.CHARACTERID.eq(cid)));
         skillmacrosMapper.deleteByQuery(QueryWrapper.create().where(SKILLMACROS_D_O.CHARACTERID.eq(cid)));
+
         // 删除eventstats
         eventstatsMapper.deleteByQuery(QueryWrapper.create().where(EVENTSTATS_D_O.CHARACTERID.eq(cid)));
+
         // 删除server_queue
         serverQueueMapper.deleteByQuery(QueryWrapper.create().where(SERVER_QUEUE_D_O.CHARACTERID.eq(cid)));
+
         // 删除bosslog
         bosslogDailyMapper.deleteByQuery(new QueryWrapper().eq("characterid", cid));
         bosslogWeeklyMapper.deleteByQuery(new QueryWrapper().eq("characterid", cid));
+
         // 删除family_entitlement
         familyEntitlementMapper.deleteByQuery(new QueryWrapper().eq("charid", cid));
+
         // 删除inventorymerchant
         inventorymerchantMapper.deleteByQuery(new QueryWrapper().eq("characterid", cid));
+
         // 删除character_extend系列（角色扩展值，复用统一扩展表）
         extendValueMapper.deleteByQuery(QueryWrapper.create()
                 .where(EXTEND_VALUE_D_O.EXTEND_ID.eq(String.valueOf(cid)))
@@ -332,14 +368,19 @@ public class CharacterService {
                         ExtendType.CHARACTER_EXTEND.getType(),
                         ExtendType.CHARACTER_EXTEND_DAILY.getType(),
                         ExtendType.CHARACTER_EXTEND_WEEKLY.getType())));
+
         // 删除characterexplogs（经验日志，服务端由ExpLogger写入，无Mapper用原生JDBC）
         try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement("DELETE FROM characterexplogs WHERE charid = ?")) {
+             PreparedStatement ps = con.prepareStatement("DELETE FROM characterexplogs WHERE charid = ?"))
+        {
             ps.setInt(1, cid);
             ps.executeUpdate();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             log.error("删除 characterexplogs 失败, cid={}", cid, e);
         }
+
         // 补充heaven没有删除的2张表
         nameChangeService.cancelPendingNameChange(cid, false);
         worldTransferService.cancelPendingWorldTransfer(cid, false);
@@ -393,7 +434,7 @@ public class CharacterService {
 
         World world = Server.getInstance().getWorld(charactersDO.getWorld());
 
-        // 队伍
+        // 组队
         int partyId = charactersDO.getParty();
         Party party = world.getParty(partyId);
         if (party != null)

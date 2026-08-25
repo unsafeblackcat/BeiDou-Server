@@ -189,6 +189,11 @@ public class World {
     private final Map<Integer, Set<Integer>> marriageGuests = new ConcurrentHashMap<>();
 
     private final Map<Integer, Integer> partyChars = new HashMap<>();
+    /**
+     *  组队信息
+     *  Integer: 组队ID
+     *  Party: 具体对象
+     * **/
     private final Map<Integer, Party> parties = new HashMap<>();
     private final AtomicInteger runningPartyId = new AtomicInteger();
     private final Lock partyLock = new ReentrantLock(true);

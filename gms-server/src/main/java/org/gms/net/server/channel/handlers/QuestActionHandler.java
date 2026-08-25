@@ -47,27 +47,48 @@ public final class QuestActionHandler extends AbstractPacketHandler {
     }
 
     // isNpcNearby thanks to GabrielSin
-    private static boolean isNpcNearby(InPacket p, Character player, Quest quest, int npcId) {
+    private static boolean isNpcNearby(InPacket p, Character player, Quest quest, int npcId)
+    {
         Point playerP;
+
+        // 获取玩家当前坐标
         Point pos = player.getPosition();
 
-        if (p.available() >= 4) {
+        if (p.available() >= 4)
+        {
+            // InPacket 余下能解析的字段大于4
+            // 构建玩家坐标
             playerP = new Point(p.readShort(), p.readShort());
-            if (playerP.distance(pos) > 1000) {     // thanks Darter (YungMoozi) for reporting unchecked player position
+            if (playerP.distance(pos) > 1000)
+            {
+                // 如果协议坐标大于玩家坐标 1000
+                // 则玩家坐标由 playerP 存储
+
+                // thanks Darter (YungMoozi) for reporting unchecked player position
                 playerP = pos;
             }
-        } else {
+        }
+        else
+        {
             playerP = pos;
         }
 
-        if (!quest.isAutoStart() && !quest.isAutoComplete()) {
+        if (!quest.isAutoStart()
+                && !quest.isAutoComplete())
+        {
+            // NPCID的检测
+
             NPC npc = player.getMap().getNPCById(npcId);
-            if (npc == null) {
+            if (npc == null)
+            {
                 return false;
             }
 
+            // 检测NPC是否在玩家附近
             Point npcP = npc.getPosition();
-            if (Math.abs(npcP.getX() - playerP.getX()) > 1200 || Math.abs(npcP.getY() - playerP.getY()) > 800) {
+            if (Math.abs(npcP.getX() - playerP.getX()) > 1200
+                    || Math.abs(npcP.getY() - playerP.getY()) > 800)
+            {
                 player.dropMessage(5, I18nUtil.getMessage("QuestActionHandler.isNpcNearby.message1"));
                 return false;
             }
@@ -77,81 +98,141 @@ public final class QuestActionHandler extends AbstractPacketHandler {
     }
 
     @Override
-    public final void handlePacket(InPacket p, Client c) {
+    public final void handlePacket(InPacket p, Client c)
+    {
         byte action = p.readByte();
+
         short questid = p.readShort();
-        Character player = c.getPlayer();
+        // 通过任务ID，构建 Quest 对象
         Quest quest = Quest.getInstance(questid);
-        if (player.getMapId() == MapId.JAIL) {   //监狱地图不可使用任务脚本
+
+        Character player = c.getPlayer();
+
+        if (player.getMapId() == MapId.JAIL)
+        {   //监狱地图不可使用任务脚本
             player.dropMessage(1,I18nUtil.getMessage("ActionHandler.map.message1"));
             return;
         }
-        switch (action) {
-            case 0: // Restore lost item, Credits Darter ( Rajan )
+
+        switch (action)
+        {
+            case 0:
+                // 找回丢失物品，鸣谢 Darter (Rajan)
+                // Restore lost item, Credits Darter ( Rajan )
                 p.readInt();
                 int itemid = p.readInt();
                 quest.restoreLostItem(player, itemid);
                 break;
-            case 1: { // Start Quest
+            case 1:
+            {
+                // Start Quest
                 int npc = p.readInt();
-                if (!isNpcNearby(p, player, quest, npc)) {
+                if (!isNpcNearby(p, player, quest, npc))
+                {
                     return;
                 }
-                if (quest.canStart(player, npc)) {
-                    boolean success = QuestScriptManager.getInstance().checkFunctionExists(c, questid, npc, "start");
+
+
+                if (quest.canStart(player, npc))
+                {
+                    // 任务无法直接开始
+
+                    boolean success = QuestScriptManager.getInstance().checkFunctionExists(
+                            c
+                            , questid
+                            , npc
+                            , "start");
+
                     boolean hasScriptRequirement = quest.hasScriptRequirement(false);
-                    if (hasScriptRequirement && success) {
+
+                    if (hasScriptRequirement && success)
+                    {
+                        // 任务具有脚本要求
                         QuestScriptManager.getInstance().start(c, questid, npc);
-                    } else {
+                    }
+                    else
+                    {
+                        // 纯WZ任务，无脚本要求
                         quest.start(player, npc);
                     }
-                } else if (questid == LOST_WHITE_ESSENCE_QUEST && player.haveItem(WHITE_ESSENCE)) {
+                }
+                else if (questid == LOST_WHITE_ESSENCE_QUEST
+                        && player.haveItem(WHITE_ESSENCE))
+                {
+                    // 遗失的白色精华 任务?
                     sendNpcOk(c, npc, I18nUtil.getMessage("QuestActionHandler.hasWhiteEssence.message1"));
-                } else if (questid == CAPTAIN_LATANICA_RETURN_QUEST && player.haveItem(WHITE_ESSENCE)) {
+                }
+                else if (questid == CAPTAIN_LATANICA_RETURN_QUEST
+                        && player.haveItem(WHITE_ESSENCE))
+                {
+                    // 拉塔尼卡船长归来 任务?
                     sendNpcOk(c, npc, I18nUtil.getMessage("QuestActionHandler.hasWhiteEssenceForLatanica.message1"));
                 }
+
                 break;
             }
-            case 2: { // Complete Quest
+            case 2:
+            {
+                // Complete Quest
                 int npc = p.readInt();
-                if (!isNpcNearby(p, player, quest, npc)) {
+                if (!isNpcNearby(p, player, quest, npc))
+                {
                     return;
                 }
-                if (quest.canComplete(player, npc)) {
+
+                if (quest.canComplete(player, npc))
+                {
                     boolean success = QuestScriptManager.getInstance().checkFunctionExists(c, questid, npc, "end");
                     boolean hasScriptRequirement = quest.hasScriptRequirement(true);
-                    if (hasScriptRequirement && success) {
+                    if (hasScriptRequirement && success)
+                    {
                         QuestScriptManager.getInstance().end(c, questid, npc);
-                    } else {
-                        if (p.available() >= 2) {
+                    }
+                    else
+                    {
+                        if (p.available() >= 2)
+                        {
                             int selection = p.readShort();
                             quest.complete(player, npc, selection);
-                        } else {
+                        }
+                        else
+                        {
                             quest.complete(player, npc);
                         }
                     }
                 }
                 break;
             }
-            case 3: // forfeit quest
+            case 3:
+                // forfeit quest
                 quest.forfeit(player);
                 break;
-            case 4: { // scripted start quest
+            case 4:
+            {
+                // scripted start quest
                 int npc = p.readInt();
-                if (!isNpcNearby(p, player, quest, npc)) {
+                if (!isNpcNearby(p, player, quest, npc))
+                {
                     return;
                 }
-                if (quest.canStart(player, npc)) {
+
+                if (quest.canStart(player, npc))
+                {
                     QuestScriptManager.getInstance().start(c, questid, npc);
                 }
                 break;
             }
-            case 5: { // scripted end quests
+            case 5:
+            {
+                // scripted end quests
                 int npc = p.readInt();
-                if (!isNpcNearby(p, player, quest, npc)) {
+                if (!isNpcNearby(p, player, quest, npc))
+                {
                     return;
                 }
-                if (quest.canComplete(player, npc)) {
+
+                if (quest.canComplete(player, npc))
+                {
                     QuestScriptManager.getInstance().end(c, questid, npc);
                 }
                 break;

@@ -211,12 +211,16 @@ public class QuestScriptManager extends AbstractScriptManager {
         qms.clear();
     }
 
-    public boolean checkFunctionExists(Client c, short questid, int npc, String functionName) {
+    public boolean checkFunctionExists(Client c, short questid, int npc, String functionName)
+    {
         ScriptEngine engine = getQuestScriptEngine(c, questid);
-        if (engine == null) {
+        if (engine == null)
+        {
             return false;
         }
-        try {
+
+        try
+        {
             QuestActionManager qm = new QuestActionManager(c, questid, npc, false);
             engine.put("qm", qm);
             String script = "function checkFunction(funcName) { return typeof this[funcName] === 'function'; }";
@@ -227,10 +231,13 @@ public class QuestScriptManager extends AbstractScriptManager {
 
             qm.dispose();
             return exists;
-        } catch (ScriptException | NoSuchMethodException e) {
+        }
+        catch (ScriptException | NoSuchMethodException e)
+        {
             e.printStackTrace();
             dispose(c);
         }
+
         return false;
     }
 

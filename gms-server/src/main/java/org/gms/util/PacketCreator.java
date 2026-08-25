@@ -2972,17 +2972,21 @@ public class PacketCreator {
     public static Packet updateQuest(Character chr, QuestStatus qs, boolean infoUpdate) {
         final OutPacket p = OutPacket.create(SendOpcode.SHOW_STATUS_INFO);
         p.writeByte(1);
-        if (infoUpdate) {
+        if (infoUpdate)
+        {
             QuestStatus iqs = chr.getQuest(qs.getInfoNumber());
             p.writeShort(iqs.getQuestID());
             p.writeByte(1);
             p.writeString(iqs.getProgressData());
-        } else {
+        }
+        else
+        {
             p.writeShort(qs.getQuest().getId());
             p.writeByte(qs.getStatus().getId());
             p.writeString(qs.getProgressData());
         }
         p.skip(5);
+
         return p;
     }
 

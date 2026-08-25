@@ -1064,8 +1064,13 @@ public class Client extends ChannelInboundHandlerAdapter {
         return true;
     }
 
-    private void disconnectInternal(boolean shutdown, boolean cashshop) {//once per Client instance
-        if (player != null && player.isLoggedIn() && player.getClient() != null) {
+    private void disconnectInternal(boolean shutdown, boolean cashshop)
+    {
+        //once per Client instance
+        if (player != null
+                && player.isLoggedIn()
+                && player.getClient() != null)
+        {
             final int messengerid = player.getMessenger() == null ? 0 : player.getMessenger().getId();
             //final int fid = player.getFamilyId();
             final BuddyList bl = player.getBuddylist();
@@ -1076,15 +1081,20 @@ public class Client extends ChannelInboundHandlerAdapter {
             player.cancelMagicDoor();
 
             final World wserv = getWorldServer();   // obviously wserv is NOT null if this player was online on it
-            try {
+            try
+            {
                 // 保存在线时间
                 player.updateOnlineTime();
                 removePlayer(wserv, this.serverTransition);
 
-                if (!(channel == -1 || shutdown)) {
-                    if (!cashshop) {
-                        if (!this.serverTransition) { // meaning not changing channels
-                            if (messengerid > 0) {
+                if (!(channel == -1 || shutdown))
+                {
+                    if (!cashshop)
+                    {
+                        if (!this.serverTransition)
+                        { // meaning not changing channels
+                            if (messengerid > 0)
+                            {
                                 wserv.leaveMessenger(messengerid, chrm);
                             }
                                                         /*      
@@ -1096,28 +1106,42 @@ public class Client extends ChannelInboundHandlerAdapter {
 
                             player.forfeitExpirableQuests();    //This is for those quests that you have to stay logged in for a certain amount of time
 
-                            if (guild != null) {
+                            if (guild != null)
+                            {
                                 final Server server = Server.getInstance();
                                 server.setGuildMemberOnline(player, false, player.getClient().getChannel());
                                 player.sendPacket(GuildPackets.showGuildInfo(player));
                             }
-                            if (bl != null) {
+
+                            if (bl != null)
+                            {
                                 wserv.loggedOff(player.getName(), player.getId(), channel, player.getBuddylist().getBuddyIds());
                             }
                         }
-                    } else {
-                        if (!this.serverTransition) { // if dc inside of cash shop.
-                            if (bl != null) {
+                    }
+                    else
+                    {
+                        if (!this.serverTransition)
+                        {
+                            // if dc inside of cash shop.
+                            if (bl != null)
+                            {
                                 wserv.loggedOff(player.getName(), player.getId(), channel, player.getBuddylist().getBuddyIds());
                             }
                         }
                     }
                 }
-            } catch (final Exception e) {
+            }
+            catch (final Exception e)
+            {
                 log.error("账号卡住", e);
-            } finally {
-                if (!this.serverTransition) {
-                    if (chrg != null) {
+            }
+            finally
+            {
+                if (!this.serverTransition)
+                {
+                    if (chrg != null)
+                    {
                         chrg.setCharacter(null);
                     }
                     wserv.removePlayer(player);
@@ -1128,11 +1152,15 @@ public class Client extends ChannelInboundHandlerAdapter {
                     player.saveCharToDB(true);
 
                     player.logOff();
-                    if (GameConfig.getServerBoolean("instant_name_change")) {
+                    if (GameConfig.getServerBoolean("instant_name_change"))
+                    {
                         player.doPendingNameChange();
                     }
+
                     clear();
-                } else {
+                }
+                else
+                {
                     getChannelServer().removePlayer(player);
 
                     player.saveCooldowns();
@@ -1144,12 +1172,16 @@ public class Client extends ChannelInboundHandlerAdapter {
 
         SessionCoordinator.getInstance().closeSession(this, false);
 
-        if (!serverTransition && isLoggedIn()) {
+        if (!serverTransition && isLoggedIn())
+        {
             updateLoginState(Client.LOGIN_NOTLOGGEDIN);
 
             clear();
-        } else {
-            if (!Server.getInstance().hasCharacteridInTransition(this)) {
+        }
+        else
+        {
+            if (!Server.getInstance().hasCharacteridInTransition(this))
+            {
                 updateLoginState(Client.LOGIN_NOTLOGGEDIN);
             }
 

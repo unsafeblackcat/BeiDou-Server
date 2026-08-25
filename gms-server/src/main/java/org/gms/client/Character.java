@@ -343,6 +343,7 @@ public class Character extends AbstractCharacterObject {
     @Getter
     @Setter
     private Mount mapleMount;
+    // 组队信息
     private Party party;
     private final Pet[] pets = new Pet[3];
     @Getter
@@ -1914,7 +1915,12 @@ public class Character extends AbstractCharacterObject {
     public void checkMessenger() {
         if (messenger != null && messengerPosition < 4 && messengerPosition > -1) {
             World worldz = getWorldServer();
-            worldz.silentJoinMessenger(messenger.getId(), new MessengerCharacter(this, messengerPosition), messengerPosition);
+
+            worldz.silentJoinMessenger(
+                    messenger.getId()
+                    , new MessengerCharacter(this, messengerPosition)
+                    , messengerPosition);
+
             worldz.updateMessenger(getMessenger().getId(), name, client.getChannel());
         }
     }
@@ -5408,11 +5414,15 @@ public class Character extends AbstractCharacterObject {
         return getQuest(Quest.getInstance(quest));
     }
 
-    public QuestStatus getQuest(Quest quest) {
-        synchronized (quests) {
+    public QuestStatus getQuest(Quest quest)
+    {
+        synchronized (quests)
+        {
             short questid = quest.getId();
             QuestStatus qs = quests.get(questid);
-            if (qs == null) {
+
+            if (qs == null)
+            {
                 qs = new QuestStatus(quest, QuestStatus.Status.NOT_STARTED);
                 quests.put(questid, qs);
             }
@@ -7734,13 +7744,17 @@ public class Character extends AbstractCharacterObject {
         return false;
     }
 
-    public void saveCharToDB() {
-        if (GameConfig.getServerBoolean("use_autosave")) {
+    public void saveCharToDB()
+    {
+        if (GameConfig.getServerBoolean("use_autosave"))
+        {
             Runnable r = () -> saveCharToDB(true);
 
             CharacterSaveService service = getCharacterSaveService();
             service.registerSaveCharacter(this.getId(), r);
-        } else {
+        }
+        else
+        {
             saveCharToDB(true);
         }
     }
@@ -7767,13 +7781,16 @@ public class Character extends AbstractCharacterObject {
             con.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
 
             try {
-                try (PreparedStatement ps = con.prepareStatement("UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, gachaexp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpMpUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, messengerid = ?, messengerposition = ?, mountlevel = ?, mountexp = ?, mounttiredness= ?, equipslots = ?, useslots = ?, setupslots = ?, etcslots = ?,  monsterbookcover = ?, vanquisherStage = ?, dojoPoints = ?, lastDojoStage = ?, finishedDojoTutorial = ?, vanquisherKills = ?, matchcardwins = ?, matchcardlosses = ?, matchcardties = ?, omokwins = ?, omoklosses = ?, omokties = ?, dataString = ?, fquest = ?, jailexpire = ?, partnerId = ?, marriageItemId = ?, lastExpGainTime = ?, ariantPoints = ?, partySearch = ? WHERE id = ?", Statement.RETURN_GENERATED_KEYS)) {
+                try (PreparedStatement ps = con.prepareStatement(
+                        "UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, gachaexp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpMpUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, messengerid = ?, messengerposition = ?, mountlevel = ?, mountexp = ?, mounttiredness= ?, equipslots = ?, useslots = ?, setupslots = ?, etcslots = ?,  monsterbookcover = ?, vanquisherStage = ?, dojoPoints = ?, lastDojoStage = ?, finishedDojoTutorial = ?, vanquisherKills = ?, matchcardwins = ?, matchcardlosses = ?, matchcardties = ?, omokwins = ?, omoklosses = ?, omokties = ?, dataString = ?, fquest = ?, jailexpire = ?, partnerId = ?, marriageItemId = ?, lastExpGainTime = ?, ariantPoints = ?, partySearch = ? WHERE id = ?", Statement.RETURN_GENERATED_KEYS))
+                {
                     ps.setInt(1, level);    // thanks CanIGetaPR for noticing an unnecessary "level" limitation when persisting DB data
                     ps.setInt(2, fame);
 
                     effLock.lock();
                     statWlock.lock();
-                    try {
+                    try
+                    {
                         ps.setInt(3, attrStr);
                         ps.setInt(4, attrDex);
                         ps.setInt(5, attrLuk);
@@ -7794,7 +7811,9 @@ public class Character extends AbstractCharacterObject {
                         ps.setString(13, sp.substring(0, sp.length() - 1));
 
                         ps.setInt(14, remainingAp);
-                    } finally {
+                    }
+                    finally
+                    {
                         statWlock.unlock();
                         effLock.unlock();
                     }
@@ -7805,57 +7824,86 @@ public class Character extends AbstractCharacterObject {
                     ps.setInt(18, job.getId());
                     ps.setInt(19, hair);
                     ps.setInt(20, face);
-                    if (map == null || (cashShop != null && cashShop.isOpened())) {
+                    if (map == null || (cashShop != null && cashShop.isOpened()))
+                    {
                         ps.setInt(21, mapId);
-                    } else {
-                        if (map.getForcedReturnId() != MapId.NONE) {
+                    }
+                    else
+                    {
+                        if (map.getForcedReturnId() != MapId.NONE)
+                        {
                             ps.setInt(21, map.getForcedReturnId());
-                        } else {
+                        }
+                        else
+                        {
                             ps.setInt(21, getHp() < 1 ? map.getReturnMapId() : map.getId());
                         }
                     }
+
                     ps.setInt(22, meso.get());
                     ps.setInt(23, hpMpApUsed);
-                    if (map == null || map.getId() == MapId.CRIMSONWOOD_VALLEY_1 || map.getId() == MapId.CRIMSONWOOD_VALLEY_2) {  // reset to first spawnpoint on those maps
+                    if (map == null
+                            || map.getId() == MapId.CRIMSONWOOD_VALLEY_1
+                            || map.getId() == MapId.CRIMSONWOOD_VALLEY_2)
+                    {  // reset to first spawnpoint on those maps
                         ps.setInt(24, 0);
-                    } else {
+                    }
+                    else
+                    {
                         Portal closest = map.findClosestPlayerSpawnpoint(getPosition());
-                        if (closest != null) {
+                        if (closest != null)
+                        {
                             ps.setInt(24, closest.getId());
-                        } else {
+                        }
+                        else
+                        {
                             ps.setInt(24, 0);
                         }
                     }
 
                     prtLock.lock();
                     try {
-                        if (party != null) {
+                        if (party != null)
+                        {
                             ps.setInt(25, party.getId());
-                        } else {
+                        }
+                        else
+                        {
                             ps.setInt(25, -1);
                         }
-                    } finally {
+                    }
+                    finally
+                    {
                         prtLock.unlock();
                     }
 
                     ps.setInt(26, buddylist.getCapacity());
-                    if (messenger != null) {
+                    if (messenger != null)
+                    {
                         ps.setInt(27, messenger.getId());
                         ps.setInt(28, messengerPosition);
-                    } else {
+                    }
+                    else
+                    {
                         ps.setInt(27, 0);
                         ps.setInt(28, 4);
                     }
-                    if (mapleMount != null) {
+
+                    if (mapleMount != null)
+                    {
                         ps.setInt(29, mapleMount.getLevel());
                         ps.setInt(30, mapleMount.getExp());
                         ps.setInt(31, mapleMount.getTiredness());
-                    } else {
+                    }
+                    else
+                    {
                         ps.setInt(29, 1);
                         ps.setInt(30, 0);
                         ps.setInt(31, 0);
                     }
-                    for (int i = 1; i < 5; i++) {
+
+                    for (int i = 1; i < 5; i++)
+                    {
                         ps.setInt(i + 31, getSlots(i));
                     }
 
@@ -7884,7 +7932,8 @@ public class Character extends AbstractCharacterObject {
                     ps.setInt(56, id);
 
                     int updateRows = ps.executeUpdate();
-                    if (updateRows < 1) {
+                    if (updateRows < 1)
+                    {
                         throw new RuntimeException("Character not in database (" + id + ")");
                     }
                 }
@@ -7892,16 +7941,21 @@ public class Character extends AbstractCharacterObject {
                 List<Pet> petList = new LinkedList<>();
                 petLock.lock();
                 try {
-                    for (int i = 0; i < 3; i++) {
-                        if (pets[i] != null) {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (pets[i] != null)
+                        {
                             petList.add(pets[i]);
                         }
                     }
-                } finally {
+                }
+                finally
+                {
                     petLock.unlock();
                 }
 
-                for (Pet pet : petList) {
+                for (Pet pet : petList)
+                {
                     pet.saveToDb();
                 }
 
@@ -7911,18 +7965,23 @@ public class Character extends AbstractCharacterObject {
                     psKey.setInt(1, id);
 
                     Set<Entry<Integer, KeyBinding>> keybindingItems = Collections.unmodifiableSet(keymap.entrySet());
-                    for (Entry<Integer, KeyBinding> keybinding : keybindingItems) {
+                    for (Entry<Integer, KeyBinding> keybinding : keybindingItems)
+                    {
                         psKey.setInt(2, keybinding.getKey());
                         psKey.setInt(3, keybinding.getValue().getType());
                         psKey.setInt(4, keybinding.getValue().getAction());
                         psKey.addBatch();
                     }
+
                     psKey.executeBatch();
                 }
 
                 // No quickslots, or no change.
-                boolean bQuickslotEquals = this.quickSlotKeyMapped == null || (this.quickSlotLoaded != null && Arrays.equals(this.quickSlotKeyMapped.GetKeybindings(), this.quickSlotLoaded));
-                if (!bQuickslotEquals) {
+                boolean bQuickslotEquals = this.quickSlotKeyMapped == null
+                        || (this.quickSlotLoaded != null
+                            && Arrays.equals(this.quickSlotKeyMapped.GetKeybindings(), this.quickSlotLoaded));
+                if (!bQuickslotEquals)
+                {
                     long nQuickslotKeymapped = NumberTool.BytesToLong(this.quickSlotKeyMapped.GetKeybindings());
 
                     try (final PreparedStatement psQuick = con.prepareStatement("INSERT INTO quickslotkeymapped (accountid, keymap) VALUES (?, ?) ON DUPLICATE KEY UPDATE keymap = ?;")) {
@@ -9016,7 +9075,8 @@ public class Character extends AbstractCharacterObject {
     private void announceUpdateQuestInternal(Character chr, Pair<DelayedQuestUpdate, Object[]> questUpdate) {
         Object[] objs = questUpdate.getRight();
 
-        switch (questUpdate.getLeft()) {
+        switch (questUpdate.getLeft())
+        {
             case UPDATE:
                 sendPacket(PacketCreator.updateQuest(chr, (QuestStatus) objs[0], (Boolean) objs[1]));
                 break;
@@ -9039,11 +9099,16 @@ public class Character extends AbstractCharacterObject {
     public void announceUpdateQuest(DelayedQuestUpdate questUpdateType, Object... params) {
         Pair<DelayedQuestUpdate, Object[]> p = new Pair<>(questUpdateType, params);
         Client c = this.getClient();
-        if (c.getQM() != null || c.getCM() != null) {
-            synchronized (npcUpdateQuests) {
+
+        if (c.getQM() != null || c.getCM() != null)
+        {
+            synchronized (npcUpdateQuests)
+            {
                 npcUpdateQuests.add(p);
             }
-        } else {
+        }
+        else
+        {
             announceUpdateQuestInternal(this, p);
         }
     }
@@ -9061,29 +9126,43 @@ public class Character extends AbstractCharacterObject {
         }
     }
 
-    public void updateQuestStatus(QuestStatus qs) {
-        synchronized (quests) {
+    public void updateQuestStatus(QuestStatus qs)
+    {
+        synchronized (quests)
+        {
             quests.put(qs.getQuestID(), qs);
         }
-        if (qs.getStatus().equals(QuestStatus.Status.STARTED)) {
+
+        if (qs.getStatus().equals(QuestStatus.Status.STARTED))
+        {
             announceUpdateQuest(DelayedQuestUpdate.UPDATE, qs, false);
-            if (qs.getInfoNumber() > 0) {
+            if (qs.getInfoNumber() > 0)
+            {
                 announceUpdateQuest(DelayedQuestUpdate.UPDATE, qs, true);
             }
+
             announceUpdateQuest(DelayedQuestUpdate.INFO, qs);
-        } else if (qs.getStatus().equals(QuestStatus.Status.COMPLETED)) {
+        }
+        else if (qs.getStatus().equals(QuestStatus.Status.COMPLETED))
+        {
             Quest mquest = qs.getQuest();
             short questid = mquest.getId();
-            if (!mquest.isSameDayRepeatable() && !Quest.isExploitableQuest(questid)) {
+            if (!mquest.isSameDayRepeatable() && !Quest.isExploitableQuest(questid))
+            {
+                // 完成任务获取多少任务点，0为不启用
                 awardQuestPoint(GameConfig.getServerInt("quest_point_per_quest_complete"));
             }
+
             qs.setCompleted(qs.getCompleted() + 1);   // Jayd's idea - count quest completed
 
             announceUpdateQuest(DelayedQuestUpdate.COMPLETE, questid, qs.getCompletionTime());
             //announceUpdateQuest(DelayedQuestUpdate.INFO, qs); // happens after giving rewards, for non-next quests only
-        } else if (qs.getStatus().equals(QuestStatus.Status.NOT_STARTED)) {
+        }
+        else if (qs.getStatus().equals(QuestStatus.Status.NOT_STARTED))
+        {
             announceUpdateQuest(DelayedQuestUpdate.UPDATE, qs, false);
-            if (qs.getInfoNumber() > 0) {
+            if (qs.getInfoNumber() > 0)
+            {
                 announceUpdateQuest(DelayedQuestUpdate.UPDATE, qs, true);
             }
             // reminder: do not reset quest progress of infoNumbers, some quests cannot backtrack

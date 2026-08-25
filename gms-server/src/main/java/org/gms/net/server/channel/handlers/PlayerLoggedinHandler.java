@@ -363,7 +363,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             // 发包好友列表
             c.sendPacket(PacketCreator.updateBuddylist(bl.getBuddies()));
 
-            // 家族列表信息
+
             c.sendPacket(PacketCreator.loadFamily(player));
             if (player.getFamilyId() > 0)
             {
@@ -448,7 +448,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             //异常地图掉线信息提示
             c.getSysRescue().showMapChangeMessage(player);
 
-            // 派对角色？
+            // 组队信息
             if (player.getParty() != null)
             {
                 PartyCharacter pchar = player.getMPC();
