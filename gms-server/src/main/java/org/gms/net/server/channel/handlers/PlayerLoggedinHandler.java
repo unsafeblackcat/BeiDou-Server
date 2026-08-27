@@ -55,6 +55,7 @@ import org.gms.net.server.guild.GuildPackets;
 import org.gms.net.server.world.PartyCharacter;
 import org.gms.net.server.world.PartyOperation;
 import org.gms.net.server.world.World;
+import org.gms.server.quest.medal.OutstandingCitizenMedal;
 import org.gms.service.HpMpAlertService;
 import org.gms.util.I18nUtil;
 import org.gms.util.packets.WeddingPackets;
@@ -442,7 +443,7 @@ public final class PlayerLoggedinHandler extends AbstractPacketHandler {
             }
 
             //展示服务信息
-            org.gms.server.quest.medal.OutstandingCitizenMedal.refreshEligibility(player);
+            OutstandingCitizenMedal.refreshEligibility(player);
             noteService.show(player);
 
             //异常地图掉线信息提示

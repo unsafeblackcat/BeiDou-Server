@@ -465,7 +465,9 @@ public class CharacterService {
 
         // 任务状态
         List<QuestStatus> questStatusList = questService.getQuestStatusByCharacter(cid);
-        questStatusList.forEach(questStatus -> chr.getQuests().put(questStatus.getQuestID(), questStatus));
+        questStatusList.forEach(questStatus ->
+                chr.getQuests().put(questStatus.getQuestID(), questStatus)
+        );
 
 
         // 技能

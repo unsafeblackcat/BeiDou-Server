@@ -70,6 +70,7 @@ import org.gms.server.partyquest.MonsterCarnival;
 import org.gms.server.partyquest.Pyramid;
 import org.gms.server.partyquest.Pyramid.PyramidMode;
 import org.gms.util.PacketCreator;
+import org.gms.util.I18nUtil;
 
 import java.awt.*;
 import java.sql.SQLException;
@@ -464,26 +465,37 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
     //     }
     // }
 
-    public void upgradeAlliance() {
-        Alliance alliance = Server.getInstance().getAlliance(c.getPlayer().getGuild().getAllianceId());
-        alliance.increaseCapacity(1);
+    public boolean upgradeAlliance(int cost, int maxCapacity) {
+        Guild guild = c.getPlayer().getGuild();
+        if (guild == null) {
+            return false;
+        }
+        Alliance alliance = Server.getInstance().getAlliance(guild.getAllianceId());
+        if (alliance == null || !alliance.purchaseCapacity(c.getPlayer(), cost, maxCapacity)) {
+            return false;
+        }
 
-        Server.getInstance().allianceMessage(alliance.getId(), GuildPackets.getGuildAlliances(alliance, c.getWorld()), -1, -1);
-        Server.getInstance().allianceMessage(alliance.getId(), GuildPackets.allianceNotice(alliance.getId(), alliance.getNotice()), -1, -1);
-
-        c.sendPacket(GuildPackets.updateAllianceInfo(alliance, c.getWorld()));  // thanks Vcoc for finding an alliance update to leader issue
+        try {
+            Server.getInstance().allianceMessage(alliance.getId(), GuildPackets.getGuildAlliances(alliance, c.getWorld()), -1, -1);
+            Server.getInstance().allianceMessage(alliance.getId(), GuildPackets.allianceNotice(alliance.getId(), alliance.getNotice()), -1, -1);
+            c.sendPacket(GuildPackets.updateAllianceInfo(alliance, c.getWorld()));
+        } catch (RuntimeException e) {
+            log.error(I18nUtil.getLogMessage("NPCConversationManager.alliance.error1"),
+                    alliance.getId(), e);
+        }
+        return true;
     }
 
-    public void disbandAlliance(Client c, int allianceId) {
-        Alliance.disbandAlliance(allianceId);
+    public boolean disbandAlliance(int allianceId) {
+        return Alliance.disbandAlliance(allianceId);
     }
 
     public boolean canBeUsedAllianceName(String name) {
         return Alliance.canBeUsedAllianceName(name);
     }
 
-    public Alliance createAlliance(String name) {
-        return Alliance.createAlliance(getParty(), name);
+    public Alliance createAlliance(String name, int cost) {
+        return Alliance.createAlliance(getParty(), name, cost);
     }
 
     public int getAllianceCapacity() {

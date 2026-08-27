@@ -89,8 +89,22 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  */
 public class Quest {
     private static final Logger log = LoggerFactory.getLogger(Quest.class);
+    /**
+     *  任务列表
+     *  Integer: 任务ID
+     *  Quest: 任务信息
+     * **/
     private static volatile Map<Integer, Quest> quests = new HashMap<>();
+    /**
+     * 用于检查，任务ID对应的“开始任务条件”和“完成任务条件”
+     * 条件中是否存在 INFO_NUMBER "infoNumber" 类型。
+     * 如果存在则记录。如果没有则记录O
+     * Integer: 任务ID
+     * Integer: INFO_NUMBER, 没有则为0
+     * **/
     private static volatile Map<Integer, Integer> infoNumberQuests = new HashMap<>();
+
+    // QuestInfo 任务图鉴
     private static final Map<Short, Integer> medals = new HashMap<>();
 
     private static final Set<Short> exploitableQuests = new HashSet<>();
@@ -102,19 +116,48 @@ public class Quest {
         exploitableQuests.add((short) 21752);
     }
 
+    // QuestInfo 任务ID
     protected short id;
-    protected int timeLimit, timeLimit2;
+    // QuestInfo 任务时间限制, 任务接取后的有效时间，单位通常是秒。常用于限时任务或组队任务，超时后任务会失败。
+    protected int timeLimit
+            // 第二时间限制, 可能是timeLimit的备用或补充字段，具体用法可能因服务端实现而异，推测与更复杂的时间控制逻辑有关。
+            , timeLimit2;
+    /**
+     * Check.img 开始任务时, 任务类型触发的回调。
+     * QuestRequirementType: 类型
+     * AbstractQuestRequirement: 类型对应的回调函数, 由 getRequirement 返回
+     * **/
     protected Map<QuestRequirementType, AbstractQuestRequirement> startReqs = new EnumMap<>(QuestRequirementType.class);
+    /**
+     * Check.img 完成任务时, 任务类型触发的回调。
+     * QuestRequirementType: 类型
+     * AbstractQuestRequirement: 类型对应的回调函数, 由 getRequirement 返回
+     * **/
     protected Map<QuestRequirementType, AbstractQuestRequirement> completeReqs = new EnumMap<>(QuestRequirementType.class);
+    /**
+     * Act.img 开始任务时, 执行的任务动作。
+     * QuestRequirementType: 类型
+     * AbstractQuestRequirement: 类型对应的回调函数, 由 getRequirement 返回
+     * **/
     protected Map<QuestActionType, AbstractQuestAction> startActs = new EnumMap<>(QuestActionType.class);
+    /**
+     * Act.img 完成任务时, 执行的任务动作。
+     * QuestRequirementType: 类型
+     * AbstractQuestRequirement: 类型对应的回调函数, 由 getRequirement 返回
+     * **/
     protected Map<QuestActionType, AbstractQuestAction> completeActs = new EnumMap<>(QuestActionType.class);
+
+    // Check.img 任务类型为 MOB
     protected List<Integer> relevantMobs = new LinkedList<>();
-    // 任务能否自动开始
+    // QuestInfo 任务能否自动开始
     private boolean autoStart;
-    // 任务能否自动完成
+    // QuestInfo 任务能否自动完成
     private boolean autoPreComplete, autoComplete;
-    // 任务需求类型为 “间隔” INTERVAL
+    // QuestInfo 任务需求类型为 “间隔” INTERVAL
     private boolean repeatable = false;
+
+    // QuestInfo 任务名称
+    // QuestInfo 父任务名称
     private String name = "", parent = "";
     private final static DataProvider questData = DataProviderFactory.getDataProvider(WZFiles.QUEST);
     private final static Data questInfo = questData.getData("QuestInfo.img");
@@ -200,7 +243,8 @@ public class Quest {
 
                 if (type.equals(QuestRequirementType.MOB))
                 {
-                    for (Data mob : completeReq.getChildren()) {
+                    for (Data mob : completeReq.getChildren())
+                    {
                         relevantMobs.add(DataTool.getInt(mob.getChildByPath("id")));
                     }
                 }
@@ -523,10 +567,13 @@ public class Quest {
         Map<QuestRequirementType, AbstractQuestRequirement> reqs = !checkEnd ? startReqs : completeReqs;
 
         AbstractQuestRequirement req = reqs.get(QuestRequirementType.INFO_NUMBER);
-        if (req != null) {
+        if (req != null)
+        {
             InfoNumberRequirement inReq = (InfoNumberRequirement) req;
             return inReq.getInfoNumber();
-        } else {
+        }
+        else
+        {
             return 0;
         }
     }

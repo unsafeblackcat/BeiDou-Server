@@ -83,11 +83,13 @@ public class QuestService {
             // 找出所有 questprogress.queststatusid == queststatusDO.queststatusid
             // 然后在依次循环设置到置 questStatus任务ID对应的进度值
             questprogressDOList.stream()
-                    .filter(questprogressDO -> Objects.equals(
+                    .filter(questprogressDO
+                            -> Objects.equals(
                                     queststatusDO.getQueststatusid()
                                     , questprogressDO.getQueststatusid()))
-                    .forEach(questprogressDO -> questStatus.setProgress(
-                            questprogressDO.getProgressid()
+                    .forEach(questprogressDO
+                            -> questStatus.setProgress(
+                                    questprogressDO.getProgressid()
                             ,  questprogressDO.getProgress()));
 
             // 同样如上
@@ -95,10 +97,12 @@ public class QuestService {
             // medalmapsDO.queststatusid == queststatusDO.queststatusid
             // 然后在依次循环设置到 questStatus 中
             medalmapsDOList.stream()
-                    .filter(medalmapsDO -> Objects.equals(
-                            queststatusDO.getQueststatusid()
-                            , medalmapsDO.getQueststatusid()))
-                    .forEach(medalmapsDO -> questStatus.addMedalMap(medalmapsDO.getMapid()));
+                    .filter(medalmapsDO
+                            -> Objects.equals(
+                                    queststatusDO.getQueststatusid()
+                                    , medalmapsDO.getQueststatusid()))
+                    .forEach(medalmapsDO
+                            -> questStatus.addMedalMap(medalmapsDO.getMapid()));
 
             return questStatus;
         }).toList();

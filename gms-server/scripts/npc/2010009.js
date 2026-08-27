@@ -106,7 +106,7 @@ function action(mode, type, selection) {
             }
             cm.sendGetText("Now please enter the name of your new Guild Union. (max. 12 letters)");
         } else if (choice == 3) {
-            if (cm.getAllianceCapacity() == allianceLimit) {
+            if (cm.getAllianceCapacity() >= allianceLimit) {
                 cm.sendOk("Your alliance already reached the maximum capacity for guilds.");
                 cm.dispose();
                 return;
@@ -117,8 +117,11 @@ function action(mode, type, selection) {
                 return;
             }
 
-            cm.upgradeAlliance();
-            cm.gainMeso(-increaseCost);
+            if (!cm.upgradeAlliance(increaseCost, allianceLimit)) {
+                cm.sendOk("The alliance expansion could not be completed. No mesos were charged.");
+                cm.dispose();
+                return;
+            }
             cm.sendOk("Your alliance can now accept one more guild.");
             cm.dispose();
         } else if (choice == 4) {
@@ -126,8 +129,11 @@ function action(mode, type, selection) {
                 cm.sendNext("You cannot disband a non-existant Guild Union.");
                 cm.dispose();
             } else {
-                cm.disbandAlliance(cm.getClient(), cm.getPlayer().getGuild().getAllianceId());
-                cm.sendOk("Your Guild Union has been disbanded.");
+                if (cm.disbandAlliance(cm.getPlayer().getGuild().getAllianceId())) {
+                    cm.sendOk("Your Guild Union has been disbanded.");
+                } else {
+                    cm.sendOk("The Guild Union could not be disbanded. Please try again later.");
+                }
                 cm.dispose();
             }
         }
@@ -140,10 +146,9 @@ function action(mode, type, selection) {
             status = 1;
             choice = 2;
         } else {
-            if (cm.createAlliance(guildName) == null) {
-                cm.sendOk("Please check if you and the other one guild leader in your party are both here on this room right now, and make sure both guilds are currently unregistered on unions. No other guild leaders should be present with you 2 on this process.");
+            if (cm.createAlliance(guildName, allianceCost) == null) {
+                cm.sendOk("The alliance could not be created. Please check the party, guild and meso requirements. No mesos were charged.");
             } else {
-                cm.gainMeso(-allianceCost);
                 cm.sendOk("You have successfully formed a Guild Union.");
             }
             cm.dispose();

@@ -36,6 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.gms.service.NoteService;
 import org.gms.util.DatabaseConnection;
+import org.gms.util.I18nUtil;
 import org.gms.util.PacketCreator;
 
 import java.sql.Connection;
@@ -156,50 +157,86 @@ public class Guild {
         bDirty = false;
     }
 
-    public void writeToDB(boolean bDisband) {
+    public boolean writeToDB(boolean bDisband) {
+        if (bDisband) {
+            return disbandOnDb();
+        }
+
         try (Connection con = DatabaseConnection.getConnection()) {
-
-            if (!bDisband) {
-                StringBuilder builder = new StringBuilder();
-                builder.append("UPDATE guilds SET GP = ?, logo = ?, logoColor = ?, logoBG = ?, logoBGColor = ?, ");
-                for (int i = 0; i < 5; i++) {
-                    builder.append("rank").append(i + 1).append("title = ?, ");
+            StringBuilder builder = new StringBuilder();
+            builder.append("UPDATE guilds SET GP = ?, logo = ?, logoColor = ?, logoBG = ?, logoBGColor = ?, ");
+            for (int i = 0; i < 5; i++) {
+                builder.append("rank").append(i + 1).append("title = ?, ");
+            }
+            builder.append("capacity = ?, notice = ? WHERE guildid = ?");
+            try (PreparedStatement ps = con.prepareStatement(builder.toString())) {
+                ps.setInt(1, gp);
+                ps.setInt(2, logo);
+                ps.setInt(3, logoColor);
+                ps.setInt(4, logoBG);
+                ps.setInt(5, logoBGColor);
+                for (int i = 6; i < 11; i++) {
+                    ps.setString(i, rankTitles[i - 6]);
                 }
-                builder.append("capacity = ?, notice = ? WHERE guildid = ?");
-                try (PreparedStatement ps = con.prepareStatement(builder.toString())) {
-                    ps.setInt(1, gp);
-                    ps.setInt(2, logo);
-                    ps.setInt(3, logoColor);
-                    ps.setInt(4, logoBG);
-                    ps.setInt(5, logoBGColor);
-                    for (int i = 6; i < 11; i++) {
-                        ps.setString(i, rankTitles[i - 6]);
+                ps.setInt(11, capacity);
+                ps.setString(12, notice);
+                ps.setInt(13, this.id);
+                ps.executeUpdate();
+            }
+            return true;
+        } catch (SQLException se) {
+            log.error(I18nUtil.getLogMessage("Guild.writeToDB.error1"), id, bDisband, se);
+            return false;
+        }
+    }
+
+    private boolean disbandOnDb() {
+        try (Connection con = DatabaseConnection.getConnection()) {
+            boolean previousAutoCommit = con.getAutoCommit();
+            con.setAutoCommit(false);
+            try {
+                try (PreparedStatement ps = con.prepareStatement(
+                        "SELECT allianceId FROM guilds WHERE guildid = ? FOR UPDATE")) {
+                    ps.setInt(1, id);
+                    try (ResultSet rs = ps.executeQuery()) {
+                        if (!rs.next() || rs.getInt("allianceId") != 0) {
+                            throw new SQLException("Guild alliance state changed: " + id);
+                        }
                     }
-                    ps.setInt(11, capacity);
-                    ps.setString(12, notice);
-                    ps.setInt(13, this.id);
+                }
+                try (PreparedStatement ps = con.prepareStatement(
+                        "UPDATE characters SET guildid = 0, guildrank = 5, allianceRank = 5 " +
+                                "WHERE guildid = ?")) {
+                    ps.setInt(1, id);
                     ps.executeUpdate();
                 }
-            } else {
-                try (PreparedStatement ps = con.prepareStatement("UPDATE characters SET guildid = 0, guildrank = 5 WHERE guildid = ?")) {
-                    ps.setInt(1, this.id);
-                    ps.executeUpdate();
+                try (PreparedStatement ps = con.prepareStatement(
+                        "DELETE FROM guilds WHERE guildid = ? AND allianceId = 0")) {
+                    ps.setInt(1, id);
+                    if (ps.executeUpdate() != 1) {
+                        throw new SQLException("Guild does not exist: " + id);
+                    }
                 }
-
-                try (PreparedStatement ps = con.prepareStatement("DELETE FROM guilds WHERE guildid = ?")) {
-                    ps.setInt(1, this.id);
-                    ps.executeUpdate();
-                }
-
-                membersLock.lock();
+                con.commit();
+                return true;
+            } catch (SQLException e) {
                 try {
-                    this.broadcast(GuildPackets.guildDisband(this.id));
-                } finally {
-                    membersLock.unlock();
+                    con.rollback();
+                } catch (SQLException rollbackError) {
+                    e.addSuppressed(rollbackError);
+                }
+                log.error(I18nUtil.getLogMessage("Guild.writeToDB.error1"), id, true, e);
+                return false;
+            } finally {
+                try {
+                    con.setAutoCommit(previousAutoCommit);
+                } catch (SQLException e) {
+                    log.error(I18nUtil.getLogMessage("Guild.writeToDB.error1"), id, true, e);
                 }
             }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        } catch (SQLException e) {
+            log.error(I18nUtil.getLogMessage("Guild.writeToDB.error1"), id, true, e);
+            return false;
         }
     }
 
@@ -329,30 +366,37 @@ public class Guild {
     }
 
     public void broadcast(Packet packet, int exceptionId, BCOp bcop) {
+        Map<Integer, List<Integer>> targetsByChannel = new LinkedHashMap<>();
         membersLock.lock(); // membersLock awareness thanks to ProjectNano dev team
         try {
             synchronized (notifications) {
                 if (bDirty) {
                     buildNotifications();
                 }
-                try {
-                    for (Integer b : Server.getInstance().getOpenChannels(world)) {
-                        if (notifications.get(b).size() > 0) {
-                            if (bcop == BCOp.DISBAND) {
-                                Server.getInstance().getWorld(world).setGuildAndRank(notifications.get(b), 0, 5, exceptionId);
-                            } else if (bcop == BCOp.EMBLEMCHANGE) {
-                                Server.getInstance().getWorld(world).changeEmblem(this.id, notifications.get(b), new GuildSummary(this));
-                            } else {
-                                Server.getInstance().getWorld(world).sendPacket(notifications.get(b), packet, exceptionId);
-                            }
-                        }
+                for (Map.Entry<Integer, List<Integer>> entry : notifications.entrySet()) {
+                    if (!entry.getValue().isEmpty()) {
+                        targetsByChannel.put(entry.getKey(), List.copyOf(entry.getValue()));
                     }
-                } catch (Exception re) {
-                    log.error("Failed to contact channel(s) for broadcast.", re);
                 }
             }
         } finally {
             membersLock.unlock();
+        }
+
+        // 跨频道调用基于快照在锁外执行，避免锁顺序反转和单频道阻塞拖住全部家族操作。
+        for (Map.Entry<Integer, List<Integer>> entry : targetsByChannel.entrySet()) {
+            try {
+                List<Integer> targets = entry.getValue();
+                if (bcop == BCOp.DISBAND) {
+                    Server.getInstance().getWorld(world).setGuildAndRank(targets, 0, 5, exceptionId);
+                } else if (bcop == BCOp.EMBLEMCHANGE) {
+                    Server.getInstance().getWorld(world).changeEmblem(this.id, targets, new GuildSummary(this));
+                } else {
+                    Server.getInstance().getWorld(world).sendPacket(targets, packet, exceptionId);
+                }
+            } catch (Exception re) {
+                log.error(I18nUtil.getLogMessage("Guild.broadcast.error1"), entry.getKey(), id, re);
+            }
         }
     }
 
@@ -628,20 +672,28 @@ public class Guild {
         this.writeToDB(false);
     }
 
-    public void disbandGuild() {
-        if (allianceId > 0) {
-            if (!Alliance.removeGuildFromAlliance(allianceId, id, world)) {
-                Alliance.disbandAlliance(allianceId);
-            }
-        }
-
+    public boolean disbandGuild() {
+        int memberCount;
         membersLock.lock();
         try {
-            this.writeToDB(true);
-            this.broadcast(null, -1, BCOp.DISBAND);
+            memberCount = members.size();
         } finally {
             membersLock.unlock();
         }
+        log.info(I18nUtil.getLogMessage("Guild.disbandGuild.info1"), name, id, memberCount);
+
+        boolean persisted = allianceId > 0
+                ? Alliance.disbandGuild(this, world)
+                : this.writeToDB(true);
+        if (!persisted) {
+            log.error(I18nUtil.getLogMessage("Guild.disbandGuild.error1"), id, name);
+            return false;
+        }
+
+        this.broadcast(GuildPackets.guildDisband(this.id));
+        this.broadcast(null, -1, BCOp.DISBAND);
+        log.info(I18nUtil.getLogMessage("Guild.disbandGuild.info2"), name, id, memberCount);
+        return true;
     }
 
     public void setGuildEmblem(short bg, byte bgcolor, short logo, byte logocolor) {
@@ -773,7 +825,7 @@ public class Guild {
     }
 
     public void setAllianceId(int aid) {
-        this.allianceId = aid;
+        setAllianceIdInMemory(aid);
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("UPDATE guilds SET allianceId = ? WHERE guildid = ?")) {
             ps.setInt(1, aid);
@@ -784,27 +836,20 @@ public class Guild {
         }
     }
 
-    public void resetAllianceGuildPlayersRank() {
-        try {
-            membersLock.lock();
-            try {
-                for (GuildCharacter mgc : members) {
-                    if (mgc.isOnline()) {
-                        mgc.setAllianceRank(5);
-                    }
-                }
-            } finally {
-                membersLock.unlock();
-            }
+    public void setAllianceIdInMemory(int aid) {
+        this.allianceId = aid;
+    }
 
-            try (Connection con = DatabaseConnection.getConnection();
-                 PreparedStatement ps = con.prepareStatement("UPDATE characters SET allianceRank = ? WHERE guildid = ?")) {
-                ps.setInt(1, 5);
-                ps.setInt(2, id);
-                ps.executeUpdate();
+    public void resetAllianceGuildPlayersRankInMemory() {
+        membersLock.lock();
+        try {
+            for (GuildCharacter mgc : members) {
+                if (mgc.isOnline()) {
+                    mgc.setAllianceRank(5);
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } finally {
+            membersLock.unlock();
         }
     }
 

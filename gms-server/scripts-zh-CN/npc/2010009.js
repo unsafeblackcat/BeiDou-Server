@@ -106,7 +106,7 @@ function action(mode, type, selection) {
             }
             cm.sendGetText("请输入新家族联盟的名称（最多12个字符）。");
         } else if (choice == 3) {
-            if (cm.getAllianceCapacity() == allianceLimit) {
+            if (cm.getAllianceCapacity() >= allianceLimit) {
                 cm.sendOk("你的联盟已经达到了公会的最大容量。");
                 cm.dispose();
                 return;
@@ -117,8 +117,11 @@ function action(mode, type, selection) {
                 return;
             }
 
-            cm.upgradeAlliance();
-            cm.gainMeso(-increaseCost);
+            if (!cm.upgradeAlliance(increaseCost, allianceLimit)) {
+                cm.sendOk("联盟扩容未能完成，未扣除金币，请稍后重试。");
+                cm.dispose();
+                return;
+            }
             cm.sendOk("你的联盟现在可以接受一个额外的公会。");
             cm.dispose();
         } else if (choice == 4) {
@@ -126,8 +129,11 @@ function action(mode, type, selection) {
                 cm.sendNext("你无法解散一个不存在的家族联盟。");
                 cm.dispose();
             } else {
-                cm.disbandAlliance(cm.getClient(), cm.getPlayer().getGuild().getAllianceId());
-                cm.sendOk("你的家族联盟已经解散。");
+                if (cm.disbandAlliance(cm.getPlayer().getGuild().getAllianceId())) {
+                    cm.sendOk("你的家族联盟已经解散。");
+                } else {
+                    cm.sendOk("家族联盟解散失败，请稍后重试。");
+                }
                 cm.dispose();
             }
         }
@@ -140,10 +146,9 @@ function action(mode, type, selection) {
             status = 1;
             choice = 2;
         } else {
-            if (cm.createAlliance(guildName) == null) {
-                cm.sendOk("请检查一下你和另一个公会领袖是否都在这个房间里，确保两个公会目前都没有在联盟中注册。在这个过程中，除了你们两个，不应该有其他公会领袖在场。");
+            if (cm.createAlliance(guildName, allianceCost) == null) {
+                cm.sendOk("联盟创建未能完成，请检查队伍、家族和金币条件。未扣除金币。");
             } else {
-                cm.gainMeso(-allianceCost);
                 cm.sendOk("你已成功组建了家族联盟。");
             }
             cm.dispose();

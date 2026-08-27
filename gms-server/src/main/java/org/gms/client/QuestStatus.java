@@ -62,11 +62,18 @@ public class QuestStatus {
     private final short questID;
     private Status status;
     //private boolean updated;   //maybe this can be of use for someone?
+
     private final Map<Integer, String> progress = new LinkedHashMap<>();
     private final List<Integer> medalProgress = new LinkedList<>();
     private int npc;
-    private long completionTime, expirationTime;
-    private int forfeited = 0, completed = 0;
+    // 任务完成时间
+    private long completionTime
+        // 任务过期时间
+            , expirationTime;
+    // 任务被放弃
+    private int forfeited = 0
+            // 任务完成
+            , completed = 0;
     private String customData;
 
     public QuestStatus(Quest quest, Status status) {
@@ -249,17 +256,23 @@ public class QuestStatus {
     }
 
     public void setForfeited(int forfeited) {
-        if (forfeited >= this.forfeited) {
+        if (forfeited >= this.forfeited)
+        {
             this.forfeited = forfeited;
-        } else {
+        }
+        else
+        {
             throw new IllegalArgumentException("Can't set forfeits to something lower than before.");
         }
     }
 
     public void setCompleted(int completed) {
-        if (completed >= this.completed) {
+        if (completed >= this.completed)
+        {
             this.completed = completed;
-        } else {
+        }
+        else
+        {
             throw new IllegalArgumentException("Can't set completes to something lower than before.");
         }
     }

@@ -104,6 +104,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.function.IntPredicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -381,6 +382,11 @@ public class Character extends AbstractCharacterObject {
     private final List<WeakReference<MapleMap>> lastVisitedMaps = new LinkedList<>();
     private WeakReference<MapleMap> ownedMap = new WeakReference<>(null);
     @Getter
+    /**
+     * 角色下的任务信息
+     * Short: 任务ID
+     * QuestStatus: 任务状态
+     * **/
     private final Map<Short, QuestStatus> quests;
     private final Set<Monster> controlled = new LinkedHashSet<>();
     private final Map<Integer, String> entered = new LinkedHashMap<>();
@@ -2487,7 +2493,7 @@ public class Character extends AbstractCharacterObject {
         try {
             Server.getInstance().disbandGuild(guildId);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(I18nUtil.getLogMessage("Character.disbandGuild.error1"), id, name, guildId, e);
         }
     }
 
@@ -3163,6 +3169,55 @@ public class Character extends AbstractCharacterObject {
         } else {
             enableActions();
         }
+    }
+
+    /**
+     * 将金币扣除与调用方的数据库事务绑定。
+     * 角色保存与其他金币变更在事务完成前都会等待，
+     * 只有持久化成功后才发布新的内存余额。
+     *
+     * @param cost        需要扣除的正整数金币
+     * @param persistence 接收扣费后余额，并在同一事务中持久化业务与金币
+     * @return 事务和内存扣费是否均成功
+     */
+    public synchronized boolean spendMesoTransactionally(int cost, IntPredicate persistence) {
+        if (cost <= 0) {
+            return false;
+        }
+
+        int balanceAfter;
+        petLock.lock();
+        try {
+            int currentBalance = meso.get();
+            if (currentBalance < cost) {
+                return false;
+            }
+
+            balanceAfter = currentBalance - cost;
+            boolean persisted;
+            try {
+                persisted = persistence.test(balanceAfter);
+            } catch (RuntimeException e) {
+                log.error(I18nUtil.getLogMessage("Character.spendMesoTransactionally.error1"),
+                        id, cost, e);
+                return false;
+            }
+            if (!persisted) {
+                return false;
+            }
+            meso.set(balanceAfter);
+        } finally {
+            petLock.unlock();
+        }
+
+        try {
+            updateSingleStat(Stat.MESO, balanceAfter, false);
+            sendPacket(PacketCreator.getShowMesoGain(-cost, true));
+        } catch (RuntimeException e) {
+            log.error(I18nUtil.getLogMessage("Character.spendMesoTransactionally.error2"),
+                    id, cost, e);
+        }
+        return true;
     }
 
     public void genericGuildMessage(int code) {
