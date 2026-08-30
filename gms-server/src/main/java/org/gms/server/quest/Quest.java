@@ -342,19 +342,23 @@ public class Quest {
     public boolean canQuestByInfoProgress(Character chr) {
         QuestStatus mqs = chr.getQuest(this);
         List<String> ix = mqs.getInfoEx();
-        if (!ix.isEmpty()) {
+        if (!ix.isEmpty())
+        {
             short questid = mqs.getQuestID();
             short infoNumber = mqs.getInfoNumber();
-            if (infoNumber <= 0) {
+            if (infoNumber <= 0)
+            {
                 infoNumber = questid;  // on default infoNumber mimics questid
             }
 
             int ixSize = ix.size();
-            for (int i = 0; i < ixSize; i++) {
+            for (int i = 0; i < ixSize; i++)
+            {
                 String progress = chr.getAbstractPlayerInteraction().getQuestProgress(infoNumber, i);
                 String ixProgress = ix.get(i);
 
-                if (!progress.contentEquals(ixProgress)) {
+                if (!progress.contentEquals(ixProgress))
+                {
                     return false;
                 }
             }
@@ -381,14 +385,18 @@ public class Quest {
         return canQuestByInfoProgress(chr);
     }
 
-    public boolean canComplete(Character chr, Integer npcid) {
+    public boolean canComplete(Character chr, Integer npcid)
+    {
         QuestStatus mqs = chr.getQuest(this);
-        if (!mqs.getStatus().equals(Status.STARTED)) {
+        if (!mqs.getStatus().equals(Status.STARTED))
+        {
             return false;
         }
 
-        for (AbstractQuestRequirement r : completeReqs.values()) {
-            if (!r.check(chr, npcid)) {
+        for (AbstractQuestRequirement r : completeReqs.values())
+        {
+            if (!r.check(chr, npcid))
+            {
                 return false;
             }
         }
@@ -405,7 +413,8 @@ public class Quest {
             for (AbstractQuestAction a : acts)
             {
                 if (!a.check(chr, null))
-                { // would null be good ?
+                {
+                    // would null be good ?
                     return;
                 }
             }
@@ -423,19 +432,28 @@ public class Quest {
         complete(chr, npc, null);
     }
 
-    public void complete(Character chr, int npc, Integer selection) {
-        if (autoPreComplete || canComplete(chr, npc)) {
+    public void complete(Character chr, int npc, Integer selection)
+    {
+        if (autoPreComplete || canComplete(chr, npc))
+        {
             Collection<AbstractQuestAction> acts = completeActs.values();
-            for (AbstractQuestAction a : acts) {
-                if (!a.check(chr, selection)) {
+            for (AbstractQuestAction a : acts)
+            {
+                if (!a.check(chr, selection))
+                {
                     return;
                 }
             }
+
             forceComplete(chr, npc);
-            for (AbstractQuestAction a : acts) {
+
+            for (AbstractQuestAction a : acts)
+            {
                 a.run(chr, selection);
             }
-            if (!this.hasNextQuestAction()) {
+
+            if (!this.hasNextQuestAction())
+            {
                 chr.announceUpdateQuest(DelayedQuestUpdate.INFO, chr.getQuest(this));
             }
         }
@@ -507,8 +525,10 @@ public class Quest {
         return true;
     }
 
-    public boolean forceComplete(Character chr, int npc) {
-        if (timeLimit > 0) {
+    public boolean forceComplete(Character chr, int npc)
+    {
+        if (timeLimit > 0)
+        {
             chr.sendPacket(PacketCreator.removeQuestTimeLimit(id));
         }
 
@@ -592,12 +612,16 @@ public class Quest {
 
     public List<String> getInfoEx(Status qs) {
         boolean checkEnd = qs.equals(Status.STARTED);
+
         Map<QuestRequirementType, AbstractQuestRequirement> reqs = !checkEnd ? startReqs : completeReqs;
-        try {
+        try
+        {
             AbstractQuestRequirement req = reqs.get(QuestRequirementType.INFO_EX);
             InfoExRequirement ixReq = (InfoExRequirement) req;
             return ixReq.getInfo();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return new LinkedList<>();
         }
     }

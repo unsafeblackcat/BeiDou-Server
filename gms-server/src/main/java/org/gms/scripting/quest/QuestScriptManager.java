@@ -58,14 +58,18 @@ public class QuestScriptManager extends AbstractScriptManager {
         return engine;
     }
 
-    public void start(Client c, short questid, int npc) {
+    public void start(Client c, short questid, int npc)
+    {
         Quest quest = Quest.getInstance(questid);
-        try {
+        try
+        {
             QuestActionManager qm = new QuestActionManager(c, questid, npc, true);
-            if (qms.containsKey(c)) {
+            if (qms.containsKey(c))
+            {
                 return;
             }
-            if (c.canClickNPC()) {
+            if (c.canClickNPC())
+            {
                 qms.put(c, qm);
 
                 /*if (!quest.hasScriptRequirement(false)) {   // lack of scripted quest checks found thanks to Mali, Resinate
@@ -74,7 +78,8 @@ public class QuestScriptManager extends AbstractScriptManager {
                 }*/
 
                 ScriptEngine engine = getQuestScriptEngine(c, questid);
-                if (engine == null) {
+                if (engine == null)
+                {
                     log.warn("START Quest {} is uncoded.", questid);
                     qm.dispose();
                     return;
@@ -87,7 +92,9 @@ public class QuestScriptManager extends AbstractScriptManager {
                 c.setClickedNPC();
                 iv.invokeFunction("start", (byte) 1, (byte) 0, 0);
             }
-        } catch (final Throwable t) {
+        }
+        catch (final Throwable t)
+        {
             log.error("Error starting quest script: {}", questid, t);
             dispose(c);
         }

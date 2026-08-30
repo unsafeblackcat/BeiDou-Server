@@ -32,43 +32,68 @@ import org.gms.scripting.quest.QuestScriptManager;
  */
 public final class NPCMoreTalkHandler extends AbstractPacketHandler {
     @Override
-    public final void handlePacket(InPacket p, Client c) {
+    public final void handlePacket(InPacket p, Client c)
+    {
         byte lastMsg = p.readByte(); // 00 (last msg type I think)
         byte action = p.readByte(); // 00 = end chat, 01 == follow
         // lastMsg等于2有returnText，不等于则没有
-        if (lastMsg == 2) {
-            if (action != 0) {
+        if (lastMsg == 2)
+        {
+            if (action != 0)
+            {
                 String returnText = p.readString();
-                if (c.getQM() != null) {
+                if (c.getQM() != null)
+                {
                     c.getQM().setGetText(returnText);
-                    if (c.getQM().isStart()) {
+                    if (c.getQM().isStart())
+                    {
                         QuestScriptManager.getInstance().start(c, action, lastMsg, -1);
-                    } else {
+                    }
+                    else
+                    {
                         QuestScriptManager.getInstance().end(c, action, lastMsg, -1);
                     }
-                } else {
+                }
+                else
+                {
                     c.getCM().setGetText(returnText);
                     cmRouting(c, action, lastMsg, -1);
                 }
-            } else if (c.getQM() != null) {
+            }
+            else if (c.getQM() != null)
+            {
                 c.getQM().dispose();
-            } else {
+            }
+            else
+            {
                 c.getCM().dispose();
             }
-        } else {
+        }
+        else
+        {
             int selection = -1;
-            if (p.available() >= 4) {
+            if (p.available() >= 4)
+            {
                 selection = p.readInt();
-            } else if (p.available() > 0) {
+            }
+            else if (p.available() > 0)
+            {
                 selection = p.readUnsignedByte();
             }
-            if (c.getQM() != null) {
-                if (c.getQM().isStart()) {
+
+            if (c.getQM() != null)
+            {
+                if (c.getQM().isStart())
+                {
                     QuestScriptManager.getInstance().start(c, action, lastMsg, selection);
-                } else {
+                }
+                else
+                {
                     QuestScriptManager.getInstance().end(c, action, lastMsg, selection);
                 }
-            } else if (c.getCM() != null) {
+            }
+            else if (c.getCM() != null)
+            {
                 cmRouting(c, action, lastMsg, selection);
             }
         }
