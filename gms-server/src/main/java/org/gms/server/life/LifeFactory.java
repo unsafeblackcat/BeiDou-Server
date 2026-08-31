@@ -63,11 +63,16 @@ public class LifeFactory {
     }
 
     public static AbstractLoadedLife getLife(int id, String type) {
-        if (type.equalsIgnoreCase("n")) {
+        if (type.equalsIgnoreCase("n"))
+        {
             return getNPC(id);
-        } else if (type.equalsIgnoreCase("m")) {
+        }
+        else if (type.equalsIgnoreCase("m"))
+        {
             return getMonster(id);
-        } else {
+        }
+        else
+        {
             log.warn("Unknown Life type: {}", type);
             return null;
         }
@@ -592,12 +597,15 @@ public class LifeFactory {
         }
     }
 
-    public static NPC getNPC(int nid) {
+    public static NPC getNPC(int nid)
+    {
         String name = npcNames.get(nid);
-        if (RequireUtil.isEmpty(name)) {
+        if (RequireUtil.isEmpty(name))
+        {
             name = DataTool.getString(nid + "/name", npcStringData, "MISSINGNO");
             npcNames.put(nid, name);
         }
+
         return new NPC(nid, new NPCStats(name));
     }
 

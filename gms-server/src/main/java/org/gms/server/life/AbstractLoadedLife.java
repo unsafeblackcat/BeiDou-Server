@@ -24,12 +24,21 @@ package org.gms.server.life;
 import org.gms.server.maps.AbstractAnimatedMapObject;
 
 public abstract class AbstractLoadedLife extends AbstractAnimatedMapObject {
+    // 怪物ID
     private final int id;
+
     private int f;
+
+    // 是否隐藏
     private boolean hide;
+
+    // 所在平台，站立位置编号
     private int fh;
     private int start_fh;
+    // 碰撞框高度
     private int cy;
+
+    // 活动范围左右边界（怪物巡逻区间）
     private int rx0;
     private int rx1;
 

@@ -30,15 +30,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class SpawnPoint {
+    // 怪物ID
     private final int monster;
+    // 怪物生成时间
     private final int mobTime;
+    // 特殊地图，怪物所属阵营
     private final int team;
+    // 站立点所在平台
     private final int fh;
+    // 朝向方位
     private final int f;
+    // 怪物生成坐标
     private final Point pos;
+    // 下一次可能生成时间
     private long nextPossibleSpawn;
+    // 怪物重生检查间隔（毫秒）
     private int mobInterval = 5000;
     private final AtomicInteger spawnedMonsters = new AtomicInteger(0);
+    // 重生间隔，-1=不重生
     private final boolean immobile;
     private boolean denySpawn = false;
 

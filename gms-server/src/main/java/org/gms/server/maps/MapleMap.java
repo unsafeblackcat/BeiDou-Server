@@ -107,17 +107,36 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class MapleMap {
     private static final Logger log = LoggerFactory.getLogger(MapleMap.class);
     private static final List<MapObjectType> rangedMapobjectTypes = Arrays.asList(MapObjectType.SHOP, MapObjectType.ITEM, MapObjectType.NPC, MapObjectType.MONSTER, MapObjectType.DOOR, MapObjectType.SUMMON, MapObjectType.REACTOR);
+
+    /**
+     *  地图掉落点范围缓存
+     * **/
     private static final Map<Integer, Pair<Integer, Integer>> dropBoundsCache = new HashMap<>(100);
 
+    /**
+     *  地图NPC对象
+     *  Integer: 对象ID, 随机值
+     *  MapObject: NPC 对象 loadLifeRaw
+     * **/
     private final Map<Integer, MapObject> mapobjects = new LinkedHashMap<>();
     private final Set<Integer> selfDestructives = new LinkedHashSet<>();
+    /**
+     *  地图内怪物生成信息
+     *  addMonsterSpawn
+     * **/
     private final Collection<SpawnPoint> monsterSpawn = Collections.synchronizedList(new LinkedList<>());
     private final Collection<SpawnPoint> allMonsterSpawn = Collections.synchronizedList(new LinkedList<>());
     private final AtomicInteger spawnedMonstersOnMap = new AtomicInteger(0);
     private final AtomicInteger droppedItemCount = new AtomicInteger(0);
     private final Collection<Character> characters = new LinkedHashSet<>();
     private final Map<Integer, Set<Integer>> mapParty = new LinkedHashMap<>();
+    /**
+     * 地图中的传送门类型坐标
+     * Integer: 传送门节点ID
+     * Portal: 传送门数据
+     * **/
     private final Map<Integer, Portal> portals = new HashMap<>();
+    // 背景层
     private final Map<Integer, Integer> backgroundTypes = new HashMap<>();
     private final Map<String, Integer> environment = new LinkedHashMap<>();
     private final Map<MapItem, Long> droppedItems = new LinkedHashMap<>();
@@ -125,46 +144,81 @@ public class MapleMap {
     private final Map<MobLootEntry, Long> mobLootEntries = new HashMap(20);
     private final List<Runnable> statUpdateRunnables = new ArrayList(50);
     private final List<Rectangle> areas = new ArrayList<>();
+    // 地形平台, 玩家角色站立节点
     private FootholdTree footholds = null;
+
+    /**
+     *  地图掉落范围缓存
+     * **/
     private Pair<Integer, Integer> xLimits;  // caches the min and max x's with available footholds
+    /**
+     *  地图角色可活动边界矩形
+     *
+     * **/
     private final Rectangle mapArea = new Rectangle();
+    // 地图ID
     private final int mapid;
     private final AtomicInteger runningOid = new AtomicInteger(1000000001);
+
+    // 死亡后传送到哪张地图
     private final int returnMapId;
+    // 所属频道
     private final int channel;
+    // 所属世界
     private final int world;
     private int seats;
+    // 怪物生成倍率，影响刷怪数量
     private byte monsterRate;
+    // 是否有地图时钟显示
     private boolean clock;
+    // 是否有船（飞行船靠岸动画）
     private boolean boat;
     private boolean docked = false;
     private EventInstanceManager event = null;
+    // 地图名字
     private String mapName;
+    // 区域名
     private String streetName;
     private MapEffect mapEffect = null;
+    // 是否永不消失（不执行地图物品过期清理）
     private boolean everlast = false;
+    // 强制返回地图 ID
     private int forcedReturnMap = MapId.NONE;
+    // 地图时间限制（秒，倒计时结束强制传回）
     private int timeLimit;
     private long mapTimer;
+    // 环境伤害（每秒扣 HP，如火山/毒区）
     private int decHP = 0;
+    // 坐椅/床的 HP/MP 恢复倍率
     private float recovery = 1.0f;
+    // 环境伤害保护道具 ID（护身符）
     private int protectItem = 0;
+    // 是否城镇地图
     private boolean town;
     private OxQuiz ox;
     private boolean isOxQuiz = false;
     private boolean dropsOn = true;
+    // 首个玩家进入触发的地图脚本名
     private String onFirstUserEnter;
+    // 每次玩家进入触发的地图脚本名
     private String onUserEnter;
+    // 地图类型编号
     private int fieldType;
+    // 地图限制位掩码
     private int fieldLimit = 0;
+    // 地图怪物容量上限
     private int mobCapacity = -1;
+
+    // 仇恨监控？
     private MonsterAggroCoordinator aggroMonitor = null;   // aggroMonitor activity in sync with itemMonitor
     private ScheduledFuture<?> itemMonitor = null;
     private ScheduledFuture<?> expireItemsTask = null;
     private ScheduledFuture<?> mobSpawnLootTask = null;
     private ScheduledFuture<?> characterStatUpdateTask = null;
     private short itemMonitorTimeout;
+    // 定时出没的稀有怪物（如蘑菇王）+ 提示语
     private Pair<Integer, String> timeMob = null;
+    // 怪物重生检查间隔（毫秒）
     private short mobInterval = 5000;
     private boolean allowSummons = true; // All maps should have this true at the beginning
     private Character mapOwner = null;
@@ -498,45 +552,68 @@ public class MapleMap {
         removeMapObject(obj.getObjectId());
     }
 
-    private Point calcPointBelow(Point initial) {
+    private Point calcPointBelow(Point initial)
+    {
         Foothold fh = footholds.findBelow(initial);
-        if (fh == null) {
+        if (fh == null)
+        {
             return null;
         }
+
         int dropY = fh.getY1();
-        if (!fh.isWall() && fh.getY1() != fh.getY2()) {
+        if (!fh.isWall() && fh.getY1() != fh.getY2())
+        {
             double s1 = Math.abs(fh.getY2() - fh.getY1());
             double s2 = Math.abs(fh.getX2() - fh.getX1());
             double s5 = Math.cos(Math.atan(s2 / s1)) * (Math.abs(initial.x - fh.getX1()) / Math.cos(Math.atan(s1 / s2)));
-            if (fh.getY2() < fh.getY1()) {
+            if (fh.getY2() < fh.getY1())
+            {
                 dropY = fh.getY1() - (int) s5;
-            } else {
+            }
+            else
+            {
                 dropY = fh.getY1() + (int) s5;
             }
         }
+
         return new Point(initial.x, dropY);
     }
 
     public void generateMapDropRangeCache() {
         bndLock.lock();
-        try {
+        try
+        {
             Pair<Integer, Integer> bounds = dropBoundsCache.get(mapid);
 
-            if (bounds != null) {
+            if (bounds != null)
+            {
                 xLimits = bounds;
-            } else {
+            }
+            else
+            {
+                // 假设小地图始终包含地图区域的完整或更大范围的图像表示（玩家不会走到小地图所覆盖区域之外）。
                 // assuming MINIMAP always have an equal-greater picture representation of the map area (players won't walk beyond the area known by the minimap).
+
+                // 左上角
                 Point lp = new Point(mapArea.x, mapArea.y);
+                // 右上角
                 Point rp = new Point(mapArea.x + mapArea.width, mapArea.y);
+                // 上边中点（兜底）
                 Point fallback = new Point(mapArea.x + (mapArea.width / 2), mapArea.y);
 
-                lp = bsearchDropPos(lp, fallback);  // approximated leftmost fh node position
-                rp = bsearchDropPos(rp, fallback);  // approximated rightmost fh node position
+                // 二分逼近"最左侧有平台的 X"
+                lp = bsearchDropPos(lp, fallback);
+                //   二分逼近"最右侧有平台的 X"
+                rp = bsearchDropPos(rp, fallback);
 
+                //  向中间各缩进 14 像素（避免贴边掉落）
                 xLimits = new Pair<>(lp.x + 14, rp.x - 14);
+                // 写入缓存
                 dropBoundsCache.put(mapid, xLimits);
             }
-        } finally {
+        }
+        finally
+        {
             bndLock.unlock();
         }
     }
@@ -554,12 +631,16 @@ public class MapleMap {
             int dx = distx / 2;
 
             int searchx = homex + dx;
-            if ((res = calcPointBelow(new Point(searchx, y))) != null) {
+            if ((res = calcPointBelow(new Point(searchx, y))) != null)
+            {
                 awayx = searchx;
                 dropPos = res;
-            } else {
+            }
+            else
+            {
                 homex = searchx;
             }
+
         } while (Math.abs(homex - awayx) > 5);
 
         return (dropPos != null) ? dropPos : fallback;
@@ -1992,48 +2073,74 @@ public class MapleMap {
     }
 
     public void spawnMonster(final Monster monster, int difficulty, boolean isPq) {
-        if (mobCapacity != -1 && mobCapacity == spawnedMonstersOnMap.get()) {
+        if (mobCapacity != -1
+                && mobCapacity == spawnedMonstersOnMap.get())
+        {
             return;//PyPQ
         }
 
         monster.changeDifficulty(difficulty, isPq);
 
         monster.setMap(this);
-        if (getEventInstance() != null) {
+        if (getEventInstance() != null)
+        {
             getEventInstance().registerMonster(monster);
         }
 
-        spawnAndAddRangedMapObject(monster, c -> c.sendPacket(PacketCreator.spawnMonster(monster, true)), null);
+        spawnAndAddRangedMapObject(
+                monster
+                , c -> c.sendPacket(PacketCreator.spawnMonster(monster, true))
+                , null);
 
         monster.aggroUpdateController();
         updateBossSpawn(monster);
 
-        if ((monster.getTeam() == 1 || monster.getTeam() == 0) && (isCPQMap() || isCPQMap2())) {
+        if ((monster.getTeam() == 1 || monster.getTeam() == 0)
+                && (isCPQMap() || isCPQMap2()))
+        {
             List<MCSkill> teamS = null;
-            if (monster.getTeam() == 0) {
+            if (monster.getTeam() == 0)
+            {
                 teamS = redTeamBuffs;
-            } else if (monster.getTeam() == 1) {
+            }
+            else if (monster.getTeam() == 1)
+            {
                 teamS = blueTeamBuffs;
             }
-            if (teamS != null) {
-                for (MCSkill skil : teamS) {
-                    if (skil != null) {
+
+            if (teamS != null)
+            {
+                for (MCSkill skil : teamS)
+                {
+                    if (skil != null)
+                    {
                         skil.getSkill().applyEffect(null, monster, false, null);
                     }
                 }
             }
         }
 
-        if (monster.getDropPeriodTime() > 0) { //9300102 - Watchhog, 9300061 - Moon Bunny (HPQ), 9300093 - Tylus    //9300102-护卫用小浣猪，9300061-月妙（HPQ），9300093-冒牌泰勒斯
-            if (monster.getId() == MobId.WATCH_HOG) {
+        if (monster.getDropPeriodTime() > 0)
+        { //9300102 - Watchhog, 9300061 - Moon Bunny (HPQ), 9300093 - Tylus    //9300102-护卫用小浣猪，9300061-月妙（HPQ），9300093-冒牌泰勒斯
+            if (monster.getId() == MobId.WATCH_HOG)
+            {
                 monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else if (monster.getId() == MobId.MOON_BUNNY) {
+            }
+            else if (monster.getId() == MobId.MOON_BUNNY)
+            {
                 monsterItemDrop(monster, monster.getDropPeriodTime() / 3);
-            } else if (monster.getId() == MobId.TYLUS) {
+            }
+            else if (monster.getId() == MobId.TYLUS) {
                 monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else if (monster.getId() == MobId.GIANT_SNOWMAN_LV5_EASY || monster.getId() == MobId.GIANT_SNOWMAN_LV5_MEDIUM || monster.getId() == MobId.GIANT_SNOWMAN_LV5_HARD) {
+            }
+            else if (monster.getId() == MobId.GIANT_SNOWMAN_LV5_EASY
+                    || monster.getId() == MobId.GIANT_SNOWMAN_LV5_MEDIUM
+                    || monster.getId() == MobId.GIANT_SNOWMAN_LV5_HARD)
+            {
                 monsterItemDrop(monster, monster.getDropPeriodTime());
-            } else {
+            }
+            else
+            {
                 log.error("[异常刷怪] 检测到未配置定时刷新的怪物: ID={}", monster.getId());
             }
         }
@@ -3229,13 +3336,28 @@ public class MapleMap {
      *
      * @param monster
      * @param mobTime
+     * monster: 怪物实例
+     * mobTime: 生成时间
+     *
      */
-    public void addMonsterSpawn(Monster monster, int mobTime, int team) {
+    public void addMonsterSpawn(Monster monster, int mobTime, int team)
+    {
+        // 根据地图玩家能够站立点更新怪物生成坐标
         Point newpos = calcPointBelow(monster.getPosition());
         newpos.y -= 1;
-        SpawnPoint sp = new SpawnPoint(monster, newpos, !monster.isMobile(), mobTime, mobInterval, team);
+        SpawnPoint sp = new SpawnPoint(
+                monster
+                , newpos
+                , !monster.isMobile()
+                , mobTime
+                , mobInterval
+                , team);
+
         monsterSpawn.add(sp);
-        if (sp.shouldSpawn() || mobTime == -1) {// -1 does not respawn and should not either but force ONE spawn
+
+        if (sp.shouldSpawn() || mobTime == -1)
+        {
+            // -1 does not respawn and should not either but force ONE spawn
             spawnMonster(sp.getMonster());
         }
     }

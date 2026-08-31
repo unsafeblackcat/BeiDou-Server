@@ -518,7 +518,12 @@ public class PlayerNPC extends AbstractMapObject {
     }
 
     public static void addPlayerNPCMapObject(MapleMap map) {
-        List<PlayerNPC> playerNPCList = npcService.getPlayerNPC(PlayernpcsDO.builder().map(map.getId()).world(map.getWorld()).build());
+        List<PlayerNPC> playerNPCList = npcService.getPlayerNPC(
+                PlayernpcsDO.builder()
+                        .map(map.getId())
+                        .world(map.getWorld())
+                        .build());
+
         playerNPCList.forEach(map::addPlayerNPCMapObject);
     }
 }

@@ -33,8 +33,11 @@ public class Foothold implements Comparable<Foothold> {
     private int next, prev;
 
     public Foothold(Point p1, Point p2, int id) {
+        // X线段坐标
         this.p1 = p1;
+        // Y线段坐标
         this.p2 = p2;
+        // 节点ID
         this.id = id;
     }
 

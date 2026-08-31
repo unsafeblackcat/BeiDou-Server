@@ -33,33 +33,56 @@ public class PortalFactory {
         nextDoorPortal = 0x80;
     }
 
-    public Portal makePortal(int type, Data portal) {
+    public Portal makePortal(int type, Data portal)
+    {
         GenericPortal ret = null;
-        if (type == Portal.MAP_PORTAL) {
+        if (type == Portal.MAP_PORTAL)
+        {
+            // 正常地图传送门
             ret = new MapPortal();
-        } else {
+        }
+        else
+        {
+            // 其他传送门
             ret = new GenericPortal(type);
         }
+
         loadPortal(ret, portal);
         return ret;
     }
 
-    private void loadPortal(GenericPortal myPortal, Data portal) {
+    private void loadPortal(GenericPortal myPortal, Data portal)
+    {
+        // 传送门名称
         myPortal.setName(DataTool.getString(portal.getChildByPath("pn")));
+
+        // 目标门名（到目标地图的哪个门）
         myPortal.setTarget(DataTool.getString(portal.getChildByPath("tn")));
+
+        // 目标地图 ID（999999999=无目标/本地）
         myPortal.setTargetMapId(DataTool.getInt(portal.getChildByPath("tm")));
+
         int x = DataTool.getInt(portal.getChildByPath("x"));
         int y = DataTool.getInt(portal.getChildByPath("y"));
+        // 门坐标 X, Y
         myPortal.setPosition(new Point(x, y));
+
+        // 门脚本名
         String script = DataTool.getString("script", portal, null);
-        if (script != null && script.equals("")) {
+        if (script != null && script.equals(""))
+        {
             script = null;
         }
+
         myPortal.setScriptName(script);
-        if (myPortal.getType() == Portal.DOOR_PORTAL) {
+
+        if (myPortal.getType() == Portal.DOOR_PORTAL)
+        {
             myPortal.setId(nextDoorPortal);
             nextDoorPortal++;
-        } else {
+        }
+        else
+        {
             myPortal.setId(Integer.parseInt(portal.getName()));
         }
     }

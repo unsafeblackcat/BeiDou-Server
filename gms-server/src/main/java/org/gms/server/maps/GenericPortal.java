@@ -33,13 +33,20 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class GenericPortal implements Portal {
+    // 传送门名称
     private String name;
+    // 目标门名（到目标地图的哪个门）
     private String target;
+    // 门坐标 X, Y
     private Point position;
+    // 目标地图 ID（999999999=无目标/本地）
     private int targetmap;
+    // 传送门类型
     private final int type;
     private boolean status = true;
+    // 传送门 ID
     private int id;
+    // 门脚本名
     private String scriptName;
     private boolean portalState;
     private Lock scriptLock = null;
@@ -117,11 +124,15 @@ public class GenericPortal implements Portal {
     public void setScriptName(String scriptName) {
         this.scriptName = scriptName;
 
-        if (scriptName != null) {
-            if (scriptLock == null) {
+        if (scriptName != null)
+        {
+            if (scriptLock == null)
+            {
                 scriptLock = new ReentrantLock(true);
             }
-        } else {
+        }
+        else
+        {
             scriptLock = null;
         }
     }
