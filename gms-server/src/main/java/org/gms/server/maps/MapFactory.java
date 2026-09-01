@@ -287,7 +287,11 @@ public class MapFactory {
                             DataTool.getInt(portal.getChildByPath("pt")), portal));
         }
 
-        // 定时出没的稀有怪物（如蘑菇王）+ 提示语
+        // 定时出没的稀有怪物 + 提示语
+        // 只有特定的地图才有，猪猪海岸又或者蘑菇王地图也没有
+        // 但是废都地铁站地图中有 103000105.img.xml
+        // 内容看起来很简单，击杀特定的怪物然后弹出特定的消息。
+        // 但我测试赶紧好像没啥用
         Data timeMob = infoData.getChildByPath("timeMob");
         if (timeMob != null)
         {

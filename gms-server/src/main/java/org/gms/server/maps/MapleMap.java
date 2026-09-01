@@ -114,9 +114,9 @@ public class MapleMap {
     private static final Map<Integer, Pair<Integer, Integer>> dropBoundsCache = new HashMap<>(100);
 
     /**
-     *  地图NPC对象
+     *  地图NPC/怪物对象
      *  Integer: 对象ID, 随机值
-     *  MapObject: NPC 对象 loadLifeRaw
+     *  MapObject: NPC/怪物 对象 loadLifeRaw
      * **/
     private final Map<Integer, MapObject> mapobjects = new LinkedHashMap<>();
     private final Set<Integer> selfDestructives = new LinkedHashSet<>();
@@ -143,6 +143,7 @@ public class MapleMap {
     private final LinkedList<WeakReference<MapObject>> registeredDrops = new LinkedList<>();
     private final Map<MobLootEntry, Long> mobLootEntries = new HashMap(20);
     private final List<Runnable> statUpdateRunnables = new ArrayList(50);
+    // 区域矩形，地图上划的矩形区域集合
     private final List<Rectangle> areas = new ArrayList<>();
     // 地形平台, 玩家角色站立节点
     private FootholdTree footholds = null;
@@ -166,6 +167,7 @@ public class MapleMap {
     private final int channel;
     // 所属世界
     private final int world;
+    // 角色可坐下位置
     private int seats;
     // 怪物生成倍率，影响刷怪数量
     private byte monsterRate;
