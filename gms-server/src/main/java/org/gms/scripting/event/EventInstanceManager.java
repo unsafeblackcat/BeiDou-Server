@@ -473,7 +473,10 @@ public class EventInstanceManager {
     }
 
     public void registerMonster(Monster mob) {
-        if (!mob.getStats().isFriendly()) { //We cannot register moon bunny
+        if (!mob.getStats().isFriendly())
+        {
+            // 不是玩家友好怪物才进入当前分支
+            //We cannot register moon bunny
             mobs.add(mob);
         }
     }

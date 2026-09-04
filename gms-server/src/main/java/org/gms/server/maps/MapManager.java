@@ -128,8 +128,11 @@ public class MapManager {
         }
     }
 
-    public void updateMaps() {
-        for (MapleMap map : getMaps().values()) {
+    public void updateMaps()
+    {
+        // 枚举当前地图下所有NPC和怪物数据
+        for (MapleMap map : getMaps().values())
+        {
             map.respawn();
             map.mobMpRecovery();
         }

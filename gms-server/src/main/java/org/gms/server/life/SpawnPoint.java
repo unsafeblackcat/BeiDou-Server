@@ -46,20 +46,30 @@ public class SpawnPoint {
     private long nextPossibleSpawn;
     // 怪物重生检查间隔（毫秒）
     private int mobInterval = 5000;
+    // 线程安全的计数器，专门用于在多线程环境下统计已生成的怪物数量。
     private final AtomicInteger spawnedMonsters = new AtomicInteger(0);
     // 重生间隔，-1=不重生
     private final boolean immobile;
     private boolean denySpawn = false;
 
     public SpawnPoint(final Monster monster, Point pos, boolean immobile, int mobTime, int mobInterval, int team) {
+        // 怪物ID
         this.monster = monster.getId();
+        // 怪物生成坐标
         this.pos = new Point(pos);
+        // 怪物生成时间
         this.mobTime = mobTime;
+        // 特殊地图，怪物所属阵营
         this.team = team;
+        // 站立点所在平台
         this.fh = monster.getFh();
+        // 朝向方位
         this.f = monster.getF();
+        // 重生间隔，-1=不重生
         this.immobile = immobile;
+        // 怪物重生检查间隔（毫秒）
         this.mobInterval = mobInterval;
+        // 下一次可能生成时间
         this.nextPossibleSpawn = Server.getInstance().getCurrentTime();
     }
 

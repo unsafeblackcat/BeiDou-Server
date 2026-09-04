@@ -64,9 +64,28 @@ public class MonsterInformationProvider {
     private final Set<Integer> hasNoMultiEquipDrops = new HashSet<>();
     private final Map<Integer, List<MonsterDropEntry>> extraMultiEquipDrops = new HashMap<>();
 
+    /**
+     *  Pair<Integer, Integer>
+     *      Integer: 怪物ID
+     *      Integer: 攻击类型
+     *  Integer: 统计攻击动作总时长
+     * **/
     private final Map<Pair<Integer, Integer>, Integer> mobAttackAnimationTime = new HashMap<>();
+    /**
+     *  怪物技能
+     *  MobSkill: 怪物技能类型和等级
+     *  Integer: 技能播放总时长
+     * **/
     private final Map<MobSkill, Integer> mobSkillAnimationTime = new HashMap<>();
 
+    /**
+     *  同 mobSkillAnimationTime
+     *  添加函数 setMobAttackInfo()
+     *  Integer: (怪物ID << 3) + 攻击类型索引
+     *  Pair<Integer, Integer>:
+     *      Integer: 怪物攻击动作所消耗的MP
+     *      Integer: 出招后的冷却/攻击间隔
+     * **/
     private final Map<Integer, Pair<Integer, Integer>> mobAttackInfo = new HashMap<>();
 
     private final Map<Integer, Boolean> mobBossCache = new HashMap<>();

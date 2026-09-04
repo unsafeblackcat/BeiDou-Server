@@ -50,7 +50,8 @@ public class MobSkillFactory {
     private static final Lock readLock = readWriteLock.readLock();
     private static final Lock writeLock = readWriteLock.writeLock();
 
-    public static MobSkill getMobSkillOrThrow(MobSkillType type, int level) {
+    public static MobSkill getMobSkillOrThrow(MobSkillType type, int level)
+    {
         return getMobSkill(type, level).orElseThrow(
                 () -> new IllegalArgumentException("No MobSkill exists for type %s, level %d".formatted(type, level))
         );
@@ -58,12 +59,16 @@ public class MobSkillFactory {
 
     public static Optional<MobSkill> getMobSkill(final MobSkillType type, final int level) {
         readLock.lock();
-        try {
+        try
+        {
             MobSkill ms = mobSkills.get(createKey(type, level));
-            if (ms != null) {
+            if (ms != null)
+            {
                 return Optional.of(ms);
             }
-        } finally {
+        }
+        finally
+        {
             readLock.unlock();
         }
 
@@ -72,25 +77,31 @@ public class MobSkillFactory {
 
     private static Optional<MobSkill> loadMobSkill(final MobSkillType type, final int level) {
         writeLock.lock();
-        try {
+        try
+        {
             MobSkill existingMs = mobSkills.get(createKey(type, level));
-            if (existingMs != null) {
+            if (existingMs != null)
+            {
                 return Optional.of(existingMs);
             }
 
             Data skillData = skillRoot.getChildByPath("%d/level/%d".formatted(type.getId(), level));
-            if (skillData == null) {
+            if (skillData == null)
+            {
                 return Optional.empty();
             }
 
             int mpCon = DataTool.getInt("mpCon", skillData, 0);
             List<Integer> toSummon = new ArrayList<>();
-            for (int i = 0; i > -1; i++) {
-                if (skillData.getChildByPath(String.valueOf(i)) == null) {
+            for (int i = 0; i > -1; i++)
+            {
+                if (skillData.getChildByPath(String.valueOf(i)) == null)
+                {
                     break;
                 }
                 toSummon.add(DataTool.getInt(skillData.getChildByPath(String.valueOf(i)), 0));
             }
+
             int effect = DataTool.getInt("summonEffect", skillData, 0);
             int hp = DataTool.getInt("hp", skillData, 100);
             int x = DataTool.getInt("x", skillData, 1);
@@ -106,7 +117,8 @@ public class MobSkillFactory {
             Data rbData = skillData.getChildByPath("rb");
             Point lt = null;
             Point rb = null;
-            if (ltData != null && rbData != null) {
+            if (ltData != null && rbData != null)
+            {
                 lt = (Point) ltData.getData();
                 rb = (Point) rbData.getData();
             }
@@ -128,7 +140,9 @@ public class MobSkillFactory {
 
             mobSkills.put(createKey(type, level), loadedMobSkill);
             return Optional.of(loadedMobSkill);
-        } finally {
+        }
+        finally
+        {
             writeLock.unlock();
         }
     }

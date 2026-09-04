@@ -178,7 +178,8 @@ public class MobSkill {
 
     public void applyDelayedEffect(final Character player, final Monster monster, final boolean skill, int animationTime) {
         Runnable toRun = () -> {
-            if (monster.isAlive()) {
+            if (monster.isAlive())
+            {
                 applyEffect(player, monster, skill, null);
             }
         };
@@ -192,16 +193,23 @@ public class MobSkill {
     }
 
     // TODO: avoid output argument banishPlayersOutput
-    public void applyEffect(Character player, Monster monster, boolean skill, List<Character> banishPlayersOutput) {
+    public void applyEffect(
+            Character player
+            , Monster monster
+            , boolean skill
+            , List<Character> banishPlayersOutput)
+    {
         // See if the MobSkill is successful before doing anything
-        if (!makeChanceResult()) {
+        if (!makeChanceResult())
+        {
             return;
         }
 
         Disease disease = null;
         Map<MonsterStatus, Integer> stats = new EnumMap<>(MonsterStatus.class);
         List<Integer> reflection = new ArrayList<>();
-        switch (id.type()) {
+        switch (id.type())
+        {
             case ATTACK_UP, ATTACK_UP_M, PAD -> stats.put(MonsterStatus.WEAPON_ATTACK_UP, x);
             case MAGIC_ATTACK_UP, MAGIC_ATTACK_UP_M, MAD -> stats.put(MonsterStatus.MAGIC_ATTACK_UP, x);
             case DEFENSE_UP, DEFENSE_UP_M, PDR -> stats.put(MonsterStatus.WEAPON_DEFENSE_UP, x);
@@ -253,10 +261,14 @@ public class MobSkill {
             case SEAL_SKILL -> stats.put(MonsterStatus.SEAL_SKILL, x);
             case SUMMON -> summonMonsters(monster);
         }
-        if (stats.size() > 0) {
+
+        if (stats.size() > 0)
+        {
             applyMonsterBuffs(stats, skill, monster, reflection);
         }
-        if (disease != null) {
+
+        if (disease != null)
+        {
             applyDisease(disease, skill, monster, player);
         }
     }
@@ -371,32 +383,46 @@ public class MobSkill {
         }
     }
 
-    private void applyMonsterBuffs(Map<MonsterStatus, Integer> stats, boolean skill, Monster monster, List<Integer> reflection) {
-        if (lt != null && rb != null && skill) {
-            for (MapObject mons : getObjectsInRange(monster, MapObjectType.MONSTER)) {
+    private void applyMonsterBuffs(Map<MonsterStatus, Integer> stats, boolean skill, Monster monster, List<Integer> reflection)
+    {
+        if (lt != null && rb != null && skill)
+        {
+            for (MapObject mons : getObjectsInRange(monster, MapObjectType.MONSTER))
+            {
                 ((Monster) mons).applyMonsterBuff(stats, getX(), getDuration(), this, reflection);
             }
-        } else {
+        }
+        else
+        {
             monster.applyMonsterBuff(stats, getX(), getDuration(), this, reflection);
         }
     }
 
     private void applyDisease(Disease disease, boolean skill, Monster monster, Character player) {
-        if (lt != null && rb != null && skill) {
+        if (lt != null && rb != null && skill)
+        {
             int i = 0;
-            for (Character character : getPlayersInRange(monster)) {
-                if (!character.hasActiveBuff(Bishop.HOLY_SHIELD)) {
-                    if (disease.equals(Disease.SEDUCE)) {
-                        if (i < count) {
+            for (Character character : getPlayersInRange(monster))
+            {
+                if (!character.hasActiveBuff(Bishop.HOLY_SHIELD))
+                {
+                    if (disease.equals(Disease.SEDUCE))
+                    {
+                        if (i < count)
+                        {
                             character.giveDebuff(Disease.SEDUCE, this);
                             i++;
                         }
-                    } else {
+                    }
+                    else
+                    {
                         character.giveDebuff(disease, this);
                     }
                 }
             }
-        } else {
+        }
+        else
+        {
             player.giveDebuff(disease, this);
         }
     }

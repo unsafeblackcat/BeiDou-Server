@@ -84,7 +84,9 @@ public final class Channel {
     private final String ip;
     private final int world;
     private final int channel;
-
+    /**
+     *  当前频道下所有的角色对象
+     * **/
     private PlayerStorage players = new PlayerStorage();
     private ChannelServer channelServer;
     private String serverMessage;

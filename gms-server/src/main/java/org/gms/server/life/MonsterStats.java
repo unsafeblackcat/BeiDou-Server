@@ -40,19 +40,99 @@ import java.util.Set;
  */
 public class MonsterStats {
     public boolean changeable;
-    public int exp, hp, mp, level, PADamage, PDDamage, MADamage, MDDamage, dropPeriod, cp, buffToGive = -1, removeAfter, acc, eva;
-    public boolean boss, undead, ffaLoot, isExplosiveReward, firstAttack, removeOnMiss;
+    // 击杀后给与玩家的经验值
+    public int exp
+        // HP
+            , hp
+        // MP
+            , mp
+        // 等级
+            , level
+        // 玩家视角的"怪物物理攻击"
+            , PADamage
+        // 怪物物理防御
+            , PDDamage
+        // 玩家视角的"怪物魔法攻击"
+            , MADamage
+        // 怪物魔法防御
+            , MDDamage
+        // 怪物死亡后，掉落物延迟多久才出现（不是立即掉，而是等一段时间——配合死亡动画/尸体消失节奏）。
+            , dropPeriod
+        // 嘉年华 CP 值：CPQ（怪物嘉年华）地图里击杀该怪获得的 CP 点数
+            , cp
+        // 击杀奖励 buff：怪物被击杀后，击杀者获得一个指定 buff（buff 道具/技能效果）
+            , buffToGive = -1
+        // 怪物死亡后的延迟消失时间。
+            , removeAfter
+            , acc
+            , eva;
+        // 当前怪物是boos
+    public boolean boss
+            // 不死系：怪物是僵尸/骷髅等不死属性
+            , undead
+            // 	公开掉落（FFA）：掉落物无归属保护，任何玩家都能捡
+            , ffaLoot
+            // 爆炸性掉落：怪物死亡时掉落物向四周弹开散落
+            , isExplosiveReward
+            // 怪物是否出生即主动攻击玩家（还是等玩家先动手才反击）。
+            , firstAttack
+            // Miss 即消失：玩家攻击该怪未命中（miss）时怪物消失/隐藏（特殊怪设定，如某些幻影怪）
+            , removeOnMiss;
     public String name;
+    /**
+     *  各动画动作的总播放时长
+     *  String: 动作名称, 节点名称
+     *  Integer: 当前动作总播放时长
+     * **/
     public Map<String, Integer> animationTimes = new HashMap<>();
+    /**
+     *  怪物元素抗性
+     *  Element: 元素抗性类型
+     *  Element: 元素抗性等级
+     * **/
     public Map<Element, ElementalEffectiveness> resistance = new HashMap<>();
+    /**
+     *  怪物被击杀瞬间, 变成另一只怪（或同只，位置在原尸处）.变身/分裂/阶段怪
+     *  Integer: 每个阶段的怪物ID
+     *  怪物有多少阶段就有多少个 revives.size
+     * **/
     public List<Integer> revives = Collections.emptyList();
-    public byte tagColor, tagBgColor;
+    // BOSS 血条标签颜色（编号）
+    public byte tagColor
+        // BOSS 血条背景颜色（编号）
+            , tagBgColor;
+    /**
+     *  怪物技能
+     *  type: 技能类型
+     *  level: 技能等级
+     * **/
     public Set<MobSkillId> skills = new HashSet<>();
+    /**
+     *  怪物被攻击时，按 coolDamageProb 概率触发一次固定的"特殊伤害"（无视常规伤害公式的固定扣血）
+     *  Integer: "cool 伤害"数值
+     *  Integer: 触发概率
+     * **/
     public Pair<Integer, Integer> cool = null;
+    /**
+     *  怪物能“放逐”玩家
+     * **/
     public BanishInfo banish = null;
+    /**
+     *  怪物攻击玩家时，玩家有概率"丢失"背包里的道具（被打掉东西）。
+     *
+     *
+     * **/
     public List<loseItem> loseItem = null;
+    /**
+     *  自杀式怪物——HP 降到 hp 阈值（或死亡）时触发自毁
+     * **/
     public selfDestruction selfDestruction = null;
+    /**
+     *  怪物朝向方位
+     *  只有存在 "noFlip" 节点才会设置值
+     * **/
     public int fixedStance = 0;
+    // 是否是玩家友好怪物
     public boolean friendly;
     public int movetype = -1;    //怪物类型，-1=未知，0=stand（陆地），1=fly（飞天）
     public int imgwidth = 0;     //第一帧图片宽度
@@ -217,8 +297,11 @@ public class MonsterStats {
     }
 
     public boolean hasSkill(int skillId, int level) {
-        for (MobSkillId skill : skills) {
-            if (skill.type().getId() == skillId && skill.level() == level) {
+        for (MobSkillId skill : skills)
+        {
+            if (skill.type().getId() == skillId
+                    && skill.level() == level)
+            {
                 return true;
             }
         }

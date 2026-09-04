@@ -228,7 +228,7 @@ public class Client extends ChannelInboundHandlerAdapter {
 
         if (handler != null && handler.validateState(this))
         {
-            if (opcode != 0x18 && opcode != 0xC5)
+            if (opcode != 0x18 && opcode != 0xC5 && opcode != 0xBC)
             {
                 log.info("收到封包 包头ID [{}] 内容： {}", String.format("0x%02X", opcode),packet);
             }

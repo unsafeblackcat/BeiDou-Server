@@ -12,12 +12,16 @@ public class RespawnTask implements Runnable {
 
     @Override
     public void run() {
-        for (Channel ch : Server.getInstance().getAllChannels()) {
+        for (Channel ch : Server.getInstance().getAllChannels())
+        {
             PlayerStorage ps = ch.getPlayerStorage();
-            if (ps != null) {
-                if (!ps.getAllCharacters().isEmpty()) {
+            if (ps != null)
+            {
+                if (!ps.getAllCharacters().isEmpty())
+                {
                     MapManager mapManager = ch.getMapFactory();
-                    if (mapManager != null) {
+                    if (mapManager != null)
+                    {
                         mapManager.updateMaps();
                     }
                 }

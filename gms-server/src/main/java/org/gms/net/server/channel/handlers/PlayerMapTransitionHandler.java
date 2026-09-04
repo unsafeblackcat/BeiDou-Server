@@ -45,9 +45,11 @@ public final class PlayerMapTransitionHandler extends AbstractPacketHandler {
         Character chr = c.getPlayer();
         chr.setMapTransitionComplete();
 
+        // 追踪类型buffer
         int beaconid = chr.getBuffSource(BuffStat.HOMING_BEACON);
         if (beaconid != -1)
         {
+            // 清理掉当前角色buffer
             chr.cancelBuffStats(BuffStat.HOMING_BEACON);
 
             final List<Pair<BuffStat, Integer>> stat = Collections.singletonList(new Pair<>(BuffStat.HOMING_BEACON, 0));
@@ -66,15 +68,33 @@ public final class PlayerMapTransitionHandler extends AbstractPacketHandler {
                     // avoid effect-spawning mobs
                     if (m.getController() == chr)
                     {
+                        /**
+                         *  如果怪物的控制权为当前进入的玩家
+                         *  防止是当前玩家“掉线后重连”，可能怪物控制权在客户端已经没有了
+                         *  所以服务端需要先把怪物控制权给回收，在重新赋予给当前进入地图的玩家
+                         *  sendDestroyData 是为了让客户端把当前怪物节点给清理掉
+                         * **/
+
                         c.sendPacket(PacketCreator.stopControllingMonster(m.getObjectId()));
+
                         m.sendDestroyData(c);
+
+                        // 清理当前怪物控制权
                         m.aggroRemoveController();
                     }
                     else
                     {
+                        // 如果怪物所属权不为当前角色
+                        // 那么直接通知客户端把当前怪物节点移除
                         m.sendDestroyData(c);
                     }
+
+                    /**
+                     *  重新把当前怪物信息发送给客户端
+                     * **/
                     m.sendSpawnData(c);
+
+                    // 当前怪物控制权修改为当前进入地图的角色。
                     m.aggroSwitchController(chr, false);
                 }
             }

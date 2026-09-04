@@ -47,6 +47,12 @@ public class LifeFactory {
     private final static DataProvider stringDataWZ = DataProviderFactory.getDataProvider(WZFiles.STRING);
     private static final Data mobStringData = stringDataWZ.getData("Mob.img");
     private static final Data npcStringData = stringDataWZ.getData("Npc.img");
+    /**
+     *  怪物状态
+     *  Integer: 怪物ID
+     *  MonsterStats: 怪物状态对象
+     *  getMonster() 添加节点
+     * **/
     private static final Map<Integer, MonsterStats> monsterStats = new HashMap<>();
     private static final Set<Integer> hpbarBosses = getHpBarBosses();
     private static final Map<Integer, String> npcNames = new HashMap<>();
@@ -79,9 +85,13 @@ public class LifeFactory {
     }
 
     private static class MobAttackInfoHolder {
+        // 攻击类型索引
         protected int attackPos;
+        // 怪物攻击动作所消耗的MP
         protected int mpCon;
+        // 出招后的冷却/攻击间隔
         protected int coolTime;
+        // 统计攻击动作总时长
         protected int animationTime;
 
         protected MobAttackInfoHolder(int attackPos, int mpCon, int coolTime, int animationTime) {
@@ -240,7 +250,8 @@ public class LifeFactory {
     /**
      * 读取指定怪物的 WZ 根节点。
      */
-    private static Data getMonsterData(int mid) {
+    private static Data getMonsterData(int mid)
+    {
         return data.getData(StringUtil.getLeftPaddedStr(mid + ".img", '0', 11));
     }
 
@@ -250,22 +261,27 @@ public class LifeFactory {
      * <p>部分怪物只保留自身属性，动作帧、lt/rb、origin 等视觉信息全部挂在 link 怪身上。
      * 如果这里不沿着 link 查找，后续 bbox 会退化为“没有碰撞数据”，DISTANCE_HACK 就会误判。</p>
      */
-    private static Data resolveMonsterVisualData(int mid, Data monsterData) {
-        if (monsterData == null) {
+    private static Data resolveMonsterVisualData(int mid, Data monsterData)
+    {
+        if (monsterData == null)
+        {
             return null;
         }
 
         Set<Integer> visitedMobs = new HashSet<>();
         Data currentMonsterData = monsterData;
         int currentMid = mid;
-        while (currentMonsterData != null && visitedMobs.add(currentMid)) {
-            if (hasVisualBoundingBoxSource(currentMonsterData)) {
+        while (currentMonsterData != null && visitedMobs.add(currentMid))
+        {
+            if (hasVisualBoundingBoxSource(currentMonsterData))
+            {
                 return currentMonsterData;
             }
 
             Data currentInfoData = currentMonsterData.getChildByPath("info");
             int linkMid = currentInfoData == null ? 0 : DataTool.getIntConvert("link", currentInfoData, 0);
-            if (linkMid == 0) {
+            if (linkMid == 0)
+            {
                 break;
             }
 
@@ -322,7 +338,8 @@ public class LifeFactory {
      * 从最终视觉来源中回填怪物图片尺寸、移动类型和碰撞框。
      */
     private static void applyMonsterVisualStats(int mid, MonsterStats stats, Data visualMonsterData) {
-        if (stats == null || visualMonsterData == null) {
+        if (stats == null || visualMonsterData == null)
+        {
             return;
         }
 
@@ -330,37 +347,45 @@ public class LifeFactory {
         Data standFrame = resolveVisualFrame(visualMonsterData.getChildByPath("stand/0"));
         Data primaryFrame = flyFrame != null ? flyFrame : standFrame;
 
-        if (flyFrame != null) {
+        if (flyFrame != null)
+        {
             stats.setMovetype(1);
             stats.setImgwidth(DataTool.getAttributeValueInt(flyFrame, "width", -1));
             stats.setImgheight(DataTool.getAttributeValueInt(flyFrame, "height", -1));
-        } else if (standFrame != null) {
+        }
+        else if (standFrame != null)
+        {
             stats.setMovetype(0);
             stats.setImgwidth(DataTool.getAttributeValueInt(standFrame, "width", -1));
             stats.setImgheight(DataTool.getAttributeValueInt(standFrame, "height", -1));
         }
 
         BoundingBox bbox = buildMonsterBoundingBox(mid, stats.getName(), visualMonsterData);
-        if (bbox.isValid()) {
+        if (bbox.isValid())
+        {
             stats.setBbox(bbox.getMinX(), bbox.getMinY(), bbox.getMaxX(), bbox.getMaxY());
             return;
         }
 
-        if (primaryFrame == null) {
+        if (primaryFrame == null)
+        {
             return;
         }
 
         Point origin = DataTool.getPoint("origin", primaryFrame, null);
-        if (origin != null && stats.getImgwidth() > 0 && stats.getImgheight() > 0) {
+        if (origin != null && stats.getImgwidth() > 0 && stats.getImgheight() > 0)
+        {
             stats.setBbox(-origin.x, -origin.y, stats.getImgwidth() - origin.x, stats.getImgheight() - origin.y);
         }
     }
 
     private static void setMonsterAttackInfo(int mid, List<MobAttackInfoHolder> attackInfos) {
-        if (!attackInfos.isEmpty()) {
+        if (!attackInfos.isEmpty())
+        {
             MonsterInformationProvider mi = MonsterInformationProvider.getInstance();
 
-            for (MobAttackInfoHolder attackInfo : attackInfos) {
+            for (MobAttackInfoHolder attackInfo : attackInfos)
+            {
                 mi.setMobAttackInfo(mid, attackInfo.attackPos, attackInfo.mpCon, attackInfo.coolTime);
                 mi.setMobAttackAnimationTime(mid, attackInfo.attackPos, attackInfo.animationTime);
             }
@@ -369,18 +394,25 @@ public class LifeFactory {
 
     private static Pair<MonsterStats, List<MobAttackInfoHolder>> getMonsterStats(int mid) {
         Data monsterData = getMonsterData(mid);
-        if (monsterData == null) {
+        if (monsterData == null)
+        {
             return null;
         }
+
         Data monsterInfoData = monsterData.getChildByPath("info");
 
         List<MobAttackInfoHolder> attackInfos = new LinkedList<>();
         MonsterStats stats = new MonsterStats();
 
         int linkMid = DataTool.getIntConvert("link", monsterInfoData, 0);
-        if (linkMid != 0) {
+        if (linkMid != 0)
+        {
+            // link, 复用其它怪物ID上的 外观动画
+            // , 视觉属性（图片尺寸、碰撞框 bbox、origin）
+            // , 攻击信息（attack1/attack2 的动画时长等）
             Pair<MonsterStats, List<MobAttackInfoHolder>> linkStats = getMonsterStats(linkMid);
-            if (linkStats == null) {
+            if (linkStats == null)
+            {
                 return null;
             }
 
@@ -399,7 +431,10 @@ public class LifeFactory {
         stats.setLevel(DataTool.getIntConvert("level", monsterInfoData));
         stats.setRemoveAfter(DataTool.getIntConvert("removeAfter", monsterInfoData, stats.removeAfter()));
         stats.setBoss(DataTool.getIntConvert("boss", monsterInfoData, stats.isBoss() ? 1 : 0) > 0);
-        stats.setExplosiveReward(DataTool.getIntConvert("explosiveReward", monsterInfoData, stats.isExplosiveReward() ? 1 : 0) > 0);
+        stats.setExplosiveReward(DataTool.getIntConvert(
+                "explosiveReward"
+                , monsterInfoData
+                , stats.isExplosiveReward() ? 1 : 0) > 0);
         stats.setFfaLoot(DataTool.getIntConvert("publicReward", monsterInfoData, stats.isFfaLoot() ? 1 : 0) > 0);
         stats.setUndead(DataTool.getIntConvert("undead", monsterInfoData, stats.isUndead() ? 1 : 0) > 0);
         stats.setName(DataTool.getString(mid + "/name", mobStringData, "MISSINGNO"));
@@ -408,76 +443,124 @@ public class LifeFactory {
         stats.setRemoveOnMiss(DataTool.getIntConvert("removeOnMiss", monsterInfoData, stats.removeOnMiss() ? 1 : 0) > 0);
 
         Data special = monsterInfoData.getChildByPath("coolDamage");
-        if (special != null) {
+        if (special != null)
+        {
             int coolDmg = DataTool.getIntConvert("coolDamage", monsterInfoData);
             int coolProb = DataTool.getIntConvert("coolDamageProb", monsterInfoData, 0);
             stats.setCool(new Pair<>(coolDmg, coolProb));
         }
+
         special = monsterInfoData.getChildByPath("loseItem");
-        if (special != null) {
-            for (Data liData : special.getChildren()) {
-                stats.addLoseItem(new loseItem(DataTool.getInt(liData.getChildByPath("id")), (byte) DataTool.getInt(liData.getChildByPath("prop")), (byte) DataTool.getInt(liData.getChildByPath("x"))));
+        if (special != null)
+        {
+            // 怪物攻击玩家时，玩家有概率"丢失"背包里的道具（被打掉东西）。
+            for (Data liData : special.getChildren())
+            {
+                stats.addLoseItem(
+                        new loseItem(
+                                DataTool.getInt(liData.getChildByPath("id"))
+                                , (byte) DataTool.getInt(liData.getChildByPath("prop"))
+                                , (byte) DataTool.getInt(liData.getChildByPath("x"))));
             }
         }
+
         special = monsterInfoData.getChildByPath("selfDestruction");
-        if (special != null) {
-            stats.setSelfDestruction(new selfDestruction((byte) DataTool.getInt(special.getChildByPath("action")), DataTool.getIntConvert("removeAfter", special, -1), DataTool.getIntConvert("hp", special, -1)));
+        if (special != null)
+        {
+            stats.setSelfDestruction(
+                    new selfDestruction(
+                            (byte) DataTool.getInt(special.getChildByPath("action"))
+                            , DataTool.getIntConvert("removeAfter", special, -1)
+                            , DataTool.getIntConvert("hp", special, -1)));
         }
+
+        // 主动先手攻击
         Data firstAttackData = monsterInfoData.getChildByPath("firstAttack");
         int firstAttack = 0;
-        if (firstAttackData != null) {
-            if (firstAttackData.getType() == DataType.FLOAT) {
+        if (firstAttackData != null)
+        {
+            if (firstAttackData.getType() == DataType.FLOAT)
+            {
                 firstAttack = Math.round(DataTool.getFloat(firstAttackData));
-            } else {
+            }
+            else
+            {
                 firstAttack = DataTool.getInt(firstAttackData);
             }
         }
         stats.setFirstAttack(firstAttack > 0);
-        stats.setDropPeriod(DataTool.getIntConvert("dropItemPeriod", monsterInfoData, stats.getDropPeriod() / 10000) * 10000);
+
+        stats.setDropPeriod(
+                DataTool.getIntConvert("dropItemPeriod"
+                        , monsterInfoData
+                        , stats.getDropPeriod() / 10000) * 10000);
 
         // thanks yuxaij, Riizade, Z1peR, Anesthetic for noticing some bosses crashing players due to missing requirements
         boolean hpbarBoss = stats.isBoss() && hpbarBosses.contains(mid);
         stats.setTagColor(hpbarBoss ? DataTool.getIntConvert("hpTagColor", monsterInfoData, 0) : 0);
         stats.setTagBgColor(hpbarBoss ? DataTool.getIntConvert("hpTagBgcolor", monsterInfoData, 0) : 0);
 
-        for (Data idata : monsterData) {
-            if (!idata.getName().equals("info")) {
+        for (Data idata : monsterData)
+        {
+            if (!idata.getName().equals("info"))
+            {
+                // 非info节点之外
+                // 计算各动画动作的总播放时长
                 int delay = 0;
-                for (Data pic : idata.getChildren()) {
+                for (Data pic : idata.getChildren())
+                {
                     delay += DataTool.getIntConvert("delay", pic, 0);
                 }
+
                 stats.setAnimationTime(idata.getName(), delay);
             }
         }
+
         Data reviveInfo = monsterInfoData.getChildByPath("revive");
-        if (reviveInfo != null) {
+        if (reviveInfo != null)
+        {
+            // 怪物死亡后"复活"（变成另一只怪）的配置
             List<Integer> revives = new LinkedList<>();
-            for (Data data_ : reviveInfo) {
+            for (Data data_ : reviveInfo)
+            {
                 revives.add(DataTool.getInt(data_));
             }
             stats.setRevives(revives);
         }
-        decodeElementalString(stats, DataTool.getString("elemAttr", monsterInfoData, ""));
+
+        decodeElementalString(
+                stats
+                , DataTool.getString("elemAttr", monsterInfoData, ""));
 
         MonsterInformationProvider mi = MonsterInformationProvider.getInstance();
+
         Data monsterSkillInfoData = monsterInfoData.getChildByPath("skill");
-        if (monsterSkillInfoData != null) {
+        if (monsterSkillInfoData != null)
+        {
             int i = 0;
             Set<MobSkillId> skills = new HashSet<>();
-            while (monsterSkillInfoData.getChildByPath(Integer.toString(i)) != null) {
+            while (monsterSkillInfoData.getChildByPath(Integer.toString(i)) != null)
+            {
                 int skillId = DataTool.getInt(i + "/skill", monsterSkillInfoData, 0);
                 int skillLv = DataTool.getInt(i + "/level", monsterSkillInfoData, 0);
+
+                // 根据技能ID找到技能类型
                 MobSkillType type = MobSkillType.from(skillId).orElseThrow();
                 skills.add(new MobSkillId(type, skillLv));
 
+                // 技能播放动画
                 Data monsterSkillData = monsterData.getChildByPath("skill" + (i + 1));
-                if (monsterSkillData != null) {
+                if (monsterSkillData != null)
+                {
+                    // 统计技能播放动画总时长
                     int animationTime = 0;
-                    for (Data effectEntry : monsterSkillData.getChildren()) {
+                    for (Data effectEntry : monsterSkillData.getChildren())
+                    {
                         animationTime += DataTool.getIntConvert("delay", effectEntry, 0);
                     }
 
                     MobSkill skill = MobSkillFactory.getMobSkillOrThrow(type, skillLv);
+
                     mi.setMobSkillAnimationTime(skill, animationTime);
                 }
 
@@ -488,35 +571,60 @@ public class LifeFactory {
 
         int i = 0;
         Data monsterAttackData;
-        while ((monsterAttackData = monsterData.getChildByPath("attack" + (i + 1))) != null) {
+        while ((monsterAttackData = monsterData.getChildByPath("attack" + (i + 1))) != null)
+        {
+            // 统计攻击动作总时长
             int animationTime = 0;
-            for (Data effectEntry : monsterAttackData.getChildren()) {
+            for (Data effectEntry : monsterAttackData.getChildren())
+            {
                 animationTime += DataTool.getIntConvert("delay", effectEntry, 0);
             }
 
+            // 怪物攻击动作所消耗的MP
             int mpCon = DataTool.getIntConvert("info/conMP", monsterAttackData, 0);
+            // 出招后的冷却/攻击间隔
             int coolTime = DataTool.getIntConvert("info/attackAfter", monsterAttackData, 0);
+
             attackInfos.add(new MobAttackInfoHolder(i, mpCon, coolTime, animationTime));
             i++;
         }
 
         Data banishData = monsterInfoData.getChildByPath("ban");
-        if (banishData != null) {
-            stats.setBanishInfo(new BanishInfo(DataTool.getString("banMsg", banishData), DataTool.getInt("banMap/0/field", banishData, -1), DataTool.getString("banMap/0/portal", banishData, "sp")));
+        if (banishData != null)
+        {
+            // 怪物对玩家的放逐效果
+            stats.setBanishInfo(
+                    new BanishInfo(
+                            // 放逐时给玩家的提示语
+                            DataTool.getString("banMsg", banishData)
+                            // 把玩家传送到的目标地图 ID
+                            , DataTool.getInt("banMap/0/field", banishData, -1)
+                            // 目标地图的门（默认 sp 出生点）
+                            , DataTool.getString("banMap/0/portal", banishData, "sp")));
         }
 
         Data visualMonsterData = resolveMonsterVisualData(mid, monsterData);
+
         int noFlip = DataTool.getInt("noFlip", monsterInfoData, 0);
-        if (noFlip > 0) {
+        if (noFlip > 0)
+        {
+            // 怪物无法调整方向。
+
+
             Data fixedStanceFrame = resolveVisualFrame(visualMonsterData.getChildByPath("stand/0"));
-            if (fixedStanceFrame == null) {
+            if (fixedStanceFrame == null)
+            {
                 fixedStanceFrame = resolvePrimaryVisualFrame(visualMonsterData);
             }
+
             Point origin = fixedStanceFrame == null ? null : DataTool.getPoint("origin", fixedStanceFrame, null);
-            if (origin != null) {
+            if (origin != null)
+            {
+                // 由 origin.x 判断怪物默认朝左还是朝右
                 stats.setFixedStance(origin.getX() < 1 ? 5 : 4);    // fixed left/right
             }
         }
+
         // 统一从最终视觉来源回填尺寸与碰撞框，避免 link 怪重复走本地旧逻辑。
         applyMonsterVisualStats(mid, stats, visualMonsterData);
         /* 已废弃：以下旧的本地 visual 解析路径仅作留档，当前统一走上面的 link 可视数据解析。
@@ -557,15 +665,20 @@ public class LifeFactory {
     public static Monster getMonster(int mid) {
         try {
             MonsterStats stats = monsterStats.get(mid);
-            if (stats == null) {
+            if (stats == null)
+            {
                 Pair<MonsterStats, List<MobAttackInfoHolder>> mobStats = getMonsterStats(mid);
-                stats = mobStats.getLeft();
+
                 setMonsterAttackInfo(mid, mobStats.getRight());
 
+                stats = mobStats.getLeft();
                 monsterStats.put(mid, stats);
             }
+
             return new Monster(mid, stats);
-        } catch (NullPointerException npe) {
+        }
+        catch (NullPointerException npe)
+        {
             log.error("[SEVERE] MOB {} failed to load.", mid, npe);
             return null;
         }
@@ -592,8 +705,14 @@ public class LifeFactory {
     }
 
     private static void decodeElementalString(MonsterStats stats, String elemAttr) {
-        for (int i = 0; i < elemAttr.length(); i += 2) {
-            stats.setEffectiveness(Element.getFromChar(elemAttr.charAt(i)), ElementalEffectiveness.getByNumber(Integer.parseInt(String.valueOf(elemAttr.charAt(i + 1)))));
+        // 解析怪物“元素抗性”
+        // 每两个字符一组
+        for (int i = 0; i < elemAttr.length(); i += 2)
+        {
+            stats.setEffectiveness(
+                    Element.getFromChar(elemAttr.charAt(i)) // 元素字符 → Element
+                    , ElementalEffectiveness.getByNumber(       // 数值 → 抗性等级
+                            Integer.parseInt(String.valueOf(elemAttr.charAt(i + 1)))));
         }
     }
 
@@ -618,9 +737,11 @@ public class LifeFactory {
     }
 
     public static class BanishInfo {
-
+        // 把玩家传送到的目标地图 ID
         private final int map;
+        // 目标地图的门（默认 sp 出生点）
         private final String portal;
+        // 放逐时给玩家的提示语
         private final String msg;
 
         public BanishInfo(String msg, int map, String portal) {
@@ -644,8 +765,11 @@ public class LifeFactory {
 
     public static class loseItem {
 
+        // 会丢失的道具 ID
         private final int id;
+        // 丢失概率（0-100）
         private final byte chance;
+        // 丢失数量
         private final byte x;
 
         public loseItem(int id, byte chance, byte x) {
@@ -669,8 +793,11 @@ public class LifeFactory {
 
     public static class selfDestruction {
 
+        // 毁触发的动作/动画类型
         private final byte action;
+        // 自毁后消失延迟（秒）
         private final int removeAfter;
+        // 自毁触发 HP 阈值（HP 低于此值自毁）
         private final int hp;
 
         public selfDestruction(byte action, int removeAfter, int hp) {

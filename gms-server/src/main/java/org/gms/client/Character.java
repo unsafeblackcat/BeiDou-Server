@@ -388,8 +388,13 @@ public class Character extends AbstractCharacterObject {
      * QuestStatus: 任务状态
      * **/
     private final Map<Short, QuestStatus> quests;
+
+    /**
+     *  当前角色下，拥有怪物所属权的怪物对象
+     * **/
     private final Set<Monster> controlled = new LinkedHashSet<>();
     private final Map<Integer, String> entered = new LinkedHashMap<>();
+    // 地图上，玩家可见对象，怪物/NPC spawnAndAddRangedMapObject()
     private final Set<MapObject> visibleMapObjects = Collections.newSetFromMap(new ConcurrentHashMap<>());
     private final Map<Skill, SkillEntry> skills = new LinkedHashMap<>();
     private final Map<Integer, Integer> activeCoupons = new LinkedHashMap<>();
@@ -1403,10 +1408,14 @@ public class Character extends AbstractCharacterObject {
         this.banishTime = banishTime;
     }
 
-    public void changeMapBanish(int mapid, String portal, String msg) {
-        if (GameConfig.getServerBoolean("use_spikes_avoid_banish")) {
-            for (Item it : this.getInventory(InventoryType.EQUIPPED).list()) {
-                if ((it.getFlag() & ItemConstants.SPIKES) == ItemConstants.SPIKES) {
+    public void changeMapBanish(int mapid, String portal, String msg)
+    {
+        if (GameConfig.getServerBoolean("use_spikes_avoid_banish"))
+        {
+            for (Item it : this.getInventory(InventoryType.EQUIPPED).list())
+            {
+                if ((it.getFlag() & ItemConstants.SPIKES) == ItemConstants.SPIKES)
+                {
                     return;
                 }
             }
@@ -1416,7 +1425,8 @@ public class Character extends AbstractCharacterObject {
         int banSp = this.getMap().findClosestPlayerSpawnpoint(this.getPosition()).getId();
         long banTime = System.currentTimeMillis();
 
-        if (msg != null) {
+        if (msg != null)
+        {
             dropMessage(5, msg);
         }
 
@@ -9447,7 +9457,8 @@ public class Character extends AbstractCharacterObject {
      */
     public synchronized void markRegularMove(Point beforePos, Point afterPos) {
         long now = monotonicNow();
-        if (!shouldBuildMovementDistanceContext(beforePos, afterPos)) {
+        if (!shouldBuildMovementDistanceContext(beforePos, afterPos))
+        {
             clearMovementDistanceContextLocked();
             return;
         }

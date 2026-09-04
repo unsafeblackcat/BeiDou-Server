@@ -88,7 +88,7 @@ public class MapFactory {
             // 所在平台（foothold 编号，生物站的地形）
             int fh = DataTool.getInt(life.getChildByPath("fh"));
 
-            // 活动范围左右边界（怪物巡逻区间）
+            // 生物活动范围左右边界（怪物巡逻用，NPC不消费）
             int rx0 = DataTool.getInt(life.getChildByPath("rx0"));
             int rx1 = DataTool.getInt(life.getChildByPath("rx1"));
 
@@ -185,19 +185,21 @@ public class MapFactory {
 
             if (mobRespawnRate < 1)
             {
-                //如果读入的值小于1，或者怪物为boss，则设定生怪倍率为1
+                //如果 mob_respawn_rate 读入的值小于1
                 mobRespawnRate = 1;
             }
 
             if (monster.isBoss())
             {
+                //怪物为boss
+
                 mobRespawnRate = 1;
                 mobTime = NumberTool.floatToInt(mobTime * mobTimeRate);
             }
 
-            // 如果是事件地图，刷新倍率保持不变
             if (map.getEventInstance() != null)
             {
+                // 如果是事件地图，怪物生成倍率强制为1
                 mobRespawnRate = 1;
             }
 
@@ -205,6 +207,7 @@ public class MapFactory {
             {
                 if (mobTime == -1)
                 {
+                    // 只会生成一次的怪物
                     //does not respawn, force spawn once
                     map.spawnMonster(monster);
                 }
@@ -214,11 +217,12 @@ public class MapFactory {
                 }
             }
 
-            //should the map be reseted, use allMonsterSpawn list of monsters to spawn them again
+            // 同时登记进 allMonsterSpawn 完整列表（地图重置时用它恢复刷怪）
             map.addAllMonsterSpawn(monster, mobTime, team);
         }
         else
         {
+            // NPC
             map.addMapObject(myLife);
         }
     }

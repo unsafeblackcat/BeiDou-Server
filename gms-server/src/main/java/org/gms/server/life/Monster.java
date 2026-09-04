@@ -91,15 +91,27 @@ public class Monster extends AbstractLoadedLife {
     private static final Logger log = LoggerFactory.getLogger(Monster.class);
 
     private ChangeableStats ostats = null;  //unused, v83 WZs offers no support for changeable stats.
+    /**
+     *  怪物属性状态
+     * **/
     private MonsterStats stats;
+    // 怪物HP
     private final AtomicInteger hp = new AtomicInteger(1);
     private final AtomicLong maxHpPlusHeal = new AtomicLong(1);
+    // 怪物MP
     private int mp;
+    // 当前地图所有权角色
     private WeakReference<Character> controller = new WeakReference<>(null);
-    private boolean controllerHasAggro, controllerKnowsAboutAggro, controllerHasPuppet;
+    // 控制权是否有仇恨
+    private boolean controllerHasAggro
+        // 控制器知晓仇恨？
+            , controllerKnowsAboutAggro
+        // 控制器拥有傀儡
+            , controllerHasPuppet;
     private final Collection<MonsterListener> listeners = new LinkedList<>();
     private final EnumMap<MonsterStatus, MonsterStatusEffect> stati = new EnumMap<>(MonsterStatus.class);
     private final ArrayList<MonsterStatus> alreadyBuffed = new ArrayList<>();
+    // 怪物所属地图
     private MapleMap map;
     private int VenomMultiplier = 0;
     private boolean fake = false;
@@ -114,6 +126,10 @@ public class Monster extends AbstractLoadedLife {
     private int spawnEffect = 0;
     private final HashMap<Integer, AtomicLong> takenDamage = new HashMap<>();
     private ScheduledFuture<?> monsterItemDrop = null;
+    /**
+     *  怪物死亡后的延迟消失时间 或者是 “自杀式”怪物 且 HP < 0
+     *  applyRemoveAfter()
+     * **/
     private Runnable removeAfterAction = null;
     private boolean availablePuppetUpdate = true;
 
@@ -359,24 +375,31 @@ public class Monster extends AbstractLoadedLife {
 
     public synchronized Integer applyAndGetHpDamage(int delta, boolean stayAlive) {
         int curHp = hp.get();
-        if (curHp <= 0) {       // this monster is already dead
+        if (curHp <= 0)
+        {
+            // this monster is already dead
             return null;
         }
 
-        if (delta >= 0) {
-            if (stayAlive) {
+        if (delta >= 0)
+        {
+            if (stayAlive)
+            {
                 curHp--;
             }
             int trueDamage = Math.min(curHp, delta);
 
             hp.addAndGet(-trueDamage);
             return trueDamage;
-        } else {
+        }
+        else
+        {
             int trueHeal = -delta;
             int hp2Heal = curHp + trueHeal;
             int maxHp = getMaxHp();
 
-            if (hp2Heal > maxHp) {
+            if (hp2Heal > maxHp)
+            {
                 trueHeal -= (hp2Heal - maxHp);
             }
 
@@ -484,9 +507,12 @@ public class Monster extends AbstractLoadedLife {
         applyDamage(from, damage, stayAlive, true);
     }
 
-    public void heal(int hp, int mp) {
+    public void heal(int hp, int mp)
+    {
+        // 回复怪物的HP和MP数值
         Integer hpHealed = applyAndGetHpDamage(-hp, false);
-        if (hpHealed == null) {
+        if (hpHealed == null)
+        {
             return;
         }
 
@@ -1029,7 +1055,8 @@ public class Monster extends AbstractLoadedLife {
     }
 
     private void setControllerHasAggro(boolean controllerHasAggro) {
-        if (!fake) {
+        if (!fake)
+        {
             this.controllerHasAggro = controllerHasAggro;
         }
     }
@@ -1058,16 +1085,22 @@ public class Monster extends AbstractLoadedLife {
 
     @Override
     public void sendSpawnData(Client client) {
-        if (hp.get() <= 0) { // mustn't monsterLock this function
+        if (hp.get() <= 0)
+        { // mustn't monsterLock this function
             return;
         }
-        if (fake) {
+
+        if (fake)
+        {
             client.sendPacket(PacketCreator.spawnFakeMonster(this, 0));
-        } else {
+        }
+        else
+        {
             client.sendPacket(PacketCreator.spawnMonster(this, false));
         }
 
-        if (hasBossHPBar()) {
+        if (hasBossHPBar())
+        {
             client.announceBossHpBar(this, this.hashCode(), makeBossHPBarPacket());
         }
     }
@@ -1119,7 +1152,9 @@ public class Monster extends AbstractLoadedLife {
         }
     }
 
-    private Character getActiveController() {
+    private Character getActiveController()
+    {
+        // 当前地图所有人角色对象
         Character chr = getController();
 
         if (chr != null && chr.isLoggedInWorld() && chr.getMap() == this.getMap()) {
@@ -1497,7 +1532,8 @@ public class Monster extends AbstractLoadedLife {
             }
             */
 
-            if (apply) {
+            if (apply)
+            {
                 this.usedSkill(toUse);
             }
         } finally {
@@ -1529,8 +1565,14 @@ public class Monster extends AbstractLoadedLife {
         MapleMap mmap = mons.getMap();
         Runnable r = () -> mons.clearSkill(skill.getId());
 
-        MobClearSkillService service = (MobClearSkillService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_CLEAR_SKILL);
-        service.registerMobClearSkillAction(mmap.getId(), r, skill.getCoolTime());
+        MobClearSkillService service
+                = (MobClearSkillService) map.getChannelServer().getServiceAccess(
+                        ChannelServices.MOB_CLEAR_SKILL);
+
+        service.registerMobClearSkillAction(
+                mmap.getId()
+                , r
+                , skill.getCoolTime());
     }
 
     private void clearSkill(MobSkillId msId) {
@@ -1551,13 +1593,15 @@ public class Monster extends AbstractLoadedLife {
             }
             */
 
-            Pair<Integer, Integer> attackInfo = MonsterInformationProvider.getInstance().getMobAttackInfo(this.getId(), attackPos);
+            Pair<Integer, Integer> attackInfo
+                    = MonsterInformationProvider.getInstance().getMobAttackInfo(this.getId(), attackPos);
             if (attackInfo == null) {
                 return -1;
             }
 
             int mpCon = attackInfo.getLeft();
-            if (mp < mpCon) {
+            if (mp < mpCon)
+            {
                 return -1;
             }
             
@@ -1569,7 +1613,9 @@ public class Monster extends AbstractLoadedLife {
 
             usedAttack(attackPos, mpCon, attackInfo.getRight());
             return 1;
-        } finally {
+        }
+        finally
+        {
             monsterLock.unlock();
         }
     }
@@ -1584,9 +1630,13 @@ public class Monster extends AbstractLoadedLife {
             MapleMap mmap = mons.getMap();
             Runnable r = () -> mons.clearAttack(attackPos);
 
-            MobClearSkillService service = (MobClearSkillService) map.getChannelServer().getServiceAccess(ChannelServices.MOB_CLEAR_SKILL);
+            MobClearSkillService service
+                    = (MobClearSkillService) map.getChannelServer().getServiceAccess(
+                            ChannelServices.MOB_CLEAR_SKILL);
             service.registerMobClearSkillAction(mmap.getId(), r, cooltime);
-        } finally {
+        }
+        finally
+        {
             monsterLock.unlock();
         }
     }
@@ -1604,9 +1654,11 @@ public class Monster extends AbstractLoadedLife {
         return this.stats.getNoSkills() > 0;
     }
 
-    public MobSkillId getRandomSkill() {
+    public MobSkillId getRandomSkill()
+    {
         Set<MobSkillId> skills = stats.getSkills();
-        if (skills.size() == 0) {
+        if (skills.size() == 0)
+        {
             return null;
         }
         // There is no simple way of getting a random element from a Set. Have to make do with this.
@@ -1822,18 +1874,27 @@ public class Monster extends AbstractLoadedLife {
     }
 
     public boolean isCharacterPuppetInVicinity(Character chr) {
+        // 查该玩家是否有"傀儡"buff
         StatEffect mse = chr.getBuffEffect(BuffStat.PUPPET);
-        if (mse != null) {
+        if (mse != null)
+        {
+            // 存在傀儡，找到对应的傀儡召唤物
             Summon summon = chr.getSummonByKey(mse.getSourceId());
 
             // check whether mob is currently under a puppet's field of action or not
-            if (summon != null) {
+            if (summon != null)
+            {
+                //  傀儡存在 → 判断怪是否在傀儡附近
                 return isPuppetInVicinity(summon);
-            } else {
+            }
+            else
+            {
+                // 傀儡没了 → 清掉该玩家的傀
                 map.getAggroCoordinator().removePuppetAggro(chr.getId());
             }
         }
 
+        // 玩家没有傀儡
         return false;
     }
 
@@ -1856,20 +1917,38 @@ public class Monster extends AbstractLoadedLife {
 
         Character newControllerWithPuppet = null;
 
-        for (Character chr : getMap().getAllPlayers()) {
-            if (!chr.isHidden() && chr.isLoggedInWorld()) {   // 过滤已断线/awayFromWorld 的幽灵玩家，避免被选为 controller 候选
+        for (Character chr : getMap().getAllPlayers())
+        {
+            if (!chr.isHidden() && chr.isLoggedInWorld())
+            {
+                // 当前地图下所有非隐藏角色和正常登录在世界中的角色
+
+                // 过滤已断线/awayFromWorld 的幽灵玩家，避免被选为 controller 候选
+
+                // 当前角色对象下所有怪物数量
                 int ctrlMonsSize = chr.getNumControlledMonsters();
 
-                if (isCharacterPuppetInVicinity(chr)) {
+                if (isCharacterPuppetInVicinity(chr))
+                {
                     newControllerWithPuppet = chr;
                     break;
-                } else if (chr.isAlive()) {
-                    if (ctrlMonsSize < mincontrolled) {
+                }
+                else if (chr.isAlive())
+                {
+                    // 玩家 HP > 0
+                    if (ctrlMonsSize < mincontrolled)
+                    {
+                        // 循环寻找，
+                        // 当前地图角色下挂在怪物所有权最少的玩家客户端上
                         mincontrolled = ctrlMonsSize;
                         newController = chr;
                     }
-                } else {
-                    if (ctrlMonsSize < mincontrolleddead) {
+                }
+                else
+                {
+                    if (ctrlMonsSize < mincontrolleddead)
+                    {
+                        // 待选，继续下一轮搜索
                         mincontrolleddead = ctrlMonsSize;
                         newControllerDead = chr;
                     }
@@ -1877,11 +1956,16 @@ public class Monster extends AbstractLoadedLife {
             }
         }
 
-        if (newControllerWithPuppet != null) {
+        if (newControllerWithPuppet != null)
+        {
             return newControllerWithPuppet;
-        } else if (newController != null) {
+        }
+        else if (newController != null)
+        {
             return newController;
-        } else {
+        }
+        else
+        {
             return newControllerDead;
         }
     }
@@ -1905,10 +1989,14 @@ public class Monster extends AbstractLoadedLife {
             aggroUpdateLock.unlock();
         }
 
-        if (chrController != null) { // this can/should only happen when a hidden gm attacks the monster
-            if (!this.isFake()) {
+        if (chrController != null)
+        { // this can/should only happen when a hidden gm attacks the monster
+            if (!this.isFake())
+            {
+                // 通知当前角色，怪物控制权不再属于你
                 chrController.sendPacket(PacketCreator.stopControllingMonster(this.getObjectId()));
             }
+            // 当前角色下，拥有怪物所属权的怪物对象给移除
             chrController.stopControllingMonster(this);
         }
 
@@ -1920,28 +2008,46 @@ public class Monster extends AbstractLoadedLife {
      * player controller.
      */
     public void aggroSwitchController(Character newController, boolean immediateAggro) {
-        if (aggroUpdateLock.tryLock()) {
-            try {
+        if (aggroUpdateLock.tryLock())
+        {
+            try
+            {
                 Character prevController = getController();
-                if (prevController == newController) {
+                if (prevController == newController)
+                {
                     return;
                 }
 
                 aggroRemoveController();
-                if (!(newController != null && newController.isLoggedInWorld() && newController.getMap() == this.getMap())) {
+
+                if (!(newController != null
+                        && newController.isLoggedInWorld()
+                        && newController.getMap() == this.getMap()))
+                {
                     return;
                 }
 
+                // 设置地图所属人
                 this.setController(newController);
+                // 仇恨设置
                 this.setControllerHasAggro(immediateAggro);
+                // 设置控制器知晓仇恨?
                 this.setControllerKnowsAboutAggro(false);
+                // 设置控制器拥有傀儡
                 this.setControllerHasPuppet(false);
-            } finally {
+            }
+            finally
+            {
                 aggroUpdateLock.unlock();
             }
 
+            // 更新傀儡可见性
             this.aggroUpdatePuppetVisibility();
+
+            // 通知当前角色，对这个怪物控制拥有所属权
             aggroMonsterControl(newController.getClient(), this, immediateAggro);
+
+            // 给控制人角色添加一个怪物
             newController.controlMonster(this);
         }
     }
@@ -1969,17 +2075,26 @@ public class Monster extends AbstractLoadedLife {
     }
 
     /**
-     * Automagically finds a new controller for the given monster from the chars
-     * on the map it is from...
+     *  Automagically finds a new controller for the given monster from the chars
+     *  on the map it is from...
+     *  自动为指定怪物寻找新的控制器
+     *  ，依据的是其所在地图上的角色……
      */
-    public void aggroUpdateController() {
+    public void aggroUpdateController()
+    {
         Character chrController = this.getActiveController();
-        if (chrController != null && chrController.isAlive()) {
+        if (chrController != null && chrController.isAlive())
+        {
+            // 当前角色还未死亡
             return;
         }
 
+        // 之前的所有权角色已不存在，给地图寻找一个新的所属人
         Character newController = getNextControllerCandidate();
-        if (newController == null) {    // was a new controller found? (if not no one is on the map)
+        if (newController == null)
+        {
+            // 此时地图上还没有人
+            // was a new controller found? (if not no one is on the map)
             return;
         }
 
@@ -2052,16 +2167,27 @@ public class Monster extends AbstractLoadedLife {
      * Returns the current aggro status on the specified player, or null if the
      * specified player is currently not this mob's controller.
      */
-    public Boolean aggroMoveLifeUpdate(Character player) {
+    public Boolean aggroMoveLifeUpdate(Character player)
+    {
+        /**
+         *  返回指定玩家当前的仇恨状态；
+         *  若指定玩家当前并非该生物的控制者
+         *  ，则返回 null。
+         * **/
         Character chrController = getController();
-        if (chrController != null && player.getId() == chrController.getId()) {
+
+        if (chrController != null && player.getId() == chrController.getId())
+        {
             boolean aggro = this.isControllerHasAggro();
-            if (aggro) {
+            if (aggro)
+            {
                 this.setControllerKnowsAboutAggro(true);
             }
 
             return aggro;
-        } else {
+        }
+        else
+        {
             return null;
         }
     }
@@ -2115,7 +2241,8 @@ public class Monster extends AbstractLoadedLife {
         }
     }
 
-    private static void aggroMonsterControl(Client c, Monster mob, boolean immediateAggro) {
+    private static void aggroMonsterControl(Client c, Monster mob, boolean immediateAggro)
+    {
         c.sendPacket(PacketCreator.controlMonster(mob, false, immediateAggro));
     }
 
@@ -2123,55 +2250,73 @@ public class Monster extends AbstractLoadedLife {
         // lame patch for client to redirect all aggro to the puppet
 
         List<Monster> puppetControlled = new LinkedList<>();
-        for (Monster mob : chrController.getControlledMonsters()) {
-            if (mob.isPuppetInVicinity(puppet)) {
+        for (Monster mob : chrController.getControlledMonsters())
+        {
+            if (mob.isPuppetInVicinity(puppet))
+            {
                 puppetControlled.add(mob);
             }
         }
 
-        for (Monster mob : puppetControlled) {
+        for (Monster mob : puppetControlled)
+        {
             chrController.sendPacket(PacketCreator.stopControllingMonster(mob.getObjectId()));
         }
         chrController.sendPacket(PacketCreator.removeSummon(puppet, false));
 
         Client c = chrController.getClient();
-        for (Monster mob : puppetControlled) { // thanks BHB for noticing puppets disrupting mobstatuses for bowmans
+        for (Monster mob : puppetControlled)
+        {
+            // thanks BHB for noticing puppets disrupting mobstatuses for bowmans
             aggroMonsterControl(c, mob, mob.isControllerKnowsAboutAggro());
         }
+
         chrController.sendPacket(PacketCreator.spawnSummon(puppet, false));
     }
 
     public void aggroUpdatePuppetVisibility() {
-        if (!availablePuppetUpdate) {
+        if (!availablePuppetUpdate)
+        {
             return;
         }
 
         availablePuppetUpdate = false;
-        Runnable r = () -> {
+        Runnable r = () ->
+        {
             try {
                 Character chrController = Monster.this.getActiveController();
-                if (chrController == null) {
+                if (chrController == null)
+                {
                     return;
                 }
 
                 StatEffect puppetEffect = chrController.getBuffEffect(BuffStat.PUPPET);
-                if (puppetEffect != null) {
+                if (puppetEffect != null)
+                {
+                    // 所有人拥有“傀儡”
                     Summon puppet = chrController.getSummonByKey(puppetEffect.getSourceId());
 
-                    if (puppet != null && isPuppetInVicinity(puppet)) {
+                    if (puppet != null && isPuppetInVicinity(puppet))
+                    {
                         controllerHasPuppet = true;
                         aggroRefreshPuppetVisibility(chrController, puppet);
                         return;
                     }
                 }
 
-                if (controllerHasPuppet) {
+                if (controllerHasPuppet)
+                {
                     controllerHasPuppet = false;
 
                     chrController.sendPacket(PacketCreator.stopControllingMonster(Monster.this.getObjectId()));
-                    aggroMonsterControl(chrController.getClient(), Monster.this, Monster.this.isControllerHasAggro());
+                    aggroMonsterControl(
+                            chrController.getClient()
+                            , Monster.this
+                            , Monster.this.isControllerHasAggro());
                 }
-            } finally {
+            }
+            finally
+            {
                 availablePuppetUpdate = true;
             }
         };

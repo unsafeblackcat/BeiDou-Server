@@ -114,20 +114,30 @@ public class MapleMap {
     private static final Map<Integer, Pair<Integer, Integer>> dropBoundsCache = new HashMap<>(100);
 
     /**
-     *  地图NPC/怪物对象
+     *  地图NPC/怪物对象对象
      *  Integer: 对象ID, 随机值
-     *  MapObject: NPC/怪物 对象 loadLifeRaw
+     *  MapObject: loadLifeRaw
      * **/
     private final Map<Integer, MapObject> mapobjects = new LinkedHashMap<>();
+    /**
+     *  当前地图下，自杀式怪物的怪物ID
+     * **/
     private final Set<Integer> selfDestructives = new LinkedHashSet<>();
     /**
-     *  地图内怪物生成信息
-     *  addMonsterSpawn
+     *  地图内怪非一次性物生成信息
+     *  addMonsterSpawn()
      * **/
     private final Collection<SpawnPoint> monsterSpawn = Collections.synchronizedList(new LinkedList<>());
+    /**
+     *  当前地图内，所有怪物 信息
+     * **/
     private final Collection<SpawnPoint> allMonsterSpawn = Collections.synchronizedList(new LinkedList<>());
+    // 当前地图已经生成的怪物数量
     private final AtomicInteger spawnedMonstersOnMap = new AtomicInteger(0);
     private final AtomicInteger droppedItemCount = new AtomicInteger(0);
+    /**
+     *  当前地图下所有角色对象
+     * **/
     private final Collection<Character> characters = new LinkedHashSet<>();
     private final Map<Integer, Set<Integer>> mapParty = new LinkedHashMap<>();
     /**
@@ -176,6 +186,7 @@ public class MapleMap {
     // 是否有船（飞行船靠岸动画）
     private boolean boat;
     private boolean docked = false;
+    // 地图内，怪物信息事件
     private EventInstanceManager event = null;
     // 地图名字
     private String mapName;
@@ -459,7 +470,9 @@ public class MapleMap {
     }
 
     public void addSelfDestructive(Monster mob) {
-        if (mob.getStats().selfDestruction() != null) {
+        if (mob.getStats().selfDestruction() != null)
+        {
+            // 自杀式怪物
             this.selfDestructives.add(mob.getObjectId());
         }
     }
@@ -472,29 +485,50 @@ public class MapleMap {
         spawnAndAddRangedMapObject(mapobject, packetbakery, null);
     }
 
-    private void spawnAndAddRangedMapObject(MapObject mapobject, DelayedPacketCreation packetbakery, SpawnCondition condition) {
+    private void spawnAndAddRangedMapObject(
+            MapObject mapobject
+            , DelayedPacketCreation packetbakery
+            , SpawnCondition condition)
+    {
         List<Character> inRangeCharacters = new LinkedList<>();
+
+        // 随机一个ID
         int curOID = getUsableOID();
 
         chrRLock.lock();
         objectWLock.lock();
-        try {
+        try
+        {
+            // 设置和绑定对象
             mapobject.setObjectId(curOID);
             this.mapobjects.put(curOID, mapobject);
-            for (Character chr : characters) {
-                if (condition == null || condition.canSpawn(chr)) {
-                    if (chr.getPosition().distanceSq(mapobject.getPosition()) <= getRangedDistance()) {
+
+            for (Character chr : characters)
+            {
+                if (condition == null || condition.canSpawn(chr))
+                {
+                    if (chr.getPosition().distanceSq(mapobject.getPosition()) <= getRangedDistance())
+                    {
+                        // 角色坐标和当前怪物坐标处于可见广播范围内
+
+                        // 记录当前角色
                         inRangeCharacters.add(chr);
+
+                        // 更新角色可见对象
                         chr.addVisibleMapObject(mapobject);
                     }
                 }
             }
-        } finally {
+        }
+        finally
+        {
             objectWLock.unlock();
             chrRLock.unlock();
         }
 
-        for (Character chr : inRangeCharacters) {
+        // 给所有当前怪物可见对象的玩家发包
+        for (Character chr : inRangeCharacters)
+        {
             packetbakery.sendPackets(chr.getClient());
         }
     }
@@ -1342,7 +1376,8 @@ public class MapleMap {
 
     public final List<Monster> getAllMonsters() {
         List<Monster> list = new LinkedList<>();
-        for (MapObject mmo : getMonsters()) {
+        for (MapObject mmo : getMonsters())
+        {
             list.add((Monster) mmo);
         }
 
@@ -2009,18 +2044,28 @@ public class MapleMap {
         applyRemoveAfter(monster);
     }
 
-    private void applyRemoveAfter(final Monster monster) {
+    private void applyRemoveAfter(final Monster monster)
+    {
+        // 为"死亡后需要延迟消失"或"自毁型"怪物注册一个"延迟移除任务"
+
         final selfDestruction selfDestruction = monster.getStats().selfDestruction();
-        if (monster.getStats().removeAfter() > 0 || selfDestruction != null && selfDestruction.getHp() < 0) {
+
+        // 触发条件：普通怪 removeAfter > 0（死后延迟消失） 或  自毁怪且 HP 阈值 < 0
+        if (monster.getStats().removeAfter() > 0  || selfDestruction != null && selfDestruction.getHp() < 0)
+        {
+
             Runnable removeAfterAction;
 
-            if (selfDestruction == null) {
+            if (selfDestruction == null)
+            {
+                // 普通延迟怪：removeAfter 秒后执行 killMonster（正式移除）
                 removeAfterAction = () -> killMonster(monster, null, false);
-
                 registerMapSchedule(removeAfterAction, SECONDS.toMillis(monster.getStats().removeAfter()));
-            } else {
+            }
+            else
+            {
+                // 自毁怪：按自毁配置的 removeAfter 延迟，killMonster 时带 action（爆炸动画）
                 removeAfterAction = () -> killMonster(monster, null, false, selfDestruction.getAction());
-
                 registerMapSchedule(removeAfterAction, SECONDS.toMillis(selfDestruction.removeAfter()));
             }
 
@@ -2078,28 +2123,41 @@ public class MapleMap {
         if (mobCapacity != -1
                 && mobCapacity == spawnedMonstersOnMap.get())
         {
+            // 如果怪物生成数量到达了当前地图的上线则不在生成
             return;//PyPQ
         }
 
+        // 只按难度倍率改怪物等级（level × rate），等级变化后属性由 ChangeableStats 按新等级重算（HP/MP/攻防）
+        // isPq（pqMob）影响 ChangeableStats 的属性上限处理（boss 防御上限 30 等），不是倍率
         monster.changeDifficulty(difficulty, isPq);
 
         monster.setMap(this);
+
         if (getEventInstance() != null)
         {
             getEventInstance().registerMonster(monster);
         }
 
+        // 生成并添加远程地图对象
+        // 给所有能看见当前怪物的玩家发送数据包
         spawnAndAddRangedMapObject(
                 monster
+                // 信息发送给客户端
                 , c -> c.sendPacket(PacketCreator.spawnMonster(monster, true))
                 , null);
 
+        // 更新怪物所属权
         monster.aggroUpdateController();
+
+        // 如果是boos则广播当前boss血量状态给地图所有玩家
         updateBossSpawn(monster);
 
-        if ((monster.getTeam() == 1 || monster.getTeam() == 0)
+        if ((monster.getTeam() == 1
+                || monster.getTeam() == 0)
                 && (isCPQMap() || isCPQMap2()))
         {
+            // 嘉年华怪物
+
             List<MCSkill> teamS = null;
             if (monster.getTeam() == 0)
             {
@@ -2123,7 +2181,10 @@ public class MapleMap {
         }
 
         if (monster.getDropPeriodTime() > 0)
-        { //9300102 - Watchhog, 9300061 - Moon Bunny (HPQ), 9300093 - Tylus    //9300102-护卫用小浣猪，9300061-月妙（HPQ），9300093-冒牌泰勒斯
+        {
+            // 怪物存在死亡后，掉落物延迟的状态
+
+            //9300102 - Watchhog, 9300061 - Moon Bunny (HPQ), 9300093 - Tylus    //9300102-护卫用小浣猪，9300061-月妙（HPQ），9300093-冒牌泰勒斯
             if (monster.getId() == MobId.WATCH_HOG)
             {
                 monsterItemDrop(monster, monster.getDropPeriodTime());
@@ -2132,7 +2193,8 @@ public class MapleMap {
             {
                 monsterItemDrop(monster, monster.getDropPeriodTime() / 3);
             }
-            else if (monster.getId() == MobId.TYLUS) {
+            else if (monster.getId() == MobId.TYLUS)
+            {
                 monsterItemDrop(monster, monster.getDropPeriodTime());
             }
             else if (monster.getId() == MobId.GIANT_SNOWMAN_LV5_EASY
@@ -2147,8 +2209,11 @@ public class MapleMap {
             }
         }
 
+        // 生成数量+1
         spawnedMonstersOnMap.incrementAndGet();
+
         addSelfDestructive(monster);
+
         applyRemoveAfter(monster);  // thanks LightRyuzaki for pointing issues with spawned CWKPQ mobs not applying this
     }
 
@@ -2362,7 +2427,8 @@ public class MapleMap {
         }
     }
 
-    private void registerMapSchedule(Runnable r, long delay) {
+    private void registerMapSchedule(Runnable r, long delay)
+    {
         OverallService service = (OverallService) this.getChannelServer().getServiceAccess(ChannelServices.OVERALL);
         service.registerOverallAction(mapid, r, delay);
     }
@@ -2997,7 +3063,8 @@ public class MapleMap {
      * @param {Packet} packet - 要广播的数据包。The packet to be broadcasted.
      * @param {Point} rangedFrom - 广播的起点位置。The starting point for broadcasting.
      */
-    public void broadcastMessage(Character source, Packet packet, Point rangedFrom) {
+    public void broadcastMessage(Character source, Packet packet, Point rangedFrom)
+    {
         broadcastMessage(source, packet, getRangedDistance(), rangedFrom);
     }
 
@@ -3011,26 +3078,52 @@ public class MapleMap {
      * @param {double} rangeSq - 广播的最大距离平方值。The maximum distance squared for broadcasting.
      * @param {Point} rangedFrom - 广播的起点位置。The starting point for broadcasting.
      */
-    private void broadcastMessage(Character source, Packet packet, double rangeSq, Point rangedFrom) {
+    private void broadcastMessage(
+            Character source
+            , Packet packet
+            , double rangeSq
+            , Point rangedFrom)
+    {
         chrRLock.lock();
-        try {
+        try
+        {
+            // 当前地图下的所有角色
             Iterator<Character> iterator = characters.iterator();
-            while (iterator.hasNext()) {
+            while (iterator.hasNext())
+            {
                 Character chr = iterator.next();
-                if (chrDisconnected(iterator, chr)) {
+                if (chrDisconnected(iterator, chr))
+                {
+                    // 当前玩家以不在当前地图
                     continue;
                 }
-                if (chr != source) {
-                    if (rangeSq < Double.POSITIVE_INFINITY) {
-                        if (rangedFrom.distanceSq(chr.getPosition()) <= rangeSq) {
+
+                if (chr != source)
+                {
+                    // 当前角色非 source 角色
+                    if (rangeSq < Double.POSITIVE_INFINITY)
+                    {
+                        if (rangedFrom.distanceSq(chr.getPosition()) <= rangeSq)
+                        {
+                            // 角色所在的位置和广播起始位置小于广播的最大范围内。
                             chr.sendPacket(packet);
                         }
-                    } else {
+                        else
+                        {
+                            // 当前角色所在坐标不在广播范围内
+                        }
+                    }
+                    else
+                    {
+                        // 如果广播范围 小于 Double.POSITIVE_INFINITY
+                        // 那就全都广播
                         chr.sendPacket(packet);
                     }
                 }
             }
-        } finally {
+        }
+        finally
+        {
             chrRLock.unlock();
         }
     }
@@ -3045,13 +3138,23 @@ public class MapleMap {
     }
 
     private void updateBossSpawn(Monster monster) {
-        if (monster.hasBossHPBar()) {
-            broadcastBossHpMessage(monster, monster.hashCode(), monster.makeBossHPBarPacket(), monster.getPosition());
+        if (monster.hasBossHPBar())
+        {
+            // 如果是boos且血条标签颜色（编号）
+            broadcastBossHpMessage(
+                    monster
+                    , monster.hashCode()
+                    , monster.makeBossHPBarPacket()
+                    , monster.getPosition());
         }
-        if (monster.isBoss()) {
-            if (unclaimOwnership() != null) {
+
+        if (monster.isBoss())
+        {
+            if (unclaimOwnership() != null)
+            {
                 String mobName = MonsterInformationProvider.getInstance().getMobNameFromId(monster.getId());
-                if (mobName != null) {
+                if (mobName != null)
+                {
                     mobName = mobName.trim();
                     this.dropMessage(5, "这片草坪已被" + mobName + "的部队占领，击败他们才能夺回控制权！");
                 }
@@ -3063,25 +3166,46 @@ public class MapleMap {
         broadcastBossHpMessage(mm, bossHash, null, packet, Double.POSITIVE_INFINITY, null);
     }
 
-    public void broadcastBossHpMessage(Monster mm, int bossHash, Packet packet, Point rangedFrom) {
-        broadcastBossHpMessage(mm, bossHash, null, packet, getRangedDistance(), rangedFrom);
+    public void broadcastBossHpMessage(
+            Monster mm
+            , int bossHash
+            , Packet packet
+            , Point rangedFrom)
+    {
+        // 广播boos血量信息
+        broadcastBossHpMessage(
+                mm
+                , bossHash
+                , null
+                , packet
+                , getRangedDistance()
+                , rangedFrom);
     }
 
     private void broadcastBossHpMessage(Monster mm, int bossHash, Character source, Packet packet, double rangeSq, Point rangedFrom) {
         chrRLock.lock();
-        try {
-            for (Character chr : characters) {
-                if (chr != source) {
-                    if (rangeSq < Double.POSITIVE_INFINITY) {
-                        if (rangedFrom.distanceSq(chr.getPosition()) <= rangeSq) {
+        try
+        {
+            for (Character chr : characters)
+            {
+                if (chr != source)
+                {
+                    if (rangeSq < Double.POSITIVE_INFINITY)
+                    {
+                        if (rangedFrom.distanceSq(chr.getPosition()) <= rangeSq)
+                        {
                             chr.getClient().announceBossHpBar(mm, bossHash, packet);
                         }
-                    } else {
+                    }
+                    else
+                    {
                         chr.getClient().announceBossHpBar(mm, bossHash, packet);
                     }
                 }
             }
-        } finally {
+        }
+        finally
+        {
             chrRLock.unlock();
         }
     }
@@ -3344,21 +3468,25 @@ public class MapleMap {
      */
     public void addMonsterSpawn(Monster monster, int mobTime, int team)
     {
-        // 根据地图玩家能够站立点更新怪物生成坐标
+        // 根据地形可站立点（foothold）校正怪物落地坐标
         Point newpos = calcPointBelow(monster.getPosition());
+        // 落点再上移 1 像素，让怪物站在平台表面不嵌入地形）
         newpos.y -= 1;
         SpawnPoint sp = new SpawnPoint(
                 monster
                 , newpos
-                , !monster.isMobile()
-                , mobTime
-                , mobInterval
-                , team);
+                , !monster.isMobile() // 是否固定不动（不可移动怪=定点刷新）
+                , mobTime  //  重生间隔
+                , mobInterval  // 扫描间隔
+                , team); // 阵营
 
+        // 把刷怪点加入 monsterSpawn 列表（由重生扫描管理）
         monsterSpawn.add(sp);
 
         if (sp.shouldSpawn() || mobTime == -1)
         {
+            // 开始生成怪物
+            // -1 不会重生，也不应重生，但会强制进行一次生成。
             // -1 does not respawn and should not either but force ONE spawn
             spawnMonster(sp.getMonster());
         }
@@ -3471,21 +3599,45 @@ public class MapleMap {
         return null;
     }
 
-    private static void updateMapObjectVisibility(Character chr, MapObject mo) {
-        if (!chr.isMapObjectVisible(mo)) { // object entered view range
-            if (mo.getType() == MapObjectType.SUMMON || mo.getPosition().distanceSq(chr.getPosition()) <= getRangedDistance()) {
+    private static void updateMapObjectVisibility(Character chr, MapObject mo)
+    {
+        if (!chr.isMapObjectVisible(mo))
+        {
+            // 玩家可见范围没有当前怪物节点
+
+            // object entered view range
+            if (mo.getType() == MapObjectType.SUMMON
+                    || mo.getPosition().distanceSq(chr.getPosition()) <= getRangedDistance())
+            {
+                // 怪物类型是召唤兽
+                // 且怪物位置和玩家位置处于可广播范围内
+
+                // 当前角色可视范围内添加当前对象
                 chr.addVisibleMapObject(mo);
+
+                // 怪物信息发送通知给当前角色客户端
                 mo.sendSpawnData(chr.getClient());
             }
-        } else if (mo.getType() != MapObjectType.SUMMON && mo.getPosition().distanceSq(chr.getPosition()) > getRangedDistance()) {
+        }
+        else if (mo.getType() != MapObjectType.SUMMON
+                && mo.getPosition().distanceSq(chr.getPosition()) > getRangedDistance())
+        {
+            // 当前怪物类型不是召唤怪
+            // 且玩家和怪物处于不在广播范围内
+
+            // 玩家可见状态移除当前怪物节点
             chr.removeVisibleMapObject(mo);
+
+            // 怪物信息发送通知给当前角色客户端
             mo.sendDestroyData(chr.getClient());
         }
     }
 
     public void moveMonster(Monster monster, Point reportedPos) {
         monster.setPosition(reportedPos);
-        for (Character chr : getAllPlayers()) {
+
+        for (Character chr : getAllPlayers())
+        {
             updateMapObjectVisibility(chr, monster);
         }
     }
@@ -3872,7 +4024,9 @@ public class MapleMap {
         return 0.70 + (0.05 * Math.min(6, numPlayers));
     }
 
-    private int getNumShouldSpawn(int numPlayers) {
+    // 根据玩家数量来获取生成怪物的数量
+    private int getNumShouldSpawn(int numPlayers)
+    {
         /*
         System.out.println("----------------------------------");
         for (SpawnPoint spawnPoint : getMonsterSpawn()) {
@@ -3882,7 +4036,9 @@ public class MapleMap {
         System.out.println("----------------------------------");
         */
 
-        if (GameConfig.getServerBoolean("use_enable_full_respawn")) {
+        if (GameConfig.getServerBoolean("use_enable_full_respawn"))
+        {
+            // 怪物按最大数量生成，不取决当前地图的玩家数
             return (monsterSpawn.size() - spawnedMonstersOnMap.get());
         }
 
@@ -3891,33 +4047,44 @@ public class MapleMap {
     }
 
     public void respawn() {
-        if (!allowSummons) {
+        if (!allowSummons)
+        {
             return;
         }
 
         int numPlayers;
         chrRLock.lock();
-        try {
+        try
+        {
             numPlayers = characters.size();
-
-            if (numPlayers == 0) {
+            if (numPlayers == 0)
+            {
                 return;
             }
-        } finally {
+        }
+        finally
+        {
             chrRLock.unlock();
         }
 
+        // 根据玩家数量来获取生成怪物的数量
         int numShouldSpawn = getNumShouldSpawn(numPlayers);
-        if (numShouldSpawn > 0) {
+        if (numShouldSpawn > 0)
+        {
             List<SpawnPoint> randomSpawn = new ArrayList<>(getMonsterSpawn());
             Collections.shuffle(randomSpawn);
             short spawned = 0;
-            for (SpawnPoint spawnPoint : randomSpawn) {
-                if (spawnPoint.shouldSpawn()) {
+            for (SpawnPoint spawnPoint : randomSpawn)
+            {
+                if (spawnPoint.shouldSpawn())
+                {
+                    // 开始生成怪物信息
                     spawnMonster(spawnPoint.getMonster());
                     spawned++;
 
-                    if (spawned >= numShouldSpawn) {
+                    if (spawned >= numShouldSpawn)
+                    {
+                        // 怪物生成数量超过检测则停止继续生成
                         break;
                     }
                 }
@@ -3925,9 +4092,15 @@ public class MapleMap {
         }
     }
 
-    public void mobMpRecovery() {
-        for (Monster mob : this.getAllMonsters()) {
-            if (mob.isAlive()) {
+    public void mobMpRecovery()
+    {
+        // 给地图所有存活怪物按"等级"量恢复 MP（不回 HP）
+        // 怪物脱战后缓慢回蓝的机制，随重生扫描周期执行
+        // ，保证怪再次开战时蓝量充足，但不会因此回满血。
+        for (Monster mob : this.getAllMonsters())
+        {
+            if (mob.isAlive())
+            {
                 mob.heal(0, mob.getLevel());
             }
         }

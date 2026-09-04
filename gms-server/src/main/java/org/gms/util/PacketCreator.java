@@ -1472,11 +1472,13 @@ public class PacketCreator {
     }
 
     private static void encodeParentlessMobSpawnEffect(OutPacket p, boolean newSpawn, int effect) {
-        if (effect > 0) {
+        if (effect > 0)
+        {
             p.writeByte(effect);
             p.writeByte(0);
             p.writeShort(0);
-            if (effect == 15) {
+            if (effect == 15)
+            {
                 p.writeByte(0);
             }
         }
@@ -1494,19 +1496,24 @@ public class PacketCreator {
 
         writeLongEncodeTemporaryMask(p, stati.keySet());    // packet structure mapped thanks to Eric
 
-        for (Entry<MonsterStatus, MonsterStatusEffect> s : stati.entrySet()) {
+        for (Entry<MonsterStatus, MonsterStatusEffect> s : stati.entrySet())
+        {
             MonsterStatusEffect mse = s.getValue();
             p.writeShort(mse.getStati().get(s.getKey()));
 
             MobSkill mobSkill = mse.getMobSkill();
-            if (mobSkill != null) {
+            if (mobSkill != null)
+            {
                 writeMobSkillId(p, mobSkill.getId());
 
-                switch (s.getKey()) {
+                switch (s.getKey())
+                {
                     case WEAPON_REFLECT -> pCounter = mobSkill.getX();
                     case MAGIC_REFLECT -> mCounter = mobSkill.getY();
                 }
-            } else {
+            }
+            else
+            {
                 Skill skill = mse.getSkill();
                 p.writeInt(skill != null ? skill.getId() : 0);
             }
@@ -1515,13 +1522,16 @@ public class PacketCreator {
         }
 
         // reflect packet structure found thanks to Arnah (Vertisy)
-        if (pCounter != -1) {
+        if (pCounter != -1)
+        {
             p.writeInt(pCounter);// wPCounter_
         }
-        if (mCounter != -1) {
+        if (mCounter != -1)
+        {
             p.writeInt(mCounter);// wMCounter_
         }
-        if (pCounter != -1 || mCounter != -1) {
+        if (pCounter != -1 || mCounter != -1)
+        {
             p.writeInt(100);// nCounterProb_
         }
     }
@@ -1536,8 +1546,22 @@ public class PacketCreator {
      * @param effect            The spawn effect to use.
      * @return The spawn/control packet.
      */
-    private static Packet spawnMonsterInternal(Monster life, boolean requestController, boolean newSpawn, boolean aggro, int effect, boolean makeInvis) {
-        if (makeInvis) {
+    private static Packet spawnMonsterInternal(
+            // 怪物对象
+            Monster life
+            // 发包是否为所属权
+            , boolean requestController
+            // 是否是新建的怪物对象
+            , boolean newSpawn
+            // 是否拥有仇恨值
+            , boolean aggro
+            // 是否有影响?
+            , int effect
+            // 是否设为隐藏
+            , boolean makeInvis)
+    {
+        if (makeInvis)
+        {
             OutPacket p = OutPacket.create(SendOpcode.SPAWN_MONSTER_CONTROL);
             p.writeByte(0);
             p.writeInt(life.getObjectId());
@@ -1545,10 +1569,13 @@ public class PacketCreator {
         }
 
         final OutPacket p;
-        if (requestController) {
+        if (requestController)
+        {
             p = OutPacket.create(SendOpcode.SPAWN_MONSTER_CONTROL);
             p.writeByte(aggro ? 2 : 1);
-        } else {
+        }
+        else
+        {
             p = OutPacket.create(SendOpcode.SPAWN_MONSTER);
         }
 
@@ -1556,9 +1583,12 @@ public class PacketCreator {
         p.writeByte(life.getController() == null ? 5 : 1);
         p.writeInt(life.getId());
 
-        if (requestController) {
+        if (requestController)
+        {
             encodeTemporary(p, life.getStati());    // thanks shot for noticing encode temporary buffs missing
-        } else {
+        }
+        else
+        {
             p.skip(16);
         }
 
@@ -1576,15 +1606,21 @@ public class PacketCreator {
          * ?? 16: ?? 19: Mushroom castle boss thing
          */
 
-        if (life.getParentMobOid() != 0) {
+        if (life.getParentMobOid() != 0)
+        {
             Monster parentMob = life.getMap().getMonsterByOid(life.getParentMobOid());
-            if (parentMob != null && parentMob.isAlive()) {
+            if (parentMob != null && parentMob.isAlive())
+            {
                 p.writeByte(effect != 0 ? effect : -3);
                 p.writeInt(life.getParentMobOid());
-            } else {
+            }
+            else
+            {
                 encodeParentlessMobSpawnEffect(p, newSpawn, effect);
             }
-        } else {
+        }
+        else
+        {
             encodeParentlessMobSpawnEffect(p, newSpawn, effect);
         }
 
@@ -2330,8 +2366,17 @@ public class PacketCreator {
         return p;
     }
 
-    public static Packet moveMonster(int oid, boolean skillPossible, int skill, int skillId, int skillLevel, int pOption,
-                                     Point startPos, InPacket movementPacket, long movementDataLength) {
+    public static Packet moveMonster(
+            int oid
+            , boolean skillPossible
+            , int skill
+            , int skillId
+            , int skillLevel
+            , int pOption
+            , Point startPos
+            , InPacket movementPacket
+            , long movementDataLength)
+    {
         final OutPacket p = OutPacket.create(SendOpcode.MOVE_MONSTER);
         p.writeInt(oid);
         p.writeByte(0);
@@ -3107,14 +3152,17 @@ public class PacketCreator {
     private static void writeLongEncodeTemporaryMask(final OutPacket p, Collection<MonsterStatus> stati) {
         int[] masks = new int[4];
 
-        for (MonsterStatus statup : stati) {
+        for (MonsterStatus statup : stati)
+        {
             int pos = statup.isFirst() ? 0 : 2;
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++)
+            {
                 masks[pos + i] |= statup.getValue() >> 32 * i;
             }
         }
 
-        for (int mask : masks) {
+        for (int mask : masks)
+        {
             p.writeInt(mask);
         }
     }

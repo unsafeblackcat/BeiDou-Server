@@ -156,28 +156,43 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
         return res;
     }
 
-    protected void updatePosition(InPacket p, AnimatedMapObject target, int yOffset) throws EmptyMovementException {
+    protected void updatePosition(InPacket p, AnimatedMapObject target, int yOffset) throws EmptyMovementException
+    {
 
         byte numCommands = p.readByte();
-        if (numCommands < 1) {
+        if (numCommands < 1)
+        {
             throw new EmptyMovementException(p);
         }
-        for (byte i = 0; i < numCommands; i++) {
+
+        for (byte i = 0; i < numCommands; i++)
+        {
             byte command = p.readByte();
-            switch (command) {
+            switch (command)
+            {
                 case 0: // normal move
                 case 5:
-                case 17: { // Float
+                case 17:
+                { // Float
                     //Absolute movement - only this is important for the server, other movement can be passed to the client
+                    // 当前对象的坐标
                     Point beforePos = snapshotPosition(target);
+
                     short xpos = p.readShort(); //is signed fine here?
                     short ypos = p.readShort();
+                    // 需要更新的新坐标
                     Point afterPos = new Point(xpos, ypos + yOffset);
+                    // 设置新的坐标
                     target.setPosition(afterPos);
+
                     p.skip(6); //xwobble = lea.readShort(); ywobble = lea.readShort(); fh = lea.readShort();
+
+                    // 更新新的状态
                     byte newstate = p.readByte();
                     target.setStance(newstate);
+
                     p.readShort(); //duration
+
                     recordRegularMove(target, beforePos, afterPos);
                     break;
                 }
@@ -190,30 +205,43 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
                 case 18:
                 case 19: // Springs on maps
                 case 20: // Aran Combat Step
-                case 22: {
+                case 22:
+                {
                     Point beforePos = snapshotPosition(target);
+
                     short deltaX = p.readShort();
                     short deltaY = p.readShort();
+
+                    // 如果 target 对象不是角色
                     Point afterPos = target instanceof Character
                             ? estimateRelativeMovePosition(beforePos, deltaX, deltaY)
                             : null;
+
                     byte newstate = p.readByte();
-                    if (afterPos != null) {
+                    if (afterPos != null)
+                    {
                         target.setPosition(afterPos);
                     }
+
                     target.setStance(newstate);
+
                     p.readShort(); //duration
+
                     recordRegularMove(target, beforePos, afterPos);
                     break;
                 }
                 case 3:
-                case 4: { // teleport disappear/appear
+                case 4:
+                {
+                    // teleport disappear/appear
                     handleTeleportMove(p, target, yOffset);
                     break;
                 }
                 case 7: // assaulter
                 case 8: // assassinate
-                case 9: { // rush
+                case 9:
+                {
+                    // rush
                     handleDashLikeMove(p, target, yOffset);
                     break;
                 }
@@ -240,11 +268,13 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
                     res.add(cm);
                     break;
                 }*/
-                case 15: {
+                case 15:
+                {
                     handleJumpDownMove(p, target, yOffset);
                     break;
                 }
-                case 21: {//Causes aran to do weird stuff when attacking o.o
+                case 21:
+                {//Causes aran to do weird stuff when attacking o.o
                     /*byte newstate = lea.readByte();
                      short unk = lea.readShort();
                      AranMovement am = new AranMovement(command, null, unk, newstate);
@@ -263,14 +293,19 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
      * 处理瞬移动作（3/4）：同步坐标并在玩家对象上记录传送前后坐标。
      */
     private static void handleTeleportMove(InPacket p, AnimatedMapObject target, int yOffset) {
+
         Point beforePos = snapshotPosition(target);
         Point afterPos = readPositionWithOffset(p, yOffset);
+
         p.skip(4); // xwobble / ywobble
+
         byte newstate = p.readByte();
+
         applyPositionAndStance(target, afterPos, newstate);
 
         // 仅玩家记录“瞬移前后坐标”，供攻击距离双坐标校验使用
-        if (target instanceof Character chr) {
+        if (target instanceof Character chr)
+        {
             chr.markTeleportLikeMove(beforePos, afterPos);
         }
     }
@@ -279,9 +314,14 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
      * 处理突进类位移（7/8/9）：同步服务端坐标，降低位移后首包攻击误判概率。
      */
     private static void handleDashLikeMove(InPacket p, AnimatedMapObject target, int yOffset) {
+        // 新的坐标
         Point afterPos = readPositionWithOffset(p, yOffset);
         p.skip(4); // xwobble / ywobble
+
+        // 新的状态
         byte newstate = p.readByte();
+
+        // 更新目标坐标和状态
         applyPositionAndStance(target, afterPos, newstate);
     }
 
@@ -290,6 +330,7 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
      */
     private static void handleChairMove(InPacket p, AnimatedMapObject target) {
         p.skip(8); // xpos / ypos / xwobble / ywobble
+
         byte newstate = p.readByte();
         target.setStance(newstate);
     }
@@ -301,10 +342,14 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
         Point beforePos = snapshotPosition(target);
         Point afterPos = readPositionWithOffset(p, yOffset);
         target.setPosition(afterPos);
+
         p.skip(8); // xwobble / ywobble / fh / ofh
+
         byte newstate = p.readByte();
         target.setStance(newstate);
+
         p.readShort(); // duration
+
         recordRegularMove(target, beforePos, afterPos);
     }
 
@@ -337,7 +382,9 @@ public abstract class AbstractMovementPacketHandler extends AbstractPacketHandle
     }
 
     private static void recordRegularMove(AnimatedMapObject target, Point beforePos, Point afterPos) {
-        if (target instanceof Character chr) {
+        if (target instanceof Character chr)
+        {
+            // 如果对象 是角色。
             chr.markRegularMove(beforePos, afterPos);
         }
     }

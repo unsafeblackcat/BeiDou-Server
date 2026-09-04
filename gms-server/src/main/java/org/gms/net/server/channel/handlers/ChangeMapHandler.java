@@ -51,7 +51,8 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
     private static final Logger log = LoggerFactory.getLogger(ChangeMapHandler.class);
 
     @Override
-    public void handlePacket(InPacket p, Client c) {
+    public void handlePacket(InPacket p, Client c)
+    {
         Character chr = c.getPlayer();
         if (chr.isChangingMaps() || chr.isBanned())
         {
