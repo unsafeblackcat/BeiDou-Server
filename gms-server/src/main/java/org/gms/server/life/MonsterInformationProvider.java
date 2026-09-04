@@ -31,6 +31,7 @@ import org.gms.provider.DataTool;
 import org.gms.provider.wz.WZFiles;
 import org.gms.server.ItemInformationProvider;
 import org.gms.util.DatabaseConnection;
+import org.gms.util.I18nUtil;
 import org.gms.util.Pair;
 import org.gms.util.Randomizer;
 
@@ -40,11 +41,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class MonsterInformationProvider {
     private static final Logger log = LoggerFactory.getLogger(MonsterInformationProvider.class);
@@ -56,13 +58,8 @@ public class MonsterInformationProvider {
         return instance;
     }
 
-    private final Map<Integer, List<MonsterDropEntry>> drops = new HashMap<>();
-    private final List<MonsterGlobalDropEntry> globaldrops = new ArrayList<>();
-    private final Map<Integer, List<MonsterGlobalDropEntry>> continentdrops = new HashMap<>();
-
-    private final Map<Integer, List<Integer>> dropsChancePool = new HashMap<>();    // thanks to ronan
-    private final Set<Integer> hasNoMultiEquipDrops = new HashSet<>();
-    private final Map<Integer, List<MonsterDropEntry>> extraMultiEquipDrops = new HashMap<>();
+    private volatile DropCache dropCache = new DropCache();
+    private final GlobalDropStore globalDropStore = new GlobalDropStore();
 
     /**
      *  Pair<Integer, Integer>
@@ -92,34 +89,20 @@ public class MonsterInformationProvider {
     private final Map<Integer, String> mobNameCache = new HashMap<>();
 
     protected MonsterInformationProvider() {
-        retrieveGlobal();
+        reloadGlobalDrops();
     }
 
     public final List<MonsterGlobalDropEntry> getRelevantGlobalDrops(int mapid) {
-        int continentid = mapid / 100000000;
-
-        List<MonsterGlobalDropEntry> contiItems = continentdrops.get(continentid);
-        if (contiItems == null) {   // continent separated global drops found thanks to marcuswoon
-            contiItems = new ArrayList<>();
-
-            for (MonsterGlobalDropEntry e : globaldrops) {
-                if (e.continentid < 0 || e.continentid == continentid) {
-                    contiItems.add(e);
-                }
-            }
-
-            continentdrops.put(continentid, contiItems);
-        }
-
-        return contiItems;
+        return globalDropStore.getRelevantDrops(mapid);
     }
 
-    private void retrieveGlobal() {
+    private List<MonsterGlobalDropEntry> loadGlobalDrops() throws SQLException {
+        List<MonsterGlobalDropEntry> loadedDrops = new ArrayList<>();
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("SELECT * FROM drop_data_global WHERE chance > 0");
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                globaldrops.add(new MonsterGlobalDropEntry(
+                loadedDrops.add(new MonsterGlobalDropEntry(
                         rs.getInt("itemid"),
                         rs.getInt("chance"),
                         rs.getByte("continent"),
@@ -127,20 +110,31 @@ public class MonsterInformationProvider {
                         rs.getInt("maximum_quantity"),
                         rs.getShort("questid")));
             }
+        }
+        return loadedDrops;
+    }
+
+    private void reloadGlobalDrops() {
+        try {
+            globalDropStore.replaceAll(loadGlobalDrops());
         } catch (SQLException e) {
-            log.error("Error retrieving global drops", e);
+            log.error(I18nUtil.getLogMessage("MonsterInformationProvider.retrieveGlobal.error1"), e);
         }
     }
 
     public List<MonsterDropEntry> retrieveEffectiveDrop(final int monsterId) {
         // this reads the drop entries searching for multi-equip, properly processing them
 
-        List<MonsterDropEntry> list = retrieveDrop(monsterId);
-        if (hasNoMultiEquipDrops.contains(monsterId) || !GameConfig.getServerBoolean("use_multiple_same_equip_drop")) {
+        DropCache cache = dropCache;
+        List<MonsterDropEntry> list = retrieveDrop(cache, monsterId);
+        if (list == null) {
+            return List.of();
+        }
+        if (cache.hasNoMultiEquipDrops.contains(monsterId) || !GameConfig.getServerBoolean("use_multiple_same_equip_drop")) {
             return list;
         }
 
-        List<MonsterDropEntry> multiDrops = extraMultiEquipDrops.get(monsterId), extra = new LinkedList<>();
+        List<MonsterDropEntry> multiDrops = cache.extraMultiEquipDrops.get(monsterId), extra = new LinkedList<>();
         if (multiDrops == null) {
             multiDrops = new LinkedList<>();
 
@@ -156,9 +150,9 @@ public class MonsterInformationProvider {
             }
 
             if (!multiDrops.isEmpty()) {
-                extraMultiEquipDrops.put(monsterId, multiDrops);
+                cache.extraMultiEquipDrops.put(monsterId, List.copyOf(multiDrops));
             } else {
-                hasNoMultiEquipDrops.add(monsterId);
+                cache.hasNoMultiEquipDrops.add(monsterId);
             }
         } else {
             for (MonsterDropEntry mde : multiDrops) {
@@ -176,10 +170,16 @@ public class MonsterInformationProvider {
     }
 
     public final List<MonsterDropEntry> retrieveDrop(final int monsterId) {
-        if (drops.containsKey(monsterId)) {
-            return drops.get(monsterId);
-        }
-        final List<MonsterDropEntry> ret = new LinkedList<>();
+        List<MonsterDropEntry> loadedDrops = retrieveDrop(dropCache, monsterId);
+        return loadedDrops == null ? List.of() : loadedDrops;
+    }
+
+    private List<MonsterDropEntry> retrieveDrop(DropCache cache, int monsterId) {
+        return cache.drops.computeIfAbsent(monsterId, this::loadMonsterDrops);
+    }
+
+    private List<MonsterDropEntry> loadMonsterDrops(int monsterId) {
+        List<MonsterDropEntry> loadedDrops = new ArrayList<>();
 
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("SELECT itemid, chance, minimum_quantity, maximum_quantity, questid FROM drop_data WHERE dropperid = ?")) {
@@ -187,26 +187,45 @@ public class MonsterInformationProvider {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    ret.add(new MonsterDropEntry(rs.getInt("itemid"), rs.getInt("chance"), rs.getInt("minimum_quantity"), rs.getInt("maximum_quantity"), rs.getShort("questid")));
+                    loadedDrops.add(new MonsterDropEntry(rs.getInt("itemid"), rs.getInt("chance"), rs.getInt("minimum_quantity"), rs.getInt("maximum_quantity"), rs.getShort("questid")));
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return ret;
+            log.error(I18nUtil.getLogMessage("MonsterInformationProvider.retrieveDrop.error1"), monsterId, e);
+            return null;
         }
 
-        drops.put(monsterId, ret);
-        return ret;
+        return List.copyOf(loadedDrops);
     }
 
-    public final List<Integer> retrieveDropPool(final int monsterId) {  // ignores Quest and Party Quest items
-        if (dropsChancePool.containsKey(monsterId)) {
-            return dropsChancePool.get(monsterId);
+    public final MonsterDropEntry retrieveRandomStealDrop(int monsterId) {
+        DropCache cache = dropCache;
+        List<Integer> dropPool = retrieveDropPool(cache, monsterId);
+        if (dropPool == null || dropPool.isEmpty()) {
+            return null;
         }
 
+        int randomValue = (int) Math.floor(Math.random() * dropPool.getLast());
+        int index = 0;
+        while (randomValue >= dropPool.get(index)) {
+            index++;
+        }
+
+        List<MonsterDropEntry> drops = retrieveDrop(cache, monsterId);
+        return drops == null || index >= drops.size() ? null : drops.get(index);
+    }
+
+    private List<Integer> retrieveDropPool(DropCache cache, int monsterId) {
+        return cache.dropsChancePool.computeIfAbsent(monsterId, id -> buildDropPool(cache, id));
+    }
+
+    private List<Integer> buildDropPool(DropCache cache, int monsterId) {
         ItemInformationProvider ii = ItemInformationProvider.getInstance();
 
-        List<MonsterDropEntry> dropList = retrieveDrop(monsterId);
+        List<MonsterDropEntry> dropList = retrieveDrop(cache, monsterId);
+        if (dropList == null) {
+            return null;
+        }
         List<Integer> ret = new ArrayList<>();
 
         int accProp = 0;
@@ -223,8 +242,7 @@ public class MonsterInformationProvider {
         if (accProp == 0) {
             ret.clear();    // don't accept mobs dropping no relevant items
         }
-        dropsChancePool.put(monsterId, ret);
-        return ret;
+        return List.copyOf(ret);
     }
 
     public final void setMobAttackAnimationTime(int monsterId, int attackPos, int animationTime) {
@@ -306,13 +324,51 @@ public class MonsterInformationProvider {
         return mobName;
     }
 
-    public final void clearDrops() {
-        drops.clear();
-        hasNoMultiEquipDrops.clear();
-        extraMultiEquipDrops.clear();
-        dropsChancePool.clear();
-        globaldrops.clear();
-        continentdrops.clear();
-        retrieveGlobal();
+    public final synchronized void clearDrops() {
+        reloadGlobalDrops();
+        dropCache = new DropCache();
+    }
+
+    private static final class DropCache {
+        private final ConcurrentMap<Integer, List<MonsterDropEntry>> drops = new ConcurrentHashMap<>();
+        private final ConcurrentMap<Integer, List<Integer>> dropsChancePool = new ConcurrentHashMap<>();
+        private final Set<Integer> hasNoMultiEquipDrops = ConcurrentHashMap.newKeySet();
+        private final ConcurrentMap<Integer, List<MonsterDropEntry>> extraMultiEquipDrops = new ConcurrentHashMap<>();
+    }
+
+    private static final class GlobalDropStore {
+        private volatile GlobalDropSnapshot snapshot = GlobalDropSnapshot.empty();
+
+        private List<MonsterGlobalDropEntry> getRelevantDrops(int mapId) {
+            return snapshot.getRelevantDrops(mapId);
+        }
+
+        private void replaceAll(List<MonsterGlobalDropEntry> drops) {
+            snapshot = new GlobalDropSnapshot(drops);
+        }
+    }
+
+    private static final class GlobalDropSnapshot {
+        private final List<MonsterGlobalDropEntry> allDrops;
+        private final ConcurrentMap<Integer, List<MonsterGlobalDropEntry>> continentDrops = new ConcurrentHashMap<>();
+
+        private GlobalDropSnapshot(List<MonsterGlobalDropEntry> drops) {
+            allDrops = List.copyOf(drops);
+        }
+
+        private static GlobalDropSnapshot empty() {
+            return new GlobalDropSnapshot(List.of());
+        }
+
+        private List<MonsterGlobalDropEntry> getRelevantDrops(int mapId) {
+            int continentId = mapId / 100000000;
+            return continentDrops.computeIfAbsent(continentId, this::loadContinentDrops);
+        }
+
+        private List<MonsterGlobalDropEntry> loadContinentDrops(int continentId) {
+            return allDrops.stream()
+                    .filter(drop -> drop.continentid < 0 || drop.continentid == continentId)
+                    .toList();
+        }
     }
 }

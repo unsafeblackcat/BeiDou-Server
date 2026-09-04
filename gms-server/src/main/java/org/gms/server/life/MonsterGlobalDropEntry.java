@@ -33,6 +33,10 @@ public class MonsterGlobalDropEntry {
         this.Maximum = Maximum;
     }
 
-    public int itemId, chance, Minimum, Maximum, continentid;
-    public short questid;
+    public final int itemId;
+    public final int chance;
+    public final int Minimum;
+    public final int Maximum;
+    public final int continentid;
+    public final short questid;
 }
