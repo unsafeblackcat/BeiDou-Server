@@ -1046,41 +1046,71 @@ public class PacketCreator {
      * @param chr           The update target.
      * @return The stat update packet.
      */
-    public static Packet updatePlayerStats(List<Pair<Stat, Integer>> stats, boolean enableActions, Character chr) {
+    public static Packet updatePlayerStats(
+            List<Pair<Stat, Integer>> stats
+            , boolean enableActions
+            , Character chr)
+    {
         OutPacket p = OutPacket.create(SendOpcode.STAT_CHANGED);
         p.writeBool(enableActions);
+
         int updateMask = 0;
-        for (Pair<Stat, Integer> statupdate : stats) {
+
+        for (Pair<Stat, Integer> statupdate : stats)
+        {
             updateMask |= statupdate.getLeft().getValue();
         }
+
         List<Pair<Stat, Integer>> mystats = stats;
-        if (mystats.size() > 1) {
+
+        if (mystats.size() > 1)
+        {
             mystats.sort((o1, o2) -> {
                 int val1 = o1.getLeft().getValue();
                 int val2 = o2.getLeft().getValue();
                 return (val1 < val2 ? -1 : (val1 == val2 ? 0 : 1));
             });
         }
+
         p.writeInt(updateMask);
-        for (Pair<Stat, Integer> statupdate : mystats) {
-            if (statupdate.getLeft().getValue() >= 1) {
-                if (statupdate.getLeft().getValue() == 0x1) {
+
+        for (Pair<Stat, Integer> statupdate : mystats)
+        {
+            if (statupdate.getLeft().getValue() >= 1)
+            {
+                if (statupdate.getLeft().getValue() == 0x1)
+                {
                     p.writeByte(statupdate.getRight().byteValue());
-                } else if (statupdate.getLeft().getValue() <= 0x4) {
+                }
+                else if (statupdate.getLeft().getValue() <= 0x4)
+                {
                     p.writeInt(statupdate.getRight());
-                } else if (statupdate.getLeft().getValue() < 0x20) {
+                }
+                else if (statupdate.getLeft().getValue() < 0x20)
+                {
                     p.writeByte(statupdate.getRight().shortValue());
-                } else if (statupdate.getLeft().getValue() == 0x8000) {
-                    if (GameConstants.hasSPTable(chr.getJob())) {
+                }
+                else if (statupdate.getLeft().getValue() == 0x8000)
+                {
+                    if (GameConstants.hasSPTable(chr.getJob()))
+                    {
                         addRemainingSkillInfo(p, chr);
-                    } else {
+                    }
+                    else
+                    {
                         p.writeShort(statupdate.getRight().shortValue());
                     }
-                } else if (statupdate.getLeft().getValue() < 0xFFFF) {
+                }
+                else if (statupdate.getLeft().getValue() < 0xFFFF)
+                {
                     p.writeShort(statupdate.getRight().shortValue());
-                } else if (statupdate.getLeft().getValue() == 0x20000) {
+                }
+                else if (statupdate.getLeft().getValue() == 0x20000)
+                {
                     p.writeShort(statupdate.getRight().shortValue());
-                } else {
+                }
+                else
+                {
                     p.writeInt(statupdate.getRight());
                 }
             }

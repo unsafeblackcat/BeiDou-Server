@@ -56,6 +56,7 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
         Character chr = c.getPlayer();
         if (chr.isChangingMaps() || chr.isBanned())
         {
+            // 当前处于地图传送中和被怪物驱逐过程中。
             if (chr.isChangingMaps())
             {
                 log.warn(I18nUtil.getLogMessage("ChangeMapHandler.warn.message1"),
@@ -99,21 +100,23 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
             int targetMapId = p.readInt();
             // 传送门名称
             String portalName = p.readString();
-
             // 通过名称拿到 传送门
-            Portal portal = chr.getMap().getPortal(portalName);
-
+            Portal portal = chr.getMap().getPortal(portalName); 
             // 跳过字节
             p.readByte();
 
             boolean wheel = p.readByte() > 0;
 
+            // 读取字节为1
             boolean chasing = p.readByte() == 1
+                    // 当前角色是GM
                     && chr.isGM()
+                    // 剩余可读取字节为8字节
                     && p.available() == 2 * Integer.BYTES;
             if (chasing)
             {
                 chr.setChasing(true);
+                // 对角色设置新的坐标
                 chr.setPosition(new Point(p.readInt(), p.readInt()));
             }
 
@@ -124,18 +127,28 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
                     // 玩家死亡切换地图
                     MapleMap map = chr.getMap();
                     if (wheel
+                            // 角色背包中是否存在当前道具
                             && chr.haveItemWithId(ItemId.WHEEL_OF_FORTUNE, false))
                     {
                         // 玩家有命运之轮道具 → 扣除一个轮子 → 原地复活
                         // thanks lucasziron (lziron) for showing revivePlayer() triggering by Wheel
 
-                        InventoryManipulator.removeById(c, InventoryType.CASH, ItemId.WHEEL_OF_FORTUNE, 1, true, false);
+                        InventoryManipulator.removeById(
+                                c
+                                , InventoryType.CASH
+                                , ItemId.WHEEL_OF_FORTUNE
+                                , 1
+                                , true
+                                , false);
 
                         chr.sendPacket(
                                 PacketCreator.showWheelsLeft(
                                         chr.getItemQuantity(ItemId.WHEEL_OF_FORTUNE, false)));
 
+                        // 更新角色HP数值
                         chr.updateHp(50);
+
+                        // 玩家切换地图
                         chr.changeMap(
                                 map
                                 , map.findClosestPlayerSpawnpoint(chr.getPosition()));
@@ -277,24 +290,35 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
         }
     }
 
-    private void enterFromCashShop(Client c) {
+    private void enterFromCashShop(Client c)
+    {
         final Character chr = c.getPlayer();
 
-        if (!chr.getCashShop().isOpened()) {
+        if (!chr.getCashShop().isOpened())
+        {
             c.disconnect(false, false);
             return;
         }
+
         String[] socket = Server.getInstance().getInetSocket(c, c.getWorld(), c.getChannel());
-        if (socket == null) {
+        if (socket == null)
+        {
             c.enableCSActions();
             return;
         }
+
         chr.getCashShop().open(false);
 
         chr.setSessionTransitionState();
-        try {
-            c.sendPacket(PacketCreator.getChannelChange(InetAddress.getByName(socket[0]), Integer.parseInt(socket[1])));
-        } catch (UnknownHostException ex) {
+        try
+        {
+            c.sendPacket(
+                    PacketCreator.getChannelChange(
+                            InetAddress.getByName(socket[0])
+                            , Integer.parseInt(socket[1])));
+        }
+        catch (UnknownHostException ex)
+        {
             ex.printStackTrace();
         }
     }
