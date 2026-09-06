@@ -79,7 +79,7 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
         boolean enteringMapFromCashShop = p.available() == 0;
         if (enteringMapFromCashShop)
         {
-            // 进入商城
+            // 空包表示客户端从商城返回地图，服务端执行商城退出流程并引导客户端切回游戏频道
             enterFromCashShop(c);
             return;
         }
@@ -100,7 +100,7 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
             int targetMapId = p.readInt();
             // 传送门名称
             String portalName = p.readString();
-            // 通过名称拿到 传送门
+            // 通过名称拿到当前还未切换地图的传送门名称
             Portal portal = chr.getMap().getPortal(portalName);
             // 跳过字节
             p.readByte();

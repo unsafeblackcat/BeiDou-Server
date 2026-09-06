@@ -1000,8 +1000,10 @@ public class Character extends AbstractCharacterObject {
 
     public void cancelMagicDoor() {
         List<BuffStatValueHolder> mbsvhList = getAllStatups();
-        for (BuffStatValueHolder mbsvh : mbsvhList) {
-            if (mbsvh.effect.isMagicDoor()) {
+        for (BuffStatValueHolder mbsvh : mbsvhList)
+        {
+            if (mbsvh.effect.isMagicDoor())
+            {
                 cancelEffect(mbsvh.effect, false, mbsvh.startTime);
                 break;
             }
@@ -1497,6 +1499,10 @@ public class Character extends AbstractCharacterObject {
 
     public void changeMap(final MapleMap target, Portal pto)
     {
+        /**
+         *  target 目标地图
+         *  pto: 目标地图的传送门
+         * **/
         canWarpCounter++;
 
         // player can be dropped from an event here, hence the new warping target.
@@ -1936,7 +1942,7 @@ public class Character extends AbstractCharacterObject {
             return;
         }
 
-        // 给队友发包
+        // 给情侣发包
         notifyMapTransferToPartner(map.getId());
 
         //alas, new map has been specified when a warping was being processed...
@@ -3428,16 +3434,20 @@ public class Character extends AbstractCharacterObject {
         }
     }
 
-    private List<BuffStatValueHolder> getAllStatups() {
+    private List<BuffStatValueHolder> getAllStatups()
+    {
         effLock.lock();
         chrLock.lock();
         try {
             List<BuffStatValueHolder> ret = new ArrayList<>();
-            for (Map<BuffStat, BuffStatValueHolder> bel : buffEffects.values()) {
+            for (Map<BuffStat, BuffStatValueHolder> bel : buffEffects.values())
+            {
                 ret.addAll(bel.values());
             }
             return ret;
-        } finally {
+        }
+        finally
+        {
             chrLock.unlock();
             effLock.unlock();
         }
@@ -3775,21 +3785,28 @@ public class Character extends AbstractCharacterObject {
 
         prtLock.lock();
         effLock.lock();
-        try {
+        try
+        {
             ret = cancelEffect(effect, overwrite, startTime, true);
-        } finally {
+        }
+        finally
+        {
             effLock.unlock();
             prtLock.unlock();
         }
 
-        if (effect.isMagicDoor() && ret) {
+        if (effect.isMagicDoor() && ret)
+        {
             prtLock.lock();
             effLock.lock();
-            try {
-                if (!hasBuffFromSourceid(Priest.MYSTIC_DOOR)) {
+            try
+            {
+                if (!hasBuffFromSourceid(Priest.MYSTIC_DOOR))
+                {
                     Door.attemptRemoveDoor(this);
                 }
-            } finally {
+            }
+            finally {
                 effLock.unlock();
                 prtLock.unlock();
             }
@@ -7947,8 +7964,10 @@ public class Character extends AbstractCharacterObject {
     }
 
     //ItemFactory saveItems and monsterbook.saveCards are the most time consuming here.
-    public synchronized void saveCharToDB(boolean notAutosave) {
-        if (!loggedIn) {
+    public synchronized void saveCharToDB(boolean notAutosave)
+    {
+        if (!loggedIn)
+        {
             // 如果已经退出登录，取消自动保存当前角色任务
             CharacterSaveService service = getCharacterSaveService();
             service.unregisterSaveCharacter(this.getId());
@@ -10489,11 +10508,16 @@ public class Character extends AbstractCharacterObject {
      */
     public MapleMap getMap(int mapid, boolean showMsg) {
         MapleMap map = null;
-        try {
+        try
+        {
             map = client.getChannelServer().getMapFactory().getMap(mapid);
-        } catch (Exception ignored) {
         }
-        if (map == null && showMsg) {
+        catch (Exception ignored)
+        {
+        }
+
+        if (map == null && showMsg)
+        {
             String msg = I18nUtil.getMessage("Character.Map.Change.message1", Integer.toString(mapid));
             log.warn(I18nUtil.getLogMessage("Character.Map.Change.warn1"), getName(), getMap().getMapName(), getMapId(),
                     I18nUtil.getLogMessage("SystemRescue.info.map.message1"),
@@ -10502,6 +10526,7 @@ public class Character extends AbstractCharacterObject {
             dropMessage(1, msg);                 //弹窗消息
             enableActions();
         }
+
         return map;
     }
 

@@ -987,12 +987,12 @@ public class Client extends ChannelInboundHandlerAdapter {
     }
 
     private void removePlayer(World wserv, boolean serverTransition) {
-        try {
+        try
+        {
             player.setDisconnectedFromChannelWorld();
             player.notifyMapTransferToPartner(-1);
             player.removeIncomingInvites();
             player.cancelAllBuffs(true);
-
             player.closePlayerInteractions();
             player.closePartySearchInteractions();
 
@@ -1012,33 +1012,41 @@ public class Client extends ChannelInboundHandlerAdapter {
                     player.getAriantColiseum().playerDisconnected(getPlayer());
                 }
             }
-
-        } catch (final Throwable t) {
+        }
+        catch (final Throwable t)
+        {
             log.error("账号卡住 (玩家清理)", t);
         }
 
         // 地图移除必须独立保证执行：即便上面的清理抛异常，也要把玩家从地图摘除并触发怪物 controller 重分配，
         // 否则会留下"PlayerStorage 已移除、MapleMap 仍持有"的幽灵玩家，导致该图怪物 controller 卡死、怪物不动。
-        try {
-            if (player.getMap() != null) {
+        try
+        {
+            if (player.getMap() != null)
+            {
                 int mapId = player.getMapId();
                 player.getMap().removePlayer(player);
-                if (MapId.isDojo(mapId)) {
+
+                if (MapId.isDojo(mapId))
+                {
                     this.getChannelServer().freeDojoSectionIfEmpty(mapId);
                 }
                 
-                if (player.getMap().getHPDec() > 0) {
+                if (player.getMap().getHPDec() > 0)
+                {
                     getWorldServer().removePlayerHpDecrease(player);
                 }
             }
-
-        } catch (final Throwable t) {
+        }
+        catch (final Throwable t)
+        {
             log.error("账号卡住 (地图移除)", t);
         }
     }
 
     public final void disconnect(final boolean shutdown, final boolean cashshop) {
-        if (canDisconnect()) {
+        if (canDisconnect())
+        {
             ThreadManager.getInstance().newTask(() -> disconnectInternal(shutdown, cashshop));
         }
     }
@@ -1071,7 +1079,10 @@ public class Client extends ChannelInboundHandlerAdapter {
                 && player.isLoggedIn()
                 && player.getClient() != null)
         {
-            final int messengerid = player.getMessenger() == null ? 0 : player.getMessenger().getId();
+            final int messengerid = player.getMessenger() == null
+                    ? 0
+                    : player.getMessenger().getId();
+
             //final int fid = player.getFamilyId();
             final BuddyList bl = player.getBuddylist();
             final MessengerCharacter chrm = new MessengerCharacter(player, 0);
@@ -1085,6 +1096,7 @@ public class Client extends ChannelInboundHandlerAdapter {
             {
                 // 保存在线时间
                 player.updateOnlineTime();
+
                 removePlayer(wserv, this.serverTransition);
 
                 if (!(channel == -1 || shutdown))
@@ -1109,7 +1121,12 @@ public class Client extends ChannelInboundHandlerAdapter {
                             if (guild != null)
                             {
                                 final Server server = Server.getInstance();
-                                server.setGuildMemberOnline(player, false, player.getClient().getChannel());
+
+                                server.setGuildMemberOnline(
+                                        player
+                                        , false
+                                        , player.getClient().getChannel());
+
                                 player.sendPacket(GuildPackets.showGuildInfo(player));
                             }
 
@@ -1144,6 +1161,7 @@ public class Client extends ChannelInboundHandlerAdapter {
                     {
                         chrg.setCharacter(null);
                     }
+
                     wserv.removePlayer(player);
                     //getChannelServer().removePlayer(player); already being done
 
@@ -1152,6 +1170,7 @@ public class Client extends ChannelInboundHandlerAdapter {
                     player.saveCharToDB(true);
 
                     player.logOff();
+
                     if (GameConfig.getServerBoolean("instant_name_change"))
                     {
                         player.doPendingNameChange();
@@ -1189,9 +1208,11 @@ public class Client extends ChannelInboundHandlerAdapter {
         }
     }
 
-    private void clear() {
+    private void clear()
+    {
         // player hard reference removal thanks to Steve (kaito1410)
-        if (this.player != null) {
+        if (this.player != null)
+        {
             this.player.empty(true); // clears schedules and stuff
         }
 
