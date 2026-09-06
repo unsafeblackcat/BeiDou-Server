@@ -47,17 +47,20 @@ public class PortalScriptManager extends AbstractScriptManager {
     private PortalScript getPortalScript(String scriptName) throws ScriptException {
         String scriptPath = "portal/" + scriptName + ".js";
         PortalScript script = scripts.get(scriptPath);
-        if (script != null) {
+        if (script != null)
+        {
             return script;
         }
 
         ScriptEngine engine = getInvocableScriptEngine(scriptPath);
-        if (!(engine instanceof Invocable iv)) {
+        if (!(engine instanceof Invocable iv))
+        {
             return null;
         }
 
         script = iv.getInterface(PortalScript.class);
-        if (script == null) {
+        if (script == null)
+        {
             throw new ScriptException(String.format("Portal script \"%s\" fails to implement the PortalScript interface", scriptName));
         }
 
@@ -65,22 +68,29 @@ public class PortalScriptManager extends AbstractScriptManager {
         return script;
     }
 
-    public boolean executePortalScript(Portal portal, Client c) {
-        try {
+    public boolean executePortalScript(Portal portal, Client c)
+    {
+        try
+        {
             String strPortalName = portal.getScriptName();
-            if (GameConfig.getServerBoolean("use_debug") && c.getPlayer().isGM() )
+            if (GameConfig.getServerBoolean("use_debug")
+                    && c.getPlayer().isGM() )
             {
                 c.getPlayer().dropMessage("您已建立与传送门脚本: " + strPortalName + ".js 的关联。");
             }
+
             PortalScript script = getPortalScript(strPortalName);
-            if (script != null) {
+            if (script != null)
+            {
                 //portal脚本全局共享GraalVM context，按script实例串行化，避免多线程并发进入
-                synchronized (script) {
+                synchronized (script)
+                {
                     return script.enter(new PortalPlayerInteraction(c, portal));
                 }
             }
-        } catch (Exception e) {
-
+        }
+        catch (Exception e)
+        {
             log.warn("Portal script error in: {}", portal.getScriptName(), e);
         }
         return false;

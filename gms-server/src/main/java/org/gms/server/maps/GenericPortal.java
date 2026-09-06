@@ -138,37 +138,66 @@ public class GenericPortal implements Portal {
     }
 
     @Override
-    public void enterPortal(Client c) {
+    public void enterPortal(Client c)
+    {
         boolean changed = false;
-        if (getScriptName() != null) {
-            try {
+        if (getScriptName() != null)
+        {
+            try
+            {
                 scriptLock.lock();
-                try {
+                try
+                {
                     changed = PortalScriptManager.getInstance().executePortalScript(this, c);
-                } finally {
+                }
+                finally
+                {
                     scriptLock.unlock();
                 }
-            } catch (NullPointerException npe) {
+            }
+            catch (NullPointerException npe)
+            {
                 npe.printStackTrace();
             }
-        } else if (getTargetMapId() != MapId.NONE) {
+        }
+        else if (getTargetMapId() != MapId.NONE)
+        {
             Character chr = c.getPlayer();
-            if (!(chr.getChalkboard() != null && GameConstants.isFreeMarketRoom(getTargetMapId()))) {
-                MapleMap to = chr.getEventInstance() == null ? c.getChannelServer().getMapFactory().getMap(getTargetMapId()) : chr.getEventInstance().getMapInstance(getTargetMapId());
+            if (!(chr.getChalkboard() != null
+                    && GameConstants.isFreeMarketRoom(getTargetMapId())))
+            {
+                /**
+                 *  判断角色是否有事件对象
+                 *
+                 * **/
+                MapleMap to = chr.getEventInstance() == null
+                        ? c.getChannelServer().getMapFactory().getMap(getTargetMapId())
+                        : chr.getEventInstance().getMapInstance(getTargetMapId());
+
+                // 在地图中找通过pn找到对应的传送门节点
                 Portal pto = to.getPortal(getTarget());
-                if (pto == null) {// fallback for missing portals - no real life case anymore - interesting for not implemented areas
+                if (pto == null)
+                {
+                    // fallback for missing portals - no real life case anymore - interesting for not implemented areas
                     pto = to.getPortal(0);
                 }
-                if (to.getId() == chr.getMapId()) {
+
+                if (to.getId() == chr.getMapId())
+                {
                     chr.setPetLootTeleportBeforePos(new Point(chr.getPosition())); // 同图传送记录补偿坐标
                 }
+
                 chr.changeMap(to, pto); //late resolving makes this harder but prevents us from loading the whole world at once
                 changed = true;
-            } else {
+            }
+            else
+            {
                 chr.dropMessage(5, "You cannot enter this map with the chalkboard opened.");
             }
         }
-        if (!changed) {
+
+        if (!changed)
+        {
             c.sendPacket(PacketCreator.enableActions());
         }
     }

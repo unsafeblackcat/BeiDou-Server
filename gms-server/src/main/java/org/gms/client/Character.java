@@ -352,6 +352,7 @@ public class Character extends AbstractCharacterObject {
     private PlayerShop playerShop = null;
     @Getter
     @Setter
+    // NPC 商店
     private Shop shop = null;
     @Getter
     @Setter
@@ -516,7 +517,9 @@ public class Character extends AbstractCharacterObject {
     private boolean useCS;  //chaos scroll upon crafting item.
     private long npcCd;
     private int newWarpMap = -1;
+    // 可以切换地图
     private boolean canWarpMap = true;  //only one "warp" must be used per call, and this will define the right one.
+    // 切换地图计数，防止同时切换错乱
     private int canWarpCounter = 0;     //counts how many times "inner warps" have been called.
     private byte extraHpRec = 0, extraMpRec = 0;
     private short extraRecInterval;
@@ -1359,11 +1362,18 @@ public class Character extends AbstractCharacterObject {
     public MapleMap getWarpMap(int map) {
         MapleMap warpMap;
         EventInstanceManager eim = getEventInstance();
-        if (eim != null) {
+
+        if (eim != null)
+        {
             warpMap = eim.getMapInstance(map);
-        } else if (this.getMonsterCarnival() != null && this.getMonsterCarnival().getEventMap().getId() == map) {
+        }
+        else if (this.getMonsterCarnival() != null
+                && this.getMonsterCarnival().getEventMap().getId() == map)
+        {
             warpMap = this.getMonsterCarnival().getEventMap();
-        } else {
+        }
+        else
+        {
             warpMap = client.getChannelServer().getMapFactory().getMap(map);
         }
         return warpMap;
@@ -1383,7 +1393,8 @@ public class Character extends AbstractCharacterObject {
 
     private void eventAfterChangedMap(int map) {
         EventInstanceManager eim = getEventInstance();
-        if (eim != null) {
+        if (eim != null)
+        {
             eim.afterChangedMap(this, map);
         }
     }
@@ -1437,7 +1448,8 @@ public class Character extends AbstractCharacterObject {
         setBanishPlayerData(banMap, banSp, banTime);
     }
 
-    public void changeMap(int map) {
+    public void changeMap(int map)
+    {
         changeMap(map, null);
     }
 
@@ -1446,24 +1458,32 @@ public class Character extends AbstractCharacterObject {
      * 玩家角色更改地图
      * @param map   地图ID
      */
-    public void changeMap(int map, Object pt) {
+    public void changeMap(int map, Object pt)
+    {
         MapleMap warpMap;
         EventInstanceManager eim = getEventInstance();
 
-        if (eim != null) {
+        if (eim != null)
+        {
             warpMap = eim.getMapInstance(map);
-        } else {
+        }
+        else
+        {
             warpMap = getMap(map, true);
-            if (warpMap == null) return; //判断地图不存在则直接返回并发送提示消息。
+
+            if (warpMap == null)
+                return; //判断地图不存在则直接返回并发送提示消息。
         }
 
-        Portal portal = switch (pt) {
+        Portal portal = switch (pt)
+        {
             case null -> warpMap.getRandomPlayerSpawnpoint();
             case Integer i -> warpMap.getPortal(i);
             case String s -> warpMap.getPortal(s);
             case Portal p -> p;
             default -> warpMap.getPortal(0);
         };
+
         changeMap(warpMap, portal);
     }
 
@@ -1475,22 +1495,36 @@ public class Character extends AbstractCharacterObject {
         changeMap(to, to.getPortal(portal));
     }
 
-    public void changeMap(final MapleMap target, Portal pto) {
+    public void changeMap(final MapleMap target, Portal pto)
+    {
         canWarpCounter++;
 
-        eventChangedMap(target.getId());    // player can be dropped from an event here, hence the new warping target.  //玩家可以从这里的事件中退出，因此成为新的扭曲目标。
+        // player can be dropped from an event here, hence the new warping target.
+        // 玩家可以从这里的事件中退出，因此成为新的扭曲目标。
+        eventChangedMap(target.getId());
+
+        // 通过传送门ID，找到对应地图对象
         MapleMap to = getWarpMap(target.getId());
-        if (pto == null) {
+        if (pto == null)
+        {
             pto = to.getPortal(0);
         }
-        changeMapInternal(to, pto.getPosition(), PacketCreator.getWarpToMap(to, pto.getId(), this));
+
+        changeMapInternal(
+                to
+                , pto.getPosition()
+                , PacketCreator.getWarpToMap(to, pto.getId(), this));
+
         canWarpMap = false;
 
         canWarpCounter--;
-        if (canWarpCounter == 0) {
+
+        if (canWarpCounter == 0)
+        {
             canWarpMap = true;
         }
 
+        // 切换地图成功，如果存在角色事件，则调用对应事件函数
         eventAfterChangedMap(this.getMapId());
     }
 
@@ -1735,8 +1769,10 @@ public class Character extends AbstractCharacterObject {
 
     private Integer getVisitedMapIndex(MapleMap map) {
         int idx = 0;
-        for (WeakReference<MapleMap> mapRef : lastVisitedMaps) {
-            if (map.equals(mapRef.get())) {
+        for (WeakReference<MapleMap> mapRef : lastVisitedMaps)
+        {
+            if (map.equals(mapRef.get()))
+            {
                 return idx;
             }
             idx++;
@@ -1746,21 +1782,28 @@ public class Character extends AbstractCharacterObject {
 
     public void visitMap(MapleMap map) {
         petLock.lock();
-        try {
+        try
+        {
             int idx = getVisitedMapIndex(map);
 
-            if (idx == -1) {
-                if (lastVisitedMaps.size() == GameConfig.getServerInt("map_visited_size")) {
+            if (idx == -1)
+            {
+                if (lastVisitedMaps.size() == GameConfig.getServerInt("map_visited_size"))
+                {
                     lastVisitedMaps.removeFirst();
                 }
-            } else {
+            }
+            else
+            {
                 WeakReference<MapleMap> mapRef = lastVisitedMaps.remove(idx);
                 lastVisitedMaps.add(mapRef);
                 return;
             }
 
             lastVisitedMaps.add(new WeakReference<>(map));
-        } finally {
+        }
+        finally
+        {
             petLock.unlock();
         }
     }
@@ -1774,9 +1817,11 @@ public class Character extends AbstractCharacterObject {
     }
 
     public void notifyMapTransferToPartner(int mapid) {
-        if (partnerId > 0) {
+        if (partnerId > 0)
+        {
             final Character partner = getWorldServer().getPlayerStorage().getCharacterById(partnerId);
-            if (partner != null && !partner.isAwayFromWorld()) {
+            if (partner != null && !partner.isAwayFromWorld())
+            {
                 partner.sendPacket(WeddingPackets.OnNotifyWeddingPartnerTransfer(id, mapid));
             }
         }
@@ -1792,68 +1837,124 @@ public class Character extends AbstractCharacterObject {
      * @param pos
      * @param warpPacket
      */
-    private void changeMapInternal(final MapleMap to, final Point pos, Packet warpPacket) {
-        if (!canWarpMap) {
+    private void changeMapInternal(
+            final MapleMap to
+            , final Point pos
+            , Packet warpPacket)
+    {
+        if (!canWarpMap)
+        {
             return;
         }
-        if (getMap(to.getId(), true) == null) return; //判断地图不存在则直接返回并发送提示消息。
+
+        if (getMap(to.getId(), true) == null)
+            return; //判断地图不存在则直接返回并发送提示消息。
 
         this.mapTransitioning.set(true);
+
         // 显式清空“传送距离校验上下文”，避免跨图后旧上下文残留
         clearTeleportDistanceContext();
 
         this.unregisterChairBuff();
+
         this.clearBanishPlayerData();
+
         Trade.cancelTrade(this, Trade.TradeResult.UNSUCCESSFUL_ANOTHER_MAP);
+
         this.closePlayerInteractions();
 
         Party e = null;
-        if (this.getParty() != null && this.getParty().getEnemy() != null) {
+
+        if (this.getParty() != null
+                && this.getParty().getEnemy() != null)
+        {
+            // 存在组队对象
             e = this.getParty().getEnemy();
         }
+
         final Party k = e;
 
+        // 发包
         sendPacket(warpPacket);
+
+        // 从地图对象中移除当前角色
+        // 且对当前角色下所有权的怪物进行转移
         map.removePlayer(this);
-        if (client.getChannelServer().getPlayerStorage().getCharacterById(getId()) != null) {
+
+        if (client.getChannelServer().getPlayerStorage().getCharacterById(getId()) != null)
+        {
+            // 当前角色所在频道对象内，存在当前角色信息
+
+            // 修改角色下地图所在节点
             map = to;
+
+            // 设置角色坐标
             setPosition(pos);
+
+            // 更新地图对象下添加当前角色信息
             map.addPlayer(this);
+
             visitMap(map);
 
             prtLock.lock();
-            try {
-                if (party != null) {
+            try
+            {
+                if (party != null)
+                {
+                    // 存在组队信息
                     mpc.setMapId(to.getId());
-                    sendPacket(PacketCreator.updateParty(client.getChannel(), party, PartyOperation.SILENT_UPDATE, null));
+
+                    // 更新组队状态
+                    sendPacket(
+                            PacketCreator.updateParty(
+                                    client.getChannel()
+                                    , party
+                                    , PartyOperation.SILENT_UPDATE
+                                    , null));
+
+                    // 通知当前组队其他玩家当前角色状态
                     updatePartyMemberHPInternal();
                 }
-            } finally {
+            }
+            finally
+            {
                 prtLock.unlock();
             }
-            if (Character.this.getParty() != null) {
+
+            if (Character.this.getParty() != null)
+            {
                 Character.this.getParty().setEnemy(k);
             }
+
+            // 更新组队
             silentPartyUpdateInternal(getParty());  // EIM script calls inside
-        } else {    //切换地图时卡住了
+        }
+        else
+        {    //切换地图时卡住了
             log.warn(I18nUtil.getLogMessage("Character.Map.Change.warn2"), getName(), map.getMapName(), map.getId());
             client.disconnect(true, false);     // thanks BHB for noticing a player storage stuck case here
             return;
         }
 
+        // 给队友发包
         notifyMapTransferToPartner(map.getId());
 
         //alas, new map has been specified when a warping was being processed...
-        if (newWarpMap != -1) {
+        if (newWarpMap != -1)
+        {
             canWarpMap = true;
 
             int temp = newWarpMap;
             newWarpMap = -1;
+
             changeMap(temp);
-        } else {
+        }
+        else
+        {
             // if this event map has a gate already opened, render it
             EventInstanceManager eim = getEventInstance();
-            if (eim != null) {
+            if (eim != null)
+            {
                 eim.recoverOpenedGate(this, map.getId());
             }
 
@@ -4405,13 +4506,15 @@ public class Character extends AbstractCharacterObject {
     }
 
     public boolean unregisterChairBuff() {
-        if (!GameConfig.getServerBoolean("use_chair_extra_heal")) {
+        if (!GameConfig.getServerBoolean("use_chair_extra_heal"))
+        {
             return false;
         }
 
         int skillId = getJobMapChair(job);
         int skillLv = getSkillLevel(skillId);
-        if (skillLv > 0) {
+        if (skillLv > 0)
+        {
             StatEffect mapChairSkill = SkillFactory.getSkill(skillId).getEffect(skillLv);
             return cancelEffect(mapChairSkill, false, -1);
         }
@@ -5210,18 +5313,24 @@ public class Character extends AbstractCharacterObject {
 
         prtLock.lock();
         try {
-            if (party != null) {
-                for (PartyCharacter mpc : party.getMembers()) {
+            if (party != null)
+            {
+                for (PartyCharacter mpc : party.getMembers())
+                {
                     Character chr = mpc.getPlayer();
-                    if (chr != null) {
+                    if (chr != null)
+                    {
                         MapleMap chrMap = chr.getMap();
-                        if (chrMap != null && chrMap.hashCode() == thisMapHash && chr.isLoggedInWorld()) {
+                        if (chrMap != null && chrMap.hashCode() == thisMapHash && chr.isLoggedInWorld())
+                        {
                             list.add(chr);
                         }
                     }
                 }
             }
-        } finally {
+        }
+        finally
+        {
             prtLock.unlock();
         }
 
@@ -5280,11 +5389,13 @@ public class Character extends AbstractCharacterObject {
 
     public void closePlayerShop() {
         PlayerShop mps = this.getPlayerShop();
-        if (mps == null) {
+        if (mps == null)
+        {
             return;
         }
 
-        if (mps.isOwner(this)) {
+        if (mps.isOwner(this))
+        {
             mps.setOpen(false);
             getWorldServer().unregisterPlayerShop(mps);
 
@@ -5298,21 +5409,28 @@ public class Character extends AbstractCharacterObject {
                 }
             }
             mps.closeShop();
-        } else {
+        }
+        else
+        {
             mps.removeVisitor(this);
         }
+
         this.setPlayerShop(null);
     }
 
     public void closeMiniGame(boolean forceClose) {
         MiniGame game = this.getMiniGame();
-        if (game == null) {
+        if (game == null)
+        {
             return;
         }
 
-        if (game.isOwner(this)) {
+        if (game.isOwner(this))
+        {
             game.closeRoom(forceClose);
-        } else {
+        }
+        else
+        {
             game.removeVisitor(forceClose, this);
         }
     }
@@ -8982,8 +9100,11 @@ public class Character extends AbstractCharacterObject {
     }
 
     private void silentPartyUpdateInternal(Party chrParty) {
-        if (chrParty != null) {
-            getWorldServer().updateParty(chrParty.getId(), PartyOperation.SILENT_UPDATE, getMPC());
+        if (chrParty != null)
+        {
+            getWorldServer().updateParty(
+                    chrParty.getId(), PartyOperation.SILENT_UPDATE
+                    , getMPC());
         }
     }
 
@@ -9092,10 +9213,13 @@ public class Character extends AbstractCharacterObject {
     }
 
     private void updatePartyMemberHPInternal() {
-        if (party != null) {
+        if (party != null)
+        {
             int curmaxhp = getCurrentMaxHp();
             int curhp = getHp();
-            for (Character partychar : this.getPartyMembersOnSameMap()) {
+
+            for (Character partychar : this.getPartyMembersOnSameMap())
+            {
                 partychar.sendPacket(PacketCreator.updatePartyMemberHP(getId(), curhp, curmaxhp));
             }
         }

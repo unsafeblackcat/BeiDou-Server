@@ -2904,58 +2904,84 @@ public class MapleMap {
     public void removePlayer(Character chr) {
         // 优先重分配该玩家控制的怪物 controller，防止后续步骤抛异常导致 leaveMap()->releaseControlledMonsters() 没执行，
         // 怪物 controller 卡在已离线玩家身上（幽灵致怪物不动的根因之一）。
-        try {
+        try
+        {
             chr.releaseControlledMonsters();
-        } catch (Throwable t) {
+        }
+        catch (Throwable t)
+        {
             log.warn("removePlayer 重分配怪物 controller 异常 chr={}", chr.getName(), t);
         }
 
-        Channel cserv = chr.getClient() != null ? chr.getClient().getChannelServer() : null;
+        Channel cserv = chr.getClient() != null
+                ? chr.getClient().getChannelServer()
+                : null;
+
         chr.unregisterChairBuff();
 
         Party party = chr.getParty();
         chrWLock.lock();
-        try {
-            if (party != null && party.getMemberById(chr.getId()) != null) {
+        try
+        {
+            if (party != null && party.getMemberById(chr.getId()) != null)
+            {
                 removePartyMemberInternal(chr, party.getId());
             }
 
             characters.remove(chr);
-        } finally {
+        }
+        finally
+        {
             chrWLock.unlock();
         }
 
-        if (cserv != null && MiniDungeonInfo.isDungeonMap(mapid)) {
+        if (cserv != null && MiniDungeonInfo.isDungeonMap(mapid))
+        {
             MiniDungeon mmd = cserv.getMiniDungeon(mapid);
-            if (mmd != null) {
-                if (!mmd.unregisterPlayer(chr)) {
+            if (mmd != null)
+            {
+                if (!mmd.unregisterPlayer(chr))
+                {
                     cserv.removeMiniDungeon(mapid);
                 }
             }
         }
 
         removeMapObject(chr.getObjectId());
-        if (!chr.isHidden()) {
+
+        if (!chr.isHidden())
+        {
             broadcastMessage(PacketCreator.removePlayerFromMap(chr.getId()));
-        } else {
+        }
+        else
+        {
             broadcastGMMessage(PacketCreator.removePlayerFromMap(chr.getId()));
         }
 
         chr.leaveMap();
 
-        for (Summon summon : new ArrayList<>(chr.getSummonsValues())) {
-            if (summon.isStationary()) {
+        for (Summon summon : new ArrayList<>(chr.getSummonsValues()))
+        {
+            if (summon.isStationary())
+            {
                 chr.cancelEffectFromBuffStat(BuffStat.PUPPET);
-            } else {
+            }
+            else
+            {
                 removeMapObject(summon);
             }
         }
 
-        if (chr.getDragon() != null) {
+        if (chr.getDragon() != null)
+        {
             removeMapObject(chr.getDragon());
-            if (chr.isHidden()) {
+
+            if (chr.isHidden())
+            {
                 this.broadcastGMPacket(chr, PacketCreator.removeDragon(chr.getId()));
-            } else {
+            }
+            else
+            {
                 this.broadcastPacket(chr, PacketCreator.removeDragon(chr.getId()));
             }
         }
@@ -3412,9 +3438,12 @@ public class MapleMap {
         portals.put(myPortal.getId(), myPortal);
     }
 
-    public Portal getPortal(String portalname) {
-        for (Portal port : portals.values()) {
-            if (port.getName().equals(portalname)) {
+    public Portal getPortal(String portalname)
+    {
+        for (Portal port : portals.values())
+        {
+            if (port.getName().equals(portalname))
+            {
                 return port;
             }
         }

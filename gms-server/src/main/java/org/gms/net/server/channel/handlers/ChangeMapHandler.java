@@ -101,7 +101,7 @@ public final class ChangeMapHandler extends AbstractPacketHandler {
             // 传送门名称
             String portalName = p.readString();
             // 通过名称拿到 传送门
-            Portal portal = chr.getMap().getPortal(portalName); 
+            Portal portal = chr.getMap().getPortal(portalName);
             // 跳过字节
             p.readByte();
 

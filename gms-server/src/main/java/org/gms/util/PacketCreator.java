@@ -4024,21 +4024,28 @@ public class PacketCreator {
 
     public static Packet updateParty(int forChannel, Party party, PartyOperation op, PartyCharacter target) {
         final OutPacket p = OutPacket.create(SendOpcode.PARTY_OPERATION);
-        switch (op) {
+        switch (op)
+        {
             case DISBAND:
             case EXPEL:
             case LEAVE:
                 p.writeByte(0x0C);
                 p.writeInt(party.getId());
                 p.writeInt(target.getId());
-                if (op == PartyOperation.DISBAND) {
+                if (op == PartyOperation.DISBAND)
+                {
                     p.writeByte(0);
                     p.writeInt(party.getId());
-                } else {
+                }
+                else
+                {
                     p.writeByte(1);
-                    if (op == PartyOperation.EXPEL) {
+                    if (op == PartyOperation.EXPEL)
+                    {
                         p.writeByte(1);
-                    } else {
+                    }
+                    else
+                    {
                         p.writeByte(0);
                     }
                     p.writeString(target.getName());
